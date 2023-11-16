@@ -1,6 +1,5 @@
+import 'package:auto_titanic/utils/navigators/navigators.dart';
 import 'package:get/get.dart';
-
-import '../../utils/navigators/navigators.dart';
 
 class SplashController extends GetxController {
   @override

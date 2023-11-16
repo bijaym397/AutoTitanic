@@ -1,6 +1,5 @@
+import 'package:auto_titanic/utils/navigators/app_pages.dart';
 import 'package:get/get.dart';
-
-import 'app_pages.dart';
 
 abstract class RouteManagement {
   /// Go to the SignIn Screen

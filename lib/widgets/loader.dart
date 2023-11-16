@@ -1,6 +1,5 @@
+import 'package:auto_titanic/res/res.dart';
 import 'package:flutter/material.dart';
-
-import '../res/res.dart';
 
 class AppLoader extends StatelessWidget {
   const AppLoader({super.key});
@@ -14,7 +13,7 @@ class AppLoader extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10.0),
               child: CircularProgressIndicator(
-                color: ColorsValue.primaryColor,
+                color: AppColors.primary,
               ),
             ),
           ),

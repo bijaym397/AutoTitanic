@@ -10,3 +10,19 @@ class StringConstants {
   static const String noInternet =
       'No internet connection. Please connect to the internet and try again.';
 }
+
+class AppStrings {
+  const AppStrings._();
+
+  static const String cars = 'Cars';
+  static const String vans = 'Vans';
+  static const String bikes = 'Bikes';
+  static const String motorHomes = 'Motorhomes';
+  static const String caravans = 'Caravans';
+  static const String trucks = 'Trucks';
+  static const String farms = 'Farms';
+  static const String plants = 'Plants';
+  static const String partsAccessories = 'Parts and Accessories';
+  static const String carRentals = 'Car Rentals';
+  static const String safetyCentre = 'Safety and Security Centre';
+}

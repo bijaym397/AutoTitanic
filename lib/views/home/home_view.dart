@@ -1,3 +1,4 @@
+import 'package:auto_titanic/views/home/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -7,6 +8,7 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Scaffold(
+        appBar: DashboardHeader(),
         body: Center(
           child: Text('Home View'),
         ),

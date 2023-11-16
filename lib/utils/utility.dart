@@ -1,14 +1,11 @@
 import 'dart:convert';
 
+import 'package:auto_titanic/models/models.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-
-import '../models/models.dart';
-import '../res/res.dart';
-import '../widgets/widgets.dart';
-import 'enums.dart';
 
 class Utility {
   const Utility._();
@@ -87,9 +84,9 @@ class Utility {
           CupertinoDialogAction(
             onPressed: Get.back,
             isDefaultAction: true,
-            child: Text(
+            child: const Text(
               'Okay',
-              style: Styles.black16,
+              // style: Styles.black16,
             ),
           ),
         ],
@@ -151,69 +148,5 @@ class Utility {
   /// Close any open snackbar
   static void closeSnackbar() {
     if (Get.isSnackbarOpen) Get.back<void>();
-  }
-
-  /// Show a message to the user.
-  ///
-  /// [message] : Message you need to show to the user.
-  /// [type] : Type of the message for different background color.
-  /// [onTap] : An event for onTap.
-  /// [actionName] : The name for the action.
-
-  static void showMessage({
-    String? message,
-    MessageType type = MessageType.information,
-    Function()? onTap,
-    String? actionName,
-  }) {
-    if (message == null || message.isEmpty) return;
-    closeDialog();
-    closeSnackbar();
-    var backgroundColor = Colors.black;
-    switch (type) {
-      case MessageType.error:
-        backgroundColor = Colors.red;
-        break;
-      case MessageType.information:
-        backgroundColor = Colors.blue;
-        break;
-      case MessageType.success:
-        backgroundColor = Colors.green;
-        break;
-      default:
-        backgroundColor = Colors.black;
-        break;
-    }
-    Future.delayed(
-      const Duration(seconds: 0),
-      () {
-        Get.rawSnackbar(
-          messageText: Text(
-            message,
-            style: Styles.white16,
-          ),
-          mainButton: actionName != null
-              ? TextButton(
-                  onPressed: onTap ?? Get.back,
-                  child: Text(
-                    actionName,
-                    style: Styles.white16,
-                  ),
-                )
-              : null,
-          backgroundColor: backgroundColor,
-          margin: Dimens.edgeInsets10,
-          borderRadius: Dimens.ten + Dimens.five,
-          snackStyle: SnackStyle.FLOATING,
-        );
-      },
-    );
-  }
-
-  static void unfocusKeyboard(BuildContext context) {
-    var currentFocus = FocusScope.of(context);
-    if (!currentFocus.hasPrimaryFocus) {
-      currentFocus.unfocus();
-    }
   }
 }

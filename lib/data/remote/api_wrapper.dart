@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:auto_titanic/data/data.dart';
+import 'package:auto_titanic/models/models.dart';
+import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:http/http.dart' as http;
-
-import '../../data/data.dart';
-import '../../models/models.dart';
-import '../../res/res.dart';
-import '../../utils/utils.dart';
 
 /// API WRAPPER to call all the APIs and handle the status codes
 class ApiWrapper {

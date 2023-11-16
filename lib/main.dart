@@ -1,18 +1,16 @@
 import 'dart:async';
 
+import 'package:auto_titanic/data/data.dart';
+import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/navigators/navigators.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'data/data.dart';
-import 'res/res.dart';
-import 'utils/navigators/navigators.dart';
-import 'utils/utils.dart';
-
-// Files to import
-// connectivity_plus, device_info_plus, flutter_screenutil, flutter_secure_storage, get, http, package_info_plus, shared_preferences
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   await _setup();
+  setPathUrlStrategy();
   runApp(const MyApp());
 }
 
@@ -44,7 +42,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primaryColor: Colors.purple),
-        translations: TranslationsFile(),
         getPages: AppPages.pages,
         initialRoute: AppPages.initial,
       );

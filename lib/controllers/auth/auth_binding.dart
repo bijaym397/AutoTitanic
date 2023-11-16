@@ -1,8 +1,7 @@
+import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/repositories/repositories.dart';
+import 'package:auto_titanic/view_models/view_models.dart';
 import 'package:get/get.dart';
-
-import '../../repositories/repositories.dart';
-import '../../view_models/view_models.dart';
-import '../controllers.dart';
 
 class AuthBinding implements Bindings {
   @override

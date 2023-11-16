@@ -1,6 +1,5 @@
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/material.dart';
-
-import '../utils.dart';
 
 class EnvConfig {
   const EnvConfig({

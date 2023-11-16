@@ -1,2 +1,2 @@
 export 'constants/constants.dart';
-export 'theme/theme.dart';
+export 'styles/styles.dart';

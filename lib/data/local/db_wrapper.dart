@@ -1,6 +1,5 @@
+import 'package:auto_titanic/data/local/local.dart';
 import 'package:get/get.dart';
-
-import 'local.dart';
 
 class DBWrapper {
   Future<void> init() async => await _preference.init();

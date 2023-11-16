@@ -1,7 +1,6 @@
+import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/views/views.dart';
 import 'package:get/get.dart';
-
-import '../../controllers/controllers.dart';
-import '../../views/views.dart';
 
 part 'app_routes.dart';
 
@@ -17,7 +16,7 @@ class AppPages {
     milliseconds: 350,
   );
 
-  static const initial = Routes.splash;
+  static const initial = Routes.home;
 
   static final pages = [
     GetPage<SplashView>(
@@ -35,7 +34,7 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage<AuthView>(
-      name: Routes.home,
+      name: Routes.auth,
       transitionDuration: transitionDuration,
       page: AuthView.new,
       binding: AuthBinding(),

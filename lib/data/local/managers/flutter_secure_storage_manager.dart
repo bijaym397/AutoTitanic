@@ -1,6 +1,5 @@
+import 'package:auto_titanic/utils/log.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-
-import '../../../utils/log.dart';
 
 class FlutterSecureStorageManager {
   const FlutterSecureStorageManager();
