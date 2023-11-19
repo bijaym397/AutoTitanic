@@ -1,9 +1,25 @@
 import 'package:auto_titanic/models/nav/nav.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 extension NullString on String? {
   bool get isNullOrEmpty => this == null || this!.trim().isEmpty;
+}
+
+extension ListCombine<T> on Iterable<T> {
+  Iterable<T> separate(
+    BuildContext context,
+    T Function(BuildContext, int) separateBuilder,
+  ) {
+    var result = <T>[];
+    for (var i = 0; i < length - 1; i++) {
+      result.add(elementAt(i));
+      result.add(separateBuilder(context, i));
+    }
+    result.add(last);
+    return result;
+  }
 }
 
 extension VehicleExtension on Vehicle {
@@ -32,4 +48,44 @@ extension ScreenExtension on num {
   double get ph => Get.height * this;
 
   double get pw => Get.width * this;
+
+  EdgeInsets get pt => EdgeInsets.only(top: toDouble());
+}
+
+extension HoverItemExtension on HoverItem {
+  String getLabel(Vehicle vehicle) {
+    switch (vehicle) {
+      case Vehicle.cars:
+      case Vehicle.vans:
+      case Vehicle.bikes:
+      case Vehicle.motorHomes:
+      case Vehicle.caravans:
+      case Vehicle.trucks:
+        return '$prefix ${vehicle.label.toLowerCase()}';
+      case Vehicle.farms:
+        return '$prefix farm machinery';
+      case Vehicle.plants:
+        return '$prefix plant machinery';
+      case Vehicle.parts:
+        return '$prefix parts';
+      case Vehicle.carRentals:
+      case Vehicle.safetyCentre:
+        return '';
+    }
+  }
+}
+
+extension BorderExtension on Border {
+  Border withSide({
+    BorderSide? left,
+    BorderSide? top,
+    BorderSide? right,
+    BorderSide? bottom,
+  }) =>
+      Border(
+        left: left ?? this.left,
+        top: top ?? this.top,
+        right: right ?? this.right,
+        bottom: bottom ?? this.bottom,
+      );
 }

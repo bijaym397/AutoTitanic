@@ -41,7 +41,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primaryColor: Colors.purple),
+        theme: kAppTheme,
         getPages: AppPages.pages,
         initialRoute: AppPages.initial,
       );

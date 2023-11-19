@@ -30,3 +30,12 @@ enum Vehicle {
   const Vehicle(this.label);
   final String label;
 }
+
+enum HoverItem {
+  used('Used'),
+  brandNew('New'),
+  sell('Sell your');
+
+  const HoverItem(this.prefix);
+  final String prefix;
+}

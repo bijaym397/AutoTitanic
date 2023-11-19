@@ -66,8 +66,23 @@ class Utility {
     closeDialog();
   }
 
+  static Future<void> showDialog({
+    required Widget dialog,
+  }) =>
+      Get.dialog(
+        Material(child: dialog),
+      );
+
+  static Future<void> showOverlay({
+    required BuildContext context,
+    required Widget dialog,
+  }) =>
+      Get.dialog(
+        Material(child: dialog),
+      );
+
   /// Show error dialog from response model
-  static Future<void> showInfoDialog(
+  static Future<void> showAlertDialog(
     ResponseModel data, [
     bool isSuccess = false,
     String? title,
@@ -95,7 +110,7 @@ class Utility {
   }
 
   /// Show info dialog
-  static void showDialog(
+  static void showInfoDialog(
     String message,
   ) async {
     await Get.dialog(
@@ -109,32 +124,6 @@ class Utility {
             onPressed: Get.back,
             child: const Text('Okay'),
           ),
-        ],
-      ),
-    );
-  }
-
-  /// Show alert dialog
-  static void showAlertDialog({
-    String? message,
-    String? title,
-    Function()? onPress,
-  }) async {
-    await Get.dialog(
-      CupertinoAlertDialog(
-        title: Text('$title'),
-        content: Text('$message'),
-        actions: <Widget>[
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            onPressed: onPress,
-            child: Text('yes'.tr),
-          ),
-          CupertinoDialogAction(
-            isDestructiveAction: true,
-            onPressed: closeDialog,
-            child: Text('no'.tr),
-          )
         ],
       ),
     );

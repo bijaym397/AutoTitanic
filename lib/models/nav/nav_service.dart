@@ -2,9 +2,8 @@ import 'package:auto_titanic/models/nav/nav.dart';
 
 class NavService extends NavModel {
   NavService({
-    required String label,
+    required super.label,
   }) : super(
-          label: label,
           showIcon: false,
         );
 }

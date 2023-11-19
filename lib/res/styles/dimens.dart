@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Dimens {
   const Dimens._();
 
-  static const double appbarHeight = 100;
+  static const double appbarHeight = hundred;
 
   static EdgeInsets appbarPadding =
       EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
@@ -21,6 +21,8 @@ class Dimens {
   static const double thirtyTwo = 32;
   static const double forty = 40;
   static const double fortyEight = 48;
+  static const double hundred = 100;
+  static const double twoHundred = 200;
 
   static const Widget box0 = SizedBox.shrink();
 

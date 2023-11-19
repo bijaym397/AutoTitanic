@@ -83,7 +83,7 @@ class ApiWrapper {
         await Future.delayed(const Duration(milliseconds: 100));
         var res = ResponseModel.message(StringConstants.timeoutError);
         if (showDialog) {
-          await Utility.showInfoDialog(res);
+          await Utility.showAlertDialog(res);
         }
         return res;
       } catch (e, st) {
@@ -95,7 +95,7 @@ class ApiWrapper {
         var res = ResponseModel.message(StringConstants.somethingWentWrong);
 
         if (showDialog) {
-          await Utility.showInfoDialog(res);
+          await Utility.showAlertDialog(res);
         }
         return res;
       }
@@ -108,7 +108,7 @@ class ApiWrapper {
       var res = ResponseModel.message(StringConstants.noInternet);
 
       if (showDialog) {
-        await Utility.showInfoDialog(res);
+        await Utility.showAlertDialog(res);
       }
       return res;
     }
@@ -280,7 +280,7 @@ class ApiWrapper {
           statusCode: response.statusCode,
         );
         if (![401, 404, 406, 410].contains(response.statusCode) && showDialog) {
-          await Utility.showInfoDialog(res);
+          await Utility.showAlertDialog(res);
         }
         return res;
       case 500:
@@ -289,7 +289,7 @@ class ApiWrapper {
           statusCode: response.statusCode,
         );
         if (showDialog) {
-          await Utility.showInfoDialog(res);
+          await Utility.showAlertDialog(res);
         }
         return res;
 
