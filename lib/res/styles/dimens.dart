@@ -75,6 +75,8 @@ class Dimens {
 
   static const EdgeInsets edgeInsets0_4 = EdgeInsets.symmetric(vertical: four);
   static const EdgeInsets edgeInsets0_8 = EdgeInsets.symmetric(vertical: eight);
+  static const EdgeInsets edgeInsets0_16 =
+      EdgeInsets.symmetric(vertical: sixteen);
 
   static const EdgeInsets edgeInsets4_8 =
       EdgeInsets.symmetric(horizontal: four, vertical: eight);

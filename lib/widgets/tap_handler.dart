@@ -18,6 +18,13 @@ class TapHandler extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => InkWell(
+        hoverColor: showArrowCursor ? Colors.transparent : null,
+        focusColor: showArrowCursor ? Colors.transparent : null,
+        splashColor: showArrowCursor ? Colors.transparent : null,
+        highlightColor: showArrowCursor ? Colors.transparent : null,
+        overlayColor: showArrowCursor
+            ? MaterialStateProperty.all(Colors.transparent)
+            : null,
         mouseCursor:
             mouseCursor ?? (showArrowCursor ? SystemMouseCursors.basic : null),
         onHover: onHover,

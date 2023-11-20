@@ -1,6 +1,7 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/tap_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   TapHandler(
-                    onTap: () {},
+                    onTap: () => Get.toNamed(HomeView.route),
                     onHover: _closeOverlay,
                     child: Image.asset(
                       AssetConstants.logo,

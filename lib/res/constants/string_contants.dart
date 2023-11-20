@@ -43,7 +43,12 @@ class AppStrings {
   static const String buyingNew = 'Buying a New Vehicle';
   static const String buyingUsed = 'Buying a Used Vehicle';
   static const String safetyNotice = 'Important Safety Notice';
-  static const String safetySecuriyt = 'Safety & Security Centre';
+  static const String safetySecurity = 'Safety & Security Centre';
+
+  static const String readMore = 'Read More';
+  static const String lookingForCar = 'Are you looking for a car?';
+  static const String searchInventory =
+      'Search Our Inventory With Thousands Of Cars And More Cars Are Adding On Daily Basis';
 
   static const String copyright = '© Copyright 2023 Autotanic';
 }

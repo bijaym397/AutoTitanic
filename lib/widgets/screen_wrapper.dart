@@ -25,11 +25,17 @@ class ScreenWrapper extends StatelessWidget {
                 controller.closeOverlay();
               }
             },
-            child: body,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  body,
+                  DashboardFooter(
+                    showSubcribeCard: showSubscribeCard,
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        bottomNavigationBar: DashboardFooter(
-          showSubcribeCard: showSubscribeCard,
         ),
       );
 }
