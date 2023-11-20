@@ -1,10 +1,15 @@
-import 'package:auto_titanic/models/nav/nav.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 extension NullString on String? {
   bool get isNullOrEmpty => this == null || this!.trim().isEmpty;
+}
+
+extension StringExtension on String {
+  String get svgPath => kIsWeb ? replaceAll('assets/', '') : this;
 }
 
 extension ListCombine<T> on Iterable<T> {

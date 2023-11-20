@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:auto_titanic/data/data.dart';
 import 'package:auto_titanic/res/res.dart';
-import 'package:auto_titanic/utils/navigators/navigators.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

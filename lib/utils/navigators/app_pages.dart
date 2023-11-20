@@ -12,33 +12,93 @@ part 'app_routes.dart';
 /// and will be used in the material app.
 /// Will be ignored for test since all are static values and would not change.
 class AppPages {
-  static var transitionDuration = const Duration(
-    milliseconds: 350,
-  );
+  static const transitionDuration = Duration(milliseconds: 2000);
 
-  static const initial = Routes.home;
+  static const transition = Transition.noTransition;
+
+  static const initial = AppRoutes.home;
 
   static final pages = [
     GetPage<SplashView>(
-      name: Routes.splash,
+      name: AppRoutes.splash,
       transitionDuration: transitionDuration,
       page: SplashView.new,
       binding: SplashBinding(),
-      transition: Transition.rightToLeft,
+      transition: transition,
     ),
     GetPage<HomeView>(
-      name: Routes.home,
+      name: AppRoutes.home,
       transitionDuration: transitionDuration,
       page: HomeView.new,
       binding: HomeBinding(),
-      transition: Transition.rightToLeft,
+      transition: transition,
     ),
     GetPage<AuthView>(
-      name: Routes.auth,
+      name: AppRoutes.auth,
       transitionDuration: transitionDuration,
       page: AuthView.new,
       binding: AuthBinding(),
-      transition: Transition.rightToLeft,
+      transition: transition,
+    ),
+    GetPage<AboutUsView>(
+      name: AppRoutes.aboutUs,
+      transitionDuration: transitionDuration,
+      page: AboutUsView.new,
+      transition: transition,
+    ),
+    GetPage<ContactUsView>(
+      name: AppRoutes.contactUs,
+      transitionDuration: transitionDuration,
+      page: ContactUsView.new,
+      transition: transition,
+    ),
+    GetPage<PrivacyView>(
+      name: AppRoutes.privacyPolicy,
+      transitionDuration: transitionDuration,
+      page: PrivacyView.new,
+      transition: transition,
+    ),
+    GetPage<WelcomeView>(
+      name: AppRoutes.welcome,
+      transitionDuration: transitionDuration,
+      page: WelcomeView.new,
+      transition: transition,
+    ),
+    GetPage<TermsConditionsView>(
+      name: AppRoutes.termsCondition,
+      transitionDuration: transitionDuration,
+      page: TermsConditionsView.new,
+      transition: transition,
+    ),
+    GetPage<PostingAdView>(
+      name: AppRoutes.postingAd,
+      transitionDuration: transitionDuration,
+      page: PostingAdView.new,
+      transition: transition,
+    ),
+    GetPage<BuyNewVehicleView>(
+      name: AppRoutes.buyingNewVehicle,
+      transitionDuration: transitionDuration,
+      page: BuyNewVehicleView.new,
+      transition: transition,
+    ),
+    GetPage<BuyUsedVehicleView>(
+      name: AppRoutes.buyingUsedVehicle,
+      transitionDuration: transitionDuration,
+      page: BuyUsedVehicleView.new,
+      transition: transition,
+    ),
+    GetPage<SafetyNoticeView>(
+      name: AppRoutes.safetyNotice,
+      transitionDuration: transitionDuration,
+      page: SafetyNoticeView.new,
+      transition: transition,
+    ),
+    GetPage<SecurityCentreView>(
+      name: AppRoutes.secuirityCentre,
+      transitionDuration: transitionDuration,
+      page: SecurityCentreView.new,
+      transition: transition,
     ),
   ];
 }

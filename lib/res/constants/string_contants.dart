@@ -1,5 +1,5 @@
-class StringConstants {
-  const StringConstants._();
+class AppStrings {
+  const AppStrings._();
 
   static const String timeoutError =
       'Oops! The request took too long to process. Please check your internet connection and try again. If the issue persists, you can contact our support team for assistance.';
@@ -9,10 +9,6 @@ class StringConstants {
 
   static const String noInternet =
       'No internet connection. Please connect to the internet and try again.';
-}
-
-class AppStrings {
-  const AppStrings._();
 
   static const String cars = 'Cars';
   static const String vans = 'Vans';
@@ -25,4 +21,29 @@ class AppStrings {
   static const String partsAccessories = 'Parts and Accessories';
   static const String carRentals = 'Car Rentals';
   static const String safetyCentre = 'Safety and Security Centre';
+
+  static const String instagram = 'Instagram';
+  static const String facebook = 'Facebook';
+  static const String twitter = 'Twitter';
+  static const String youtube = 'Youtube';
+
+  static const String subscribe = 'Subscribe';
+  static const String subscribeHeading = 'Subscribe to Our Newsletter Feed';
+  static const String subscribeSubtitle =
+      'Simply Dummy Text of the Printin Galley of Type and Bled it to Make a Type.';
+
+  static const String subscribeHint = 'Enter your email';
+
+  static const String aboutUs = 'About Us';
+  static const String contactUs = 'Contact Us';
+  static const String privacyPolicy = 'Privacy Policy';
+  static const String welcome = 'Welcome to Autotitanic.com';
+  static const String termsConditions = 'Terms and Conditions';
+  static const String postingNewAdvert = 'Posting an Advert';
+  static const String buyingNew = 'Buying a New Vehicle';
+  static const String buyingUsed = 'Buying a Used Vehicle';
+  static const String safetyNotice = 'Important Safety Notice';
+  static const String safetySecuriyt = 'Safety & Security Centre';
+
+  static const String copyright = '© Copyright 2023 Autotanic';
 }

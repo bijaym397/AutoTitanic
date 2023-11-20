@@ -1,15 +1,16 @@
+import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/navigators/navigators.dart';
 import 'package:flutter/material.dart';
 
-class AuthView extends StatelessWidget {
-  const AuthView({super.key});
+class WelcomeView extends StatelessWidget {
+  const WelcomeView({super.key});
 
-  static const String route = AppRoutes.auth;
+  static const String route = AppRoutes.welcome;
 
   @override
   Widget build(BuildContext context) => const Scaffold(
         body: Center(
-          child: Text('Auth View'),
+          child: Text(AppStrings.welcome),
         ),
       );
 }

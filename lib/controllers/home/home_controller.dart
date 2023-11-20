@@ -1,5 +1,8 @@
+import 'package:auto_titanic/models/models.dart';
+import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/view_models/view_models.dart';
+import 'package:auto_titanic/views/home/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +26,58 @@ class HomeController extends GetxController with HomeAPIMixin {
   OverlayEntry? get hoverOverlayEntry => _hoverOverlayEntry.value;
   set hoverOverlayEntry(OverlayEntry? value) =>
       _hoverOverlayEntry.value = value;
+
+  final Rx<Social?> _selectedSocial = Rx<Social?>(null);
+  Social? get selectedSocial => _selectedSocial.value;
+  set selectedSocial(Social? value) => _selectedSocial.value = value;
+
+  // -------------------- DATA ---------------------
+
+  final footer1 = <LinkModel>[
+    const LinkModel(
+      label: AppStrings.aboutUs,
+      route: AboutUsView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.contactUs,
+      route: ContactUsView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.privacyPolicy,
+      route: PrivacyView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.welcome,
+      route: WelcomeView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.termsConditions,
+      route: TermsConditionsView.route,
+    ),
+  ];
+
+  final footer2 = <LinkModel>[
+    const LinkModel(
+      label: AppStrings.postingNewAdvert,
+      route: PostingAdView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.buyingNew,
+      route: BuyNewVehicleView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.buyingUsed,
+      route: BuyNewVehicleView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.safetyNotice,
+      route: SafetyNoticeView.route,
+    ),
+    const LinkModel(
+      label: AppStrings.safetyCentre,
+      route: SecurityCentreView.route,
+    ),
+  ];
 
   // ----------------- FUNCTIONS -------------------
 

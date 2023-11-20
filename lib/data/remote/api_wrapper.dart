@@ -81,7 +81,7 @@ class ApiWrapper {
           Utility.closeLoader();
         }
         await Future.delayed(const Duration(milliseconds: 100));
-        var res = ResponseModel.message(StringConstants.timeoutError);
+        var res = ResponseModel.message(AppStrings.timeoutError);
         if (showDialog) {
           await Utility.showAlertDialog(res);
         }
@@ -92,7 +92,7 @@ class ApiWrapper {
           Utility.closeLoader();
         }
         await Future.delayed(const Duration(milliseconds: 100));
-        var res = ResponseModel.message(StringConstants.somethingWentWrong);
+        var res = ResponseModel.message(AppStrings.somethingWentWrong);
 
         if (showDialog) {
           await Utility.showAlertDialog(res);
@@ -105,7 +105,7 @@ class ApiWrapper {
         Utility.closeLoader();
       }
       await Future.delayed(const Duration(milliseconds: 100));
-      var res = ResponseModel.message(StringConstants.noInternet);
+      var res = ResponseModel.message(AppStrings.noInternet);
 
       if (showDialog) {
         await Utility.showAlertDialog(res);

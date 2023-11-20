@@ -21,6 +21,7 @@ class Dimens {
   static const double thirtyTwo = 32;
   static const double forty = 40;
   static const double fortyEight = 48;
+  static const double eighty = 80;
   static const double hundred = 100;
   static const double twoHundred = 200;
 
@@ -69,6 +70,8 @@ class Dimens {
       EdgeInsets.symmetric(horizontal: eight);
   static EdgeInsets edgeInsets10_0 =
       const EdgeInsets.symmetric(horizontal: ten);
+  static EdgeInsets edgeInsets16_0 =
+      const EdgeInsets.symmetric(horizontal: sixteen);
 
   static const EdgeInsets edgeInsets0_4 = EdgeInsets.symmetric(vertical: four);
   static const EdgeInsets edgeInsets0_8 = EdgeInsets.symmetric(vertical: eight);
