@@ -67,7 +67,7 @@ class HomeController extends GetxController with HomeAPIMixin {
     ),
     const LinkModel(
       label: AppStrings.buyingUsed,
-      route: BuyNewVehicleView.route,
+      route: BuyUsedVehicleView.route,
     ),
     const LinkModel(
       label: AppStrings.safetyNotice,

@@ -12,8 +12,6 @@ part 'app_routes.dart';
 /// and will be used in the material app.
 /// Will be ignored for test since all are static values and would not change.
 class AppPages {
-  static const transitionDuration = Duration(milliseconds: 2000);
-
   static const transition = Transition.noTransition;
 
   static const initial = AppRoutes.home;
@@ -21,83 +19,80 @@ class AppPages {
   static final pages = [
     GetPage<SplashView>(
       name: AppRoutes.splash,
-      transitionDuration: transitionDuration,
       page: SplashView.new,
       binding: SplashBinding(),
       transition: transition,
     ),
     GetPage<HomeView>(
       name: AppRoutes.home,
-      transitionDuration: transitionDuration,
       page: HomeView.new,
       binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<AuthView>(
       name: AppRoutes.auth,
-      transitionDuration: transitionDuration,
       page: AuthView.new,
       binding: AuthBinding(),
       transition: transition,
     ),
     GetPage<AboutUsView>(
       name: AppRoutes.aboutUs,
-      transitionDuration: transitionDuration,
       page: AboutUsView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<ContactUsView>(
       name: AppRoutes.contactUs,
-      transitionDuration: transitionDuration,
       page: ContactUsView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<PrivacyView>(
       name: AppRoutes.privacyPolicy,
-      transitionDuration: transitionDuration,
       page: PrivacyView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<WelcomeView>(
       name: AppRoutes.welcome,
-      transitionDuration: transitionDuration,
       page: WelcomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<TermsConditionsView>(
       name: AppRoutes.termsCondition,
-      transitionDuration: transitionDuration,
       page: TermsConditionsView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<PostingAdView>(
       name: AppRoutes.postingAd,
-      transitionDuration: transitionDuration,
       page: PostingAdView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<BuyNewVehicleView>(
       name: AppRoutes.buyingNewVehicle,
-      transitionDuration: transitionDuration,
       page: BuyNewVehicleView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<BuyUsedVehicleView>(
       name: AppRoutes.buyingUsedVehicle,
-      transitionDuration: transitionDuration,
       page: BuyUsedVehicleView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<SafetyNoticeView>(
       name: AppRoutes.safetyNotice,
-      transitionDuration: transitionDuration,
       page: SafetyNoticeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<SecurityCentreView>(
-      name: AppRoutes.secuirityCentre,
-      transitionDuration: transitionDuration,
+      name: AppRoutes.securityCentre,
       page: SecurityCentreView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
   ];

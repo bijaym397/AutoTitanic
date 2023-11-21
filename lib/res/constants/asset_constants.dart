@@ -8,6 +8,7 @@ class AssetConstants {
 
   static const String _logoPath = 'assets/logo';
   static const String _svgPath = 'assets/svg';
+  static const String _imagePath = 'assets/images';
 
   static const String logo = '$_logoPath/logo.png';
 
@@ -15,4 +16,7 @@ class AssetConstants {
   static const String facebook = '$_svgPath/facebook.svg';
   static const String twitter = '$_svgPath/twitter.svg';
   static const String youtube = '$_svgPath/youtube.svg';
+
+  static const String getOnPlaystore = '$_imagePath/get_on_playstore.png';
+  static const String getOnAppstore = '$_imagePath/get_on_appstore.png';
 }

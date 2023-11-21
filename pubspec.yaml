@@ -13,6 +13,7 @@ dependencies:
   device_info_plus: ^9.1.0
   flutter:
     sdk: flutter
+  flutter_html_v3: ^3.0.6
   flutter_secure_storage: ^9.0.0
   flutter_svg: ^2.0.9
   get: ^4.6.6
@@ -21,6 +22,7 @@ dependencies:
   internet_connection_checker_plus: ^2.1.0
   package_info_plus: ^4.2.0
   shared_preferences: ^2.2.2
+  url_launcher: ^6.2.1
   url_strategy: ^0.2.0
 
 dev_dependencies:
@@ -35,3 +37,4 @@ flutter:
     - assets/logo/
     - assets/icons/
     - assets/svg/
+    - assets/images/

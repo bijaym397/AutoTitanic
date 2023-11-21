@@ -10,11 +10,17 @@ class TermsConditionsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
-        showSubscribeCard: true,
-        body: SizedBox(
-          height: 0.8.ph,
-          child: const Center(
-            child: Text(AppStrings.termsConditions),
+        bodyBuilder: (_, isHovering) => Padding(
+          padding: Dimens.edgeInsetsR200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Dimens.boxHeight32,
+              const PageHeadLabel(AppStrings.termsConditions),
+              AnimatedLines(isHovering: isHovering),
+              Dimens.boxHeight16,
+              const HTMLWidget(content: StringData.termsAndCondition),
+            ],
           ),
         ),
       );

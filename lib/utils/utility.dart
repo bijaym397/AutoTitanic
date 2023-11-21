@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:auto_titanic/models/models.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utility {
   const Utility._();
@@ -52,6 +54,19 @@ class Utility {
         ),
       )) ??
       initialTime;
+
+  static void launchURL(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+    } else {
+      try {
+        await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      } catch (e, st) {
+        var path = url.split('?').first;
+        AppLog.error('$e\n$path', st);
+      }
+    }
+  }
 
   /// Show loader
   static void showLoader() async {

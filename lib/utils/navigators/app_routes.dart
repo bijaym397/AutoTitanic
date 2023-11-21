@@ -17,5 +17,5 @@ class AppRoutes {
   static const String buyingNewVehicle = '/buy-new-vehicle';
   static const String buyingUsedVehicle = '/buy-used-vehicle';
   static const String safetyNotice = '/safety-notice';
-  static const String secuirityCentre = '/secuerity-centre';
+  static const String securityCentre = '/security-centre';
 }

@@ -28,7 +28,7 @@ class SocialCard extends StatelessWidget {
               },
               child: AnimatedContainer(
                 key: ValueKey('Social-${social.name}'),
-                duration: AppPages.transitionDuration,
+                duration: AppConstants.animationDuration,
                 color: isSelected ? social.color : null,
                 padding: Dimens.edgeInsets12,
                 child: Row(

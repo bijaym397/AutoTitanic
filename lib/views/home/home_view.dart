@@ -10,10 +10,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ScreenWrapper(
         showSubscribeCard: true,
-        body: SizedBox(
-          height: 0.8.ph,
-          child: const Center(
-            child: Text('Home View'),
+        bodyBuilder: (_, isHovering) => ColoredBox(
+          color: Colors.yellow,
+          child: SizedBox(
+            height: 0.8.ph,
+            child: const Center(
+              child: Text('Home View'),
+            ),
           ),
         ),
       );

@@ -6,15 +6,21 @@ import 'package:flutter/material.dart';
 class SecurityCentreView extends StatelessWidget {
   const SecurityCentreView({super.key});
 
-  static const String route = AppRoutes.secuirityCentre;
+  static const String route = AppRoutes.securityCentre;
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
-        showSubscribeCard: true,
-        body: SizedBox(
-          height: 0.8.ph,
-          child: const Center(
-            child: Text(AppStrings.safetySecurity),
+        bodyBuilder: (_, isHovering) => Padding(
+          padding: Dimens.edgeInsetsR200,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Dimens.boxHeight32,
+              const PageHeadLabel(AppStrings.safetyCentre),
+              AnimatedLines(isHovering: isHovering),
+              Dimens.boxHeight16,
+              const HTMLWidget(content: StringData.safetyCentre),
+            ],
           ),
         ),
       );
