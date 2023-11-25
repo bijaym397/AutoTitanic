@@ -3,6 +3,8 @@ part of 'app_pages.dart';
 /// A chunks of routes and the path names which will be used to create
 /// routes in [AppPages].
 class AppRoutes {
+  const AppRoutes._();
+
   static const String splash = '/splash';
   static const String auth = '/auth';
   static const String home = '/home';
@@ -18,4 +20,16 @@ class AppRoutes {
   static const String buyingUsedVehicle = '/buy-used-vehicle';
   static const String safetyNotice = '/safety-notice';
   static const String securityCentre = '/security-centre';
+
+  static const String cars = '/cars';
+  static const String vans = '/vans';
+  static const String bikes = '/bikes';
+  static const String motorHomes = '/motorHomes';
+  static const String caravans = '/caravans';
+  static const String trucks = '/trucks';
+  static const String farms = '/farms';
+  static const String plants = '/plants';
+  static const String parts = '/parts';
+  static const String carRentals = '/carRentals';
+  static const String safetyCentre = '/safetyCentre';
 }

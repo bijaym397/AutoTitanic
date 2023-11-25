@@ -1,4 +1,5 @@
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/widgets.dart';
 
 enum RequestType {
@@ -16,20 +17,21 @@ enum AppFlavor {
 }
 
 enum Vehicle {
-  cars(AppStrings.cars),
-  vans(AppStrings.vans),
-  bikes(AppStrings.bikes),
-  motorHomes(AppStrings.motorHomes),
-  caravans(AppStrings.caravans),
-  trucks(AppStrings.trucks),
-  farms(AppStrings.farms),
-  plants(AppStrings.plants),
-  parts(AppStrings.partsAccessories),
-  carRentals(AppStrings.carRentals),
-  safetyCentre(AppStrings.safetyCentre);
+  cars(AppStrings.cars, AppRoutes.cars),
+  vans(AppStrings.vans, AppRoutes.vans),
+  bikes(AppStrings.bikes, AppRoutes.bikes),
+  motorHomes(AppStrings.motorHomes, AppRoutes.motorHomes),
+  caravans(AppStrings.caravans, AppRoutes.caravans),
+  trucks(AppStrings.trucks, AppRoutes.trucks),
+  farms(AppStrings.farms, AppRoutes.farms),
+  plants(AppStrings.plants, AppRoutes.plants),
+  parts(AppStrings.partsAccessories, AppRoutes.parts),
+  carRentals(AppStrings.carRentals, AppRoutes.carRentals),
+  safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
-  const Vehicle(this.label);
+  const Vehicle(this.label, this.route);
   final String label;
+  final String route;
 }
 
 enum HoverItem {
@@ -56,4 +58,50 @@ enum Social {
   final String label;
   final Color color;
   final String icon;
+}
+
+enum VehicleFilter {
+  year(AppStrings.year),
+  make(AppStrings.make),
+  model(AppStrings.model),
+  bodyStyle(AppStrings.bodyStyle),
+  carCondition(AppStrings.carCondition),
+  mileage(AppStrings.mileage),
+  gearbox(AppStrings.gearbox),
+  drivetrain(AppStrings.drivetrain),
+  engineSize(AppStrings.engineSize),
+  fuelType(AppStrings.fuelType),
+  exteriorColor(AppStrings.exteriorColor),
+  bodyType(AppStrings.bodyType),
+  door(AppStrings.door),
+  driverPosition(AppStrings.driverPosition),
+  seat(AppStrings.seat),
+  bootSpace(AppStrings.bootSpace),
+  acceleration(AppStrings.acceleration),
+  co2Emission(AppStrings.co2Emission),
+  color(AppStrings.color),
+  cc(AppStrings.cc),
+  berth(AppStrings.berth),
+  beltedSeats(AppStrings.beltedSeats),
+  endLayout(AppStrings.endLayout),
+  bedroomLayout(AppStrings.bedroomLayout),
+  length(AppStrings.length),
+  axles(AppStrings.axles),
+  mtplm(AppStrings.mtplm),
+  category(AppStrings.category),
+  axleConfig(AppStrings.axleConfig),
+  enginePower(AppStrings.enginePower),
+  gvw(AppStrings.gvw),
+  cabType(AppStrings.cabType),
+  gtw(AppStrings.gtw),
+  hoursUsed(AppStrings.hoursUsed),
+  serviceGarage(AppStrings.serviceGarage),
+  privateDealer(AppStrings.privateDealer),
+  city(AppStrings.city),
+  transmission(AppStrings.transmission),
+  keyFeatures(AppStrings.keyFeatures),
+  subCategory(AppStrings.subCategory);
+
+  const VehicleFilter(this.label);
+  final String label;
 }

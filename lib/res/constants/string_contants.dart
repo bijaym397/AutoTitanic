@@ -63,6 +63,47 @@ class AppStrings {
   static const String comment = 'Comment';
 
   static const String send = 'Send';
+
+  static const String year = 'Year';
+  static const String make = 'Make';
+  static const String model = 'Model';
+  static const String bodyStyle = 'Body Style';
+  static const String carCondition = 'Car Condition';
+  static const String mileage = 'Mileage';
+  static const String gearbox = 'GearBox';
+  static const String drivetrain = 'Drive Train';
+  static const String engineSize = 'Engine Size';
+  static const String fuelType = 'Fuel Type';
+  static const String exteriorColor = 'Exterior Color';
+  static const String bodyType = 'Body Type';
+  static const String door = 'Door';
+  static const String driverPosition = 'Driver Position';
+  static const String seat = 'Seat';
+  static const String bootSpace = 'Boot Space';
+  static const String acceleration = 'Acceleration';
+  static const String co2Emission = 'CO2 Emission';
+  static const String color = 'Color';
+  static const String cc = 'CC';
+  static const String berth = 'Berth';
+  static const String beltedSeats = 'Belted Seats';
+  static const String endLayout = 'End Layout';
+  static const String bedroomLayout = 'Bedroom Layout';
+  static const String length = 'Length';
+  static const String axles = 'Axles';
+  static const String mtplm = 'MTPLM';
+  static const String category = 'Category';
+  static const String axleConfig = 'Axle Config';
+  static const String enginePower = 'Engine Power';
+  static const String gvw = 'GVW';
+  static const String cabType = 'Cab Type';
+  static const String gtw = 'GTW';
+  static const String hoursUsed = 'Hours Used';
+  static const String serviceGarage = 'Service Garage';
+  static const String privateDealer = 'Private Dealer';
+  static const String city = 'City';
+  static const String transmission = 'Transmission';
+  static const String keyFeatures = 'Key Features';
+  static const String subCategory = 'Sub Category';
 }
 
 class StringData {

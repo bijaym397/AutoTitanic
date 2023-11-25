@@ -95,5 +95,71 @@ class AppPages {
       binding: HomeBinding(),
       transition: transition,
     ),
+    GetPage<InventoryView>(
+      name: AppRoutes.cars,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
+    GetPage<InventoryView>(
+      name: AppRoutes.securityCentre,
+      page: InventoryView.new,
+      binding: InventoryBinding(),
+      transition: transition,
+    ),
   ];
 }
