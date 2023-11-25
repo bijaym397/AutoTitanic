@@ -7,16 +7,18 @@ class AnimatedLines extends StatelessWidget {
     super.key,
     required this.isHovering,
     this.width = Dimens.fortyEight,
+    this.crossAxisAlignment = CrossAxisAlignment.start,
   });
 
   final bool isHovering;
   final double width;
+  final CrossAxisAlignment crossAxisAlignment;
 
   @override
   Widget build(BuildContext context) => SizedBox(
         width: width * 2,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: crossAxisAlignment,
           children: [
             AnimatedContainer(
               duration: AppConstants.animationDuration,

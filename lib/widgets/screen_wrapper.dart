@@ -1,5 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
-import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ class ScreenWrapper extends StatelessWidget {
     super.key,
     this.body,
     this.bodyBuilder,
+    this.showAppBarImage = false,
     this.showSubscribeCard = false,
   }) : assert(
           body != null || bodyBuilder != null,
@@ -17,6 +18,7 @@ class ScreenWrapper extends StatelessWidget {
         );
 
   final Widget? body;
+  final bool showAppBarImage;
   final Widget Function(BuildContext, bool)? bodyBuilder;
   final bool showSubscribeCard;
 
@@ -34,8 +36,9 @@ class ScreenWrapper extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  if (showAppBarImage) const $BackgroundImage(),
                   SizedBox(
-                    width: 0.6.pw,
+                    width: Dimens.screenWidth,
                     child: bodyBuilder != null
                         ? ObxValue<RxBool>(
                             (value) => TapHandler(
@@ -57,5 +60,32 @@ class ScreenWrapper extends StatelessWidget {
             ),
           ),
         ),
+      );
+}
+
+class $BackgroundImage extends StatelessWidget {
+  const $BackgroundImage({
+    super.key,
+  });
+
+  double get _height => Dimens.twoHundred;
+
+  double get _width => Get.width;
+
+  @override
+  Widget build(BuildContext context) => Stack(
+        children: [
+          Image.asset(
+            AssetConstants.pageHeaderBg,
+            height: _height,
+            width: _width,
+            fit: BoxFit.cover,
+          ),
+          Container(
+            height: _height,
+            width: _width,
+            color: Colors.black54,
+          ),
+        ],
       );
 }

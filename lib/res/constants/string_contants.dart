@@ -54,6 +54,13 @@ class AppStrings {
       'Search Our Inventory With Thousands Of Cars And More Cars Are Adding On Daily Basis';
 
   static const String copyright = '© Copyright 2023 Autotanic';
+
+  static const String name = 'Name';
+  static const String email = 'Email';
+  static const String phone = 'Phone';
+  static const String comment = 'Comment';
+
+  static const String send = 'Send';
 }
 
 class StringData {

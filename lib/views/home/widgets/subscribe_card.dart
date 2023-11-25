@@ -54,15 +54,9 @@ class $SubscribeEmail extends StatelessWidget {
           color: Colors.blue,
           child: Row(
             children: [
-              Expanded(
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    filled: true,
-                    hintText: AppStrings.subscribeHint,
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.zero),
-                  ),
+              const Expanded(
+                child: InputField(
+                  hint: AppStrings.subscribeHint,
                 ),
               ),
               TapHandler(

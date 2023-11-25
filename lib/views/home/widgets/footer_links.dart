@@ -10,13 +10,16 @@ class FooterLinks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetBuilder<HomeController>(
-        builder: (controller) => Row(
-          children: [
-            Expanded(child: $LinkColumn(links: controller.footer1)),
-            Expanded(child: $LinkColumn(links: controller.footer2)),
-            const Expanded(child: Dimens.box0),
-            const Expanded(child: Dimens.box0),
-          ],
+        builder: (controller) => Padding(
+          padding: Dimens.edgeInsets0_16,
+          child: Row(
+            children: [
+              Expanded(child: $LinkColumn(links: controller.footer1)),
+              Expanded(child: $LinkColumn(links: controller.footer2)),
+              const Expanded(child: Dimens.box0),
+              const Expanded(child: Dimens.box0),
+            ],
+          ),
         ),
       );
 }

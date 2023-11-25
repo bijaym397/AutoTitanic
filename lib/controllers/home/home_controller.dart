@@ -33,49 +33,93 @@ class HomeController extends GetxController with HomeAPIMixin {
 
   // -------------------- DATA ---------------------
 
-  final footer1 = <LinkModel>[
-    const LinkModel(
+  final footer1 = const <LinkModel>[
+    LinkModel(
       label: AppStrings.aboutUs,
       route: AboutUsView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.contactUs,
       route: ContactUsView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.privacyPolicy,
       route: PrivacyView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.welcome,
       route: WelcomeView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.termsConditions,
       route: TermsConditionsView.route,
     ),
   ];
 
-  final footer2 = <LinkModel>[
-    const LinkModel(
+  final footer2 = const <LinkModel>[
+    LinkModel(
       label: AppStrings.postingNewAdvert,
       route: PostingAdView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.buyingNew,
       route: BuyNewVehicleView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.buyingUsed,
       route: BuyUsedVehicleView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.safetyNotice,
       route: SafetyNoticeView.route,
     ),
-    const LinkModel(
+    LinkModel(
       label: AppStrings.safetyCentre,
       route: SecurityCentreView.route,
+    ),
+  ];
+
+  final contactList = const <ContactModel>[
+    ContactModel(
+      label: 'Address',
+      data: '220E Front St. Burlington NC 215',
+      icon: Icons.location_on_rounded,
+    ),
+    ContactModel(
+      label: 'Phone',
+      data: '(007) 123 456 7890',
+      icon: Icons.call_rounded,
+    ),
+    ContactModel(
+      label: 'Email',
+      data: 'support@example.com',
+      icon: Icons.email_rounded,
+    ),
+    ContactModel(
+      label: 'Fax',
+      data: '(007) 123 456 7890',
+      icon: Icons.fax_rounded,
+    ),
+  ];
+
+  var informationList = <ContactModel>[
+    const ContactModel(
+      label: 'OPENING HOURS',
+      data:
+          'Voluptatem accusanoremque sed ut perspiciatis unde omnis iste natus error sit laudantium, totam rem aperiam.',
+      icon: Icons.watch_later_outlined,
+    ),
+    const ContactModel(
+      label: 'OUR SUPPORT CENTER',
+      data:
+          'Iste natus error sit sed ut perspiciatis unde omnis voluptatem laudantium, totam rem aperiam.',
+      icon: Icons.sports_soccer_rounded,
+    ),
+    const ContactModel(
+      label: 'SOME INFORMATION',
+      data:
+          'Totam rem aperiam sed ut perspiciatis unde omnis iste natus error sit voluptatem laudantium.',
+      icon: Icons.watch_later_outlined,
     ),
   ];
 

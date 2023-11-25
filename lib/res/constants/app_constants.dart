@@ -11,6 +11,8 @@ class AppConstants {
 
   static const Duration animationDuration = Duration(milliseconds: 300);
 
+  static const Duration fastAnimationDuration = Duration(milliseconds: 200);
+
   static const double maxMobileWidth = 480;
   static const double maxTabletWidth = 768;
   static const double maxDesktopWidth = 1024;

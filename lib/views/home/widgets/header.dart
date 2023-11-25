@@ -15,7 +15,9 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
   final double? height;
 
   @override
-  Size get preferredSize => Size(Get.width, height ?? Dimens.appbarHeight);
+  Size get preferredSize => Size(Get.width, _navHeight);
+
+  double get _navHeight => height ?? Dimens.appbarHeight;
 
   void _closeOverlay(bool isHovering) {
     if (isHovering) {
@@ -31,42 +33,49 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         color: AppColors.black,
         child: GetBuilder<HomeController>(
           builder: (controller) => Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TapHandler(
-                    onTap: () => Get.toNamed(HomeView.route),
-                    onHover: _closeOverlay,
-                    child: Image.asset(
-                      AssetConstants.logo,
-                      width: 0.05.pw,
-                    ),
-                  ),
-                  TapHandler(
-                    onHover: _closeOverlay,
-                    showArrowCursor: true,
-                    child: SizedBox(
-                      height: preferredSize.height,
-                      width: Dimens.fortyEight,
-                    ),
-                  ),
-                  $HeaderItem(height: preferredSize.height),
-                  TapHandler(
-                    onTap: () {},
-                    onHover: _closeOverlay,
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.search_rounded,
-                        color: AppColors.white,
+              SizedBox(
+                width: Dimens.screenWidth,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TapHandler(
+                      onTap: () => Get.toNamed(HomeView.route),
+                      onHover: _closeOverlay,
+                      child: Image.asset(
+                        AssetConstants.logo,
+                        width: 0.05.pw,
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: TapHandler(
+                        onHover: _closeOverlay,
+                        showArrowCursor: true,
+                        child: SizedBox(
+                          height: _navHeight,
+                          width: Dimens.fortyEight,
+                        ),
+                      ),
+                    ),
+                    $HeaderItem(height: _navHeight),
+                    TapHandler(
+                      onTap: () {},
+                      onHover: _closeOverlay,
+                      child: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.search_rounded,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -134,7 +143,7 @@ class $NavItem extends StatelessWidget {
               child: SizedBox(
                 height: height,
                 child: Padding(
-                  padding: Dimens.edgeInsets8_0,
+                  padding: Dimens.edgeInsets10_0,
                   child: Row(
                     children: [
                       Text(

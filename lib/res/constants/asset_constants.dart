@@ -19,4 +19,5 @@ class AssetConstants {
 
   static const String getOnPlaystore = '$_imagePath/get_on_playstore.png';
   static const String getOnAppstore = '$_imagePath/get_on_appstore.png';
+  static const String pageHeaderBg = '$_imagePath/page_header_bg.webp';
 }

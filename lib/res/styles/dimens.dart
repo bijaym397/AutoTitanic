@@ -6,6 +6,8 @@ class Dimens {
 
   static const double appbarHeight = hundred;
 
+  static get screenWidth => 0.7.pw;
+
   static EdgeInsets appbarPadding =
       EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
 
@@ -36,6 +38,8 @@ class Dimens {
   static const Widget boxHeight20 = SizedBox(height: twenty);
   static const Widget boxHeight24 = SizedBox(height: twentyFour);
   static const Widget boxHeight32 = SizedBox(height: thirtyTwo);
+  static const Widget boxHeight48 = SizedBox(height: fortyEight);
+  static const Widget boxHeight200 = SizedBox(height: twoHundred);
 
   static const Widget boxWidth2 = SizedBox(width: two);
   static const Widget boxWidth4 = SizedBox(width: four);
@@ -78,11 +82,15 @@ class Dimens {
   static const EdgeInsets edgeInsets0_8 = EdgeInsets.symmetric(vertical: eight);
   static const EdgeInsets edgeInsets0_16 =
       EdgeInsets.symmetric(vertical: sixteen);
+  static const EdgeInsets edgeInsets0_40 =
+      EdgeInsets.symmetric(vertical: forty);
 
   static const EdgeInsets edgeInsets4_8 =
       EdgeInsets.symmetric(horizontal: four, vertical: eight);
   static const EdgeInsets edgeInsets8_4 =
       EdgeInsets.symmetric(horizontal: eight, vertical: four);
+  static const EdgeInsets edgeInsets16_4 =
+      EdgeInsets.symmetric(horizontal: sixteen, vertical: four);
   static const EdgeInsets edgeInsets12_8 =
       EdgeInsets.symmetric(horizontal: twelve, vertical: eight);
   static const EdgeInsets edgeInsets8_32 =
