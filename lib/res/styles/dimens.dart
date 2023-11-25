@@ -26,6 +26,9 @@ class Dimens {
   static const double eighty = 80;
   static const double hundred = 100;
   static const double twoHundred = 200;
+  static const double threeHundred = 300;
+  static const double fourHundred = 400;
+  static const double fiveHundred = 500;
 
   static const Widget box0 = SizedBox.shrink();
 

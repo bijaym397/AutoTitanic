@@ -20,4 +20,6 @@ class AssetConstants {
   static const String getOnPlaystore = '$_imagePath/get_on_playstore.png';
   static const String getOnAppstore = '$_imagePath/get_on_appstore.png';
   static const String pageHeaderBg = '$_imagePath/page_header_bg.webp';
+  static const String homeTopBg = '$_imagePath/home_top_bg.webp';
+  static const String car = '$_imagePath/car.jpeg';
 }

@@ -24,6 +24,7 @@ class ScreenWrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+        backgroundColor: AppColors.grey,
         appBar: const DashboardHeader(),
         body: GetBuilder<HomeController>(
           builder: (controller) => TapHandler(

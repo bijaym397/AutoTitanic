@@ -22,6 +22,8 @@ class AppStrings {
   static const String carRentals = 'Car Rentals';
   static const String safetyCentre = 'Safety and Security Centre';
 
+  static const String featuredCars = 'Featured Cars';
+
   static const String instagram = 'Instagram';
   static const String facebook = 'Facebook';
   static const String twitter = 'Twitter';
