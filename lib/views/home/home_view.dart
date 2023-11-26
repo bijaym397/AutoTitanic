@@ -16,22 +16,45 @@ class HomeView extends StatelessWidget {
         showSubscribeCard: true,
         bodyBuilder: (_, isHovering) => GetBuilder<HomeController>(
           builder: (controller) => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                AssetConstants.homeTopBg,
-                height: 0.4.ph,
-                width: Dimens.screenWidth,
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
+              Stack(
+                children: [
+                  Image.asset(
+                    AssetConstants.homeTopBg,
+                    height: 0.4.ph,
+                    width: Dimens.screenWidth,
+                    fit: BoxFit.cover,
+                    alignment: Alignment.topCenter,
+                  ),
+                  Positioned(
+                    left: Dimens.forty,
+                    bottom: Dimens.twenty,
+                    child: Container(
+                      color: Colors.white,
+                      padding: Dimens.edgeInsets16,
+                      child: Button(
+                        label: 'Search Results',
+                        onTap: () => RouteManagement.goToListing(
+                          controller.selectedVehicle ?? Vehicle.cars,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              const PageHeadLabel(AppStrings.featuredCars),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: PageHeadLabel(AppStrings.featuredCars),
+              ),
               const CarsCarousel(5, moreSpace: true),
               const CarsCarousel(5),
               const CarsCarousel(5),
               Text(
                 'Recently Posted Cars',
-                style: context.textTheme.titleLarge,
+                style: context.textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const CarsGrid(),
               Dimens.boxHeight48,

@@ -29,9 +29,36 @@ enum Vehicle {
   carRentals(AppStrings.carRentals, AppRoutes.carRentals),
   safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
+  factory Vehicle.fromRoute(String route) =>
+      <String, Vehicle>{
+        Vehicle.cars.route: Vehicle.cars,
+        Vehicle.vans.route: Vehicle.vans,
+        Vehicle.bikes.route: Vehicle.bikes,
+        Vehicle.motorHomes.route: Vehicle.motorHomes,
+        Vehicle.caravans.route: Vehicle.caravans,
+        Vehicle.trucks.route: Vehicle.trucks,
+        Vehicle.farms.route: Vehicle.farms,
+        Vehicle.plants.route: Vehicle.plants,
+        Vehicle.parts.route: Vehicle.parts,
+        Vehicle.carRentals.route: Vehicle.carRentals,
+        Vehicle.safetyCentre.route: Vehicle.safetyCentre,
+      }[route] ??
+      Vehicle.cars;
+
   const Vehicle(this.label, this.route);
   final String label;
   final String route;
+
+  static List<Vehicle> get visibleVehicles {
+    var maxWidth = Dimens.screenWidth;
+    if (maxWidth >= AppConstants.maxDesktopWidth) {
+      return Vehicle.values;
+    }
+    if (maxWidth >= AppConstants.maxTabletWidth) {
+      return Vehicle.values.where((e) => e.showIcon).toList();
+    }
+    return [];
+  }
 }
 
 enum HoverItem {

@@ -36,7 +36,10 @@ class CarCard extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: LabelBox(
                     color: Colors.green,
-                    child: Icon(Icons.star),
+                    child: Icon(
+                      Icons.star,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],
@@ -50,7 +53,7 @@ class CarCard extends StatelessWidget {
                   const Text(
                     '2023 | Car Derived Van | Manual | 89',
                   ),
-                  Dimens.boxHeight10,
+                  Dimens.boxHeight4,
                   Text(
                     'BMW 3 SERIES',
                     style: context.textTheme.bodyMedium!.copyWith(
@@ -58,7 +61,7 @@ class CarCard extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                   ),
-                  Dimens.boxHeight10,
+                  Dimens.boxHeight4,
                   Chip(
                     label: const Text('Private'),
                     color: MaterialStateProperty.all(Colors.grey),

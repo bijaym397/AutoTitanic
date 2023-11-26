@@ -12,6 +12,7 @@ class ScreenWrapper extends StatelessWidget {
     this.bodyBuilder,
     this.showAppBarImage = false,
     this.showSubscribeCard = false,
+    this.isWhiteBackground = false,
   }) : assert(
           body != null || bodyBuilder != null,
           'Both body and bodyBuilder cannot be null',
@@ -21,10 +22,11 @@ class ScreenWrapper extends StatelessWidget {
   final bool showAppBarImage;
   final Widget Function(BuildContext, bool)? bodyBuilder;
   final bool showSubscribeCard;
+  final bool isWhiteBackground;
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: AppColors.grey,
+        backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
         appBar: const DashboardHeader(),
         body: GetBuilder<HomeController>(
           builder: (controller) => TapHandler(

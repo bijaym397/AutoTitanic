@@ -6,6 +6,7 @@ class Dimens {
 
   static const double appbarHeight = hundred;
 
+  static get appbarWidth => 0.8.pw;
   static get screenWidth => 0.7.pw;
 
   static EdgeInsets appbarPadding =

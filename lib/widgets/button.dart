@@ -29,6 +29,7 @@ class Button extends StatelessWidget {
             width: width,
             color: isHovering.value ? AppColors.black : AppColors.red,
             duration: AppConstants.animationDuration,
+            padding: Dimens.edgeInsets8,
             alignment: Alignment.center,
             child: Text(
               label,
