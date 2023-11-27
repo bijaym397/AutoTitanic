@@ -1,21 +1,16 @@
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CarCard extends StatelessWidget {
   const CarCard({
     super.key,
-    this.moreSpace = false,
   });
-
-  final bool moreSpace;
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: Dimens.edgeInsets10.copyWith(
-          left: moreSpace ? Dimens.forty : null,
-          right: moreSpace ? Dimens.forty : null,
-        ),
+        key: key,
         color: Colors.white,
         height: Dimens.fourHundred,
         width: Dimens.threeHundred,
@@ -24,23 +19,11 @@ class CarCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.asset(AssetConstants.car),
-                const Align(
-                  alignment: Alignment.topLeft,
-                  child: LabelBox(
-                    color: Colors.blue,
-                    child: Text('NEW'),
-                  ),
-                ),
-                const Align(
-                  alignment: Alignment.topRight,
-                  child: LabelBox(
-                    color: Colors.green,
-                    child: Icon(
-                      Icons.star,
-                      color: Colors.white,
-                    ),
-                  ),
+                Image.asset(
+                  AssetConstants.car,
+                  height: Dimens.twoHundred,
+                  width: Dimens.threeHundred,
+                  fit: BoxFit.cover,
                 ),
               ],
             ),
@@ -50,11 +33,11 @@ class CarCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  const AppText(
                     '2023 | Car Derived Van | Manual | 89',
                   ),
                   Dimens.boxHeight4,
-                  Text(
+                  AppText(
                     'BMW 3 SERIES',
                     style: context.textTheme.bodyMedium!.copyWith(
                       color: AppColors.red,
@@ -63,7 +46,7 @@ class CarCard extends StatelessWidget {
                   ),
                   Dimens.boxHeight4,
                   Chip(
-                    label: const Text('Private'),
+                    label: const AppText('Private'),
                     color: MaterialStateProperty.all(Colors.grey),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(Dimens.eighty),
@@ -80,8 +63,8 @@ class CarCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('R50,000,000'),
-                    Text('Nigeria'),
+                    AppText('R50,000,000'),
+                    AppText('Nigeria'),
                   ],
                 ),
               ),

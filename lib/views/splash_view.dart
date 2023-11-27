@@ -1,4 +1,5 @@
 import 'package:auto_titanic/utils/navigators/navigators.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatelessWidget {
@@ -12,7 +13,7 @@ class SplashView extends StatelessWidget {
           children: [
             FlutterLogo(),
             SizedBox(height: 30),
-            Text('Flutter'),
+            AppText('Flutter'),
           ],
         ),
       );

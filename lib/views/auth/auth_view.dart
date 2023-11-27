@@ -1,4 +1,5 @@
 import 'package:auto_titanic/utils/navigators/navigators.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class AuthView extends StatelessWidget {
@@ -9,7 +10,7 @@ class AuthView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => const Scaffold(
         body: Center(
-          child: Text('Auth View'),
+          child: AppText('Auth View'),
         ),
       );
 }

@@ -26,8 +26,8 @@ enum Vehicle {
   farms(AppStrings.farms, AppRoutes.farms),
   plants(AppStrings.plants, AppRoutes.plants),
   parts(AppStrings.partsAccessories, AppRoutes.parts),
-  carRentals(AppStrings.carRentals, AppRoutes.carRentals),
-  safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
+  carRentals(AppStrings.carRentals, AppRoutes.carRentals);
+  // safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
   factory Vehicle.fromRoute(String route) =>
       <String, Vehicle>{
@@ -41,7 +41,7 @@ enum Vehicle {
         Vehicle.plants.route: Vehicle.plants,
         Vehicle.parts.route: Vehicle.parts,
         Vehicle.carRentals.route: Vehicle.carRentals,
-        Vehicle.safetyCentre.route: Vehicle.safetyCentre,
+        // Vehicle.safetyCentre.route: Vehicle.safetyCentre,
       }[route] ??
       Vehicle.cars;
 

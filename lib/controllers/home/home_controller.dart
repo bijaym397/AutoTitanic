@@ -123,6 +123,17 @@ class HomeController extends GetxController with HomeAPIMixin {
     ),
   ];
 
+  var brandsList = const <BrandModel>[
+    BrandModel(name: 'BMW', icon: AssetConstants.bmw),
+    BrandModel(name: 'HONDA', icon: AssetConstants.honda),
+    BrandModel(name: 'HYUNDAI', icon: AssetConstants.hyundai),
+    BrandModel(name: 'LEXUS', icon: AssetConstants.lexus),
+    BrandModel(name: 'MERCEDES', icon: AssetConstants.mercedes),
+    BrandModel(name: 'MITSUBISHI', icon: AssetConstants.mitsubishi),
+    BrandModel(name: 'PORSCHE', icon: AssetConstants.porsche),
+    BrandModel(name: 'TOYOTA', icon: AssetConstants.toyota),
+  ];
+
   // ----------------- FUNCTIONS -------------------
 
   void showOverlay({

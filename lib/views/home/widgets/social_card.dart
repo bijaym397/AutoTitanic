@@ -34,7 +34,7 @@ class SocialCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
+                    AppText(
                       social.label,
                       style: context.textTheme.bodyLarge!.copyWith(
                         color: isSelected ? AppColors.white : AppColors.black,

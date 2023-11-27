@@ -1,5 +1,6 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +14,22 @@ class ScreenWrapper extends StatelessWidget {
     this.showAppBarImage = false,
     this.showSubscribeCard = false,
     this.isWhiteBackground = false,
-  }) : assert(
+    this.showFilterCard = false,
+    this.onFilterSearch,
+  })  : assert(
           body != null || bodyBuilder != null,
           'Both body and bodyBuilder cannot be null',
-        );
+        ),
+        assert(!showFilterCard || (showFilterCard && onFilterSearch != null),
+            'If showFilterCard is set to true, onFilterSearch must be non-null');
 
   final Widget? body;
   final bool showAppBarImage;
   final Widget Function(BuildContext, bool)? bodyBuilder;
   final bool showSubscribeCard;
   final bool isWhiteBackground;
+  final bool showFilterCard;
+  final VoidCallback? onFilterSearch;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -40,6 +47,7 @@ class ScreenWrapper extends StatelessWidget {
               child: Column(
                 children: [
                   if (showAppBarImage) const $BackgroundImage(),
+                  if (showFilterCard) $FilterCard(onTap: onFilterSearch!),
                   SizedBox(
                     width: Dimens.screenWidth,
                     child: bodyBuilder != null
@@ -90,5 +98,47 @@ class $BackgroundImage extends StatelessWidget {
             color: Colors.black54,
           ),
         ],
+      );
+}
+
+class $FilterCard extends StatelessWidget {
+  const $FilterCard({
+    super.key,
+    required this.onTap,
+  });
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => Container(
+        width: Get.width,
+        color: AppColors.white,
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: Dimens.screenWidth,
+          child: Stack(
+            children: [
+              Image.asset(
+                AssetConstants.homeTopBg,
+                height: 0.4.ph,
+                width: Dimens.screenWidth,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+              ),
+              Positioned(
+                left: Dimens.forty,
+                bottom: Dimens.twenty,
+                child: Container(
+                  color: Colors.white,
+                  padding: Dimens.edgeInsets16,
+                  child: Button(
+                    label: 'Search Results',
+                    onTap: onTap,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       );
 }

@@ -2,6 +2,7 @@ import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,7 +53,7 @@ class DashboardFooter extends StatelessWidget {
                 width: Get.width,
                 color: AppColors.black,
                 alignment: Alignment.center,
-                child: Text(
+                child: AppText(
                   AppStrings.copyright,
                   style: context.textTheme.labelLarge!.copyWith(
                     color: AppColors.white,

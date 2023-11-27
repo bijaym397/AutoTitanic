@@ -27,15 +27,20 @@ class Button extends StatelessWidget {
           child: AnimatedContainer(
             height: height ?? Dimens.forty,
             width: width,
-            color: isHovering.value ? AppColors.black : AppColors.red,
+            decoration: BoxDecoration(
+              color: isHovering.value ? AppColors.black : AppColors.red,
+              borderRadius: BorderRadius.circular(Dimens.eight),
+            ),
             duration: AppConstants.animationDuration,
             padding: Dimens.edgeInsets8,
             alignment: Alignment.center,
-            child: Text(
+            child: AppText(
               label,
+              isSelectable: false,
               style: context.textTheme.labelLarge!.copyWith(
                 color: AppColors.white,
               ),
+              textAlign: TextAlign.center,
             ),
           ),
         ),

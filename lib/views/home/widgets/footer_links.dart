@@ -43,7 +43,7 @@ class $LinkColumn extends StatelessWidget {
                   onTap: () => Get.toNamed(e.route),
                   child: Padding(
                     padding: Dimens.edgeInsets8_4,
-                    child: Text(
+                    child: AppText(
                       e.label,
                       style: context.textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.w600,

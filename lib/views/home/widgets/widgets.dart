@@ -1,3 +1,5 @@
+export 'brand_card.dart';
+export 'cars_carousel.dart';
 export 'contact_section.dart';
 export 'footer.dart';
 export 'footer_links.dart';

@@ -82,7 +82,7 @@ class $TimingCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('OPENING HOURS'),
+            const AppText('OPENING HOURS'),
             Container(
               margin: Dimens.edgeInsets0_8,
               height: 2,
@@ -118,7 +118,7 @@ class $TimingTile extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(
+              child: AppText(
                 day,
                 style: context.textTheme.bodyMedium!.copyWith(
                   fontWeight: FontWeight.w700,
@@ -127,7 +127,7 @@ class $TimingTile extends StatelessWidget {
             ),
             Expanded(
               flex: 2,
-              child: Text(isClosed ? 'Closed' : '9:00 AM to 9:00 PM'),
+              child: AppText(isClosed ? 'Closed' : '9:00 AM to 9:00 PM'),
             ),
           ],
         ),

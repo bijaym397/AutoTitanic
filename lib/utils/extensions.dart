@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +28,8 @@ extension ListCombine<T> on Iterable<T> {
     result.add(last);
     return result;
   }
+
+  T get random => toList()[Random().nextInt(length)];
 }
 
 extension VehicleExtension on Vehicle {
@@ -41,7 +46,7 @@ extension VehicleExtension on Vehicle {
       case Vehicle.parts:
         return NavVehicle(label: label);
       case Vehicle.carRentals:
-      case Vehicle.safetyCentre:
+        // case Vehicle.safetyCentre:
         return NavService(label: label);
     }
   }
@@ -74,7 +79,7 @@ extension HoverItemExtension on HoverItem {
       case Vehicle.parts:
         return '$prefix parts';
       case Vehicle.carRentals:
-      case Vehicle.safetyCentre:
+        // case Vehicle.safetyCentre:
         return '';
     }
   }
@@ -93,4 +98,12 @@ extension BorderExtension on Border {
         right: right ?? this.right,
         bottom: bottom ?? this.bottom,
       );
+}
+
+extension CarouselControllerExtension on CarouselController {
+  Duration get duration => [
+        const Duration(seconds: 4),
+        const Duration(seconds: 3),
+        const Duration(seconds: 5)
+      ].random;
 }

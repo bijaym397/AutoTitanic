@@ -36,7 +36,7 @@ class $FilterColumn extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          AppText(
             'FILTER BY PRICE',
             style: context.textTheme.titleMedium!.copyWith(
               fontWeight: FontWeight.bold,
@@ -55,7 +55,7 @@ class $FilterColumn extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AppText(
                   'VEHICLE FILTERS',
                   style: context.textTheme.titleMedium!.copyWith(
                     fontWeight: FontWeight.bold,
@@ -67,7 +67,7 @@ class $FilterColumn extends StatelessWidget {
                   color: AppColors.red,
                 ),
                 Dimens.boxHeight32,
-                Text(
+                AppText(
                   '80 Vehicles Matching',
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: AppColors.red,

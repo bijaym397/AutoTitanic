@@ -104,17 +104,17 @@ class Utility {
   ]) async {
     await Get.dialog(
       CupertinoAlertDialog(
-        title: Text(
+        title: AppText(
           title ?? (isSuccess ? 'Success' : 'Error'),
         ),
-        content: Text(
+        content: AppText(
           jsonDecode(data.data)['message'] as String,
         ),
         actions: [
           CupertinoDialogAction(
             onPressed: Get.back,
             isDefaultAction: true,
-            child: const Text(
+            child: const AppText(
               'Okay',
               // style: Styles.black16,
             ),
@@ -130,14 +130,14 @@ class Utility {
   ) async {
     await Get.dialog(
       CupertinoAlertDialog(
-        title: const Text('Info'),
-        content: Text(
+        title: const AppText('Info'),
+        content: AppText(
           message,
         ),
         actions: [
           CupertinoDialogAction(
             onPressed: Get.back,
-            child: const Text('Okay'),
+            child: const AppText('Okay'),
           ),
         ],
       ),

@@ -6,8 +6,7 @@ class Dimens {
 
   static const double appbarHeight = hundred;
 
-  static get appbarWidth => 0.8.pw;
-  static get screenWidth => 0.7.pw;
+  static double get screenWidth => 0.7.pw;
 
   static EdgeInsets appbarPadding =
       EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
@@ -29,6 +28,7 @@ class Dimens {
   static const double twoHundred = 200;
   static const double threeHundred = 300;
   static const double fourHundred = 400;
+  static const double fourHundredFifty = 450;
   static const double fiveHundred = 500;
 
   static const Widget box0 = SizedBox.shrink();
@@ -95,8 +95,16 @@ class Dimens {
       EdgeInsets.symmetric(horizontal: eight, vertical: four);
   static const EdgeInsets edgeInsets16_4 =
       EdgeInsets.symmetric(horizontal: sixteen, vertical: four);
+  static const EdgeInsets edgeInsets16_20 =
+      EdgeInsets.symmetric(horizontal: sixteen, vertical: twenty);
   static const EdgeInsets edgeInsets12_8 =
       EdgeInsets.symmetric(horizontal: twelve, vertical: eight);
   static const EdgeInsets edgeInsets8_32 =
       EdgeInsets.symmetric(horizontal: eight, vertical: thirtyTwo);
 }
+
+/**
+ 2. Add min and max price drop down on main filter box
+ 4. Row hover button and delay on scroll
+ 6. Sign In button
+ */

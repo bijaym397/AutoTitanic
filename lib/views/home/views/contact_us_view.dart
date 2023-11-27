@@ -18,12 +18,12 @@ class ContactUsView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Dimens.boxHeight200,
-            Text(
+            AppText(
               'We\'d Love to Hear From You',
               style: context.textTheme.bodyMedium,
             ),
             Dimens.boxHeight16,
-            Text(
+            AppText(
               'LET\'S GET IN TOUCH!',
               style: context.textTheme.displaySmall!.copyWith(
                 fontWeight: FontWeight.w700,
@@ -79,7 +79,7 @@ class $ContactRow extends StatelessWidget {
                                 size: Dimens.forty,
                               ),
                               Dimens.boxHeight8,
-                              Text(
+                              AppText(
                                 contact.label,
                                 style: context.textTheme.titleMedium!.copyWith(
                                   fontWeight: FontWeight.w600,
@@ -88,7 +88,7 @@ class $ContactRow extends StatelessWidget {
                                 ),
                               ),
                               Dimens.boxHeight12,
-                              Text(contact.data),
+                              AppText(contact.data),
                             ],
                           ),
                         ),
@@ -157,7 +157,7 @@ class $InformationRow extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  AppText(
                                     contact.label,
                                     style:
                                         context.textTheme.titleMedium!.copyWith(
@@ -165,7 +165,7 @@ class $InformationRow extends StatelessWidget {
                                     ),
                                   ),
                                   Dimens.boxHeight12,
-                                  Text(contact.data),
+                                  AppText(contact.data),
                                 ],
                               ),
                             ),

@@ -2,7 +2,7 @@ import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
-import 'package:auto_titanic/widgets/tap_handler.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,7 +30,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         height: preferredSize.height,
         width: preferredSize.width,
         alignment: Alignment.center,
-        color: AppColors.black,
+        color: AppColors.white,
         child: GetBuilder<HomeController>(
           builder: (controller) => Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -39,7 +39,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
             children: [
               LayoutBuilder(
                 builder: (_, constraint) => SizedBox(
-                  width: Dimens.appbarWidth,
+                  width: Dimens.screenWidth,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -50,7 +50,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                         onHover: _closeOverlay,
                         child: Image.asset(
                           AssetConstants.logo,
-                          width: 0.05.pw,
+                          height: Dimens.thirtyTwo,
                         ),
                       ),
                       Expanded(
@@ -67,7 +67,8 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                         height: _navHeight,
                         constraints: constraint,
                       ),
-                      if (Dimens.appbarWidth >= AppConstants.maxDesktopWidth)
+                      const $SignInButton(),
+                      if (Dimens.screenWidth >= AppConstants.maxDesktopWidth)
                         TapHandler(
                           onTap: () {},
                           onHover: _closeOverlay,
@@ -75,7 +76,6 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                             onPressed: () {},
                             icon: const Icon(
                               Icons.search_rounded,
-                              color: AppColors.white,
                             ),
                           ),
                         ),
@@ -84,7 +84,6 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                           onTap: () {},
                           child: const Icon(
                             Icons.menu,
-                            color: AppColors.white,
                           ),
                         ),
                       ],
@@ -140,7 +139,7 @@ class $NavItem extends StatelessWidget {
         builder: (controller) {
           var color = vehicle == controller.selectedVehicle
               ? AppColors.red
-              : AppColors.white;
+              : AppColors.black;
           return CompositedTransformTarget(
             link: layerLink,
             child: TapHandler(
@@ -165,8 +164,9 @@ class $NavItem extends StatelessWidget {
                   padding: Dimens.edgeInsets10_0,
                   child: Row(
                     children: [
-                      Text(
+                      AppText(
                         vehicle.label,
+                        isSelectable: false,
                         style: context.textTheme.labelMedium!.copyWith(
                           color: color,
                           fontWeight: FontWeight.w600,
@@ -226,8 +226,9 @@ class $NavDialog extends StatelessWidget {
                           ),
                   ),
                 ),
-                child: Text(
+                child: AppText(
                   e.$2.getLabel(vehicle),
+                  isSelectable: false,
                   style: context.textTheme.bodySmall!.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
@@ -235,6 +236,33 @@ class $NavDialog extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      );
+}
+
+class $SignInButton extends StatelessWidget {
+  const $SignInButton({super.key});
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: Dimens.edgeInsets10_0,
+        child: TapHandler(
+          onTap: () {},
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.account_circle_outlined,
+              ),
+              AppText(
+                'Sign In',
+                isSelectable: false,
+                style: context.textTheme.labelMedium,
+              ),
+            ],
+          ),
         ),
       );
 }

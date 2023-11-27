@@ -1,4 +1,5 @@
 export 'animated_lines.dart';
+export 'app_text.dart';
 export 'button.dart';
 export 'car_card.dart';
 export 'drop_down.dart';

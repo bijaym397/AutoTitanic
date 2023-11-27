@@ -20,14 +20,14 @@ class SubscribeCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                AppText(
                   AppStrings.subscribeHeading,
                   style: context.textTheme.headlineMedium!.copyWith(
                     color: AppColors.red,
                   ),
                 ),
                 Dimens.boxHeight4,
-                Text(
+                AppText(
                   AppStrings.subscribeSubtitle,
                   style: context.textTheme.bodyMedium!.copyWith(
                     color: AppColors.white,
@@ -66,7 +66,7 @@ class $SubscribeEmail extends StatelessWidget {
                   width: 0.07.pw,
                   color: AppColors.red,
                   alignment: Alignment.center,
-                  child: Text(
+                  child: AppText(
                     AppStrings.subscribe,
                     style: context.textTheme.labelLarge!.copyWith(
                       color: AppColors.white,
