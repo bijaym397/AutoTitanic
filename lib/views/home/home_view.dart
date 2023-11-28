@@ -14,32 +14,39 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetBuilder<HomeController>(
-      builder: (controller) => ScreenWrapper(
-            showFilterCard: true,
-            onFilterSearch: () => RouteManagement.goToListing(
-              controller.selectedVehicle ?? Vehicle.cars,
-            ),
-            bodyBuilder: (_, isHovering) => Column(
-              children: [
-                Dimens.boxHeight48,
-                const TitleText(AppStrings.featuredCars),
-                ...List.generate(
-                  3,
-                  (index) => CarsCarousel(
-                    controller: CarouselController(),
-                  ),
+        initState: (_) {
+          Get.find<HomeController>().generateCarsData();
+        },
+        builder: (controller) => ScreenWrapper(
+          showFilterCard: true,
+          onFilterSearch: () => RouteManagement.goToListing(
+            controller.selectedVehicle ?? Vehicle.cars,
+          ),
+          bodyBuilder: (_, isHovering) => Column(
+            children: [
+              Dimens.boxHeight48,
+              const TitleText(AppStrings.featuredCars),
+              ...List.generate(
+                AppConstants.featuredCarsCount,
+                (index) => CarsCarousel(
+                  carouselList: controller.carsList[index],
+                  controller: CarouselController(),
                 ),
-                Dimens.boxHeight48,
-                const TitleText('Recently Posted Cars'),
-                ...List.generate(
-                  4,
-                  (index) => CarsCarousel(
-                    controller: CarouselController(),
-                  ),
+              ),
+              Dimens.boxHeight48,
+              const TitleText('Recently Posted Cars'),
+              ...List.generate(
+                AppConstants.recentCarsCount,
+                (index) => CarsCarousel(
+                  carouselList: controller
+                      .carsList[AppConstants.featuredCarsCount + index],
+                  controller: CarouselController(),
                 ),
-                Dimens.boxHeight48,
-                const BrandCard(),
-              ],
-            ),
-          ));
+              ),
+              Dimens.boxHeight48,
+              const BrandCard(),
+            ],
+          ),
+        ),
+      );
 }

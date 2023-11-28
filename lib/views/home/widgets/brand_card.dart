@@ -12,7 +12,10 @@ class BrandCard extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         height: Dimens.fiveHundred,
         width: Dimens.screenWidth,
-        color: AppColors.white,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(Dimens.sixteen),
+        ),
         padding: Dimens.edgeInsets16_20,
         margin: Dimens.edgeInsets0_40,
         child: Column(
@@ -73,7 +76,7 @@ class $BrandTile extends StatelessWidget {
               spreadRadius: Dimens.four,
             ),
           ],
-          borderRadius: BorderRadius.circular(Dimens.eight),
+          borderRadius: BorderRadius.circular(Dimens.twelve),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

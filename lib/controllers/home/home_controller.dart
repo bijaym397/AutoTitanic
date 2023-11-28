@@ -33,6 +33,8 @@ class HomeController extends GetxController with HomeAPIMixin {
 
   // -------------------- DATA ---------------------
 
+  final carsList = <List<List<String>>>[];
+
   final footer1 = const <LinkModel>[
     LinkModel(
       label: AppStrings.aboutUs,
@@ -135,6 +137,21 @@ class HomeController extends GetxController with HomeAPIMixin {
   ];
 
   // ----------------- FUNCTIONS -------------------
+
+  void generateCarsData() {
+    var total = AppConstants.featuredCarsCount + AppConstants.recentCarsCount;
+    for (var i = 0; i < total; i++) {
+      var carousel = <List<String>>[];
+      for (var j = 0; j < AppConstants.carouselItemCount; j++) {
+        var cars = <String>[];
+        for (var k = 0; k < AppConstants.carsPerItem; k++) {
+          cars.add(AssetConstants.car);
+        }
+        carousel.add(cars);
+      }
+      carsList.add(carousel);
+    }
+  }
 
   void showOverlay({
     required BuildContext context,

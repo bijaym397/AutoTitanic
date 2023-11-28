@@ -1,6 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
-import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +46,7 @@ class ScreenWrapper extends StatelessWidget {
               child: Column(
                 children: [
                   if (showAppBarImage) const $BackgroundImage(),
-                  if (showFilterCard) $FilterCard(onTap: onFilterSearch!),
+                  if (showFilterCard) FilterSection(onTap: onFilterSearch!),
                   SizedBox(
                     width: Dimens.screenWidth,
                     child: bodyBuilder != null
@@ -98,47 +97,5 @@ class $BackgroundImage extends StatelessWidget {
             color: Colors.black54,
           ),
         ],
-      );
-}
-
-class $FilterCard extends StatelessWidget {
-  const $FilterCard({
-    super.key,
-    required this.onTap,
-  });
-
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) => Container(
-        width: Get.width,
-        color: AppColors.white,
-        alignment: Alignment.center,
-        child: SizedBox(
-          width: Dimens.screenWidth,
-          child: Stack(
-            children: [
-              Image.asset(
-                AssetConstants.homeTopBg,
-                height: 0.4.ph,
-                width: Dimens.screenWidth,
-                fit: BoxFit.cover,
-                alignment: Alignment.topCenter,
-              ),
-              Positioned(
-                left: Dimens.forty,
-                bottom: Dimens.twenty,
-                child: Container(
-                  color: Colors.white,
-                  padding: Dimens.edgeInsets16,
-                  child: Button(
-                    label: 'Search Results',
-                    onTap: onTap,
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
       );
 }

@@ -6,7 +6,10 @@ import 'package:get/get.dart';
 class CarCard extends StatelessWidget {
   const CarCard({
     super.key,
+    required this.image,
   });
+
+  final String image;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -20,7 +23,7 @@ class CarCard extends StatelessWidget {
             Stack(
               children: [
                 Image.asset(
-                  AssetConstants.car,
+                  image,
                   height: Dimens.twoHundred,
                   width: Dimens.threeHundred,
                   fit: BoxFit.cover,

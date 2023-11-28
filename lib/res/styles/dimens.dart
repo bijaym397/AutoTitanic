@@ -106,5 +106,4 @@ class Dimens {
 /**
  2. Add min and max price drop down on main filter box
  4. Row hover button and delay on scroll
- 6. Sign In button
  */

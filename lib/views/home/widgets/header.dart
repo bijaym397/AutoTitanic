@@ -67,7 +67,9 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                         height: _navHeight,
                         constraints: constraint,
                       ),
-                      const $SignInButton(),
+                      $SignInButton(
+                        onHover: _closeOverlay,
+                      ),
                       if (Dimens.screenWidth >= AppConstants.maxDesktopWidth)
                         TapHandler(
                           onTap: () {},
@@ -241,13 +243,19 @@ class $NavDialog extends StatelessWidget {
 }
 
 class $SignInButton extends StatelessWidget {
-  const $SignInButton({super.key});
+  const $SignInButton({
+    super.key,
+    this.onHover,
+  });
+
+  final void Function(bool)? onHover;
 
   @override
   Widget build(BuildContext context) => Padding(
         padding: Dimens.edgeInsets10_0,
         child: TapHandler(
           onTap: () {},
+          onHover: onHover,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
