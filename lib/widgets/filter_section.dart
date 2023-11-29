@@ -48,12 +48,61 @@ class $FilterCard extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Container(
-        color: Colors.white,
-        padding: Dimens.edgeInsets16,
-        child: Button(
-          label: 'Search Results',
-          onTap: onTap,
+  Widget build(BuildContext context) => SizedBox(
+        width: 0.25.pw,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(Dimens.twelve),
+          ),
+          child: Padding(
+            padding: Dimens.edgeInsets16,
+            child: Column(
+              children: [
+                AppText(
+                  AppStrings.findYourCar,
+                  style: context.textTheme.headlineSmall!.copyWith(
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Dimens.boxHeight10,
+                DropDown<String>(
+                  hint: 'Countries',
+                  labelBuilder: Text.new,
+                  items: const ['Africa'],
+                  onChanged: (_) {},
+                ),
+                Dimens.boxHeight10,
+                Row(
+                  children: [
+                    Flexible(
+                      child: DropDown<String>(
+                        hint: 'Make',
+                        labelBuilder: Text.new,
+                        items: const ['Audi'],
+                        onChanged: (_) {},
+                      ),
+                    ),
+                    Dimens.boxWidth10,
+                    Flexible(
+                      child: DropDown<String>(
+                        hint: 'Model',
+                        labelBuilder: Text.new,
+                        items: const ['A8'],
+                        onChanged: (_) {},
+                      ),
+                    ),
+                  ],
+                ),
+                Dimens.boxHeight20,
+                Button(
+                  label: 'Search Results',
+                  onTap: onTap,
+                  width: Dimens.twoHundred,
+                ),
+              ],
+            ),
+          ),
         ),
       );
 }

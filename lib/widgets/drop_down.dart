@@ -1,3 +1,4 @@
+import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +19,14 @@ class DropDown<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DropdownButtonFormField<T>(
         decoration: InputDecoration(
-          border: const OutlineInputBorder(
+          filled: true,
+          fillColor: AppColors.grey,
+          border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.zero,
+            borderRadius: BorderRadius.circular(Dimens.eight),
           ),
           hintText: hint,
+          isDense: true,
         ),
         items: items
             .map(

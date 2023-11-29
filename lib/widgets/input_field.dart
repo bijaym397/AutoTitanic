@@ -16,21 +16,24 @@ class InputField extends StatelessWidget {
   final int? maxLines;
 
   @override
-  Widget build(BuildContext context) => TextFormField(
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColors.grey,
-          hintText: hint.isEmpty
-              ? null
-              : required
-                  ? '*$hint'
-                  : hint,
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.zero,
+  Widget build(BuildContext context) => SizedBox(
+        height: Dimens.fortyEight,
+        child: TextFormField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: AppColors.grey,
+            hintText: hint.isEmpty
+                ? null
+                : required
+                    ? '*$hint'
+                    : hint,
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(Dimens.eight),
+            ),
           ),
+          minLines: minLines,
+          maxLines: maxLines ?? 1,
         ),
-        minLines: minLines,
-        maxLines: maxLines ?? 1,
       );
 }

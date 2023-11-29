@@ -4,11 +4,9 @@ class AppStrings {
   static const String timeoutError =
       'Oops! The request took too long to process. Please check your internet connection and try again. If the issue persists, you can contact our support team for assistance.';
 
-  static const String somethingWentWrong =
-      'Oops! Something went wrong. Please check your internet connection and try again.';
+  static const String somethingWentWrong = 'Oops! Something went wrong. Please check your internet connection and try again.';
 
-  static const String noInternet =
-      'No internet connection. Please connect to the internet and try again.';
+  static const String noInternet = 'No internet connection. Please connect to the internet and try again.';
 
   static const String cars = 'Cars';
   static const String vans = 'Vans';
@@ -32,8 +30,7 @@ class AppStrings {
 
   static const String subscribe = 'Subscribe';
   static const String subscribeHeading = 'Subscribe to Our Newsletter Feed';
-  static const String subscribeSubtitle =
-      'Simply Dummy Text of the Printin Galley of Type and Bled it to Make a Type.';
+  static const String subscribeSubtitle = 'Simply Dummy Text of the Printin Galley of Type and Bled it to Make a Type.';
 
   static const String subscribeHint = 'Enter your email';
 
@@ -48,13 +45,11 @@ class AppStrings {
   static const String safetyNotice = 'Important Safety Notice';
   static const String safetySecurity = 'Safety & Security Centre';
 
-  static const String howToStaySafe =
-      'How to stay safe when Buying or Selling Online';
+  static const String howToStaySafe = 'How to stay safe when Buying or Selling Online';
 
   static const String readMore = 'Read More';
   static const String lookingForCar = 'Are you looking for a car?';
-  static const String searchInventory =
-      'Search Our Inventory With Thousands Of Cars And More Cars Are Adding On Daily Basis';
+  static const String searchInventory = 'Search Our Inventory With Thousands Of Cars And More Cars Are Adding On Daily Basis';
 
   static const String copyright = '© Copyright 2023 Autotanic';
 
@@ -64,6 +59,8 @@ class AppStrings {
   static const String comment = 'Comment';
 
   static const String send = 'Send';
+
+  static const String findYourCar = 'Find your dream car';
 
   static const String year = 'Year';
   static const String make = 'Make';
@@ -161,8 +158,7 @@ class StringData {
   <p>Please don't forget to download our mobile App by clicking on the links below.</p>
 ''';
 
-  static const String termsAndCondition =
-      '''<p>The use of this website is subject to the following terms of use:</p>
+  static const String termsAndCondition = '''<p>The use of this website is subject to the following terms of use:</p>
   <p>The term 'AutoTitanic' or 'Us' or 'We' refers to the owner(s) of the website.</p>
   <p>The content of the pages of this website is for your general information and use only. It is subject to change without notice.</p>
   <p>By accessing or using Autotitanic.com or our App you agree to be bound by these terms and conditions of use (and the other terms and conditions and policies referred to in these terms and conditions and any other notices on AutoTitanic as amended from time to time.</p>
