@@ -10,14 +10,18 @@ class CarsCarousel extends StatelessWidget {
     super.key,
     required this.controller,
     required this.carouselList,
+    this.isFirst = false,
   });
 
+  final bool isFirst;
   final CarouselController controller;
   final List<List<String>> carouselList;
 
   @override
-  Widget build(BuildContext context) => ColoredBox(
-        color: Colors.yellow,
+  Widget build(BuildContext context) => Padding(
+        padding: Dimens.edgeInsets0_20.copyWith(
+          top: isFirst ? Dimens.eight : null,
+        ),
         child: ObxValue<RxBool>(
           (isHovering) => TapHandler(
             onHover: (value) {
@@ -32,7 +36,7 @@ class CarsCarousel extends StatelessWidget {
                   carouselController: controller,
                   options: CarouselOptions(
                     autoPlay: true,
-                    height: Dimens.fourHundredFifty,
+                    height: Dimens.fourHundred,
                     scrollDirection: Axis.horizontal,
                     enableInfiniteScroll: true,
                     viewportFraction: 1,

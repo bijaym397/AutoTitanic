@@ -23,6 +23,7 @@ class AppStrings {
   static const String safetyCentre = 'Safety and Security Centre';
 
   static const String featuredCars = 'Featured Cars';
+  static const String recentlyPostedCars = 'Recently Posted Cars';
 
   static const String instagram = 'Instagram';
   static const String facebook = 'Facebook';

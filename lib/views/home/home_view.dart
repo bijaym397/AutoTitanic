@@ -34,10 +34,11 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               Dimens.boxHeight48,
-              const TitleText('Recently Posted Cars'),
+              const TitleText(AppStrings.recentlyPostedCars),
               ...List.generate(
                 AppConstants.recentCarsCount,
                 (index) => CarsCarousel(
+                  isFirst: index == 0,
                   carouselList: controller
                       .carsList[AppConstants.featuredCarsCount + index],
                   controller: CarouselController(),
