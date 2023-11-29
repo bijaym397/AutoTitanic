@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
           onFilterSearch: () => RouteManagement.goToListing(
             controller.selectedVehicle ?? Vehicle.cars,
           ),
-          bodyBuilder: (_, isHovering) => Column(
+          body: Column(
             children: [
               Dimens.boxHeight48,
               const TitleText(AppStrings.featuredCars),
@@ -39,8 +39,7 @@ class HomeView extends StatelessWidget {
                 AppConstants.recentCarsCount,
                 (index) => CarsCarousel(
                   isFirst: index == 0,
-                  carouselList: controller
-                      .carsList[AppConstants.featuredCarsCount + index],
+                  carouselList: controller.carsList[AppConstants.featuredCarsCount + index],
                   controller: CarouselController(),
                 ),
               ),

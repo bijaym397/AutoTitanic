@@ -12,67 +12,92 @@ class CarCard extends StatelessWidget {
   final String image;
 
   @override
-  Widget build(BuildContext context) => Container(
-        key: key,
-        color: Colors.white,
-        height: Dimens.fourHundred,
-        width: Dimens.threeHundred,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
+  Widget build(BuildContext context) => ClipRRect(
+        borderRadius: BorderRadius.circular(Dimens.twelve),
+        child: ColoredBox(
+          key: key,
+          color: Colors.white,
+          child: AspectRatio(
+            aspectRatio: 2 / 3,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  image,
-                  height: Dimens.twoHundred,
-                  width: Dimens.threeHundred,
-                  fit: BoxFit.cover,
+                AspectRatio(
+                  aspectRatio: 3 / 2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(Dimens.twelve),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          image,
+                          fit: BoxFit.cover,
+                          width: double.maxFinite,
+                        ),
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              $CardHoverIcon(Icons.link_rounded),
+                              $CardHoverIcon(Icons.sync_alt_rounded),
+                              $CardHoverIcon(Icons.fullscreen_rounded),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Dimens.boxHeight10,
+                Padding(
+                  padding: Dimens.edgeInsets12,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const AppText(
+                        '2023 | Car Derived Van | Manual | 89',
+                      ),
+                      Dimens.boxHeight4,
+                      AppText(
+                        'BMW 3 SERIES',
+                        style: context.textTheme.bodyMedium!.copyWith(
+                          color: AppColors.red,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Dimens.boxHeight4,
+                      Chip(
+                        label: const AppText('Private'),
+                        color: MaterialStateProperty.all(Colors.grey),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(Dimens.eighty),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Spacer(),
+                ColoredBox(
+                  color: Colors.indigo,
+                  child: Padding(
+                    padding: Dimens.edgeInsets12,
+                    child: DefaultTextStyle(
+                      style: context.textTheme.bodyMedium!.copyWith(
+                        color: Colors.white,
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          AppText('R50,000,000'),
+                          AppText('Nigeria'),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-            Dimens.boxHeight10,
-            Padding(
-              padding: Dimens.edgeInsets12,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const AppText(
-                    '2023 | Car Derived Van | Manual | 89',
-                  ),
-                  Dimens.boxHeight4,
-                  AppText(
-                    'BMW 3 SERIES',
-                    style: context.textTheme.bodyMedium!.copyWith(
-                      color: AppColors.red,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  Dimens.boxHeight4,
-                  Chip(
-                    label: const AppText('Private'),
-                    color: MaterialStateProperty.all(Colors.grey),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(Dimens.eighty),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
-            const ColoredBox(
-              color: Colors.blue,
-              child: Padding(
-                padding: Dimens.edgeInsets8,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppText('R50,000,000'),
-                    AppText('Nigeria'),
-                  ],
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       );
 }
@@ -96,5 +121,41 @@ class LabelBox extends StatelessWidget {
           borderRadius: BorderRadius.circular(Dimens.four),
         ),
         child: child,
+      );
+}
+
+class $CardHoverIcon extends StatelessWidget {
+  const $CardHoverIcon(
+    this.icon, {
+    super.key,
+  });
+
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: Dimens.edgeInsets4,
+        child: ObxValue<RxBool>(
+          (isHovering) => TapHandler(
+            onHover: (value) {
+              isHovering.value = value;
+            },
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: isHovering.value ? AppColors.white : Colors.transparent,
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.white),
+              ),
+              child: Padding(
+                padding: Dimens.edgeInsets4,
+                child: Icon(
+                  icon,
+                  color: isHovering.value ? AppColors.red : AppColors.white,
+                ),
+              ),
+            ),
+          ),
+          false.obs,
+        ),
       );
 }

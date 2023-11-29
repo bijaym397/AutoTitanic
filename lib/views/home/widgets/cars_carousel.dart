@@ -27,6 +27,7 @@ class CarsCarousel extends StatelessWidget {
             onHover: (value) {
               isHovering.value = value;
             },
+            showArrowCursor: true,
             child: Stack(
               alignment: Alignment.center,
               clipBehavior: Clip.none,
@@ -61,25 +62,70 @@ class CarsCarousel extends StatelessWidget {
                     ),
                   ),
                 ),
-                AnimatedPositioned(
-                  left: isHovering.value ? -Dimens.ten : Dimens.ten,
-                  duration: AppConstants.animationDuration,
-                  child: AnimatedOpacity(
-                    opacity: isHovering.value ? 1 : 0,
-                    duration: AppConstants.animationDuration,
-                    child: const ColoredBox(
-                      color: Colors.red,
-                      child: SizedBox(
-                        height: Dimens.forty,
-                        width: Dimens.forty,
-                      ),
-                    ),
-                  ),
-                ),
+                $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: true),
+                $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: false),
               ],
             ),
           ),
           false.obs,
+        ),
+      );
+}
+
+class $CarouselMoveButton extends StatelessWidget {
+  const $CarouselMoveButton({
+    super.key,
+    required this.isHovering,
+    required this.controller,
+    required this.isPreviousIcon,
+  });
+
+  final bool isHovering;
+  final CarouselController controller;
+  final bool isPreviousIcon;
+
+  @override
+  Widget build(BuildContext context) => AnimatedPositioned(
+        right: isPreviousIcon
+            ? null
+            : isHovering
+                ? -Dimens.ten
+                : Dimens.ten,
+        left: !isPreviousIcon
+            ? null
+            : isHovering
+                ? -Dimens.ten
+                : Dimens.ten,
+        duration: AppConstants.animationDuration,
+        child: AnimatedOpacity(
+          opacity: isHovering ? 1 : 0,
+          duration: AppConstants.animationDuration,
+          child: TapHandler(
+            onTap: isPreviousIcon ? controller.previousPage : controller.nextPage,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadius.circular(Dimens.four),
+                border: Border.all(color: AppColors.grey),
+                boxShadow: [
+                  BoxShadow(
+                    offset: const Offset(Dimens.two, Dimens.two),
+                    color: Colors.grey.shade300,
+                    blurRadius: Dimens.eight,
+                    spreadRadius: Dimens.two,
+                  ),
+                ],
+              ),
+              child: SizedBox(
+                height: Dimens.forty,
+                width: Dimens.forty,
+                child: Icon(
+                  isPreviousIcon ? Icons.chevron_left_rounded : Icons.chevron_right_rounded,
+                  color: AppColors.red,
+                ),
+              ),
+            ),
+          ),
         ),
       );
 }
