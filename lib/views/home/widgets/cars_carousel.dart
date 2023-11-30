@@ -1,5 +1,4 @@
 import 'package:auto_titanic/res/res.dart';
-import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +9,13 @@ class CarsCarousel extends StatelessWidget {
     super.key,
     required this.controller,
     required this.carouselList,
+    required this.duration,
     this.isFirst = false,
   });
 
   final bool isFirst;
   final CarouselController controller;
+  final Duration duration;
   final List<List<String>> carouselList;
 
   @override
@@ -26,6 +27,11 @@ class CarsCarousel extends StatelessWidget {
           (isHovering) => TapHandler(
             onHover: (value) {
               isHovering.value = value;
+              if (value) {
+                controller.stopAutoPlay();
+              } else {
+                controller.startAutoPlay();
+              }
             },
             showArrowCursor: true,
             child: Stack(
@@ -43,7 +49,7 @@ class CarsCarousel extends StatelessWidget {
                     viewportFraction: 1,
                     disableCenter: false,
                     scrollPhysics: const NeverScrollableScrollPhysics(),
-                    autoPlayInterval: controller.duration,
+                    autoPlayInterval: duration,
                     enlargeCenterPage: true,
                     enlargeFactor: 0.2,
                   ),
@@ -96,7 +102,7 @@ class $CarouselMoveButton extends StatelessWidget {
             : isHovering
                 ? -Dimens.ten
                 : Dimens.ten,
-        duration: AppConstants.animationDuration,
+        duration: AppConstants.fastAnimationDuration,
         child: AnimatedOpacity(
           opacity: isHovering ? 1 : 0,
           duration: AppConstants.animationDuration,
@@ -105,7 +111,7 @@ class $CarouselMoveButton extends StatelessWidget {
             child: DecoratedBox(
               decoration: BoxDecoration(
                 color: AppColors.white,
-                borderRadius: BorderRadius.circular(Dimens.four),
+                borderRadius: BorderRadius.circular(Dimens.eight),
                 border: Border.all(color: AppColors.grey),
                 boxShadow: [
                   BoxShadow(

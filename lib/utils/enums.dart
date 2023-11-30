@@ -20,13 +20,12 @@ enum Vehicle {
   cars(AppStrings.cars, AppRoutes.cars),
   vans(AppStrings.vans, AppRoutes.vans),
   bikes(AppStrings.bikes, AppRoutes.bikes),
-  motorHomes(AppStrings.motorHomes, AppRoutes.motorHomes),
-  caravans(AppStrings.caravans, AppRoutes.caravans),
+  motorAndCaravans(AppStrings.motorAndCaravans, AppRoutes.motorAndCaravans),
   trucks(AppStrings.trucks, AppRoutes.trucks),
   farms(AppStrings.farms, AppRoutes.farms),
   plants(AppStrings.plants, AppRoutes.plants),
-  parts(AppStrings.partsAccessories, AppRoutes.parts),
-  carRentals(AppStrings.carRentals, AppRoutes.carRentals);
+  carRentals(AppStrings.carRentals, AppRoutes.carRentals),
+  parts(AppStrings.partsAccessories, AppRoutes.parts);
   // safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
   factory Vehicle.fromRoute(String route) =>
@@ -34,8 +33,7 @@ enum Vehicle {
         Vehicle.cars.route: Vehicle.cars,
         Vehicle.vans.route: Vehicle.vans,
         Vehicle.bikes.route: Vehicle.bikes,
-        Vehicle.motorHomes.route: Vehicle.motorHomes,
-        Vehicle.caravans.route: Vehicle.caravans,
+        Vehicle.motorAndCaravans.route: Vehicle.motorAndCaravans,
         Vehicle.trucks.route: Vehicle.trucks,
         Vehicle.farms.route: Vehicle.farms,
         Vehicle.plants.route: Vehicle.plants,
@@ -72,10 +70,25 @@ enum HoverItem {
 
 enum Social {
   instagram(
-      AppStrings.instagram, AppColors.instagram, AssetConstants.instagram),
-  facebook(AppStrings.facebook, AppColors.facebook, AssetConstants.facebook),
-  twitter(AppStrings.twitter, AppColors.twitter, AssetConstants.twitter),
-  youtube(AppStrings.youtube, AppColors.youtube, AssetConstants.youtube);
+    AppStrings.instagram,
+    AppColors.instagram,
+    AssetConstants.instagram,
+  ),
+  facebook(
+    AppStrings.facebook,
+    AppColors.facebook,
+    AssetConstants.facebook,
+  ),
+  twitter(
+    AppStrings.twitter,
+    AppColors.twitter,
+    AssetConstants.twitter,
+  ),
+  youtube(
+    AppStrings.youtube,
+    AppColors.youtube,
+    AssetConstants.youtube,
+  );
 
   const Social(
     this.label,

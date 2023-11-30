@@ -38,16 +38,15 @@ extension VehicleExtension on Vehicle {
       case Vehicle.cars:
       case Vehicle.vans:
       case Vehicle.bikes:
-      case Vehicle.motorHomes:
-      case Vehicle.caravans:
+      case Vehicle.motorAndCaravans:
       case Vehicle.trucks:
       case Vehicle.farms:
       case Vehicle.plants:
       case Vehicle.parts:
-        return NavVehicle(label: label);
       case Vehicle.carRentals:
-        // case Vehicle.safetyCentre:
-        return NavService(label: label);
+        return NavVehicle(label: label);
+      // case Vehicle.safetyCentre:
+      // return NavService(label: label);
     }
   }
 
@@ -68,9 +67,9 @@ extension HoverItemExtension on HoverItem {
       case Vehicle.cars:
       case Vehicle.vans:
       case Vehicle.bikes:
-      case Vehicle.motorHomes:
-      case Vehicle.caravans:
+      case Vehicle.motorAndCaravans:
       case Vehicle.trucks:
+      case Vehicle.carRentals:
         return '$prefix ${vehicle.label.toLowerCase()}';
       case Vehicle.farms:
         return '$prefix farm machinery';
@@ -78,9 +77,8 @@ extension HoverItemExtension on HoverItem {
         return '$prefix plant machinery';
       case Vehicle.parts:
         return '$prefix parts';
-      case Vehicle.carRentals:
-        // case Vehicle.safetyCentre:
-        return '';
+      // case Vehicle.safetyCentre:
+      // return '';
     }
   }
 }
@@ -101,9 +99,5 @@ extension BorderExtension on Border {
 }
 
 extension CarouselControllerExtension on CarouselController {
-  Duration get duration => [
-        const Duration(seconds: 4),
-        const Duration(seconds: 3),
-        const Duration(seconds: 5)
-      ].random;
+  Duration get duration => [const Duration(seconds: 4), const Duration(seconds: 3), const Duration(seconds: 5)].random;
 }

@@ -29,7 +29,7 @@ class FilterSection extends StatelessWidget {
                 alignment: Alignment.topCenter,
               ),
               Positioned(
-                left: Dimens.forty,
+                left: Dimens.twenty,
                 bottom: Dimens.twenty,
                 child: $FilterCard(onTap: onTap),
               ),
@@ -56,12 +56,12 @@ class $FilterCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(Dimens.twelve),
           ),
           child: Padding(
-            padding: Dimens.edgeInsets16,
+            padding: Dimens.edgeInsets24_16,
             child: Column(
               children: [
                 AppText(
                   AppStrings.findYourCar,
-                  style: context.textTheme.headlineSmall!.copyWith(
+                  style: context.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -99,6 +99,20 @@ class $FilterCard extends StatelessWidget {
                   label: 'Search Results',
                   onTap: onTap,
                   width: Dimens.twoHundred,
+                ),
+                Dimens.boxHeight10,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    LinkText(
+                      AppStrings.resetFilters,
+                      onTap: () {},
+                    ),
+                    LinkText(
+                      AppStrings.moreOptions,
+                      onTap: () {},
+                    ),
+                  ],
                 ),
               ],
             ),

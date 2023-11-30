@@ -11,8 +11,7 @@ class AppStrings {
   static const String cars = 'Cars';
   static const String vans = 'Vans';
   static const String bikes = 'Bikes';
-  static const String motorHomes = 'Motorhomes';
-  static const String caravans = 'Caravans';
+  static const String motorAndCaravans = 'Motohomes and Caravans';
   static const String trucks = 'Trucks';
   static const String farms = 'Farms';
   static const String plants = 'Plants';
@@ -22,6 +21,9 @@ class AppStrings {
 
   static const String featuredCars = 'Featured Cars';
   static const String recentlyPostedCars = 'Recently Posted Cars';
+
+  static const String resetFilters = 'Reset Filters';
+  static const String moreOptions = 'More Options';
 
   static const String instagram = 'Instagram';
   static const String facebook = 'Facebook';

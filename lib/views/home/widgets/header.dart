@@ -139,9 +139,7 @@ class $NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetX<HomeController>(
         builder: (controller) {
-          var color = vehicle == controller.selectedVehicle
-              ? AppColors.red
-              : AppColors.black;
+          var color = vehicle == controller.selectedVehicle ? AppColors.red : AppColors.black;
           return CompositedTransformTarget(
             link: layerLink,
             child: TapHandler(
@@ -163,7 +161,7 @@ class $NavItem extends StatelessWidget {
               child: SizedBox(
                 height: height,
                 child: Padding(
-                  padding: Dimens.edgeInsets10_0,
+                  padding: Dimens.edgeInsets4_0,
                   child: Row(
                     children: [
                       AppText(
@@ -175,7 +173,7 @@ class $NavItem extends StatelessWidget {
                         ),
                       ),
                       if (vehicle.showIcon) ...[
-                        Dimens.boxWidth4,
+                        Dimens.boxWidth2,
                         Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: color,

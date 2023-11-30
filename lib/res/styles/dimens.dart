@@ -8,8 +8,7 @@ class Dimens {
 
   static double get screenWidth => 0.7.pw;
 
-  static EdgeInsets appbarPadding =
-      EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
+  static EdgeInsets appbarPadding = EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
 
   static const double two = 2;
   static const double four = 4;
@@ -73,36 +72,24 @@ class Dimens {
   static const EdgeInsets edgeInsetsR200 = EdgeInsets.only(right: twoHundred);
 
   static const EdgeInsets edgeInsets2_0 = EdgeInsets.symmetric(horizontal: two);
-  static const EdgeInsets edgeInsets4_0 =
-      EdgeInsets.symmetric(horizontal: four);
-  static const EdgeInsets edgeInsets8_0 =
-      EdgeInsets.symmetric(horizontal: eight);
-  static EdgeInsets edgeInsets10_0 =
-      const EdgeInsets.symmetric(horizontal: ten);
-  static EdgeInsets edgeInsets16_0 =
-      const EdgeInsets.symmetric(horizontal: sixteen);
+  static const EdgeInsets edgeInsets4_0 = EdgeInsets.symmetric(horizontal: four);
+  static const EdgeInsets edgeInsets8_0 = EdgeInsets.symmetric(horizontal: eight);
+  static EdgeInsets edgeInsets10_0 = const EdgeInsets.symmetric(horizontal: ten);
+  static EdgeInsets edgeInsets16_0 = const EdgeInsets.symmetric(horizontal: sixteen);
 
   static const EdgeInsets edgeInsets0_4 = EdgeInsets.symmetric(vertical: four);
   static const EdgeInsets edgeInsets0_8 = EdgeInsets.symmetric(vertical: eight);
-  static const EdgeInsets edgeInsets0_16 =
-      EdgeInsets.symmetric(vertical: sixteen);
-  static const EdgeInsets edgeInsets0_20 =
-      EdgeInsets.symmetric(vertical: twenty);
-  static const EdgeInsets edgeInsets0_40 =
-      EdgeInsets.symmetric(vertical: forty);
+  static const EdgeInsets edgeInsets0_16 = EdgeInsets.symmetric(vertical: sixteen);
+  static const EdgeInsets edgeInsets0_20 = EdgeInsets.symmetric(vertical: twenty);
+  static const EdgeInsets edgeInsets0_40 = EdgeInsets.symmetric(vertical: forty);
 
-  static const EdgeInsets edgeInsets4_8 =
-      EdgeInsets.symmetric(horizontal: four, vertical: eight);
-  static const EdgeInsets edgeInsets8_4 =
-      EdgeInsets.symmetric(horizontal: eight, vertical: four);
-  static const EdgeInsets edgeInsets16_4 =
-      EdgeInsets.symmetric(horizontal: sixteen, vertical: four);
-  static const EdgeInsets edgeInsets16_20 =
-      EdgeInsets.symmetric(horizontal: sixteen, vertical: twenty);
-  static const EdgeInsets edgeInsets12_8 =
-      EdgeInsets.symmetric(horizontal: twelve, vertical: eight);
-  static const EdgeInsets edgeInsets8_32 =
-      EdgeInsets.symmetric(horizontal: eight, vertical: thirtyTwo);
+  static const EdgeInsets edgeInsets4_8 = EdgeInsets.symmetric(horizontal: four, vertical: eight);
+  static const EdgeInsets edgeInsets8_4 = EdgeInsets.symmetric(horizontal: eight, vertical: four);
+  static const EdgeInsets edgeInsets16_4 = EdgeInsets.symmetric(horizontal: sixteen, vertical: four);
+  static const EdgeInsets edgeInsets16_20 = EdgeInsets.symmetric(horizontal: sixteen, vertical: twenty);
+  static const EdgeInsets edgeInsets24_16 = EdgeInsets.symmetric(horizontal: twentyFour, vertical: sixteen);
+  static const EdgeInsets edgeInsets12_8 = EdgeInsets.symmetric(horizontal: twelve, vertical: eight);
+  static const EdgeInsets edgeInsets8_32 = EdgeInsets.symmetric(horizontal: eight, vertical: thirtyTwo);
 }
 
 /**

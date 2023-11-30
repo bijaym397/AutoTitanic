@@ -4,6 +4,7 @@ export 'button.dart';
 export 'car_card.dart';
 export 'drop_down.dart';
 export 'filter_section.dart';
+export 'full_screen_dialog.dart';
 export 'html_widget.dart';
 export 'input_field.dart';
 export 'loader.dart';

@@ -28,20 +28,28 @@ class HomeView extends StatelessWidget {
               const TitleText(AppStrings.featuredCars),
               ...List.generate(
                 AppConstants.featuredCarsCount,
-                (index) => CarsCarousel(
-                  carouselList: controller.carsList[index],
-                  controller: CarouselController(),
-                ),
+                (index) {
+                  var carouselController = CarouselController();
+                  return CarsCarousel(
+                    carouselList: controller.carsList[index],
+                    duration: carouselController.duration,
+                    controller: carouselController,
+                  );
+                },
               ),
               Dimens.boxHeight48,
               const TitleText(AppStrings.recentlyPostedCars),
               ...List.generate(
                 AppConstants.recentCarsCount,
-                (index) => CarsCarousel(
-                  isFirst: index == 0,
-                  carouselList: controller.carsList[AppConstants.featuredCarsCount + index],
-                  controller: CarouselController(),
-                ),
+                (index) {
+                  var carouselController = CarouselController();
+                  return CarsCarousel(
+                    isFirst: index == 0,
+                    duration: carouselController.duration,
+                    carouselList: controller.carsList[AppConstants.featuredCarsCount + index],
+                    controller: carouselController,
+                  );
+                },
               ),
               Dimens.boxHeight48,
               const BrandCard(),

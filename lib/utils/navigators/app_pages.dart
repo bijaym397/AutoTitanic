@@ -114,13 +114,7 @@ class AppPages {
       transition: transition,
     ),
     GetPage<InventoryView>(
-      name: AppRoutes.motorHomes,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
-      transition: transition,
-    ),
-    GetPage<InventoryView>(
-      name: AppRoutes.caravans,
+      name: AppRoutes.motorAndCaravans,
       page: InventoryView.new,
       binding: InventoryBinding(),
       transition: transition,

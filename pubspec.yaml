@@ -12,6 +12,7 @@ dependencies:
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   device_info_plus: ^9.1.0
+  dropdown_button2: ^2.3.9
   flutter:
     sdk: flutter
   flutter_html_v3: ^3.0.6
@@ -36,7 +37,6 @@ flutter:
 
   assets:
     - assets/logo/
-    - assets/icons/
     - assets/svg/
     - assets/images/
     - assets/images/brands/
