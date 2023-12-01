@@ -26,9 +26,12 @@ class HomeView extends StatelessWidget {
             children: [
               Dimens.boxHeight48,
               const TitleText(AppStrings.featuredCars),
-              ...List.generate(
-                AppConstants.featuredCarsCount,
-                (index) {
+              ListView.builder(
+                itemCount: 1,
+                // itemCount: AppConstants.featuredCarsCount,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, index) {
                   var carouselController = CarouselController();
                   return CarsCarousel(
                     carouselList: controller.carsList[index],
@@ -39,14 +42,16 @@ class HomeView extends StatelessWidget {
               ),
               Dimens.boxHeight48,
               const TitleText(AppStrings.recentlyPostedCars),
-              ...List.generate(
-                AppConstants.recentCarsCount,
-                (index) {
+              ListView.builder(
+                itemCount: 1,
+                // itemCount: AppConstants.recentCarsCount,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (_, index) {
                   var carouselController = CarouselController();
                   return CarsCarousel(
-                    isFirst: index == 0,
+                    carouselList: controller.carsList[index],
                     duration: carouselController.duration,
-                    carouselList: controller.carsList[AppConstants.featuredCarsCount + index],
                     controller: carouselController,
                   );
                 },

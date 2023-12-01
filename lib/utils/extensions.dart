@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:math';
 
 import 'package:auto_titanic/models/models.dart';
+import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 extension NullString on String? {
   bool get isNullOrEmpty => this == null || this!.trim().isEmpty;
@@ -13,6 +16,13 @@ extension NullString on String? {
 
 extension StringExtension on String {
   String get svgPath => kIsWeb ? replaceAll('assets/', '') : this;
+
+  Uint8List get strigToUnit8List {
+    var list = Uint8List.fromList(
+      List.from(jsonDecode(this) as List),
+    );
+    return list;
+  }
 }
 
 extension ListCombine<T> on Iterable<T> {
@@ -20,6 +30,9 @@ extension ListCombine<T> on Iterable<T> {
     BuildContext context,
     T Function(BuildContext, int) separateBuilder,
   ) {
+    if (isEmpty) {
+      return [];
+    }
     var result = <T>[];
     for (var i = 0; i < length - 1; i++) {
       result.add(elementAt(i));
@@ -99,5 +112,15 @@ extension BorderExtension on Border {
 }
 
 extension CarouselControllerExtension on CarouselController {
-  Duration get duration => [const Duration(seconds: 4), const Duration(seconds: 3), const Duration(seconds: 5)].random;
+  Duration get duration => [const Duration(seconds: 8), const Duration(seconds: 10), const Duration(seconds: 12)].random;
+}
+
+extension NumberExtension on num {
+  String get formattedPrice => NumberFormat.currency(symbol: '£', decimalDigits: 0).format(this);
+
+  String get formattedDistance => NumberFormat('###,###').format(this);
+}
+
+extension ConstraintExtension on BoxConstraints {
+  bool get isDesktopView => maxWidth > AppConstants.maxDesktopWidth;
 }

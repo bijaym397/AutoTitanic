@@ -100,48 +100,79 @@ enum Social {
   final String icon;
 }
 
-enum VehicleFilter {
-  year(AppStrings.year),
-  make(AppStrings.make),
-  model(AppStrings.model),
-  bodyStyle(AppStrings.bodyStyle),
-  carCondition(AppStrings.carCondition),
-  mileage(AppStrings.mileage),
-  gearbox(AppStrings.gearbox),
-  drivetrain(AppStrings.drivetrain),
-  engineSize(AppStrings.engineSize),
-  fuelType(AppStrings.fuelType),
-  exteriorColor(AppStrings.exteriorColor),
-  bodyType(AppStrings.bodyType),
-  door(AppStrings.door),
-  driverPosition(AppStrings.driverPosition),
-  seat(AppStrings.seat),
-  bootSpace(AppStrings.bootSpace),
-  acceleration(AppStrings.acceleration),
-  co2Emission(AppStrings.co2Emission),
-  color(AppStrings.color),
-  cc(AppStrings.cc),
-  berth(AppStrings.berth),
-  beltedSeats(AppStrings.beltedSeats),
-  endLayout(AppStrings.endLayout),
-  bedroomLayout(AppStrings.bedroomLayout),
-  length(AppStrings.length),
-  axles(AppStrings.axles),
-  mtplm(AppStrings.mtplm),
-  category(AppStrings.category),
-  axleConfig(AppStrings.axleConfig),
-  enginePower(AppStrings.enginePower),
-  gvw(AppStrings.gvw),
-  cabType(AppStrings.cabType),
-  gtw(AppStrings.gtw),
-  hoursUsed(AppStrings.hoursUsed),
-  serviceGarage(AppStrings.serviceGarage),
-  privateDealer(AppStrings.privateDealer),
-  city(AppStrings.city),
-  transmission(AppStrings.transmission),
-  keyFeatures(AppStrings.keyFeatures),
-  subCategory(AppStrings.subCategory);
+enum FilterType {
+  expandable,
+  expandableWithOptions,
+  popup,
+  radio,
+  input,
+  checkbox;
+}
 
-  const VehicleFilter(this.label);
+enum VehicleFilter {
+  make(AppStrings.make, FilterType.expandable),
+  model(AppStrings.model, FilterType.expandable),
+  modelVariant(AppStrings.modelVariant, FilterType.expandable),
+  price(AppStrings.price, FilterType.expandableWithOptions),
+  year(AppStrings.year, FilterType.expandableWithOptions),
+  mileage(AppStrings.mileage, FilterType.expandable),
+  gearbox(AppStrings.gearbox, FilterType.popup),
+  fuelType(AppStrings.fuelType, FilterType.popup),
+  bodyType(AppStrings.bodyType, FilterType.popup),
+  engineSize(AppStrings.engineSize, FilterType.expandable),
+  enginePower(AppStrings.enginePower, FilterType.expandable),
+  privateAndTrade(AppStrings.privateAndTrade, FilterType.popup),
+  door(AppStrings.door, FilterType.popup),
+  color(AppStrings.color, FilterType.popup),
+  seat(AppStrings.seat, FilterType.expandable),
+  bootspace(AppStrings.bootSpace, FilterType.popup),
+  acceleration(AppStrings.acceleration, FilterType.popup),
+  annualTax(AppStrings.annualTax, FilterType.popup),
+  drivetrain(AppStrings.drivetrain, FilterType.popup),
+  fuelConsumption(AppStrings.fuelConsumption, FilterType.popup),
+  insuranceGroup(AppStrings.insuranceGroup, FilterType.popup),
+  co2Emission(AppStrings.co2Emission, FilterType.expandable),
+  category(AppStrings.category, FilterType.radio),
+  keywords(AppStrings.keywords, FilterType.input),
+  more(AppStrings.more, FilterType.checkbox);
+
+  const VehicleFilter(this.label, this.filterType);
+  final String label;
+  final FilterType filterType;
+}
+
+enum GearType {
+  manual(0, AppStrings.manual),
+  automatic(1, AppStrings.automatic),
+  unlisted(2, AppStrings.unlisted);
+
+  factory GearType.fromValue(int data) =>
+      <int, GearType>{
+        GearType.manual.value: GearType.manual,
+        GearType.automatic.value: GearType.automatic,
+        GearType.unlisted.value: GearType.unlisted,
+      }[data] ??
+      GearType.unlisted;
+
+  const GearType(this.value, this.label);
+  final int value;
+  final String label;
+}
+
+enum FuelType {
+  petrol(0, AppStrings.petrol),
+  diesel(1, AppStrings.diesel),
+  electric(2, AppStrings.electric);
+
+  factory FuelType.fromValue(int data) =>
+      <int, FuelType>{
+        FuelType.petrol.value: FuelType.petrol,
+        FuelType.diesel.value: FuelType.diesel,
+        FuelType.electric.value: FuelType.electric,
+      }[data] ??
+      FuelType.petrol;
+
+  const FuelType(this.value, this.label);
+  final int value;
   final String label;
 }

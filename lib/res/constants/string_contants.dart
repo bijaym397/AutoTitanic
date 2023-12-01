@@ -67,43 +67,38 @@ class AppStrings {
   static const String year = 'Year';
   static const String make = 'Make';
   static const String model = 'Model';
-  static const String bodyStyle = 'Body Style';
-  static const String carCondition = 'Car Condition';
+  static const String modelVariant = 'Model Variant';
+  static const String price = 'Price';
   static const String mileage = 'Mileage';
   static const String gearbox = 'GearBox';
   static const String drivetrain = 'Drive Train';
+  static const String insuranceGroup = 'Insurance Group';
+  static const String fuelConsumption = 'Fuel Consumption';
   static const String engineSize = 'Engine Size';
   static const String fuelType = 'Fuel Type';
-  static const String exteriorColor = 'Exterior Color';
   static const String bodyType = 'Body Type';
   static const String door = 'Door';
-  static const String driverPosition = 'Driver Position';
   static const String seat = 'Seat';
   static const String bootSpace = 'Boot Space';
   static const String acceleration = 'Acceleration';
+  static const String annualTax = 'Annual Tax';
   static const String co2Emission = 'CO2 Emission';
   static const String color = 'Color';
-  static const String cc = 'CC';
-  static const String berth = 'Berth';
-  static const String beltedSeats = 'Belted Seats';
-  static const String endLayout = 'End Layout';
-  static const String bedroomLayout = 'Bedroom Layout';
-  static const String length = 'Length';
-  static const String axles = 'Axles';
-  static const String mtplm = 'MTPLM';
   static const String category = 'Category';
-  static const String axleConfig = 'Axle Config';
+  static const String keywords = 'Keywords';
+  static const String more = 'More';
   static const String enginePower = 'Engine Power';
-  static const String gvw = 'GVW';
-  static const String cabType = 'Cab Type';
-  static const String gtw = 'GTW';
-  static const String hoursUsed = 'Hours Used';
-  static const String serviceGarage = 'Service Garage';
-  static const String privateDealer = 'Private Dealer';
-  static const String city = 'City';
-  static const String transmission = 'Transmission';
-  static const String keyFeatures = 'Key Features';
-  static const String subCategory = 'Sub Category';
+  static const String privateAndTrade = 'Private & Trade';
+
+  static const String manual = 'Manual';
+  static const String automatic = 'Automatic';
+  static const String unlisted = 'Unlisted';
+
+  static const String petrol = 'Petrol';
+  static const String diesel = 'Diesel';
+  static const String electric = 'Electric';
+
+  static const String errorLoadingImage = 'Error loading image';
 }
 
 class StringData {

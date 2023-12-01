@@ -1,13 +1,14 @@
 import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InventoryView extends StatelessWidget {
-  InventoryView({super.key})
-      : vehicle = Get.arguments as Vehicle? ?? Vehicle.cars;
+  InventoryView({super.key}) : vehicle = Get.arguments as Vehicle? ?? Vehicle.cars;
 
   final Vehicle vehicle;
 
@@ -15,77 +16,67 @@ class InventoryView extends StatelessWidget {
   Widget build(BuildContext context) => ScreenWrapper(
         showAppBarImage: true,
         isWhiteBackground: true,
-        bodyBuilder: (_, isHovering) => GetBuilder<InventoryController>(
-          builder: (controller) => const Padding(
-            padding: Dimens.edgeInsets0_40,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                $FilterColumn(),
-              ],
-            ),
+        body: Padding(
+          padding: Dimens.edgeInsets0_40,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Expanded(child: $FilterColumn()),
+              Dimens.boxWidth16,
+              Expanded(
+                flex: 4,
+                child: GetBuilder<InventoryController>(
+                  builder: (controller) => ListView.separated(
+                    itemCount: 12,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    separatorBuilder: (_, __) => Dimens.boxHeight32,
+                    itemBuilder: (_, index) => _InventoryCard(controller.inventory),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       );
 }
 
-class $FilterColumn extends StatelessWidget {
-  const $FilterColumn({super.key});
+class _InventoryCard extends StatelessWidget {
+  const _InventoryCard(this.data);
+
+  final InventoryModel data;
 
   @override
-  Widget build(BuildContext context) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          AppText(
-            'FILTER BY PRICE',
-            style: context.textTheme.titleMedium!.copyWith(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Container(
-            height: 2,
-            width: Dimens.twenty,
-            color: AppColors.red,
-          ),
-          Container(
-            color: AppColors.grey,
-            margin: Dimens.edgeInsets10,
-            padding: Dimens.edgeInsets12,
-            width: 0.15.pw,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                AppText(
-                  'VEHICLE FILTERS',
-                  style: context.textTheme.titleMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Container(
-                  height: 2,
-                  width: Dimens.twenty,
-                  color: AppColors.red,
-                ),
-                Dimens.boxHeight32,
-                AppText(
-                  '80 Vehicles Matching',
-                  style: context.textTheme.bodyMedium!.copyWith(
-                    color: AppColors.red,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Dimens.boxHeight16,
-                ...VehicleFilter.values.map<Widget>(
-                  (e) => DropDown<String>(
-                    hint: e.label,
-                    items: [e.label],
-                    labelBuilder: Text.new,
-                    onChanged: (_) {},
-                  ),
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, constraints) => AspectRatio(
+          aspectRatio: constraints.isDesktopView ? 7 / 2 : 5 / 2,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(Dimens.eight),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  blurRadius: Dimens.eight,
                 ),
               ],
             ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(Dimens.eight),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: InventoryImages(data.images),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: InventoryDetails(data),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ],
+        ),
       );
 }

@@ -36,6 +36,7 @@ class SocialCard extends StatelessWidget {
                   children: [
                     AppText(
                       social.label,
+                      isSelectable: false,
                       style: context.textTheme.bodyLarge!.copyWith(
                         color: isSelected ? AppColors.white : AppColors.black,
                       ),

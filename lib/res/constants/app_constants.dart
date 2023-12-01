@@ -13,9 +13,9 @@ class AppConstants {
 
   static const Duration fastAnimationDuration = Duration(milliseconds: 200);
 
-  static const double maxMobileWidth = 480;
-  static const double maxTabletWidth = 768;
-  static const double maxDesktopWidth = 1024;
+  static const double maxMobileWidth = 150;
+  static const double maxTabletWidth = 280;
+  static const double maxDesktopWidth = 375;
 
   static const int featuredCarsCount = 7;
   static const int recentCarsCount = 10;

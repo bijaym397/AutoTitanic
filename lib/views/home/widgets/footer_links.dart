@@ -45,6 +45,7 @@ class $LinkColumn extends StatelessWidget {
                     padding: Dimens.edgeInsets8_4,
                     child: AppText(
                       e.label,
+                      isSelectable: false,
                       style: context.textTheme.labelMedium!.copyWith(
                         fontWeight: FontWeight.w600,
                       ),

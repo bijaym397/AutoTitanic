@@ -167,17 +167,16 @@ class $NavItem extends StatelessWidget {
                       AppText(
                         vehicle.label,
                         isSelectable: false,
-                        style: context.textTheme.labelMedium!.copyWith(
+                        style: context.textTheme.labelSmall!.copyWith(
                           color: color,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       if (vehicle.showIcon) ...[
-                        Dimens.boxWidth2,
                         Icon(
                           Icons.keyboard_arrow_down_rounded,
                           color: color,
-                          size: Dimens.twenty,
+                          size: Dimens.sixteen,
                         ),
                       ],
                     ],
