@@ -3,6 +3,7 @@ export 'app_image.dart';
 export 'app_text.dart';
 export 'button.dart';
 export 'car_card.dart';
+export 'checkbox.dart';
 export 'drop_down.dart';
 export 'filter_section.dart';
 export 'full_screen_dialog.dart';

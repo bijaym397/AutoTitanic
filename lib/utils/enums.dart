@@ -104,16 +104,15 @@ enum FilterType {
   expandable,
   expandableWithOptions,
   popup,
-  radio,
   input,
   checkbox;
 }
 
 enum VehicleFilter {
-  make(AppStrings.make, FilterType.expandable),
-  model(AppStrings.model, FilterType.expandable),
-  modelVariant(AppStrings.modelVariant, FilterType.expandable),
-  price(AppStrings.price, FilterType.expandableWithOptions),
+  make(AppStrings.make, FilterType.popup),
+  model(AppStrings.model, FilterType.popup),
+  modelVariant(AppStrings.modelVariant, FilterType.popup),
+  price(AppStrings.price, FilterType.expandable),
   year(AppStrings.year, FilterType.expandableWithOptions),
   mileage(AppStrings.mileage, FilterType.expandable),
   gearbox(AppStrings.gearbox, FilterType.popup),
@@ -131,8 +130,7 @@ enum VehicleFilter {
   drivetrain(AppStrings.drivetrain, FilterType.popup),
   fuelConsumption(AppStrings.fuelConsumption, FilterType.popup),
   insuranceGroup(AppStrings.insuranceGroup, FilterType.popup),
-  co2Emission(AppStrings.co2Emission, FilterType.expandable),
-  category(AppStrings.category, FilterType.radio),
+  co2Emission(AppStrings.co2Emission, FilterType.popup),
   keywords(AppStrings.keywords, FilterType.input),
   more(AppStrings.more, FilterType.checkbox);
 

@@ -34,21 +34,21 @@ class $ContactForm extends StatelessWidget {
               Flexible(
                 child: InputField(
                   hint: AppStrings.name,
-                  required: true,
+                  isRequired: true,
                 ),
               ),
               Dimens.boxWidth16,
               Flexible(
                 child: InputField(
                   hint: AppStrings.email,
-                  required: true,
+                  isRequired: true,
                 ),
               ),
               Dimens.boxWidth16,
               Flexible(
                 child: InputField(
                   hint: AppStrings.phone,
-                  required: true,
+                  isRequired: true,
                 ),
               ),
             ],
@@ -56,7 +56,7 @@ class $ContactForm extends StatelessWidget {
           Dimens.boxHeight16,
           const InputField(
             hint: AppStrings.comment,
-            required: true,
+            isRequired: true,
             maxLines: 4,
             minLines: 4,
           ),

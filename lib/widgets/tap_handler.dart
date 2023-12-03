@@ -8,6 +8,7 @@ class TapHandler extends StatelessWidget {
     this.onHover,
     this.mouseCursor,
     this.showArrowCursor = false,
+    this.showSplash = true,
   });
 
   final Widget? child;
@@ -15,18 +16,36 @@ class TapHandler extends StatelessWidget {
   final void Function(bool)? onHover;
   final MouseCursor? mouseCursor;
   final bool showArrowCursor;
+  final bool showSplash;
 
   @override
   Widget build(BuildContext context) => InkWell(
-        hoverColor: showArrowCursor ? Colors.transparent : null,
-        focusColor: showArrowCursor ? Colors.transparent : null,
-        splashColor: showArrowCursor ? Colors.transparent : null,
-        highlightColor: showArrowCursor ? Colors.transparent : null,
+        hoverColor: showArrowCursor
+            ? Colors.transparent
+            : showSplash
+                ? null
+                : Colors.transparent,
+        focusColor: showArrowCursor
+            ? Colors.transparent
+            : showSplash
+                ? null
+                : Colors.transparent,
+        splashColor: showArrowCursor
+            ? Colors.transparent
+            : showSplash
+                ? null
+                : Colors.transparent,
+        highlightColor: showArrowCursor
+            ? Colors.transparent
+            : showSplash
+                ? null
+                : Colors.transparent,
         overlayColor: showArrowCursor
             ? MaterialStateProperty.all(Colors.transparent)
-            : null,
-        mouseCursor:
-            mouseCursor ?? (showArrowCursor ? SystemMouseCursors.basic : null),
+            : showSplash
+                ? null
+                : MaterialStateProperty.all(Colors.transparent),
+        mouseCursor: mouseCursor ?? (showArrowCursor ? SystemMouseCursors.basic : null),
         onHover: onHover,
         onTap: onHover == null ? onTap : onTap ?? () {},
         child: child,

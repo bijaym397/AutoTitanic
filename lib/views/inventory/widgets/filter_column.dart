@@ -1,5 +1,6 @@
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -58,36 +59,43 @@ class _FilterTile extends StatelessWidget {
   final VehicleFilter filter;
 
   @override
-  Widget build(BuildContext context) => TapHandler(
-        onTap: () {
-          switch (filter.filterType) {
-            case FilterType.popup:
-              break;
-            case FilterType.expandable:
-            case FilterType.expandableWithOptions:
-            case FilterType.radio:
-            case FilterType.input:
-            case FilterType.checkbox:
-              break;
-          }
-        },
-        child: Padding(
-          padding: Dimens.edgeInsets12,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                filter.label,
-                style: context.textTheme.labelLarge!.copyWith(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.w500,
+  Widget build(BuildContext context) => ObxValue<RxBool>(
+        (isOpened) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TapHandler(
+              showSplash: false,
+              onTap: () {
+                isOpened.value = !isOpened.value;
+              },
+              child: Padding(
+                padding: Dimens.edgeInsets12,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      filter.label,
+                      style: context.textTheme.labelLarge!.copyWith(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Text('Any'),
+                    Icon(
+                      isOpened.value ? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_right_rounded,
+                    ),
+                  ],
                 ),
               ),
-              const Spacer(),
-              const Text('Any'),
-              const Icon(Icons.chevron_right_rounded),
+            ),
+            if (isOpened.value) ...[
+              if (filter.filterType.isExpandable) ...[
+                ExpandedFilterTile(filter: filter),
+              ]
             ],
-          ),
+          ],
         ),
+        false.obs,
       );
 }

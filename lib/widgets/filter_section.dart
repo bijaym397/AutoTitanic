@@ -1,6 +1,7 @@
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
+import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -66,19 +67,26 @@ class $FilterCard extends StatelessWidget {
                   ),
                 ),
                 Dimens.boxHeight10,
-                DropDown<String>(
-                  hint: 'Countries',
-                  labelBuilder: Text.new,
-                  items: const ['Africa'],
-                  onChanged: (_) {},
+                CSCPicker(
+                  showStates: false,
+                  dropdownDecoration: BoxDecoration(
+                    color: AppColors.grey,
+                    borderRadius: BorderRadius.circular(Dimens.eight),
+                  ),
                 ),
+                // DropDown<String>(
+                //   hint: 'Countries',
+                //   labelBuilder: Text.new,
+                //   items: const ['Africa'],
+                //   onChanged: (_) {},
+                // ),
                 Dimens.boxHeight10,
                 Row(
                   children: [
                     Flexible(
                       child: DropDown<String>(
                         hint: 'Make',
-                        labelBuilder: Text.new,
+                        labelBuilder: (value) => value,
                         items: const ['Audi'],
                         onChanged: (_) {},
                       ),
@@ -87,7 +95,7 @@ class $FilterCard extends StatelessWidget {
                     Flexible(
                       child: DropDown<String>(
                         hint: 'Model',
-                        labelBuilder: Text.new,
+                        labelBuilder: (value) => value,
                         items: const ['A8'],
                         onChanged: (_) {},
                       ),

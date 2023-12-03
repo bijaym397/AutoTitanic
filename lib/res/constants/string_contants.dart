@@ -84,7 +84,6 @@ class AppStrings {
   static const String annualTax = 'Annual Tax';
   static const String co2Emission = 'CO2 Emission';
   static const String color = 'Color';
-  static const String category = 'Category';
   static const String keywords = 'Keywords';
   static const String more = 'More';
   static const String enginePower = 'Engine Power';
@@ -99,6 +98,13 @@ class AppStrings {
   static const String electric = 'Electric';
 
   static const String errorLoadingImage = 'Error loading image';
+
+  static const String selectYear = 'Select a year';
+  static const String brandNew = 'Brand New';
+
+  static const String wheelChair = 'Wheelchair accessible (WAV)';
+  static const String manufacturerApproved = 'Manufacturer Approved';
+  static const String irelandAdverts = 'N.Ireland adverts only';
 }
 
 class StringData {

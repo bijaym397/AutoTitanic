@@ -32,4 +32,10 @@ class InventoryController extends GetxController {
           const LabelModel(label: 'Brand new', color: Colors.blue),
         ],
       );
+
+  List<bool> yearToggleList = [true, false];
+
+  final RxList<String> _selectedMoreFilters = <String>[].obs;
+  List<String> get selectedMoreFilters => _selectedMoreFilters;
+  set selectedMoreFilters(List<String> value) => _selectedMoreFilters.value = value;
 }
