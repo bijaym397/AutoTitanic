@@ -7,31 +7,93 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 part 'mixins/api_mixin.dart';
+part 'mixins/sell_vehicle_mixin.dart';
 
-class HomeController extends GetxController with HomeAPIMixin {
+class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin {
   HomeController(this._viewModel);
 
   final HomeViewModel _viewModel;
+
+  final Rx<Vehicle?> _hoveredVehicle = Rx<Vehicle?>(null);
+  Vehicle? get hoveredVehicle => _hoveredVehicle.value;
+  set hoveredVehicle(Vehicle? value) => _hoveredVehicle.value = value;
 
   final Rx<Vehicle?> _selectedVehicle = Rx<Vehicle?>(null);
   Vehicle? get selectedVehicle => _selectedVehicle.value;
   set selectedVehicle(Vehicle? value) => _selectedVehicle.value = value;
 
+  final Rx<HoverItem?> _hoveredItem = Rx<HoverItem?>(null);
+  HoverItem? get hoveredItem => _hoveredItem.value;
+  set hoveredItem(HoverItem? value) => _hoveredItem.value = value;
+
+  final Rx<HoverItem?> _selectedItem = Rx<HoverItem?>(null);
+  HoverItem? get selectedItem => _selectedItem.value;
+  set selectedItem(HoverItem? value) => _selectedItem.value = value;
+
   final Rx<OverlayState?> _hoverOverlayState = Rx<OverlayState?>(null);
   OverlayState? get hoverOverlayState => _hoverOverlayState.value;
-  set hoverOverlayState(OverlayState? value) =>
-      _hoverOverlayState.value = value;
+  set hoverOverlayState(OverlayState? value) => _hoverOverlayState.value = value;
 
   final Rx<OverlayEntry?> _hoverOverlayEntry = Rx<OverlayEntry?>(null);
   OverlayEntry? get hoverOverlayEntry => _hoverOverlayEntry.value;
-  set hoverOverlayEntry(OverlayEntry? value) =>
-      _hoverOverlayEntry.value = value;
+  set hoverOverlayEntry(OverlayEntry? value) => _hoverOverlayEntry.value = value;
 
   final Rx<Social?> _selectedSocial = Rx<Social?>(null);
   Social? get selectedSocial => _selectedSocial.value;
   set selectedSocial(Social? value) => _selectedSocial.value = value;
 
-  // -------------------- DATA ---------------------
+  // -------------------- Sell Variables -----------------
+
+  bool showLocationPage = true;
+
+  Vehicle? selectedVehicleCategory;
+
+  String? selectedCountry;
+
+  String? selectedState;
+
+  SellerType? selectedSellerType;
+
+  // ==================== INIT =====================
+
+  VehicleHover _vehicleFromRoute() {
+    var uri = Uri.base.toString();
+    var list = uri.split('/');
+    var data = <String>[];
+    var vehicles = Vehicle.values.map((e) => e.path);
+    var items = HoverItem.values.map((e) => e.path);
+    for (var i in list) {
+      if (vehicles.contains(i) || items.contains(i)) {
+        data.add(i);
+      }
+    }
+    var v = Vehicle.fromRoute(
+      data.firstWhere((e) => vehicles.contains(e), orElse: () => Vehicle.cars.path),
+    );
+    var h = HoverItem.fromRoute(
+      data.firstWhere((e) => items.contains(e), orElse: () => HoverItem.used.path),
+    );
+    return (v, h);
+  }
+
+  void checkRoute() {
+    var uri = Uri.base.toString();
+    var route = 'home';
+    var isHome = uri.contains(route);
+    if (isHome) {
+      var (vehicle, hover) = _vehicleFromRoute();
+
+      goToVehicleListing(vehicle, hover);
+    } else {
+      var (v, i) = _vehicleFromRoute();
+      Utility.updateLater(() {
+        selectedVehicle = v;
+        selectedItem = i;
+      });
+    }
+  }
+
+  // ==================== DATA =====================
 
   final carsList = <List<List<String>>>[];
 
@@ -107,20 +169,17 @@ class HomeController extends GetxController with HomeAPIMixin {
   var informationList = <ContactModel>[
     const ContactModel(
       label: 'OPENING HOURS',
-      data:
-          'Voluptatem accusanoremque sed ut perspiciatis unde omnis iste natus error sit laudantium, totam rem aperiam.',
+      data: 'Voluptatem accusanoremque sed ut perspiciatis unde omnis iste natus error sit laudantium, totam rem aperiam.',
       icon: Icons.watch_later_outlined,
     ),
     const ContactModel(
       label: 'OUR SUPPORT CENTER',
-      data:
-          'Iste natus error sit sed ut perspiciatis unde omnis voluptatem laudantium, totam rem aperiam.',
+      data: 'Iste natus error sit sed ut perspiciatis unde omnis voluptatem laudantium, totam rem aperiam.',
       icon: Icons.sports_soccer_rounded,
     ),
     const ContactModel(
       label: 'SOME INFORMATION',
-      data:
-          'Totam rem aperiam sed ut perspiciatis unde omnis iste natus error sit voluptatem laudantium.',
+      data: 'Totam rem aperiam sed ut perspiciatis unde omnis iste natus error sit voluptatem laudantium.',
       icon: Icons.watch_later_outlined,
     ),
   ];
@@ -136,7 +195,16 @@ class HomeController extends GetxController with HomeAPIMixin {
     BrandModel(name: 'TOYOTA', icon: AssetConstants.toyota),
   ];
 
-  // ----------------- FUNCTIONS -------------------
+  // ================= FUNCTIONS ===================
+
+  void goToVehicleListing(Vehicle vehicle, HoverItem hoverItem) {
+    Utility.updateLater(() {
+      closeOverlay(true);
+      selectedVehicle = vehicle;
+      selectedItem = hoveredItem;
+      RouteManagement.goToListing(vehicle, hoverItem);
+    });
+  }
 
   void generateCarsData() {
     var total = AppConstants.featuredCarsCount + AppConstants.recentCarsCount;
@@ -177,7 +245,8 @@ class HomeController extends GetxController with HomeAPIMixin {
 
   void closeOverlay([bool removeSelectedNav = true]) {
     if (removeSelectedNav) {
-      selectedVehicle = null;
+      hoveredVehicle = null;
+      hoveredItem = null;
     }
     if (hoverOverlayEntry == null) {
       return;
@@ -187,5 +256,5 @@ class HomeController extends GetxController with HomeAPIMixin {
     hoverOverlayEntry = null;
   }
 
-  // ----------------- API CALLS -------------------
+  // ================= API CALLS ===================
 }

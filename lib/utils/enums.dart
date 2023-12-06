@@ -28,19 +28,19 @@ enum Vehicle {
   parts(AppStrings.partsAccessories, AppRoutes.parts);
   // safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
-  factory Vehicle.fromRoute(String route) =>
+  factory Vehicle.fromRoute(String data) =>
       <String, Vehicle>{
-        Vehicle.cars.route: Vehicle.cars,
-        Vehicle.vans.route: Vehicle.vans,
-        Vehicle.bikes.route: Vehicle.bikes,
-        Vehicle.motorAndCaravans.route: Vehicle.motorAndCaravans,
-        Vehicle.trucks.route: Vehicle.trucks,
-        Vehicle.farms.route: Vehicle.farms,
-        Vehicle.plants.route: Vehicle.plants,
-        Vehicle.parts.route: Vehicle.parts,
-        Vehicle.carRentals.route: Vehicle.carRentals,
-        // Vehicle.safetyCentre.route: Vehicle.safetyCentre,
-      }[route] ??
+        Vehicle.cars.path: Vehicle.cars,
+        Vehicle.vans.path: Vehicle.vans,
+        Vehicle.bikes.path: Vehicle.bikes,
+        Vehicle.motorAndCaravans.path: Vehicle.motorAndCaravans,
+        Vehicle.trucks.path: Vehicle.trucks,
+        Vehicle.farms.path: Vehicle.farms,
+        Vehicle.plants.path: Vehicle.plants,
+        Vehicle.parts.path: Vehicle.parts,
+        Vehicle.carRentals.path: Vehicle.carRentals,
+        // Vehicle.safetyCentre.path: Vehicle.safetyCentre,
+      }[data] ??
       Vehicle.cars;
 
   const Vehicle(this.label, this.route);
@@ -60,12 +60,21 @@ enum Vehicle {
 }
 
 enum HoverItem {
-  used('Used'),
-  brandNew('New'),
-  sell('Sell your');
+  used('Used', AppRoutes.used),
+  brandNew('New', AppRoutes.brandNew),
+  sell('Sell your', AppRoutes.sell);
 
-  const HoverItem(this.prefix);
+  factory HoverItem.fromRoute(String data) =>
+      <String, HoverItem>{
+        HoverItem.used.path: HoverItem.used,
+        HoverItem.brandNew.path: HoverItem.brandNew,
+        HoverItem.sell.path: HoverItem.sell,
+      }[data] ??
+      HoverItem.used;
+
+  const HoverItem(this.prefix, this.route);
   final String prefix;
+  final String route;
 }
 
 enum Social {
@@ -137,6 +146,14 @@ enum VehicleFilter {
   const VehicleFilter(this.label, this.filterType);
   final String label;
   final FilterType filterType;
+}
+
+enum SellerType {
+  dealer(AppStrings.dealer),
+  private(AppStrings.private);
+
+  const SellerType(this.label);
+  final String label;
 }
 
 enum GearType {

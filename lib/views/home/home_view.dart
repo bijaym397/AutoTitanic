@@ -15,11 +15,13 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetBuilder<HomeController>(
         initState: (_) {
-          Get.find<HomeController>().generateCarsData();
+          Get.find<HomeController>()
+            ..checkRoute()
+            ..generateCarsData();
         },
         builder: (controller) => ScreenWrapper(
           showFilterCard: true,
-          onFilterSearch: () => RouteManagement.goToListing(
+          onFilterSearch: () => RouteManagement.goToSearch(
             controller.selectedVehicle ?? Vehicle.cars,
           ),
           body: Column(

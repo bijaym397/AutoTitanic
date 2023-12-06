@@ -31,4 +31,10 @@ class AppRoutes {
   static const String parts = '/parts';
   static const String carRentals = '/carRentals';
   static const String safetyCentre = '/safetyCentre';
+
+  static const String used = '/used';
+  static const String brandNew = '/new';
+  static const String sell = '/sell';
+
+  static const String search = '/search';
 }

@@ -62,7 +62,15 @@ class AppStrings {
 
   static const String send = 'Send';
 
-  static const String findYourCar = 'Find your dream car';
+  static const String findYour = 'Find your dream';
+
+  static const String postAdvert = 'Post Advert';
+
+  static const String category = 'Category';
+  static const String seller = 'Seller';
+
+  static const String dealer = 'Dealer';
+  static const String private = 'Private';
 
   static const String year = 'Year';
   static const String make = 'Make';

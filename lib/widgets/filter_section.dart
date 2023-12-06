@@ -1,3 +1,4 @@
+import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
@@ -61,7 +62,7 @@ class $FilterCard extends StatelessWidget {
             child: Column(
               children: [
                 AppText(
-                  AppStrings.findYourCar,
+                  '${AppStrings.findYour} ${(Get.find<HomeController>().selectedVehicle ?? Vehicle.cars).label}',
                   style: context.textTheme.titleLarge!.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
@@ -73,6 +74,7 @@ class $FilterCard extends StatelessWidget {
                     color: AppColors.grey,
                     borderRadius: BorderRadius.circular(Dimens.eight),
                   ),
+                  countryFilter: AppConstants.allowedCountries,
                 ),
                 // DropDown<String>(
                 //   hint: 'Countries',

@@ -22,8 +22,15 @@ class Utility {
   static void hideKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
 
   /// Returns true if the internet connection is available.
-  static Future<bool> get isNetworkAvailable async =>
-      await _connection.hasInternetAccess;
+  static Future<bool> get isNetworkAvailable async => await _connection.hasInternetAccess;
+
+  static void updateLater(VoidCallback callback) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Future.delayed(const Duration(milliseconds: 10), () {
+        callback();
+      });
+    });
+  }
 
   static Future<T?> openBottomSheet<T>(
     Widget child, {

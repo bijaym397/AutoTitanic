@@ -8,9 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InventoryView extends StatelessWidget {
-  InventoryView({super.key}) : vehicle = Get.arguments as Vehicle? ?? Vehicle.cars;
+  InventoryView({super.key}) : vehicle = Get.arguments as Vehicle? ?? Vehicle.fromRoute(Uri.base.toString().split('/').last);
 
   final Vehicle vehicle;
+
+  static const String route = AppRoutes.search;
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(

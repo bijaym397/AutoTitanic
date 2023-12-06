@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 class Button extends StatelessWidget {
   const Button({
     super.key,
-    required this.onTap,
+    this.onTap,
     required this.label,
     this.height,
     this.width,
   });
 
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final String label;
   final double? height;
   final double? width;
@@ -28,7 +28,13 @@ class Button extends StatelessWidget {
             height: height ?? Dimens.forty,
             width: width,
             decoration: BoxDecoration(
-              color: isHovering.value ? AppColors.black : AppColors.red,
+              color: isHovering.value
+                  ? onTap == null
+                      ? AppColors.grey
+                      : AppColors.black
+                  : onTap == null
+                      ? AppColors.grey
+                      : AppColors.red,
               borderRadius: BorderRadius.circular(Dimens.eight),
             ),
             duration: AppConstants.animationDuration,
@@ -38,7 +44,7 @@ class Button extends StatelessWidget {
               label,
               isSelectable: false,
               style: context.textTheme.labelLarge!.copyWith(
-                color: AppColors.white,
+                color: onTap == null ? Colors.grey : AppColors.white,
               ),
               textAlign: TextAlign.center,
             ),

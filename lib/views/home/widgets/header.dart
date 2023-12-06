@@ -139,13 +139,13 @@ class $NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetX<HomeController>(
         builder: (controller) {
-          var color = vehicle == controller.selectedVehicle ? AppColors.red : AppColors.black;
+          var color = vehicle == controller.selectedVehicle || vehicle == controller.hoveredVehicle ? AppColors.red : AppColors.black;
           return CompositedTransformTarget(
             link: layerLink,
             child: TapHandler(
               onHover: (event) {
                 if (event) {
-                  controller.selectedVehicle = vehicle;
+                  controller.hoveredVehicle = vehicle;
                   controller.closeOverlay(false);
                   if (vehicle.showIcon) {
                     controller.showOverlay(
@@ -157,7 +157,13 @@ class $NavItem extends StatelessWidget {
                   }
                 }
               },
-              onTap: vehicle.showIcon ? null : () {},
+              onTap: vehicle.showIcon
+                  ? () {
+                      if (vehicle == Vehicle.cars) {
+                        controller.goToVehicleListing(vehicle, HoverItem.used);
+                      }
+                    }
+                  : () {},
               child: SizedBox(
                 height: height,
                 child: Padding(
@@ -212,27 +218,49 @@ class $NavDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ...HoverItem.values.indexed.map<Widget>(
-              (e) => Container(
-                width: Dimens.twoHundred,
-                padding: Dimens.edgeInsets12,
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: e.$1 == HoverItem.values.length - 1
-                        ? BorderSide.none
-                        : const BorderSide(
-                            color: Colors.grey,
-                            width: 1,
-                          ),
+              (e) => GetX<HomeController>(builder: (controller) {
+                var item = e.$2;
+                var color = (item == controller.selectedItem && controller.selectedVehicle == vehicle) || item == controller.hoveredItem
+                    ? AppColors.red
+                    : AppColors.black;
+
+                return TapHandler(
+                  onHover: (value) {
+                    if (value) {
+                      controller.hoveredItem = item;
+                    } else {
+                      controller.hoveredItem = null;
+                    }
+                  },
+                  onTap: () {
+                    if (vehicle == Vehicle.cars) {
+                      controller.goToVehicleListing(vehicle, item);
+                    }
+                  },
+                  child: Container(
+                    width: Dimens.twoHundred,
+                    padding: Dimens.edgeInsets12,
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: e.$1 == HoverItem.values.length - 1
+                            ? BorderSide.none
+                            : const BorderSide(
+                                color: Colors.grey,
+                                width: 1,
+                              ),
+                      ),
+                    ),
+                    child: AppText(
+                      item.getLabel(vehicle),
+                      isSelectable: false,
+                      style: context.textTheme.bodySmall!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: color,
+                      ),
+                    ),
                   ),
-                ),
-                child: AppText(
-                  e.$2.getLabel(vehicle),
-                  isSelectable: false,
-                  style: context.textTheme.bodySmall!.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+                );
+              }),
             ),
           ],
         ),

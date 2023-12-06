@@ -64,6 +64,8 @@ extension VehicleExtension on Vehicle {
   }
 
   bool get showIcon => model.showIcon;
+
+  String get path => route.replaceAll('/', '');
 }
 
 extension ScreenExtension on num {
@@ -94,6 +96,8 @@ extension HoverItemExtension on HoverItem {
       // return '';
     }
   }
+
+  String get path => route.replaceAll('/', '');
 }
 
 extension BorderExtension on Border {

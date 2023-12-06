@@ -16,9 +16,15 @@ abstract class RouteManagement {
     );
   }
 
-  static void goToListing(Vehicle vehicle) {
+  static void goToListing(Vehicle vehicle, HoverItem hoverItem) {
     Get.toNamed(
-      vehicle.route,
+      '${vehicle.route}${hoverItem.route}',
+    );
+  }
+
+  static void goToSearch(Vehicle vehicle) {
+    Get.toNamed(
+      '${AppRoutes.search}${vehicle.route}',
       arguments: vehicle,
     );
   }

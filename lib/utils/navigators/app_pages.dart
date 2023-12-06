@@ -1,4 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:get/get.dart';
 
@@ -95,62 +96,77 @@ class AppPages {
       binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    // ---- HomeView for different vehicles ----
+    GetPage<HomeView>(
       name: AppRoutes.cars,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
+      middlewares: [SellMiddleware()],
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.vans,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.bikes,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.motorAndCaravans,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.trucks,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.farms,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.farms,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.plants,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<InventoryView>(
+    GetPage<HomeView>(
       name: AppRoutes.parts,
-      page: InventoryView.new,
-      binding: InventoryBinding(),
+      page: HomeView.new,
+      binding: HomeBinding(),
+      transition: transition,
+    ),
+    GetPage<HomeView>(
+      name: AppRoutes.carRentals,
+      page: HomeView.new,
+      binding: HomeBinding(),
+      transition: transition,
+    ),
+    // ---- End HomeView for different vehicles ----
+    GetPage<SellVehicleView>(
+      name: AppRoutes.sell,
+      page: SellVehicleView.new,
+      binding: HomeBinding(),
       transition: transition,
     ),
     GetPage<InventoryView>(
-      name: AppRoutes.carRentals,
+      name: AppRoutes.search,
       page: InventoryView.new,
       binding: InventoryBinding(),
       transition: transition,

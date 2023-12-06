@@ -17,7 +17,7 @@ class InventoryController extends GetxController {
         model: 'Micra',
         variant: 'TDi 4x4 5dr',
         price: 2499,
-        images: List.generate(Random().nextInt(4) + 2, (index) => AssetConstants.car),
+        images: List.generate(Random().nextInt(6) + 2, (index) => AssetConstants.car),
         features: ['12 months warranty', '2 keys'],
         gearType: GearType.automatic,
         fuelType: FuelType.diesel,
