@@ -15,6 +15,7 @@ class DropDown<T> extends StatelessWidget {
     required this.hint,
     this.isRequired = false,
     this.showTitle = false,
+    this.maxHeight,
   });
 
   final List<T> items;
@@ -24,6 +25,7 @@ class DropDown<T> extends StatelessWidget {
   final T? value;
   final bool showTitle;
   final bool isRequired;
+  final double? maxHeight;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -56,7 +58,7 @@ class DropDown<T> extends StatelessWidget {
                 color: AppColors.grey,
                 borderRadius: BorderRadius.circular(Dimens.eight),
               ),
-              padding: Dimens.edgeInsets8_4,
+              padding: Dimens.edgeInsetsR8,
             ),
             dropdownStyleData: DropdownStyleData(
               offset: const Offset(0, -Dimens.eight),
@@ -64,6 +66,7 @@ class DropDown<T> extends StatelessWidget {
                 borderRadius: BorderRadius.circular(Dimens.eight),
               ),
               padding: Dimens.edgeInsets6,
+              maxHeight: maxHeight,
               // scrollPadding: EdgeInsets.zero,
             ),
             iconStyleData: const IconStyleData(
@@ -72,8 +75,15 @@ class DropDown<T> extends StatelessWidget {
               openMenuIcon: Icon(Icons.keyboard_arrow_up_rounded),
               // openMenuIcon: Icon(Icons.arrow_drop_up_rounded),
             ),
-            menuItemStyleData: const MenuItemStyleData(
+            menuItemStyleData: MenuItemStyleData(
               height: Dimens.twentyEight,
+              selectedMenuItemBuilder: (_, child) => ClipRRect(
+                borderRadius: BorderRadius.circular(Dimens.four),
+                child: ColoredBox(
+                  color: AppColors.primary.withOpacity(0.1),
+                  child: child,
+                ),
+              ),
             ),
             isExpanded: true,
             isDense: true,

@@ -54,6 +54,50 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
 
   SellerType? selectedSellerType;
 
+  var sellTitleTEC = TextEditingController();
+
+  String? selectedCarCondition;
+
+  String? selectedMake;
+
+  String? selectedModel;
+
+  String? selectedVariant;
+
+  var sellPriceTEC = TextEditingController();
+
+  String? selectedYear;
+
+  var sellMileageTEC = TextEditingController();
+
+  String? selectedGearBox;
+
+  String? selectedFuelType;
+
+  String? selectedBodyStyle;
+
+  String? selectedBodyType;
+
+  String? selectedEngineSize;
+
+  String? selectedDoor;
+
+  String? selectedExteriorColor;
+
+  String? selectedInteriorColor;
+
+  String? selectedSeat;
+
+  String? selectedDriverPosition;
+
+  String? selectedBootSpace;
+
+  String? selectedAcceleration;
+
+  String? selectedFuelConsumption;
+
+  String? selectedCO2Emission;
+
   // ==================== INIT =====================
 
   VehicleHover _vehicleFromRoute() {

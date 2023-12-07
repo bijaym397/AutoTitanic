@@ -78,7 +78,7 @@ enum HoverItem {
   final String route;
 
   static List<HoverItem> get selectableValues {
-    var list = HoverItem.values;
+    var list = [...HoverItem.values];
     list.remove(HoverItem.sell);
     return list;
   }
@@ -128,7 +128,7 @@ enum VehicleFilter {
   condition(AppStrings.condition, FilterType.expandable),
   make(AppStrings.make, FilterType.popup),
   model(AppStrings.model, FilterType.popup),
-  modelVariant(AppStrings.modelVariant, FilterType.popup),
+  variant(AppStrings.variant, FilterType.popup),
   price(AppStrings.price, FilterType.expandable),
   year(AppStrings.year, FilterType.expandableWithOptions),
   mileage(AppStrings.mileage, FilterType.expandable),
@@ -140,7 +140,8 @@ enum VehicleFilter {
   enginePower(AppStrings.enginePower, FilterType.expandable),
   privateAndTrade(AppStrings.privateAndTrade, FilterType.popup),
   door(AppStrings.door, FilterType.popup),
-  color(AppStrings.color, FilterType.popup),
+  exteriorColor(AppStrings.exteriorColor, FilterType.popup),
+  interiorColor(AppStrings.interiorColor, FilterType.popup),
   seat(AppStrings.seat, FilterType.expandable),
   driverPosition(AppStrings.driverPosition, FilterType.popup),
   bootspace(AppStrings.bootSpace, FilterType.popup),
@@ -168,6 +169,8 @@ enum VehicleFilter {
   static List<VehicleFilter> get sellFilters {
     var list = [...VehicleFilter.values];
     var removables = [
+      VehicleFilter.price,
+      VehicleFilter.enginePower,
       VehicleFilter.privateAndTrade,
       VehicleFilter.annualTax,
       VehicleFilter.drivetrain,

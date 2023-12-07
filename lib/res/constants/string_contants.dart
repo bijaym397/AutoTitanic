@@ -76,7 +76,7 @@ class AppStrings {
   static const String year = 'Year';
   static const String make = 'Make';
   static const String model = 'Model';
-  static const String modelVariant = 'Model Variant';
+  static const String variant = 'Variant';
   static const String price = 'Price';
   static const String mileage = 'Mileage';
   static const String gearbox = 'GearBox';
@@ -94,7 +94,8 @@ class AppStrings {
   static const String acceleration = 'Acceleration';
   static const String annualTax = 'Annual Tax';
   static const String co2Emission = 'CO2 Emission';
-  static const String color = 'Color';
+  static const String exteriorColor = 'Exterior Color';
+  static const String interiorColor = 'Interior Color';
   static const String keywords = 'Keywords';
   static const String more = 'More';
   static const String enginePower = 'Engine Power';

@@ -49,6 +49,10 @@ class SellVehicleLocationView extends StatelessWidget {
                       color: AppColors.grey,
                       borderRadius: BorderRadius.circular(Dimens.eight),
                     ),
+                    disabledDropdownDecoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(Dimens.eight),
+                    ),
                     countryFilter: AppConstants.allowedCountries,
                     currentCountry: controller.selectedCountry,
                     currentState: controller.selectedState,

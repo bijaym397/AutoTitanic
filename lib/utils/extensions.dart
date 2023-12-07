@@ -156,13 +156,14 @@ extension VehicleFilterExtension on VehicleFilter {
         return 'Min';
       case VehicleFilter.make:
       case VehicleFilter.model:
-      case VehicleFilter.modelVariant:
+      case VehicleFilter.variant:
       case VehicleFilter.gearbox:
       case VehicleFilter.fuelType:
       case VehicleFilter.bodyType:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.door:
-      case VehicleFilter.color:
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
       case VehicleFilter.annualTax:
@@ -191,13 +192,14 @@ extension VehicleFilterExtension on VehicleFilter {
         return 'Max';
       case VehicleFilter.make:
       case VehicleFilter.model:
-      case VehicleFilter.modelVariant:
+      case VehicleFilter.variant:
       case VehicleFilter.gearbox:
       case VehicleFilter.fuelType:
       case VehicleFilter.bodyType:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.door:
-      case VehicleFilter.color:
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
       case VehicleFilter.annualTax:
@@ -230,13 +232,14 @@ extension VehicleFilterExtension on VehicleFilter {
         return [1, 2, 3, 4, 5, 6, 7, 8];
       case VehicleFilter.make:
       case VehicleFilter.model:
-      case VehicleFilter.modelVariant:
+      case VehicleFilter.variant:
       case VehicleFilter.gearbox:
       case VehicleFilter.fuelType:
       case VehicleFilter.bodyType:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.door:
-      case VehicleFilter.color:
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
       case VehicleFilter.annualTax:
@@ -269,13 +272,14 @@ extension VehicleFilterExtension on VehicleFilter {
         return [1, 2, 3, 4, 5, 6, 7, 8];
       case VehicleFilter.make:
       case VehicleFilter.model:
-      case VehicleFilter.modelVariant:
+      case VehicleFilter.variant:
       case VehicleFilter.gearbox:
       case VehicleFilter.fuelType:
       case VehicleFilter.bodyType:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.door:
-      case VehicleFilter.color:
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
       case VehicleFilter.annualTax:
@@ -309,13 +313,14 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.seat:
       case VehicleFilter.make:
       case VehicleFilter.model:
-      case VehicleFilter.modelVariant:
+      case VehicleFilter.variant:
       case VehicleFilter.gearbox:
       case VehicleFilter.fuelType:
       case VehicleFilter.bodyType:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.door:
-      case VehicleFilter.color:
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
       case VehicleFilter.annualTax:
@@ -327,6 +332,58 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
+        return [];
+    }
+  }
+
+  List<String> get sellDropDownList {
+    switch (this) {
+      case VehicleFilter.mileage:
+      case VehicleFilter.bodyType:
+        return [];
+      case VehicleFilter.year:
+        return AppConstants.yearList;
+      case VehicleFilter.engineSize:
+        return AppConstants.engineSizeList;
+      case VehicleFilter.seat:
+        return AppConstants.seatsList;
+      case VehicleFilter.make:
+        return AppConstants.makeList;
+      case VehicleFilter.model:
+        return AppConstants.modelList;
+      case VehicleFilter.variant:
+        return AppConstants.variantList;
+      case VehicleFilter.gearbox:
+        return AppConstants.gearTypeList;
+      case VehicleFilter.fuelType:
+        return AppConstants.fuelTypeList;
+      case VehicleFilter.door:
+        return AppConstants.doorList;
+      case VehicleFilter.exteriorColor:
+      case VehicleFilter.interiorColor:
+        return AppConstants.colorsList;
+      case VehicleFilter.bootspace:
+        return AppConstants.bootspaceList;
+      case VehicleFilter.acceleration:
+        return AppConstants.accelerationList;
+      case VehicleFilter.fuelConsumption:
+        return AppConstants.fuelConsumptionList;
+      case VehicleFilter.co2Emission:
+        return AppConstants.co2EmissionList;
+      case VehicleFilter.bodyStyle:
+        return AppConstants.bodyStyle;
+      case VehicleFilter.condition:
+        return AppConstants.carConditions;
+      case VehicleFilter.driverPosition:
+        return AppConstants.driverPositionList;
+      case VehicleFilter.price:
+      case VehicleFilter.privateAndTrade:
+      case VehicleFilter.enginePower:
+      case VehicleFilter.annualTax:
+      case VehicleFilter.drivetrain:
+      case VehicleFilter.insuranceGroup:
+      case VehicleFilter.keywords:
+      case VehicleFilter.more:
         return [];
     }
   }
