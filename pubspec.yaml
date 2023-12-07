@@ -15,6 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_info_plus: ^9.1.0
   dropdown_button2: ^2.3.9
+  file_picker: ^6.1.1
   flutter:
     sdk: flutter
   flutter_html_v3: ^3.0.6
@@ -23,9 +24,11 @@ dependencies:
   get: ^4.6.6
   google_fonts: ^6.1.0
   http: ^1.1.0
+  image_picker: ^1.0.4
   internet_connection_checker_plus: ^2.1.0
   intl: ^0.18.1
   package_info_plus: ^4.2.0
+  permission_handler: ^11.1.0
   shared_preferences: ^2.2.2
   url_launcher: ^6.2.1
   url_strategy: ^0.2.0

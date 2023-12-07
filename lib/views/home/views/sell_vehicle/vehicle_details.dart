@@ -24,6 +24,14 @@ class SellVehicleDetailsView extends StatelessWidget {
               padding: Dimens.edgeInsets20,
               child: _DropdownDetailsSection(),
             ),
+            AppText(
+              'Images',
+              style: context.textTheme.headlineSmall,
+            ),
+            const Padding(
+              padding: Dimens.edgeInsets20,
+              child: _ImageSection(),
+            ),
           ],
         ),
       );
@@ -40,8 +48,9 @@ class _DropdownDetailsSection extends StatelessWidget {
           children: [
             SizedBox(
               width: 0.3.pw,
-              child: const InputField(
+              child: InputField(
                 hint: 'Title',
+                controller: controller.sellTitleTEC,
               ),
             ),
             Padding(
@@ -51,6 +60,16 @@ class _DropdownDetailsSection extends StatelessWidget {
                 style: context.textTheme.labelLarge!.copyWith(
                   color: Colors.grey,
                 ),
+              ),
+            ),
+            Dimens.boxHeight16,
+            SizedBox(
+              width: 0.3.pw,
+              child: InputField(
+                hint: 'Description',
+                controller: controller.sellDescriptionTEC,
+                minLines: 5,
+                maxLines: 8,
               ),
             ),
             GridView.builder(
@@ -72,7 +91,6 @@ class _DropdownDetailsSection extends StatelessWidget {
                     hint: filter.label,
                     showLabel: true,
                     isRequired: true,
-                    onChanged: (data) => controller.onDetailChanged(filter, data),
                   );
                 }
                 return DropDown(
@@ -87,7 +105,35 @@ class _DropdownDetailsSection extends StatelessWidget {
                 );
               },
             ),
+            SizedBox(
+              width: 0.3.pw,
+              child: InputField(
+                controller: controller.sellDetailsTEC(VehicleFilter.price),
+                hint: 'Sale Price',
+                showLabel: true,
+                isRequired: true,
+                textInputType: TextInputType.number,
+              ),
+            )
           ],
         ),
+      );
+}
+
+class _ImageSection extends StatelessWidget {
+  const _ImageSection();
+
+  @override
+  Widget build(BuildContext context) => Column(
+        children: [
+          const AppText('images'),
+          Button(
+            label: 'Choose Files',
+            onTap: () async {
+              var file = await FileManager.pickImages();
+              AppLog(file);
+            },
+          ),
+        ],
       );
 }

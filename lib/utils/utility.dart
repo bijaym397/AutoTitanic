@@ -5,6 +5,7 @@ import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -20,6 +21,10 @@ class Utility {
   }
 
   static void hideKeyboard() => FocusManager.instance.primaryFocus?.unfocus();
+
+  static List<TextInputFormatter> numberFormatters = [
+    FilteringTextInputFormatter.digitsOnly,
+  ];
 
   /// Returns true if the internet connection is available.
   static Future<bool> get isNetworkAvailable async => await _connection.hasInternetAccess;

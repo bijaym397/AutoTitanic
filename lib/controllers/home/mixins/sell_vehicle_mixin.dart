@@ -8,7 +8,7 @@ mixin SellVehicleMixin {
         _controller.selectedCountry,
         _controller.selectedState,
         _controller.selectedSellerType
-      ].every((e) => e != null);
+      ].every((e) => e != null && e.toString().trim().isNotEmpty);
 
   void onChangeSellPage([bool fromLocationView = false]) {
     _controller.showLocationPage = fromLocationView;

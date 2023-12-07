@@ -20,8 +20,8 @@ class AppConstants {
   static const double maxTabletWidth = 280;
   static const double maxDesktopWidth = 375;
 
-  static const int featuredCarsCount = 7;
-  static const int recentCarsCount = 10;
+  static const int featuredCarsCount = 6;
+  static const int recentCarsCount = 12;
   static const int carouselItemCount = 3;
   static const int carsPerItem = 4;
 

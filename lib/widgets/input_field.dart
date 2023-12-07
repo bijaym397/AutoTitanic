@@ -1,6 +1,8 @@
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class InputField extends StatelessWidget {
@@ -14,6 +16,8 @@ class InputField extends StatelessWidget {
     this.minLines,
     this.maxLines,
     this.onChanged,
+    this.textInputType,
+    this.inputFormatters,
   })  : _hint = 'Enter $hint',
         _label = label ?? hint;
 
@@ -25,6 +29,8 @@ class InputField extends StatelessWidget {
   final String _label;
   final bool showLabel;
   final void Function(String?)? onChanged;
+  final TextInputType? textInputType;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -51,7 +57,7 @@ class InputField extends StatelessWidget {
               ),
             ),
           SizedBox(
-            height: Dimens.forty,
+            height: (minLines ?? 1) > 1 ? null : Dimens.forty,
             child: TextFormField(
               controller: controller,
               decoration: InputDecoration(
@@ -72,6 +78,8 @@ class InputField extends StatelessWidget {
               onChanged: onChanged,
               minLines: minLines,
               maxLines: maxLines ?? 1,
+              keyboardType: textInputType,
+              inputFormatters: inputFormatters ?? (textInputType == TextInputType.number ? Utility.numberFormatters : null),
             ),
           ),
         ],

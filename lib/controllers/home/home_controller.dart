@@ -56,6 +56,8 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
 
   var sellTitleTEC = TextEditingController();
 
+  var sellDescriptionTEC = TextEditingController();
+
   String? selectedCarCondition;
 
   String? selectedMake;
