@@ -14,10 +14,11 @@ class SellVehicleView extends StatelessWidget {
   static const String updateId = 'sell-vehicle-id';
 
   @override
-  Widget build(BuildContext context) => ScreenWrapper(
-        body: GetBuilder<HomeController>(
-          id: updateId,
-          builder: (controller) => AnimatedSwitcher(
+  Widget build(BuildContext context) => GetBuilder<HomeController>(
+        id: updateId,
+        builder: (controller) => ScreenWrapper(
+          isWhiteBackground: !controller.showLocationPage,
+          body: AnimatedSwitcher(
             duration: AppConstants.animationDuration,
             transitionBuilder: (child, animation) => FadeTransition(
               opacity: animation,

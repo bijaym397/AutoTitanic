@@ -49,7 +49,6 @@ class InventoryImages extends StatelessWidget {
 class _MoreImages extends StatelessWidget {
   const _MoreImages(
     this.images, {
-    super.key,
     required this.isRowLayout,
   });
 

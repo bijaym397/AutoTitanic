@@ -38,7 +38,7 @@ class $FilterColumn extends StatelessWidget {
               height: Dimens.two,
             ),
             ListView.separated(
-              itemCount: VehicleFilter.values.length,
+              itemCount: VehicleFilter.searchFilters.length,
               shrinkWrap: true,
               padding: Dimens.edgeInsets0_4,
               physics: const NeverScrollableScrollPhysics(),
@@ -47,7 +47,7 @@ class $FilterColumn extends StatelessWidget {
                 thickness: Dimens.two,
                 height: Dimens.four,
               ),
-              itemBuilder: (_, index) => _FilterTile(VehicleFilter.values[index]),
+              itemBuilder: (_, index) => _FilterTile(VehicleFilter.searchFilters[index]),
             ),
           ],
         ),

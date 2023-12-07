@@ -172,6 +172,9 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.co2Emission:
       case VehicleFilter.keywords:
       case VehicleFilter.more:
+      case VehicleFilter.condition:
+      case VehicleFilter.bodyStyle:
+      case VehicleFilter.driverPosition:
         return '';
     }
   }
@@ -204,6 +207,9 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.co2Emission:
       case VehicleFilter.keywords:
       case VehicleFilter.more:
+      case VehicleFilter.condition:
+      case VehicleFilter.bodyStyle:
+      case VehicleFilter.driverPosition:
         return '';
     }
   }
@@ -240,6 +246,9 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.co2Emission:
       case VehicleFilter.keywords:
       case VehicleFilter.more:
+      case VehicleFilter.condition:
+      case VehicleFilter.bodyStyle:
+      case VehicleFilter.driverPosition:
         return [];
     }
   }
@@ -276,6 +285,9 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.co2Emission:
       case VehicleFilter.keywords:
       case VehicleFilter.more:
+      case VehicleFilter.condition:
+      case VehicleFilter.bodyStyle:
+      case VehicleFilter.driverPosition:
         return [];
     }
   }
@@ -312,6 +324,9 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
       case VehicleFilter.keywords:
+      case VehicleFilter.condition:
+      case VehicleFilter.bodyStyle:
+      case VehicleFilter.driverPosition:
         return [];
     }
   }

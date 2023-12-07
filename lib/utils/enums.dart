@@ -73,8 +73,15 @@ enum HoverItem {
       HoverItem.used;
 
   const HoverItem(this.prefix, this.route);
+
   final String prefix;
   final String route;
+
+  static List<HoverItem> get selectableValues {
+    var list = HoverItem.values;
+    list.remove(HoverItem.sell);
+    return list;
+  }
 }
 
 enum Social {
@@ -118,6 +125,7 @@ enum FilterType {
 }
 
 enum VehicleFilter {
+  condition(AppStrings.condition, FilterType.expandable),
   make(AppStrings.make, FilterType.popup),
   model(AppStrings.model, FilterType.popup),
   modelVariant(AppStrings.modelVariant, FilterType.popup),
@@ -126,6 +134,7 @@ enum VehicleFilter {
   mileage(AppStrings.mileage, FilterType.expandable),
   gearbox(AppStrings.gearbox, FilterType.popup),
   fuelType(AppStrings.fuelType, FilterType.popup),
+  bodyStyle(AppStrings.bodyStyle, FilterType.popup),
   bodyType(AppStrings.bodyType, FilterType.popup),
   engineSize(AppStrings.engineSize, FilterType.expandable),
   enginePower(AppStrings.enginePower, FilterType.expandable),
@@ -133,6 +142,7 @@ enum VehicleFilter {
   door(AppStrings.door, FilterType.popup),
   color(AppStrings.color, FilterType.popup),
   seat(AppStrings.seat, FilterType.expandable),
+  driverPosition(AppStrings.driverPosition, FilterType.popup),
   bootspace(AppStrings.bootSpace, FilterType.popup),
   acceleration(AppStrings.acceleration, FilterType.popup),
   annualTax(AppStrings.annualTax, FilterType.popup),
@@ -144,8 +154,30 @@ enum VehicleFilter {
   more(AppStrings.more, FilterType.checkbox);
 
   const VehicleFilter(this.label, this.filterType);
+
   final String label;
   final FilterType filterType;
+
+  static List<VehicleFilter> get searchFilters {
+    var list = [...VehicleFilter.values];
+    list.remove(VehicleFilter.condition);
+    list.remove(VehicleFilter.bodyStyle);
+    return list;
+  }
+
+  static List<VehicleFilter> get sellFilters {
+    var list = [...VehicleFilter.values];
+    var removables = [
+      VehicleFilter.privateAndTrade,
+      VehicleFilter.annualTax,
+      VehicleFilter.drivetrain,
+      VehicleFilter.insuranceGroup,
+      VehicleFilter.keywords,
+      VehicleFilter.more,
+    ];
+    list.removeWhere((e) => removables.any((r) => e == r));
+    return list;
+  }
 }
 
 enum SellerType {

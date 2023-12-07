@@ -72,6 +72,7 @@ class AppStrings {
   static const String dealer = 'Dealer';
   static const String private = 'Private';
 
+  static const String condition = 'Condition';
   static const String year = 'Year';
   static const String make = 'Make';
   static const String model = 'Model';
@@ -84,9 +85,11 @@ class AppStrings {
   static const String fuelConsumption = 'Fuel Consumption';
   static const String engineSize = 'Engine Size';
   static const String fuelType = 'Fuel Type';
+  static const String bodyStyle = 'Body Style';
   static const String bodyType = 'Body Type';
   static const String door = 'Door';
   static const String seat = 'Seat';
+  static const String driverPosition = 'Driver Position';
   static const String bootSpace = 'Boot Space';
   static const String acceleration = 'Acceleration';
   static const String annualTax = 'Annual Tax';
@@ -113,6 +116,8 @@ class AppStrings {
   static const String wheelChair = 'Wheelchair accessible (WAV)';
   static const String manufacturerApproved = 'Manufacturer Approved';
   static const String irelandAdverts = 'N.Ireland adverts only';
+
+  static const String sellVehicleTitleDescription = 'If the title is not entered then it will be auto-generated using Year, Make, and Model.';
 }
 
 class StringData {
