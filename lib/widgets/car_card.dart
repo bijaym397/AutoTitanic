@@ -18,7 +18,7 @@ class CarCard extends StatelessWidget {
           key: key,
           color: Colors.white,
           child: AspectRatio(
-            aspectRatio: 2 / 3,
+            aspectRatio: 3 / 4,
             child: ObxValue<RxBool>(
               (isHovering) => TapHandler(
                 onHover: (value) {
@@ -96,7 +96,7 @@ class CarCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     ColoredBox(
-                      color: Colors.indigo,
+                      color: AppColors.accent,
                       child: Padding(
                         padding: Dimens.edgeInsets12,
                         child: DefaultTextStyle(

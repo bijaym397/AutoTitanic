@@ -26,11 +26,14 @@ class HomeView extends StatelessWidget {
           ),
           body: Column(
             children: [
-              Dimens.boxHeight48,
-              const TitleText(AppStrings.featuredCars),
+              Dimens.boxHeight24,
+              const TitleText(
+                AppStrings.featuredCars,
+                color: AppColors.primary,
+              ),
               ListView.builder(
-                // itemCount: 1,
-                itemCount: AppConstants.featuredCarsCount,
+                itemCount: 1,
+                // itemCount: AppConstants.featuredCarsCount,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
@@ -43,10 +46,13 @@ class HomeView extends StatelessWidget {
                 },
               ),
               Dimens.boxHeight48,
-              const TitleText(AppStrings.recentlyPostedCars),
+              const TitleText(
+                AppStrings.recentlyPostedCars,
+                color: AppColors.accent,
+              ),
               ListView.builder(
-                // itemCount: 1,
-                itemCount: AppConstants.recentCarsCount,
+                itemCount: 1,
+                // itemCount: AppConstants.recentCarsCount,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {

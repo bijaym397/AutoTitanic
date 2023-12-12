@@ -5,11 +5,11 @@ import 'package:get/get.dart';
 class SellMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
+    AppLog(route);
     var paths = route!.split('/');
     var endpoint = paths.last;
     if (AppRoutes.sell.contains(endpoint)) {
-      var vehicle = Vehicle.fromRoute(paths.first);
-      return RouteSettings(name: '${AppRoutes.sell}${vehicle.route}');
+      // TODO: Check here for user login state
     }
     return null;
   }

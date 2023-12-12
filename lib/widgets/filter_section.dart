@@ -22,6 +22,7 @@ class FilterSection extends StatelessWidget {
         child: SizedBox(
           width: Dimens.screenWidth,
           child: Stack(
+            alignment: Alignment.center,
             children: [
               Image.asset(
                 AssetConstants.homeTopBg,
@@ -30,11 +31,7 @@ class FilterSection extends StatelessWidget {
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
               ),
-              Positioned(
-                left: Dimens.twenty,
-                bottom: Dimens.twenty,
-                child: $FilterCard(onTap: onTap),
-              ),
+              $FilterCard(onTap: onTap),
             ],
           ),
         ),
@@ -76,20 +73,13 @@ class $FilterCard extends StatelessWidget {
                   ),
                   countryFilter: AppConstants.allowedCountries,
                 ),
-                // DropDown<String>(
-                //   hint: 'Countries',
-                //   labelBuilder: Text.new,
-                //   items: const ['Africa'],
-                //   onChanged: (_) {},
-                // ),
-                Dimens.boxHeight10,
                 Row(
                   children: [
                     Flexible(
                       child: DropDown<String>(
                         hint: 'Make',
                         labelBuilder: (value) => value,
-                        items: const ['Audi'],
+                        items: VehicleFilter.make.sellDropDownList,
                         onChanged: (_) {},
                       ),
                     ),
@@ -98,7 +88,29 @@ class $FilterCard extends StatelessWidget {
                       child: DropDown<String>(
                         hint: 'Model',
                         labelBuilder: (value) => value,
-                        items: const ['A8'],
+                        items: VehicleFilter.model.sellDropDownList,
+                        onChanged: (_) {},
+                      ),
+                    ),
+                  ],
+                ),
+                Dimens.boxHeight10,
+                Row(
+                  children: [
+                    Flexible(
+                      child: DropDown<num>(
+                        hint: 'Min Price',
+                        labelBuilder: (value) => '$value',
+                        items: VehicleFilter.price.minList,
+                        onChanged: (_) {},
+                      ),
+                    ),
+                    Dimens.boxWidth10,
+                    Flexible(
+                      child: DropDown<num>(
+                        hint: 'Max Price',
+                        labelBuilder: (value) => '$value',
+                        items: VehicleFilter.price.maxList,
                         onChanged: (_) {},
                       ),
                     ),

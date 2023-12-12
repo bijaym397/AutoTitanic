@@ -41,6 +41,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) => GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: kAppTheme,
+        enableLog: true,
         getPages: AppPages.pages,
         initialRoute: AppPages.initial,
       );

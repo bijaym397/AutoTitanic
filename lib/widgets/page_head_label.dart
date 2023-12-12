@@ -32,15 +32,21 @@ class PageHeadLabel extends StatelessWidget {
 }
 
 class TitleText extends StatelessWidget {
-  const TitleText(this.label, {super.key});
+  const TitleText(
+    this.label, {
+    super.key,
+    this.color,
+  });
 
   final String label;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) => AppText(
         label,
         style: context.textTheme.titleLarge!.copyWith(
           fontWeight: FontWeight.w700,
+          color: color,
         ),
       );
 }

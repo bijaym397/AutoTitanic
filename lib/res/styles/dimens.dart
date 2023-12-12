@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Dimens {
   const Dimens._();
 
-  static const double appbarHeight = hundred;
+  static const double appbarHeight = sixtyFour;
 
   static double get screenWidth => 0.7.pw;
 
@@ -23,6 +23,7 @@ class Dimens {
   static const double thirtyTwo = 32;
   static const double forty = 40;
   static const double fortyEight = 48;
+  static const double sixtyFour = 64;
   static const double eighty = 80;
   static const double hundred = 100;
   static const double twoHundred = 200;
@@ -95,8 +96,3 @@ class Dimens {
   static const EdgeInsets edgeInsets12_8 = EdgeInsets.symmetric(horizontal: twelve, vertical: eight);
   static const EdgeInsets edgeInsets8_32 = EdgeInsets.symmetric(horizontal: eight, vertical: thirtyTwo);
 }
-
-/**
- 2. Add min and max price drop down on main filter box
- 4. Row hover button and delay on scroll
- */

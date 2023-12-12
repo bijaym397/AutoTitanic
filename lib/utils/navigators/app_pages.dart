@@ -17,6 +17,13 @@ class AppPages {
 
   static const initial = AppRoutes.home;
 
+  static GetPage _sellView() => GetPage<SellVehicleView>(
+        name: AppRoutes.sell,
+        page: SellVehicleView.new,
+        binding: HomeBinding(),
+        transition: transition,
+      );
+
   static final pages = [
     GetPage<SplashView>(
       name: AppRoutes.splash,
@@ -103,6 +110,7 @@ class AppPages {
       binding: HomeBinding(),
       transition: transition,
       middlewares: [SellMiddleware()],
+      children: [_sellView()],
     ),
     GetPage<HomeView>(
       name: AppRoutes.vans,
@@ -159,12 +167,6 @@ class AppPages {
       transition: transition,
     ),
     // ---- End HomeView for different vehicles ----
-    GetPage<SellVehicleView>(
-      name: AppRoutes.sell,
-      page: SellVehicleView.new,
-      binding: HomeBinding(),
-      transition: transition,
-    ),
     GetPage<InventoryView>(
       name: AppRoutes.search,
       page: InventoryView.new,

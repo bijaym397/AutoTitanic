@@ -16,6 +16,9 @@ class SellVehicleView extends StatelessWidget {
   @override
   Widget build(BuildContext context) => GetBuilder<HomeController>(
         id: updateId,
+        initState: (_) {
+          Get.find<HomeController>().checkRoute();
+        },
         builder: (controller) => ScreenWrapper(
           isWhiteBackground: !controller.showLocationPage,
           body: AnimatedSwitcher(
