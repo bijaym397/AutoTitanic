@@ -34,11 +34,10 @@ class DashboardFooter extends StatelessWidget {
                     Padding(
                       padding: Dimens.edgeInsets16_0,
                       child: Row(
-                        children:
-                            Social.values.map<Widget>(SocialCard.new).toList(),
+                        children: Social.values.map<Widget>(SocialCard.new).toList(),
                       ),
                     ),
-                    const Divider(
+                    Divider(
                       height: 1,
                       thickness: 1,
                       indent: Dimens.sixteen,
@@ -55,7 +54,7 @@ class DashboardFooter extends StatelessWidget {
                 alignment: Alignment.center,
                 child: AppText(
                   AppStrings.copyright,
-                  style: context.textTheme.labelLarge!.copyWith(
+                  style: Styles.labelLarge.copyWith(
                     color: AppColors.white,
                   ),
                 ),

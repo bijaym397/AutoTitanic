@@ -3,6 +3,7 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/view_models/view_models.dart';
 import 'package:auto_titanic/views/home/views/views.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,6 +43,10 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
   Social? get selectedSocial => _selectedSocial.value;
   set selectedSocial(Social? value) => _selectedSocial.value = value;
 
+  final Rx<AdvanceSearchType> _selectedAdvanceSearchType = AdvanceSearchType.allVehicle.obs;
+  AdvanceSearchType get selectedAdvanceSearchType => _selectedAdvanceSearchType.value;
+  set selectedAdvanceSearchType(AdvanceSearchType value) => _selectedAdvanceSearchType.value = value;
+
   // -------------------- Sell Variables -----------------
 
   bool showLocationPage = true;
@@ -51,8 +56,6 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
   String? selectedCountry;
 
   String? selectedState;
-
-  SellerType? selectedSellerType;
 
   var sellTitleTEC = TextEditingController();
 
@@ -99,6 +102,10 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
   String? selectedFuelConsumption;
 
   String? selectedCO2Emission;
+
+  final RxList<PlatformFile> _selectedImages = <PlatformFile>[].obs;
+  List<PlatformFile> get selectedImages => _selectedImages;
+  set selectedImages(List<PlatformFile> value) => _selectedImages.value = value;
 
   // ==================== INIT =====================
 
@@ -258,7 +265,7 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
       var carousel = <List<String>>[];
       for (var j = 0; j < AppConstants.carouselItemCount; j++) {
         var cars = <String>[];
-        for (var k = 0; k < AppConstants.carsPerItem; k++) {
+        for (var k = 0; k < AppConstants.maxVehiclePerItem; k++) {
           cars.add(AssetConstants.car);
         }
         carousel.add(cars);

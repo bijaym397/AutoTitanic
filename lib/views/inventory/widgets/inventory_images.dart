@@ -2,7 +2,6 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class InventoryImages extends StatelessWidget {
   const InventoryImages(this.images, {super.key});
@@ -18,11 +17,11 @@ class InventoryImages extends StatelessWidget {
             Expanded(
               flex: isRowLayout ? 3 : 2,
               child: AppImage(
-                images.first,
+                imageUrl: images.first,
                 isNetworkImage: false,
               ),
             ),
-            const ColoredBox(
+            ColoredBox(
               color: AppColors.white,
               child: SizedBox(
                 height: double.maxFinite,
@@ -59,16 +58,16 @@ class _MoreImages extends StatelessWidget {
   Widget build(BuildContext context) {
     var children = <Widget>[
       Expanded(
-        child: images.length > 1 ? AppImage(images[1], isNetworkImage: false) : const SizedBox.shrink(),
+        child: images.length > 1 ? AppImage(imageUrl: images[1], isNetworkImage: false) : const SizedBox.shrink(),
       ),
       Expanded(
-        child: images.length > 2 ? AppImage(images[2], isNetworkImage: false) : const SizedBox.shrink(),
+        child: images.length > 2 ? AppImage(imageUrl: images[2], isNetworkImage: false) : const SizedBox.shrink(),
       ),
       Expanded(
         child: images.length > 3
             ? Stack(
                 children: [
-                  AppImage(images[3], isNetworkImage: false),
+                  AppImage(imageUrl: images[3], isNetworkImage: false),
                   if (images.length > 4)
                     ColoredBox(
                       color: Colors.black38,
@@ -76,7 +75,7 @@ class _MoreImages extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           '+${images.length - 4}',
-                          style: context.textTheme.titleLarge!.copyWith(
+                          style: Styles.titleLarge.copyWith(
                             color: AppColors.white,
                           ),
                         ),

@@ -1,6 +1,5 @@
 import 'package:auto_titanic/res/res.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AppCheckBoxListTile extends StatelessWidget {
   const AppCheckBoxListTile({
@@ -27,6 +26,7 @@ class AppCheckBoxListTile extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(Dimens.four),
             ),
+            visualDensity: VisualDensity.compact,
           ),
           unselectedWidgetColor: AppColors.primary,
         ),
@@ -39,7 +39,7 @@ class AppCheckBoxListTile extends StatelessWidget {
           value: value,
           title: Text(
             title,
-            style: context.textTheme.labelMedium,
+            style: Styles.labelMedium,
           ),
           subtitle: subtitle == null ? null : Text(subtitle!),
           controlAffinity: ListTileControlAffinity.leading,

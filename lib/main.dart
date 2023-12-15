@@ -4,6 +4,7 @@ import 'package:auto_titanic/data/data.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:url_strategy/url_strategy.dart';
 
@@ -38,11 +39,15 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   @override
-  Widget build(BuildContext context) => GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: kAppTheme,
-        enableLog: true,
-        getPages: AppPages.pages,
-        initialRoute: AppPages.initial,
+  Widget build(BuildContext context) => ScreenUtilInit(
+        designSize: const Size(1920, 1200),
+        ensureScreenSize: true,
+        child: GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: kAppTheme,
+          enableLog: true,
+          getPages: AppPages.pages,
+          initialRoute: AppPages.initial,
+        ),
       );
 }

@@ -28,4 +28,10 @@ abstract class RouteManagement {
       arguments: vehicle,
     );
   }
+
+  static void goToAdvanceSearch() {
+    Get.toNamed(
+      AppRoutes.advanceSearch,
+    );
+  }
 }

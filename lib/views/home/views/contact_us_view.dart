@@ -20,12 +20,12 @@ class ContactUsView extends StatelessWidget {
             Dimens.boxHeight200,
             AppText(
               'We\'d Love to Hear From You',
-              style: context.textTheme.bodyMedium,
+              style: Styles.bodyMedium,
             ),
             Dimens.boxHeight16,
             AppText(
               'LET\'S GET IN TOUCH!',
-              style: context.textTheme.displaySmall!.copyWith(
+              style: Styles.displaySmall.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
@@ -73,7 +73,7 @@ class $ContactRow extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              AppIcon(
                                 contact.icon,
                                 color: isHovering.value ? AppColors.red : null,
                                 size: Dimens.forty,
@@ -81,10 +81,9 @@ class $ContactRow extends StatelessWidget {
                               Dimens.boxHeight8,
                               AppText(
                                 contact.label,
-                                style: context.textTheme.titleMedium!.copyWith(
+                                style: Styles.titleMedium.copyWith(
                                   fontWeight: FontWeight.w600,
-                                  color:
-                                      isHovering.value ? AppColors.red : null,
+                                  color: isHovering.value ? AppColors.red : null,
                                 ),
                               ),
                               Dimens.boxHeight12,
@@ -126,9 +125,7 @@ class $InformationRow extends StatelessWidget {
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               border: Border.all(
-                                color: isHovering.value
-                                    ? AppColors.red
-                                    : AppColors.grey,
+                                color: isHovering.value ? AppColors.red : AppColors.grey,
                                 width: 1,
                               ),
                             ),
@@ -137,15 +134,11 @@ class $InformationRow extends StatelessWidget {
                               margin: Dimens.edgeInsets8,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: isHovering.value
-                                    ? AppColors.red
-                                    : AppColors.grey,
+                                color: isHovering.value ? AppColors.red : AppColors.grey,
                               ),
-                              child: Icon(
+                              child: AppIcon(
                                 contact.icon,
-                                color: isHovering.value
-                                    ? AppColors.white
-                                    : Colors.grey,
+                                color: isHovering.value ? AppColors.white : Colors.grey,
                               ),
                             ),
                           ),
@@ -159,8 +152,7 @@ class $InformationRow extends StatelessWidget {
                                 children: [
                                   AppText(
                                     contact.label,
-                                    style:
-                                        context.textTheme.titleMedium!.copyWith(
+                                    style: Styles.titleMedium.copyWith(
                                       fontWeight: FontWeight.w700,
                                     ),
                                   ),

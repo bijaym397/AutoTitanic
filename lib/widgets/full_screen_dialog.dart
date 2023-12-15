@@ -1,5 +1,6 @@
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,20 +41,20 @@ class FullScreenDialog extends StatelessWidget {
                         children: [
                           Text(
                             '1 / ${images.length}',
-                            style: context.textTheme.labelLarge!.copyWith(
+                            style: Styles.labelLarge.copyWith(
                               color: AppColors.white,
                             ),
                           ),
                           const Spacer(),
                           IconButton(
                             onPressed: () {},
-                            icon: const Icon(
+                            icon: const AppIcon(
                               Icons.fullscreen_rounded,
                             ),
                           ),
                           IconButton(
                             onPressed: Get.back,
-                            icon: const Icon(
+                            icon: const AppIcon(
                               Icons.close_rounded,
                             ),
                           ),
@@ -64,14 +65,14 @@ class FullScreenDialog extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(
+                              icon: const AppIcon(
                                 Icons.arrow_back_rounded,
                               ),
                             ),
                             const Spacer(),
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(
+                              icon: const AppIcon(
                                 Icons.arrow_forward_rounded,
                               ),
                             ),

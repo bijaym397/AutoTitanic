@@ -3,7 +3,6 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class InventoryDetails extends StatelessWidget {
   const InventoryDetails(this.data, {super.key});
@@ -16,67 +15,67 @@ class InventoryDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: Dimens.thirtyTwo,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: data.labels.length,
-                separatorBuilder: (_, __) => Dimens.boxWidth8,
-                itemBuilder: (_, index) => _InventoryLabel(data.labels[index]),
-              ),
-            ),
+            // SizedBox(
+            //   height: Dimens.thirtyTwo,
+            //   child: ListView.separated(
+            //     scrollDirection: Axis.horizontal,
+            //     itemCount: data.labels.length,
+            //     separatorBuilder: (_, __) => Dimens.boxWidth8,
+            //     itemBuilder: (_, index) => _InventoryLabel(data.labels[index]),
+            //   ),
+            // ),
             AppText(
               data.price.formattedPrice,
-              style: context.textTheme.titleMedium!.copyWith(
+              style: Styles.titleMedium.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             AppText(
               data.name,
-              style: context.textTheme.titleSmall,
+              style: Styles.titleSmall,
             ),
             AppText(
               data.variant,
-              style: context.textTheme.labelMedium,
+              style: Styles.labelMedium,
             ),
             Dimens.boxHeight8,
             AppText(
               data.features.join(' | '),
-              style: context.textTheme.labelMedium!,
+              style: Styles.labelMedium,
             ),
             Dimens.boxHeight8,
             AppText(
               data.details,
-              style: context.textTheme.labelLarge!.copyWith(
+              style: Styles.labelLarge.copyWith(
                 fontWeight: FontWeight.w600,
               ),
             ),
             const Divider(),
             AppText(
               data.seller,
-              style: context.textTheme.labelLarge,
+              style: Styles.labelLarge,
             ),
             Row(
               children: [
-                const Icon(
+                AppIcon(
                   Icons.star_border_rounded,
                   size: Dimens.twenty,
                 ),
                 AppText(
                   data.customerReviews,
-                  style: context.textTheme.labelMedium,
+                  style: Styles.labelMedium,
                 ),
               ],
             ),
             Row(
               children: [
-                const Icon(
+                AppIcon(
                   Icons.location_on_outlined,
                   size: Dimens.twenty,
                 ),
                 AppText(
                   data.address.toAddress,
-                  style: context.textTheme.labelMedium,
+                  style: Styles.labelMedium,
                 ),
               ],
             ),
@@ -101,7 +100,7 @@ class _InventoryLabel extends StatelessWidget {
             padding: Dimens.edgeInsets8_4,
             child: Text(
               label.label,
-              style: context.textTheme.labelSmall!.copyWith(
+              style: Styles.labelSmall.copyWith(
                 color: AppColors.white,
               ),
             ),

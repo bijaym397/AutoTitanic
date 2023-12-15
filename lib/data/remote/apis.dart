@@ -2,7 +2,7 @@
 class Apis {
   const Apis._();
 
-  static const String baseUrl = '/api/v1/';
+  static const String baseUrl = 'https://autotitanic.onrender.com/api/v1/';
 
   static const String login = 'user/login';
   static const String register = 'user/register';

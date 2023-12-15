@@ -2,7 +2,6 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class SubscribeCard extends StatelessWidget {
   const SubscribeCard({super.key});
@@ -22,27 +21,27 @@ class SubscribeCard extends StatelessWidget {
               children: [
                 AppText(
                   AppStrings.subscribeHeading,
-                  style: context.textTheme.headlineMedium!.copyWith(
+                  style: Styles.headlineMedium.copyWith(
                     color: AppColors.red,
                   ),
                 ),
                 Dimens.boxHeight4,
                 AppText(
                   AppStrings.subscribeSubtitle,
-                  style: context.textTheme.bodyMedium!.copyWith(
+                  style: Styles.bodyMedium.copyWith(
                     color: AppColors.white,
                   ),
                 ),
               ],
             ),
-            const $SubscribeEmail(),
+            $SubscribeEmail(),
           ],
         ),
       );
 }
 
 class $SubscribeEmail extends StatelessWidget {
-  const $SubscribeEmail({super.key}) : height = Dimens.fortyEight;
+  $SubscribeEmail({super.key}) : height = Dimens.fortyEight;
 
   final double height;
 
@@ -68,7 +67,7 @@ class $SubscribeEmail extends StatelessWidget {
                   alignment: Alignment.center,
                   child: AppText(
                     AppStrings.subscribe,
-                    style: context.textTheme.labelLarge!.copyWith(
+                    style: Styles.labelLarge.copyWith(
                       color: AppColors.white,
                     ),
                   ),

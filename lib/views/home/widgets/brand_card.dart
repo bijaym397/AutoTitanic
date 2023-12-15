@@ -30,7 +30,7 @@ class BrandCard extends StatelessWidget {
                   physics: const NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   padding: Dimens.edgeInsets10,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     childAspectRatio: 2.5 / 1,
                     crossAxisSpacing: Dimens.sixteen,
@@ -68,7 +68,7 @@ class $BrandTile extends StatelessWidget {
         key: key,
         decoration: BoxDecoration(
           color: Colors.white,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
               offset: Offset(Dimens.two, Dimens.two),
               color: AppColors.grey,

@@ -4,52 +4,81 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AppImage extends StatelessWidget {
-  const AppImage(
-    this.imageUrl, {
+  const AppImage({
+    this.imageUrl,
+    this.bytes,
     this.name,
     this.dimensions,
     this.isNetworkImage = true,
-    this.isBytes = false,
     super.key,
     this.radius,
-  })  : _name = name ?? 'C',
-        _isProfileImage = false;
+  })  : assert(imageUrl != null || bytes != null),
+        _name = name ?? 'C',
+        _isProfileImage = false,
+        _isMemoryImage = bytes != null;
 
-  const AppImage.profile(this.imageUrl, {this.name, this.dimensions = 48, this.isNetworkImage = true, this.isBytes = false, super.key, this.radius})
-      : _name = name ?? 'U',
+  const AppImage.profile({
+    this.imageUrl,
+    this.bytes,
+    this.name,
+    this.dimensions = 48,
+    this.isNetworkImage = true,
+    super.key,
+    this.radius,
+  })  : assert(imageUrl != null || bytes != null),
+        assert(dimensions != null, 'Dimensions cannot be null'),
+        _name = name ?? 'U',
         _isProfileImage = true,
-        assert(dimensions != null, 'Dimensions cannot be null');
+        _isMemoryImage = bytes != null;
 
-  final String imageUrl;
+  final String? imageUrl;
+  final Uint8List? bytes;
   final String? name;
   final double? dimensions;
   final bool isNetworkImage;
   final double? radius;
-  final bool isBytes;
   final String _name;
   final bool _isProfileImage;
+  final bool _isMemoryImage;
 
   @override
-  Widget build(BuildContext context) => isNetworkImage
-      ? _NetworkImage(imageUrl: imageUrl, isProfileImage: _isProfileImage, name: _name)
-      : isBytes
-          ? _MemeroyImage(
-              imageUrl: imageUrl,
+  Widget build(BuildContext context) => _isMemoryImage
+      ? _MemeroyImage(
+          bytes: bytes!,
+          name: _name,
+          dimension: dimensions,
+          radius: radius,
+        )
+      : isNetworkImage
+          ? _NetworkImage(
+              imageUrl: imageUrl!,
+              isProfileImage: _isProfileImage,
               name: _name,
+              dimension: dimensions,
+              radius: radius,
             )
           : _AssetImage(
-              imageUrl: imageUrl,
+              imageUrl: imageUrl!,
               name: _name,
+              dimension: dimensions,
+              radius: radius,
             );
 }
 
 class _AssetImage extends StatelessWidget {
-  const _AssetImage({required this.imageUrl, required this.name});
+  const _AssetImage({
+    required this.imageUrl,
+    required this.name,
+    this.dimension,
+    this.radius,
+  });
+
   final String imageUrl;
   final String name;
+  final double? dimension;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +97,7 @@ class _AssetImage extends StatelessWidget {
         ),
         child: Text(
           name[0],
-          style: context.textTheme.labelLarge!.copyWith(
+          style: Styles.labelLarge.copyWith(
             fontWeight: FontWeight.bold,
             color: AppColors.primary,
           ),
@@ -79,36 +108,45 @@ class _AssetImage extends StatelessWidget {
 }
 
 class _MemeroyImage extends StatelessWidget {
-  const _MemeroyImage({required this.imageUrl, required this.name});
-  final String imageUrl;
+  const _MemeroyImage({
+    required this.bytes,
+    required this.name,
+    this.dimension,
+    this.radius,
+  });
+
+  final Uint8List bytes;
   final String name;
+  final double? dimension;
+  final double? radius;
 
   @override
-  Widget build(BuildContext context) {
-    Uint8List? bytes;
-    if (imageUrl.isNotEmpty) {
-      bytes = imageUrl.strigToUnit8List;
-    }
-    return bytes == null || bytes.isEmpty
-        ? Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: AppColors.primary.withOpacity(0.2),
-              shape: BoxShape.circle,
+  Widget build(BuildContext context) => bytes.isEmpty
+      ? Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: AppColors.primary.withOpacity(0.2),
+            shape: BoxShape.circle,
+          ),
+          child: Text(
+            name[0],
+            style: Styles.labelLarge.copyWith(
+              fontWeight: FontWeight.bold,
+              color: AppColors.primary,
             ),
-            child: Text(
-              name[0],
-              style: context.textTheme.labelLarge!.copyWith(
-                fontWeight: FontWeight.bold,
-                color: AppColors.primary,
-              ),
-            ),
-          )
-        : Image.memory(
+          ),
+        )
+      : ClipRRect(
+          borderRadius: BorderRadius.circular(radius ?? 0),
+          child: Image.memory(
             bytes,
+            height: dimension,
+            width: dimension,
+            cacheHeight: dimension?.toInt(),
+            cacheWidth: dimension?.toInt(),
             fit: BoxFit.cover,
-          );
-  }
+          ),
+        );
 }
 
 class _NetworkImage extends StatelessWidget {
@@ -116,12 +154,16 @@ class _NetworkImage extends StatelessWidget {
     required this.imageUrl,
     required bool isProfileImage,
     required String name,
+    required this.dimension,
+    this.radius,
   })  : _isProfileImage = isProfileImage,
         _name = name;
 
   final String imageUrl;
   final bool _isProfileImage;
   final String _name;
+  final double? dimension;
+  final double? radius;
 
   @override
   Widget build(BuildContext context) => CachedNetworkImage(
@@ -155,7 +197,7 @@ class _NetworkImage extends StatelessWidget {
           child: _isProfileImage
               ? Text(
                   _name[0],
-                  style: context.textTheme.labelLarge!.copyWith(
+                  style: Styles.labelLarge.copyWith(
                     fontWeight: FontWeight.bold,
                     color: AppColors.primary,
                   ),
@@ -188,7 +230,7 @@ class _ErrorImage extends StatelessWidget {
         child: _isProfileImage
             ? Text(
                 _name[0],
-                style: context.textTheme.labelLarge!.copyWith(
+                style: Styles.labelLarge.copyWith(
                   fontWeight: FontWeight.bold,
                   color: AppColors.primary,
                 ),

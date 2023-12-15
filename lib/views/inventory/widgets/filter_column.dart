@@ -23,16 +23,16 @@ class $FilterColumn extends StatelessWidget {
             Dimens.boxHeight12,
             AppText(
               '80 Cars found',
-              style: context.textTheme.headlineSmall!.copyWith(
+              style: Styles.headlineSmall.copyWith(
                 fontWeight: FontWeight.w700,
               ),
             ),
             AppText(
               '0 Filters selected',
-              style: context.textTheme.labelMedium,
+              style: Styles.labelMedium,
             ),
             Dimens.boxHeight12,
-            const Divider(
+            Divider(
               color: AppColors.grey,
               thickness: Dimens.two,
               height: Dimens.two,
@@ -42,7 +42,7 @@ class $FilterColumn extends StatelessWidget {
               shrinkWrap: true,
               padding: Dimens.edgeInsets0_4,
               physics: const NeverScrollableScrollPhysics(),
-              separatorBuilder: (_, __) => const Divider(
+              separatorBuilder: (_, __) => Divider(
                 color: AppColors.grey,
                 thickness: Dimens.two,
                 height: Dimens.four,
@@ -75,15 +75,16 @@ class _FilterTile extends StatelessWidget {
                   children: [
                     Text(
                       filter.label,
-                      style: context.textTheme.labelLarge!.copyWith(
+                      style: Styles.labelLarge.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                     const Spacer(),
-                    const Text('Any'),
-                    Icon(
+                    Text('Any', style: Styles.labelLarge),
+                    AppIcon(
                       isOpened.value ? Icons.keyboard_arrow_down_rounded : Icons.keyboard_arrow_right_rounded,
+                      size: Dimens.twentyFour,
                     ),
                   ],
                 ),

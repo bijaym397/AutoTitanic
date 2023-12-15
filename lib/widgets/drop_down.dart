@@ -3,7 +3,6 @@ import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DropDown<T> extends StatelessWidget {
   const DropDown({
@@ -40,13 +39,13 @@ class DropDown<T> extends StatelessWidget {
                   if (isRequired)
                     AppText(
                       '*',
-                      style: context.textTheme.titleLarge!.copyWith(
+                      style: Styles.titleLarge.copyWith(
                         color: AppColors.red,
                       ),
                     ),
                   AppText(
                     hint,
-                    style: context.textTheme.titleMedium,
+                    style: Styles.titleMedium,
                   ),
                 ],
               ),
@@ -61,7 +60,7 @@ class DropDown<T> extends StatelessWidget {
               padding: Dimens.edgeInsetsR8,
             ),
             dropdownStyleData: DropdownStyleData(
-              offset: const Offset(0, -Dimens.eight),
+              offset: Offset(0, -Dimens.eight),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(Dimens.eight),
               ),
@@ -70,10 +69,10 @@ class DropDown<T> extends StatelessWidget {
               // scrollPadding: EdgeInsets.zero,
             ),
             iconStyleData: const IconStyleData(
-              icon: Icon(Icons.keyboard_arrow_down_rounded),
-              // icon: Icon(Icons.arrow_drop_down_rounded),
-              openMenuIcon: Icon(Icons.keyboard_arrow_up_rounded),
-              // openMenuIcon: Icon(Icons.arrow_drop_up_rounded),
+              icon: AppIcon(Icons.keyboard_arrow_down_rounded),
+              // icon: AppIcon(Icons.arrow_drop_down_rounded),
+              openMenuIcon: AppIcon(Icons.keyboard_arrow_up_rounded),
+              // openMenuIcon: AppIcon(Icons.arrow_drop_up_rounded),
             ),
             menuItemStyleData: MenuItemStyleData(
               height: Dimens.twentyEight,
@@ -87,16 +86,19 @@ class DropDown<T> extends StatelessWidget {
             ),
             isExpanded: true,
             isDense: true,
-            hint: Text((showTitle ? 'Select ' : '') + hint),
+            hint: AppText(
+              (showTitle ? 'Select ' : '') + hint,
+              style: Styles.bodyLarge,
+            ),
             underline: const SizedBox.shrink(),
             value: value,
             items: items
                 .map(
                   (e) => DropdownMenuItem<T>(
                     value: e,
-                    child: Text(
+                    child: AppText(
                       labelBuilder(e),
-                      style: context.textTheme.labelLarge,
+                      style: Styles.labelLarge,
                     ),
                   ),
                 )

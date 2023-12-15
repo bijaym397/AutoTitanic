@@ -2,20 +2,19 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ContactSection extends StatelessWidget {
   const ContactSection({super.key});
 
   @override
-  Widget build(BuildContext context) => const Padding(
+  Widget build(BuildContext context) => Padding(
         padding: Dimens.edgeInsets0_40,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Flexible(child: $ContactForm()),
+            const Flexible(child: $ContactForm()),
             Dimens.boxWidth32,
-            $TimingCard(),
+            const $TimingCard(),
           ],
         ),
       );
@@ -28,24 +27,24 @@ class $ContactForm extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Flexible(
+              const Flexible(
                 child: InputField(
                   hint: AppStrings.name,
                   isRequired: true,
                 ),
               ),
               Dimens.boxWidth16,
-              Flexible(
+              const Flexible(
                 child: InputField(
                   hint: AppStrings.email,
                   isRequired: true,
                 ),
               ),
               Dimens.boxWidth16,
-              Flexible(
+              const Flexible(
                 child: InputField(
                   hint: AppStrings.phone,
                   isRequired: true,
@@ -120,7 +119,7 @@ class $TimingTile extends StatelessWidget {
             Expanded(
               child: AppText(
                 day,
-                style: context.textTheme.bodyMedium!.copyWith(
+                style: Styles.bodyMedium.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),

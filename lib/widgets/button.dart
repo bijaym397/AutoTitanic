@@ -10,12 +10,22 @@ class Button extends StatelessWidget {
     required this.label,
     this.height,
     this.width,
+    this.hoverColor,
+    this.color,
+    this.textColor,
+    this.hoverTextColor,
+    this.makeResponsive = false,
   });
 
   final VoidCallback? onTap;
   final String label;
   final double? height;
   final double? width;
+  final Color? hoverColor;
+  final Color? color;
+  final Color? textColor;
+  final Color? hoverTextColor;
+  final bool makeResponsive;
 
   @override
   Widget build(BuildContext context) => ObxValue<RxBool>(
@@ -25,16 +35,16 @@ class Button extends StatelessWidget {
             isHovering.value = value;
           },
           child: AnimatedContainer(
-            height: height ?? Dimens.forty,
+            height: makeResponsive ? null : (height ?? Dimens.forty),
             width: width,
             decoration: BoxDecoration(
               color: isHovering.value
                   ? onTap == null
                       ? AppColors.grey
-                      : AppColors.black
+                      : hoverColor ?? AppColors.black
                   : onTap == null
                       ? AppColors.grey
-                      : AppColors.red,
+                      : color ?? AppColors.primary,
               borderRadius: BorderRadius.circular(Dimens.eight),
             ),
             duration: AppConstants.animationDuration,
@@ -43,8 +53,9 @@ class Button extends StatelessWidget {
             child: AppText(
               label,
               isSelectable: false,
-              style: context.textTheme.labelLarge!.copyWith(
-                color: onTap == null ? Colors.grey : AppColors.white,
+              style: Styles.labelLarge.copyWith(
+                color: onTap == null ? Colors.grey : (isHovering.value ? (hoverTextColor ?? AppColors.white) : (textColor ?? AppColors.white)),
+                overflow: TextOverflow.visible,
               ),
               textAlign: TextAlign.center,
             ),

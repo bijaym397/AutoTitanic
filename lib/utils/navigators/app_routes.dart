@@ -37,4 +37,6 @@ class AppRoutes {
   static const String sell = '/sell';
 
   static const String search = '/search';
+
+  static const String advanceSearch = '/advance-search';
 }

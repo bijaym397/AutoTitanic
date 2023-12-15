@@ -1,7 +1,7 @@
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AppText extends StatelessWidget {
   const AppText(
@@ -23,11 +23,14 @@ class AppText extends StatelessWidget {
           data,
           style: style,
           textAlign: textAlign,
+          semanticsLabel: data,
+          selectionControls: kIsWeb ? DesktopTextSelectionControls() : MaterialTextSelectionControls(),
         )
       : Text(
           data,
           style: style,
           textAlign: textAlign,
+          semanticsLabel: data,
         );
 }
 
@@ -51,7 +54,7 @@ class LinkText extends StatelessWidget {
         child: AppText(
           label,
           isSelectable: false,
-          style: (style ?? context.textTheme.bodyMedium)?.copyWith(
+          style: (style ?? Styles.bodyMedium).copyWith(
             color: color ?? AppColors.red,
             decoration: TextDecoration.underline,
             decorationColor: color ?? AppColors.red,

@@ -3,12 +3,10 @@ part of '../home_controller.dart';
 mixin SellVehicleMixin {
   HomeController get _controller => Get.find<HomeController>();
 
-  bool get isNextButtonEnabled => [
-        _controller.selectedVehicleCategory,
-        _controller.selectedCountry,
-        _controller.selectedState,
-        _controller.selectedSellerType
-      ].every((e) => e != null && e.toString().trim().isNotEmpty);
+  bool get isNextButtonEnabled =>
+      [_controller.selectedVehicleCategory, _controller.selectedCountry, _controller.selectedState]
+          .every((e) => e != null && e.toString().trim().isNotEmpty) &&
+      _controller.selectedImages.length > 5;
 
   void onChangeSellPage([bool fromLocationView = false]) {
     _controller.showLocationPage = fromLocationView;
@@ -27,11 +25,6 @@ mixin SellVehicleMixin {
 
   void onStateChanged(String? state) {
     _controller.selectedState = state ?? '';
-    _controller.update([SellVehicleLocationView.updateId]);
-  }
-
-  void onSellerTypeChange(SellerType? type) {
-    _controller.selectedSellerType = type;
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
@@ -126,7 +119,11 @@ mixin SellVehicleMixin {
     }
   }
 
-  void onDetailChanged(VehicleFilter filter, String? data) {
+  void onDetailChanged(
+    VehicleFilter filter, {
+    String? data,
+    required String updateId,
+  }) {
     switch (filter) {
       case VehicleFilter.condition:
         _controller.selectedCarCondition = data;
@@ -200,6 +197,6 @@ mixin SellVehicleMixin {
       case VehicleFilter.more:
         break;
     }
-    _controller.update([SellVehicleDetailsView.updateId]);
+    _controller.update([updateId]);
   }
 }

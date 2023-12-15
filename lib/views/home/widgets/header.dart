@@ -76,7 +76,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                           onHover: _closeOverlay,
                           child: IconButton(
                             onPressed: () {},
-                            icon: const Icon(
+                            icon: const AppIcon(
                               Icons.search_rounded,
                             ),
                           ),
@@ -84,7 +84,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                       if (Dimens.screenWidth < AppConstants.maxTabletWidth) ...[
                         TapHandler(
                           onTap: () {},
-                          child: const Icon(
+                          child: const AppIcon(
                             Icons.menu,
                           ),
                         ),
@@ -173,13 +173,13 @@ class $NavItem extends StatelessWidget {
                       AppText(
                         vehicle.label,
                         isSelectable: false,
-                        style: context.textTheme.labelSmall!.copyWith(
+                        style: Styles.labelSmall.copyWith(
                           color: color,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
                       if (vehicle.showIcon) ...[
-                        Icon(
+                        AppIcon(
                           Icons.keyboard_arrow_down_rounded,
                           color: color,
                           size: Dimens.sixteen,
@@ -208,7 +208,7 @@ class $NavDialog extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppColors.white,
           border: Border.all(color: Colors.grey, width: 0.1).withSide(
-            top: const BorderSide(
+            top: BorderSide(
               color: AppColors.red,
               width: Dimens.six,
             ),
@@ -253,7 +253,7 @@ class $NavDialog extends StatelessWidget {
                     child: AppText(
                       item.getLabel(vehicle),
                       isSelectable: false,
-                      style: context.textTheme.bodySmall!.copyWith(
+                      style: Styles.bodySmall.copyWith(
                         fontWeight: FontWeight.bold,
                         color: color,
                       ),
@@ -286,13 +286,13 @@ class $SignInButton extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(
+              const AppIcon(
                 Icons.account_circle_outlined,
               ),
               AppText(
                 'Sign In',
                 isSelectable: false,
-                style: context.textTheme.labelMedium,
+                style: Styles.labelMedium,
               ),
             ],
           ),

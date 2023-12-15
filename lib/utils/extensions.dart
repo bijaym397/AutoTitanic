@@ -388,3 +388,14 @@ extension VehicleFilterExtension on VehicleFilter {
     }
   }
 }
+
+extension AdvanceSearchExtension on AdvanceSearchType {
+  String label(Vehicle vehicle) {
+    switch (this) {
+      case AdvanceSearchType.allVehicle:
+        return 'All ${vehicle.label}';
+      case AdvanceSearchType.newVehicle:
+        return 'New ${vehicle.label}';
+    }
+  }
+}

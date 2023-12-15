@@ -18,19 +18,11 @@ class SellVehicleDetailsView extends StatelessWidget {
           children: [
             AppText(
               'Title',
-              style: context.textTheme.headlineSmall,
+              style: Styles.headlineSmall,
             ),
-            const Padding(
+            Padding(
               padding: Dimens.edgeInsets20,
-              child: _DropdownDetailsSection(),
-            ),
-            AppText(
-              'Images',
-              style: context.textTheme.headlineSmall,
-            ),
-            const Padding(
-              padding: Dimens.edgeInsets20,
-              child: _ImageSection(),
+              child: const _DropdownDetailsSection(),
             ),
           ],
         ),
@@ -57,7 +49,7 @@ class _DropdownDetailsSection extends StatelessWidget {
               padding: Dimens.edgeInsets4,
               child: AppText(
                 AppStrings.sellVehicleTitleDescription,
-                style: context.textTheme.labelLarge!.copyWith(
+                style: Styles.labelLarge.copyWith(
                   color: Colors.grey,
                 ),
               ),
@@ -77,7 +69,7 @@ class _DropdownDetailsSection extends StatelessWidget {
               shrinkWrap: true,
               padding: Dimens.edgeInsets0_40,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 crossAxisSpacing: Dimens.thirtyTwo,
                 mainAxisSpacing: Dimens.sixteen,
                 maxCrossAxisExtent: Dimens.threeHundred,
@@ -101,7 +93,11 @@ class _DropdownDetailsSection extends StatelessWidget {
                   isRequired: true,
                   showTitle: true,
                   value: controller.sellDetailsValue(filter),
-                  onChanged: (data) => controller.onDetailChanged(filter, data),
+                  onChanged: (data) => controller.onDetailChanged(
+                    filter,
+                    data: data,
+                    updateId: SellVehicleDetailsView.updateId,
+                  ),
                 );
               },
             ),
@@ -117,23 +113,5 @@ class _DropdownDetailsSection extends StatelessWidget {
             )
           ],
         ),
-      );
-}
-
-class _ImageSection extends StatelessWidget {
-  const _ImageSection();
-
-  @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          const AppText('images'),
-          Button(
-            label: 'Choose Files',
-            onTap: () async {
-              var file = await FileManager.pickImages();
-              AppLog(file);
-            },
-          ),
-        ],
       );
 }

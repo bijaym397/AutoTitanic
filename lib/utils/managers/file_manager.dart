@@ -1,6 +1,8 @@
+import 'dart:async';
+
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:image_picker/image_picker.dart';
 
 class FileManager {
   const FileManager._();
@@ -21,19 +23,32 @@ class FileManager {
   //   }
   // }
 
-  static Future<List<XFile>> pickImages() async {
-    var file = await FilePicker.platform.pickFiles(
+  static Future<List<PlatformFile>> pickImages() async {
+    var largeImage = false;
+    var result = await FilePicker.platform.pickFiles(
       allowMultiple: true,
       type: FileType.image,
       withData: true,
     );
-    if (file == null || file.files.isEmpty) {
+    if (result == null || result.files.isEmpty) {
       return [];
     }
     try {
-      var files = <XFile>[];
-      for (var image in file.files) {
-        files.add(XFile.fromData(image.bytes!));
+      var files = <PlatformFile>[];
+      for (var file in result.files) {
+        var isAllowed = isUnderSize(bytes: file.bytes?.length ?? 0);
+        if (isAllowed) {
+          files.add(file);
+        } else {
+          largeImage = true;
+        }
+      }
+      if (largeImage) {
+        unawaited(Utility.showAlertDialog(
+          ResponseModel.message(
+            '1 or more selected images exceed maximum size limit',
+          ),
+        ));
       }
       return files;
     } catch (e, st) {
@@ -41,4 +56,10 @@ class FileManager {
       return [];
     }
   }
+
+  static bool isUnderSize({
+    required int bytes,
+    double limit = 5.0,
+  }) =>
+      bytes < (limit * 1048576);
 }

@@ -20,7 +20,7 @@ class CarsCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: Dimens.edgeInsets0_20.copyWith(
+        padding: Dimens.edgeInsets0_16.copyWith(
           top: isFirst ? Dimens.eight : null,
         ),
         child: ObxValue<RxBool>(
@@ -43,7 +43,7 @@ class CarsCarousel extends StatelessWidget {
                   carouselController: controller,
                   options: CarouselOptions(
                     autoPlay: true,
-                    height: Dimens.fourHundred,
+                    height: AppConstants.carouselHeight,
                     scrollDirection: Axis.horizontal,
                     enableInfiniteScroll: true,
                     viewportFraction: 1,
@@ -59,7 +59,7 @@ class CarsCarousel extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ...List.generate(
-                          AppConstants.carsPerItem,
+                          AppConstants.vehiclesPerItem,
                           (j) => CarCard(
                             image: carouselList[i][j],
                           ),
@@ -115,7 +115,7 @@ class $CarouselMoveButton extends StatelessWidget {
                 border: Border.all(color: AppColors.grey),
                 boxShadow: [
                   BoxShadow(
-                    offset: const Offset(Dimens.two, Dimens.two),
+                    offset: Offset(Dimens.two, Dimens.two),
                     color: Colors.grey.shade300,
                     blurRadius: Dimens.eight,
                     spreadRadius: Dimens.two,
@@ -125,7 +125,7 @@ class $CarouselMoveButton extends StatelessWidget {
               child: SizedBox(
                 height: Dimens.forty,
                 width: Dimens.forty,
-                child: Icon(
+                child: AppIcon(
                   isPreviousIcon ? Icons.chevron_left_rounded : Icons.chevron_right_rounded,
                   color: AppColors.red,
                 ),

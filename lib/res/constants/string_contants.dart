@@ -119,6 +119,12 @@ class AppStrings {
   static const String irelandAdverts = 'N.Ireland adverts only';
 
   static const String sellVehicleTitleDescription = 'If the title is not entered then it will be auto-generated using Year, Make, and Model.';
+
+  static const String advanceSearch = 'Advance Search';
+
+  static const String imageSubtitle = 'Add at least 5 and maximum 20 images';
+
+  static const String selectImageDescription = 'First picture - is the title picture.\nSupported formats are .jpg, .webp and .png, 5MB max each';
 }
 
 class StringData {

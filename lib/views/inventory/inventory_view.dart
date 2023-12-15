@@ -28,18 +28,50 @@ class InventoryView extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: GetBuilder<InventoryController>(
-                  builder: (controller) => ListView.separated(
-                    itemCount: 12,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    separatorBuilder: (_, __) => Dimens.boxHeight32,
-                    itemBuilder: (_, index) => _InventoryCard(controller.inventory),
+                  builder: (controller) => Column(
+                    children: [
+                      const PaginationRow(),
+                      ListView.separated(
+                        itemCount: 12,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: Dimens.edgeInsets0_20,
+                        separatorBuilder: (_, __) => Dimens.boxHeight32,
+                        itemBuilder: (_, index) => _InventoryCard(controller.inventory),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ],
           ),
         ),
+      );
+}
+
+class PaginationRow extends StatelessWidget {
+  const PaginationRow({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: [
+          AppIconButton(
+            icon: Icons.chevron_left_rounded,
+            onTap: () {},
+          ),
+          Dimens.boxWidth8,
+          AppIconButton(
+            icon: Icons.chevron_right_rounded,
+            onTap: () {},
+          ),
+          const Spacer(),
+          AppText(
+            'Sort',
+            style: Styles.bodyMedium,
+          ),
+        ],
       );
 }
 

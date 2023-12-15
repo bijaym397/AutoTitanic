@@ -50,7 +50,7 @@ class $LinkColumn extends StatelessWidget {
                       child: AppText(
                         '>> ${e.label}',
                         isSelectable: false,
-                        style: context.textTheme.labelMedium!.copyWith(
+                        style: Styles.labelMedium.copyWith(
                           fontWeight: FontWeight.w600,
                           color: isHovering.value ? AppColors.primary : null,
                         ),

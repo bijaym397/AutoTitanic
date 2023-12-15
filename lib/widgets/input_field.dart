@@ -3,7 +3,6 @@ import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 class InputField extends StatelessWidget {
   const InputField({
@@ -45,13 +44,13 @@ class InputField extends StatelessWidget {
                   if (isRequired)
                     AppText(
                       '*',
-                      style: context.textTheme.titleLarge!.copyWith(
+                      style: Styles.titleLarge.copyWith(
                         color: AppColors.red,
                       ),
                     ),
                   AppText(
                     _label,
-                    style: context.textTheme.titleMedium,
+                    style: Styles.titleMedium,
                   ),
                 ],
               ),
@@ -69,12 +68,18 @@ class InputField extends StatelessWidget {
                     : isRequired && !showLabel
                         ? '*$_hint'
                         : _hint,
+                hintStyle: Styles.bodyMedium,
+                hintMaxLines: 1,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(Dimens.eight),
                 ),
                 isDense: true,
+                contentPadding: Dimens.edgeInsets16_12,
               ),
+              cursorHeight: Dimens.sixteen,
+              cursorWidth: Dimens.two,
+              canRequestFocus: true,
               onChanged: onChanged,
               minLines: minLines,
               maxLines: maxLines ?? 1,

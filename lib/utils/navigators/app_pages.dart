@@ -173,5 +173,11 @@ class AppPages {
       binding: InventoryBinding(),
       transition: transition,
     ),
+    GetPage<AdvanceSearchView>(
+      name: AppRoutes.advanceSearch,
+      page: AdvanceSearchView.new,
+      binding: HomeBinding(),
+      transition: transition,
+    ),
   ];
 }

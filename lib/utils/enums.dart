@@ -181,6 +181,24 @@ enum VehicleFilter {
     list.removeWhere((e) => removables.any((r) => e == r));
     return list;
   }
+
+  static List<VehicleFilter> get advanceFilters {
+    var list = [...VehicleFilter.values];
+    var removables = [
+      VehicleFilter.condition,
+      VehicleFilter.bodyStyle,
+      VehicleFilter.price,
+      VehicleFilter.enginePower,
+      VehicleFilter.privateAndTrade,
+      VehicleFilter.annualTax,
+      VehicleFilter.drivetrain,
+      VehicleFilter.insuranceGroup,
+      VehicleFilter.keywords,
+      VehicleFilter.more,
+    ];
+    list.removeWhere((e) => removables.any((r) => e == r));
+    return list;
+  }
 }
 
 enum SellerType {
@@ -225,4 +243,9 @@ enum FuelType {
   const FuelType(this.value, this.label);
   final int value;
   final String label;
+}
+
+enum AdvanceSearchType {
+  allVehicle,
+  newVehicle;
 }

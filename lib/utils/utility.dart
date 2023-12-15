@@ -128,6 +128,7 @@ class Utility {
             isDefaultAction: true,
             child: const AppText(
               'Okay',
+              isSelectable: false,
               // style: Styles.black16,
             ),
           ),

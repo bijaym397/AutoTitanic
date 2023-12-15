@@ -1,5 +1,6 @@
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:csc_picker/csc_picker.dart';
+import 'package:get/get.dart';
 
 /// `AppConstants` is a singleton class with all static variables.
 ///
@@ -16,14 +17,58 @@ class AppConstants {
 
   static const Duration fastAnimationDuration = Duration(milliseconds: 200);
 
-  static const double maxMobileWidth = 150;
-  static const double maxTabletWidth = 280;
-  static const double maxDesktopWidth = 375;
+  static const int maxFileSize = 5; // MB
+  static const int bytesToMegaBytes = 1048576;
+  static const int maxFileSizeInBytes = 5242880;
+
+  static const double maxMobileWidth = 690;
+  static const double maxTabletWidth = 1152;
+  static const double maxDesktopWidth = 1560;
+  static const double maxLargeDesktopWidth = 2290;
+  static const double maxExtraLargeDesktopWidth = 3000;
 
   static const int featuredCarsCount = 6;
   static const int recentCarsCount = 12;
   static const int carouselItemCount = 3;
-  static const int carsPerItem = 4;
+  static const int maxVehiclePerItem = 6;
+
+  static double get carouselHeight {
+    if (Get.width < maxMobileWidth) {
+      return 365;
+    }
+    if (Get.width < maxTabletWidth) {
+      return 370;
+    }
+    if (Get.width < maxDesktopWidth) {
+      return 385;
+    }
+    if (Get.width < maxLargeDesktopWidth) {
+      return 400;
+    }
+    if (Get.width < maxExtraLargeDesktopWidth) {
+      return 415;
+    }
+    return 430;
+  }
+
+  static int get vehiclesPerItem {
+    if (Get.width < maxMobileWidth) {
+      return 1;
+    }
+    if (Get.width < maxTabletWidth) {
+      return 2;
+    }
+    if (Get.width < maxDesktopWidth) {
+      return 3;
+    }
+    if (Get.width < maxLargeDesktopWidth) {
+      return 4;
+    }
+    if (Get.width < maxExtraLargeDesktopWidth) {
+      return 5;
+    }
+    return 6;
+  }
 
   static List<String> carConditions = HoverItem.selectableValues.map((e) => e.prefix).toList();
 

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 class SellMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
-    AppLog(route);
     var paths = route!.split('/');
     var endpoint = paths.last;
     if (AppRoutes.sell.contains(endpoint)) {

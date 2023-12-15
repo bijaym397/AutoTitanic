@@ -2,7 +2,6 @@ import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -22,7 +21,7 @@ class FilterSection extends StatelessWidget {
         child: SizedBox(
           width: Dimens.screenWidth,
           child: Stack(
-            alignment: Alignment.center,
+            alignment: Alignment.centerLeft,
             children: [
               Image.asset(
                 AssetConstants.homeTopBg,
@@ -31,7 +30,10 @@ class FilterSection extends StatelessWidget {
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
               ),
-              $FilterCard(onTap: onTap),
+              Positioned(
+                left: Dimens.fortyEight,
+                child: $FilterCard(onTap: onTap),
+              ),
             ],
           ),
         ),
@@ -60,19 +62,12 @@ class $FilterCard extends StatelessWidget {
               children: [
                 AppText(
                   '${AppStrings.findYour} ${(Get.find<HomeController>().selectedVehicle ?? Vehicle.cars).label}',
-                  style: context.textTheme.titleLarge!.copyWith(
+                  style: Styles.titleLarge.copyWith(
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Dimens.boxHeight10,
-                CSCPicker(
-                  showStates: false,
-                  dropdownDecoration: BoxDecoration(
-                    color: AppColors.grey,
-                    borderRadius: BorderRadius.circular(Dimens.eight),
-                  ),
-                  countryFilter: AppConstants.allowedCountries,
-                ),
+                const CountryPicker(),
                 Row(
                   children: [
                     Flexible(
@@ -130,9 +125,9 @@ class $FilterCard extends StatelessWidget {
                       AppStrings.resetFilters,
                       onTap: () {},
                     ),
-                    LinkText(
+                    const LinkText(
                       AppStrings.moreOptions,
-                      onTap: () {},
+                      onTap: RouteManagement.goToAdvanceSearch,
                     ),
                   ],
                 ),

@@ -46,7 +46,10 @@ class DropDownExpandedFilter<T> extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(filter.first),
+                  child: Text(
+                    filter.first,
+                    style: Styles.labelLarge,
+                  ),
                 ),
                 Expanded(
                   flex: 7,
@@ -64,7 +67,10 @@ class DropDownExpandedFilter<T> extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 2,
-                  child: Text(filter.last),
+                  child: Text(
+                    filter.last,
+                    style: Styles.labelLarge,
+                  ),
                 ),
                 Expanded(
                   flex: 7,
@@ -108,7 +114,10 @@ class FilterToggleButtons extends StatelessWidget {
             .map(
               (e) => Padding(
                 padding: Dimens.edgeInsets8_4,
-                child: Text(e),
+                child: Text(
+                  e,
+                  style: Styles.bodyMedium,
+                ),
               ),
             )
             .toList(),
