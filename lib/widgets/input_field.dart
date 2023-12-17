@@ -10,6 +10,7 @@ class InputField extends StatelessWidget {
     this.controller,
     String? label,
     this.showLabel = false,
+    this.floatingLabel = false,
     this.isRequired = false,
     String hint = '',
     this.minLines,
@@ -27,6 +28,7 @@ class InputField extends StatelessWidget {
   final int? maxLines;
   final String _label;
   final bool showLabel;
+  final bool floatingLabel;
   final void Function(String?)? onChanged;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
@@ -36,7 +38,7 @@ class InputField extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (showLabel)
+          if (!floatingLabel && showLabel)
             Padding(
               padding: Dimens.edgeInsets4,
               child: Row(
@@ -68,6 +70,8 @@ class InputField extends StatelessWidget {
                     : isRequired && !showLabel
                         ? '*$_hint'
                         : _hint,
+                labelText: showLabel && floatingLabel ? _label : null,
+                labelStyle: Styles.bodyMedium,
                 hintStyle: Styles.bodyMedium,
                 hintMaxLines: 1,
                 border: OutlineInputBorder(

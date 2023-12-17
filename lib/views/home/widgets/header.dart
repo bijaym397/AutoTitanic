@@ -81,7 +81,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                         ),
-                      if (Dimens.screenWidth < AppConstants.maxTabletWidth) ...[
+                      if (Dimens.screenWidth < AppConstants.maxMobileWidth) ...[
                         TapHandler(
                           onTap: () {},
                           child: const AppIcon(

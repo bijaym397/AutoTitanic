@@ -21,9 +21,11 @@ class AppConstants {
   static const int bytesToMegaBytes = 1048576;
   static const int maxFileSizeInBytes = 5242880;
 
+  static const double carCardAspectRatio = 1 / 1.25;
+
   static const double maxMobileWidth = 690;
   static const double maxTabletWidth = 1152;
-  static const double maxDesktopWidth = 1560;
+  static const double maxDesktopWidth = 1900;
   static const double maxLargeDesktopWidth = 2290;
   static const double maxExtraLargeDesktopWidth = 3000;
 
@@ -32,24 +34,25 @@ class AppConstants {
   static const int carouselItemCount = 3;
   static const int maxVehiclePerItem = 6;
 
-  static double get carouselHeight {
-    if (Get.width < maxMobileWidth) {
-      return 365;
-    }
-    if (Get.width < maxTabletWidth) {
-      return 370;
-    }
-    if (Get.width < maxDesktopWidth) {
-      return 385;
-    }
-    if (Get.width < maxLargeDesktopWidth) {
-      return 400;
-    }
-    if (Get.width < maxExtraLargeDesktopWidth) {
-      return 415;
-    }
-    return 430;
-  }
+  static double get carouselHeight => 400;
+  // static double get carouselHeight {
+  //   if (Get.width < maxMobileWidth) {
+  //     return 365;
+  //   }
+  //   if (Get.width < maxTabletWidth) {
+  //     return 370;
+  //   }
+  //   if (Get.width < maxDesktopWidth) {
+  //     return 385;
+  //   }
+  //   if (Get.width < maxLargeDesktopWidth) {
+  //     return 400;
+  //   }
+  //   if (Get.width < maxExtraLargeDesktopWidth) {
+  //     return 415;
+  //   }
+  //   return 430;
+  // }
 
   static int get vehiclesPerItem {
     if (Get.width < maxMobileWidth) {

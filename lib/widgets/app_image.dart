@@ -14,6 +14,7 @@ class AppImage extends StatelessWidget {
     this.isNetworkImage = true,
     super.key,
     this.radius,
+    this.fit,
   })  : assert(imageUrl != null || bytes != null),
         _name = name ?? 'C',
         _isProfileImage = false,
@@ -27,6 +28,7 @@ class AppImage extends StatelessWidget {
     this.isNetworkImage = true,
     super.key,
     this.radius,
+    this.fit,
   })  : assert(imageUrl != null || bytes != null),
         assert(dimensions != null, 'Dimensions cannot be null'),
         _name = name ?? 'U',
@@ -42,6 +44,7 @@ class AppImage extends StatelessWidget {
   final String _name;
   final bool _isProfileImage;
   final bool _isMemoryImage;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) => _isMemoryImage
@@ -50,6 +53,7 @@ class AppImage extends StatelessWidget {
           name: _name,
           dimension: dimensions,
           radius: radius,
+          fit: fit,
         )
       : isNetworkImage
           ? _NetworkImage(
@@ -58,12 +62,14 @@ class AppImage extends StatelessWidget {
               name: _name,
               dimension: dimensions,
               radius: radius,
+              fit: fit,
             )
           : _AssetImage(
               imageUrl: imageUrl!,
               name: _name,
               dimension: dimensions,
               radius: radius,
+              fit: fit,
             );
 }
 
@@ -73,19 +79,21 @@ class _AssetImage extends StatelessWidget {
     required this.name,
     this.dimension,
     this.radius,
+    this.fit,
   });
 
   final String imageUrl;
   final String name;
   final double? dimension;
   final double? radius;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) {
     try {
       return Image.asset(
         imageUrl,
-        fit: BoxFit.cover,
+        fit: fit ?? BoxFit.cover,
         height: double.maxFinite,
         width: double.maxFinite,
       );
@@ -113,12 +121,14 @@ class _MemeroyImage extends StatelessWidget {
     required this.name,
     this.dimension,
     this.radius,
+    this.fit,
   });
 
   final Uint8List bytes;
   final String name;
   final double? dimension;
   final double? radius;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) => bytes.isEmpty
@@ -144,7 +154,7 @@ class _MemeroyImage extends StatelessWidget {
             width: dimension,
             cacheHeight: dimension?.toInt(),
             cacheWidth: dimension?.toInt(),
-            fit: BoxFit.cover,
+            fit: fit ?? BoxFit.cover,
           ),
         );
 }
@@ -156,6 +166,7 @@ class _NetworkImage extends StatelessWidget {
     required String name,
     required this.dimension,
     this.radius,
+    this.fit,
   })  : _isProfileImage = isProfileImage,
         _name = name;
 
@@ -164,17 +175,21 @@ class _NetworkImage extends StatelessWidget {
   final String _name;
   final double? dimension;
   final double? radius;
+  final BoxFit? fit;
 
   @override
   Widget build(BuildContext context) => CachedNetworkImage(
         imageUrl: imageUrl,
-        fit: BoxFit.cover,
+        fit: fit ?? BoxFit.cover,
         alignment: Alignment.center,
         cacheKey: imageUrl,
         imageBuilder: (_, image) {
           try {
             if (imageUrl.isEmpty) {
-              return _ErrorImage(isProfileImage: _isProfileImage, name: _name);
+              return _ErrorImage(
+                isProfileImage: _isProfileImage,
+                name: _name,
+              );
             }
             return Container(
               decoration: BoxDecoration(
@@ -206,7 +221,10 @@ class _NetworkImage extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(),
                 ),
         ),
-        errorWidget: (context, url, error) => _ErrorImage(isProfileImage: _isProfileImage, name: _name),
+        errorWidget: (context, url, error) => _ErrorImage(
+          isProfileImage: _isProfileImage,
+          name: _name,
+        ),
       );
 }
 

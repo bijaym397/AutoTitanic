@@ -47,7 +47,17 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
   AdvanceSearchType get selectedAdvanceSearchType => _selectedAdvanceSearchType.value;
   set selectedAdvanceSearchType(AdvanceSearchType value) => _selectedAdvanceSearchType.value = value;
 
+  var debouncer = Debouncer();
+
   // -------------------- Sell Variables -----------------
+
+  var imageScrollController = ScrollController();
+
+  var vehicleVideoTEC = TextEditingController();
+
+  final RxBool _isLinkValid = false.obs;
+  bool get isLinkValid => _isLinkValid.value;
+  set isLinkValid(bool value) => _isLinkValid.value = value;
 
   bool showLocationPage = true;
 
@@ -249,6 +259,14 @@ class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin 
   ];
 
   // ================= FUNCTIONS ===================
+
+  void animateToLast() {
+    imageScrollController.animateTo(
+      imageScrollController.position.maxScrollExtent,
+      duration: AppConstants.animationDuration,
+      curve: Curves.easeInOut,
+    );
+  }
 
   void goToVehicleListing(Vehicle vehicle, HoverItem hoverItem) {
     Utility.updateLater(() {

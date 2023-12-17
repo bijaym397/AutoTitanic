@@ -17,117 +17,120 @@ class CarCard extends StatelessWidget {
         child: ColoredBox(
           key: key,
           color: Colors.white,
-          child: AspectRatio(
-            aspectRatio: 2 / 3,
-            child: ObxValue<RxBool>(
-              (isHovering) => TapHandler(
-                onHover: (value) {
-                  isHovering.value = value;
-                },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AspectRatio(
-                      aspectRatio: 3 / 2,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(Dimens.twelve),
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              image,
-                              fit: BoxFit.cover,
-                              width: double.maxFinite,
-                            ),
-                            if (isHovering.value)
-                              DecoratedBox(
-                                decoration: const BoxDecoration(
-                                  color: Colors.black12,
-                                ),
-                                child: Align(
-                                  alignment: Alignment.center,
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      const $CardHoverIcon(Icons.link_rounded),
-                                      const $CardHoverIcon(Icons.sync_alt_rounded),
-                                      $CardHoverIcon(
-                                        Icons.fullscreen_rounded,
-                                        onTap: () => Get.dialog(
-                                          FullScreenDialog(
-                                            images: [image],
+          child: SizedBox(
+            height: AppConstants.carouselHeight,
+            child: AspectRatio(
+              aspectRatio: AppConstants.carCardAspectRatio,
+              child: ObxValue<RxBool>(
+                (isHovering) => TapHandler(
+                  onHover: (value) {
+                    isHovering.value = value;
+                  },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AspectRatio(
+                        aspectRatio: 3 / 2,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(Dimens.twelve),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                image,
+                                fit: BoxFit.cover,
+                                width: double.maxFinite,
+                              ),
+                              if (isHovering.value)
+                                DecoratedBox(
+                                  decoration: const BoxDecoration(
+                                    color: Colors.black12,
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const $CardHoverIcon(Icons.link_rounded),
+                                        const $CardHoverIcon(Icons.sync_alt_rounded),
+                                        $CardHoverIcon(
+                                          Icons.fullscreen_rounded,
+                                          onTap: () => Get.dialog(
+                                            FullScreenDialog(
+                                              images: [image],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Dimens.boxHeight10,
-                    Padding(
-                      padding: Dimens.edgeInsets12,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          AppText(
-                            '2023 | Car Derived Van | Manual | 89',
-                            style: Styles.bodyLarge,
-                          ),
-                          Dimens.boxHeight4,
-                          AppText(
-                            'BMW 3 SERIES',
-                            style: Styles.bodyMedium.copyWith(
-                              color: AppColors.red,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                          Dimens.boxHeight4,
-                          Chip(
-                            label: AppText(
-                              'Private',
-                              style: Styles.bodySmall,
-                            ),
-                            color: MaterialStateProperty.all(Colors.grey.shade300),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(Dimens.eighty),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Spacer(),
-                    ColoredBox(
-                      color: AppColors.accent,
-                      child: Padding(
-                        padding: Dimens.edgeInsets12,
-                        child: DefaultTextStyle(
-                          style: Styles.bodyMedium.copyWith(
-                            color: Colors.white,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              AppText(
-                                'R50,000,000',
-                                style: Styles.bodyLarge,
-                              ),
-                              AppText(
-                                'Nigeria',
-                                style: Styles.bodyLarge,
-                              ),
                             ],
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                      Dimens.boxHeight10,
+                      Padding(
+                        padding: Dimens.edgeInsets12,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            AppText(
+                              '2023 | Car Derived Van | Manual | 89',
+                              style: Styles.bodyLarge,
+                            ),
+                            Dimens.boxHeight4,
+                            AppText(
+                              'BMW 3 SERIES',
+                              style: Styles.bodyMedium.copyWith(
+                                color: AppColors.red,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            Dimens.boxHeight4,
+                            Chip(
+                              label: AppText(
+                                'Private',
+                                style: Styles.bodySmall,
+                              ),
+                              color: MaterialStateProperty.all(Colors.grey.shade300),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(Dimens.eighty),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const Spacer(),
+                      ColoredBox(
+                        color: AppColors.accent,
+                        child: Padding(
+                          padding: Dimens.edgeInsets12,
+                          child: DefaultTextStyle(
+                            style: Styles.bodyMedium.copyWith(
+                              color: Colors.white,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                AppText(
+                                  'R50,000,000',
+                                  style: Styles.bodyLarge,
+                                ),
+                                AppText(
+                                  'Nigeria',
+                                  style: Styles.bodyLarge,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                false.obs,
               ),
-              false.obs,
             ),
           ),
         ),
