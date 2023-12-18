@@ -27,11 +27,10 @@ class BrandCard extends StatelessWidget {
               child: GetBuilder<HomeController>(
                 builder: (controller) => GridView.builder(
                   itemCount: controller.brandsList.length,
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
                   padding: Dimens.edgeInsets10,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: Dimens.twoHundredFifty,
+                    // mainAxisExtent: Dimens.hundred,
                     childAspectRatio: 2.5 / 1,
                     crossAxisSpacing: Dimens.sixteen,
                     mainAxisSpacing: Dimens.sixteen,

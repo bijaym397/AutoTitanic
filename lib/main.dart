@@ -40,7 +40,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
-        designSize: const Size(1920, 1200),
+        designSize: context.isWeb ? const Size(1920, 1200) : const Size(414, 896),
         ensureScreenSize: true,
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,

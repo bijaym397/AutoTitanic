@@ -17,37 +17,35 @@ class SocialCard extends StatelessWidget {
   Widget build(BuildContext context) => GetX<CommonController>(
         builder: (controller) {
           var isSelected = controller.selectedSocial == social;
-          return Expanded(
-            child: TapHandler(
-              onHover: (isHovering) {
-                if (isHovering) {
-                  controller.selectedSocial = social;
-                } else {
-                  controller.selectedSocial = null;
-                }
-              },
-              child: AnimatedContainer(
-                key: ValueKey('Social-${social.name}'),
-                duration: AppConstants.animationDuration,
-                color: isSelected ? social.color : null,
-                padding: Dimens.edgeInsets12,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AppText(
-                      social.label,
-                      isSelectable: false,
-                      style: Styles.bodyLarge.copyWith(
-                        color: isSelected ? AppColors.white : AppColors.black,
-                      ),
+          return TapHandler(
+            onHover: (isHovering) {
+              if (isHovering) {
+                controller.selectedSocial = social;
+              } else {
+                controller.selectedSocial = null;
+              }
+            },
+            child: AnimatedContainer(
+              key: ValueKey('Social-${social.name}'),
+              duration: AppConstants.animationDuration,
+              color: isSelected ? social.color : null,
+              padding: Dimens.edgeInsets12,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AppText(
+                    social.label,
+                    isSelectable: false,
+                    style: Styles.bodyLarge.copyWith(
+                      color: isSelected ? AppColors.white : AppColors.black,
                     ),
-                    SvgImage(
-                      social.icon,
-                      dimensions: Dimens.forty,
-                      color: isSelected ? AppColors.white : Colors.grey,
-                    ),
-                  ],
-                ),
+                  ),
+                  SvgImage(
+                    social.icon,
+                    dimensions: Dimens.forty,
+                    color: isSelected ? AppColors.white : Colors.grey,
+                  ),
+                ],
               ),
             ),
           );

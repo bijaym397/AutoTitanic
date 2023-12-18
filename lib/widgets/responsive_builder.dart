@@ -16,15 +16,15 @@ class ResponsiveBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-      key: key,
-      builder: (ctx, constraints) {
-        if (constraints.maxWidth <= AppConstants.maxMobileWidth) {
-          return (mobile ?? desktop).call(ctx, constraints);
-        }
-        if (constraints.maxWidth <= AppConstants.maxTabletWidth) {
-          return (tablet ?? mobile ?? desktop).call(ctx, constraints);
-        }
-        return desktop(ctx, constraints);
-      },
-    );
+        key: key,
+        builder: (ctx, constraints) {
+          if (constraints.maxWidth <= AppConstants.maxMobileWidth) {
+            return (mobile ?? desktop).call(ctx, constraints);
+          }
+          if (constraints.maxWidth <= AppConstants.maxTabletWidth) {
+            return (tablet ?? mobile ?? desktop).call(ctx, constraints);
+          }
+          return desktop(ctx, constraints);
+        },
+      );
 }

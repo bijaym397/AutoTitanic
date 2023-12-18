@@ -24,8 +24,7 @@ class ResponseModel {
         statusCode: map['statusCode'] != null ? map['statusCode'] as int : null,
       );
 
-  factory ResponseModel.fromJson(String source) =>
-      ResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory ResponseModel.fromJson(String source) => ResponseModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   final String data;
   final bool hasError;
@@ -51,16 +50,13 @@ class ResponseModel {
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() =>
-      'ResponseModel(data: $data, hasError: $hasError, statusCode: $statusCode)';
+  String toString() => 'ResponseModel(data: $data, hasError: $hasError, statusCode: $statusCode)';
 
   @override
   bool operator ==(covariant ResponseModel other) {
     if (identical(this, other)) return true;
 
-    return other.data == data &&
-        other.hasError == hasError &&
-        other.statusCode == statusCode;
+    return other.data == data && other.hasError == hasError && other.statusCode == statusCode;
   }
 
   @override

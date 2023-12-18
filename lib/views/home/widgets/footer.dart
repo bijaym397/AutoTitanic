@@ -8,10 +8,10 @@ import 'package:get/get.dart';
 class DashboardFooter extends StatelessWidget {
   const DashboardFooter({
     super.key,
-    this.showSubcribeCard = false,
+    // this.showSubcribeCard = false,
   });
 
-  final bool showSubcribeCard;
+  // final bool showSubcribeCard;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -25,15 +25,16 @@ class DashboardFooter extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (showSubcribeCard) ...[
-                    const SubscribeCard(),
-                    Dimens.boxHeight2,
-                  ],
-                  Padding(
+                  GridView.builder(
                     padding: Dimens.edgeInsets16_0,
-                    child: Row(
-                      children: Social.values.map<Widget>(SocialCard.new).toList(),
+                    itemCount: Social.values.length,
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: Dimens.threeFifty,
+                      mainAxisExtent: Dimens.sixtyFour,
                     ),
+                    itemBuilder: (_, index) => SocialCard(Social.values[index]),
                   ),
                   Divider(
                     height: 1,

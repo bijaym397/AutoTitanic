@@ -19,19 +19,20 @@ class FilterSection extends StatelessWidget {
         color: AppColors.white,
         alignment: Alignment.center,
         child: SizedBox(
-          width: Dimens.screenWidth,
+          width: context.isMobile ? Get.width : Dimens.screenWidth,
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
               Image.asset(
                 AssetConstants.homeTopBg,
                 height: 0.4.ph,
-                width: Dimens.screenWidth,
+                width: context.isMobile ? Get.width : Dimens.screenWidth,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
               ),
               Positioned(
-                left: Dimens.fortyEight,
+                left: context.isMobile ? 0.05.pw : Dimens.fortyEight,
+                right: context.isMobile ? 0.05.pw : null,
                 child: $FilterCard(onTap: onTap),
               ),
             ],
@@ -50,7 +51,11 @@ class $FilterCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        width: 0.25.pw,
+        width: context.isWeb
+            ? 0.25.pw
+            : context.isMobile
+                ? 0.9.pw
+                : 0.6.pw,
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: Colors.white,

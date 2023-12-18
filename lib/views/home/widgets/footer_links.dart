@@ -1,6 +1,7 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,10 +15,23 @@ class FooterLinks extends StatelessWidget {
           padding: Dimens.edgeInsets0_16,
           child: Row(
             children: [
-              Expanded(child: $LinkColumn(links: controller.footer1)),
-              Expanded(child: $LinkColumn(links: controller.footer2)),
-              const Expanded(child: Dimens.box0),
-              const Expanded(child: Dimens.box0),
+              if (context.isMobile) ...[
+                Expanded(
+                  child: $LinkColumn(
+                    links: [
+                      ...controller.footer1,
+                      ...controller.footer2,
+                    ],
+                  ),
+                ),
+              ] else ...[
+                Expanded(child: $LinkColumn(links: controller.footer1)),
+                Expanded(child: $LinkColumn(links: controller.footer2)),
+              ],
+              if (context.isWeb) ...[
+                const Expanded(child: Dimens.box0),
+                const Expanded(child: Dimens.box0),
+              ],
             ],
           ),
         ),

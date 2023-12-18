@@ -25,6 +25,14 @@ extension StringExtension on String {
   }
 }
 
+extension ContextExtension on BuildContext {
+  bool get isWeb => width > AppConstants.maxTabletWidth;
+
+  bool get isMobile => width < AppConstants.maxMobileWidth;
+
+  Size? get size => (findRenderObject() as RenderBox?)?.size;
+}
+
 extension ListCombine<T> on Iterable<T> {
   Iterable<T> separate(
     BuildContext context,

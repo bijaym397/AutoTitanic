@@ -11,7 +11,6 @@ class ScreenWrapper extends StatelessWidget {
     this.body,
     this.bodyBuilder,
     this.showAppBarImage = false,
-    this.showSubscribeCard = false,
     this.isWhiteBackground = false,
     this.showFilterCard = false,
     this.onFilterSearch,
@@ -24,7 +23,6 @@ class ScreenWrapper extends StatelessWidget {
   final Widget? body;
   final bool showAppBarImage;
   final Widget Function(BuildContext, bool)? bodyBuilder;
-  final bool showSubscribeCard;
   final bool isWhiteBackground;
   final bool showFilterCard;
   final VoidCallback? onFilterSearch;
@@ -61,9 +59,7 @@ class ScreenWrapper extends StatelessWidget {
                           )
                         : body,
                   ),
-                  DashboardFooter(
-                    showSubcribeCard: showSubscribeCard,
-                  ),
+                  const DashboardFooter(),
                 ],
               ),
             ),
