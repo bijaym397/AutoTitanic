@@ -61,7 +61,7 @@ class $FilterCard extends StatelessWidget {
             child: Column(
               children: [
                 AppText(
-                  '${AppStrings.findYour} ${(Get.find<HomeController>().selectedVehicle ?? Vehicle.cars).label}',
+                  '${AppStrings.findYour} ${(Get.find<CommonController>().selectedVehicle ?? Vehicle.cars).label}',
                   style: Styles.titleLarge.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

@@ -9,7 +9,7 @@ class FooterLinks extends StatelessWidget {
   const FooterLinks({super.key});
 
   @override
-  Widget build(BuildContext context) => GetBuilder<HomeController>(
+  Widget build(BuildContext context) => GetBuilder<CommonController>(
         builder: (controller) => Padding(
           padding: Dimens.edgeInsets0_16,
           child: Row(

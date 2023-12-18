@@ -19,8 +19,7 @@ class ScreenWrapper extends StatelessWidget {
           body != null || bodyBuilder != null,
           'Both body and bodyBuilder cannot be null',
         ),
-        assert(!showFilterCard || (showFilterCard && onFilterSearch != null),
-            'If showFilterCard is set to true, onFilterSearch must be non-null');
+        assert(!showFilterCard || (showFilterCard && onFilterSearch != null), 'If showFilterCard is set to true, onFilterSearch must be non-null');
 
   final Widget? body;
   final bool showAppBarImage;
@@ -34,7 +33,7 @@ class ScreenWrapper extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
         appBar: const DashboardHeader(),
-        body: GetBuilder<HomeController>(
+        body: GetBuilder<CommonController>(
           builder: (controller) => TapHandler(
             showArrowCursor: true,
             onHover: (isHovering) {

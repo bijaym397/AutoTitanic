@@ -7,9 +7,7 @@ class SellMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     var paths = route!.split('/');
     var endpoint = paths.last;
-    if (AppRoutes.sell.contains(endpoint)) {
-      // TODO: Check here for user login state
-    }
+    if (AppRoutes.sell.contains(endpoint)) {}
     return null;
   }
 }

@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
         builder: (controller) => ScreenWrapper(
           showFilterCard: true,
           onFilterSearch: () => RouteManagement.goToSearch(
-            controller.selectedVehicle ?? Vehicle.cars,
+            controller.commongController.selectedVehicle ?? Vehicle.cars,
           ),
           body: Column(
             children: [

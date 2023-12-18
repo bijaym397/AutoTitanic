@@ -133,7 +133,7 @@ class _SearchHeader extends StatelessWidget {
               (i) {
                 var type = AdvanceSearchType.values[i];
                 return _TitleButton(
-                  label: type.label(controller.selectedVehicle ?? Vehicle.cars),
+                  label: type.label(controller.commongController.selectedVehicle ?? Vehicle.cars),
                   isSelected: controller.selectedAdvanceSearchType == type,
                   onTap: () => controller.selectedAdvanceSearchType = type,
                 );
@@ -149,7 +149,7 @@ class _SearchHeader extends StatelessWidget {
                   const AppIcon(Icons.arrow_right_rounded),
                   const AppText('(80)'),
                   AppText(
-                    (controller.selectedVehicle ?? Vehicle.cars).label.toUpperCase(),
+                    (controller.commongController.selectedVehicle ?? Vehicle.cars).label.toUpperCase(),
                     style: const TextStyle().copyWith(color: AppColors.primary),
                   ),
                 ],

@@ -21,7 +21,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
 
   void _closeOverlay(bool isHovering) {
     if (isHovering) {
-      Get.find<HomeController>().closeOverlay();
+      Get.find<CommonController>().closeOverlay();
     }
   }
 
@@ -31,7 +31,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         width: preferredSize.width,
         alignment: Alignment.center,
         color: AppColors.white,
-        child: GetBuilder<HomeController>(
+        child: GetBuilder<CommonController>(
           builder: (controller) => Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,7 +137,7 @@ class $NavItem extends StatelessWidget {
   final LayerLink layerLink;
 
   @override
-  Widget build(BuildContext context) => GetX<HomeController>(
+  Widget build(BuildContext context) => GetX<CommonController>(
         builder: (controller) {
           var color = vehicle == controller.selectedVehicle || vehicle == controller.hoveredVehicle ? AppColors.red : AppColors.black;
           return CompositedTransformTarget(
@@ -218,7 +218,7 @@ class $NavDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ...HoverItem.values.indexed.map<Widget>(
-              (e) => GetX<HomeController>(builder: (controller) {
+              (e) => GetX<CommonController>(builder: (controller) {
                 var item = e.$2;
                 var color = (item == controller.selectedItem && controller.selectedVehicle == vehicle) || item == controller.hoveredItem
                     ? AppColors.red
@@ -279,7 +279,7 @@ class $SignInButton extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: Dimens.edgeInsets10_0,
         child: TapHandler(
-          onTap: () {},
+          onTap: RouteManagement.goToLogin,
           onHover: onHover,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -37,9 +37,15 @@ class AppPages {
       binding: HomeBinding(),
       transition: transition,
     ),
-    GetPage<AuthView>(
-      name: AppRoutes.auth,
-      page: AuthView.new,
+    GetPage<LoginView>(
+      name: AppRoutes.login,
+      page: LoginView.new,
+      binding: AuthBinding(),
+      transition: transition,
+    ),
+    GetPage<RegisterView>(
+      name: AppRoutes.register,
+      page: LoginView.new,
       binding: AuthBinding(),
       transition: transition,
     ),

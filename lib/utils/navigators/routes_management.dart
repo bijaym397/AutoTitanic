@@ -2,10 +2,17 @@ import 'package:auto_titanic/utils/utils.dart';
 import 'package:get/get.dart';
 
 abstract class RouteManagement {
-  /// Go to the SignIn Screen
-  static void goToSignIn() {
-    Get.offAllNamed<void>(
-      AppRoutes.auth,
+  /// Go to the Login Screen
+  static void goToLogin() {
+    Get.toNamed<void>(
+      AppRoutes.login,
+    );
+  }
+
+  /// Go to the Register Screen
+  static void goToRegister() {
+    Get.toNamed<void>(
+      AppRoutes.login,
     );
   }
 

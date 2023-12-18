@@ -14,7 +14,7 @@ class SocialCard extends StatelessWidget {
   final Social social;
 
   @override
-  Widget build(BuildContext context) => GetX<HomeController>(
+  Widget build(BuildContext context) => GetX<CommonController>(
         builder: (controller) {
           var isSelected = controller.selectedSocial == social;
           return Expanded(

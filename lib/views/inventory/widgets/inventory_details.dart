@@ -84,27 +84,27 @@ class InventoryDetails extends StatelessWidget {
       );
 }
 
-class _InventoryLabel extends StatelessWidget {
-  const _InventoryLabel(this.label);
+// class _InventoryLabel extends StatelessWidget {
+//   const _InventoryLabel(this.label);
 
-  final LabelModel label;
+//   final LabelModel label;
 
-  @override
-  Widget build(BuildContext context) => UnconstrainedBox(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            color: label.color,
-            borderRadius: BorderRadius.circular(Dimens.four),
-          ),
-          child: Padding(
-            padding: Dimens.edgeInsets8_4,
-            child: Text(
-              label.label,
-              style: Styles.labelSmall.copyWith(
-                color: AppColors.white,
-              ),
-            ),
-          ),
-        ),
-      );
-}
+//   @override
+//   Widget build(BuildContext context) => UnconstrainedBox(
+//         child: DecoratedBox(
+//           decoration: BoxDecoration(
+//             color: label.color,
+//             borderRadius: BorderRadius.circular(Dimens.four),
+//           ),
+//           child: Padding(
+//             padding: Dimens.edgeInsets8_4,
+//             child: Text(
+//               label.label,
+//               style: Styles.labelSmall.copyWith(
+//                 color: AppColors.white,
+//               ),
+//             ),
+//           ),
+//         ),
+//       );
+// }

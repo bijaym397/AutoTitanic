@@ -15,7 +15,7 @@ class SplashController extends GetxController {
     if (isLoggedIn) {
       RouteManagement.goToHome();
     } else {
-      RouteManagement.goToSignIn();
+      RouteManagement.goToLogin();
     }
   }
 }

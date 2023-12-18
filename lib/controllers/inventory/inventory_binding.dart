@@ -7,7 +7,7 @@ class InventoryBinding implements Bindings {
   @override
   void dependencies() {
     if (!Get.isRegistered<HomeController>()) {
-      HomeBinding().dependencies();
+      CommonBinding().dependencies();
     }
     Get.lazyPut<InventoryController>(
       () => InventoryController(
