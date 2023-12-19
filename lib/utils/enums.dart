@@ -249,3 +249,17 @@ enum AdvanceSearchType {
   allVehicle,
   newVehicle;
 }
+
+enum SortBy {
+  relevance(AppStrings.relevane),
+  recent(AppStrings.recent),
+  priceL2H(AppStrings.priceL2H),
+  priceH2L(AppStrings.priceH2L),
+  mileageL2H(AppStrings.mileageL2H),
+  mileageH2L(AppStrings.mileageH2L),
+  ageNew(AppStrings.ageNew),
+  ageOld(AppStrings.ageOld);
+
+  const SortBy(this.label);
+  final String label;
+}

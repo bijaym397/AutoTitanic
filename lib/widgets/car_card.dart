@@ -75,7 +75,7 @@ class CarCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             AppText(
-                              '2023 | Car Derived Van | Manual | 89',
+                              '2023 | Car Derived Van | 89',
                               style: Styles.bodyLarge,
                             ),
                             Dimens.boxHeight4,

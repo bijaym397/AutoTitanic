@@ -125,6 +125,15 @@ class AppStrings {
   static const String imageSubtitle = 'Add at least 5 and maximum 20 images';
 
   static const String selectImageDescription = 'First picture - is the title picture.\nSupported formats are .jpg, .webp and .png, 5MB max each';
+
+  static const String relevane = 'Relevance';
+  static const String recent = 'Most recent first';
+  static const String priceL2H = 'Price: Low to High';
+  static const String priceH2L = 'Price: High to Low';
+  static const String mileageL2H = 'Mileage: Low to High';
+  static const String mileageH2L = 'Mileage: High to Low';
+  static const String ageNew = 'Age: Newest first';
+  static const String ageOld = 'Age: Oldest first';
 }
 
 class StringData {

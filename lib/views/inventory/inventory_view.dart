@@ -67,9 +67,45 @@ class PaginationRow extends StatelessWidget {
             onTap: () {},
           ),
           const Spacer(),
+          SizedBox(
+            width: Dimens.hundred,
+            child: GetX<InventoryController>(
+              builder: (controller) => DropDown(
+                hint: 'Page limit:',
+                items: AppConstants.pageLimitList,
+                labelBuilder: (e) => '$e',
+                value: controller.selectedPageLimit,
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  controller.selectedPageLimit = value;
+                },
+              ),
+            ),
+          ),
+          Dimens.boxWidth16,
           AppText(
             'Sort',
             style: Styles.bodyMedium,
+          ),
+          Dimens.boxWidth4,
+          SizedBox(
+            width: Dimens.twoHundred,
+            child: GetX<InventoryController>(
+              builder: (controller) => DropDown(
+                hint: 'Sort by:',
+                items: SortBy.values,
+                labelBuilder: (e) => e.label,
+                value: controller.selectedSortBy,
+                onChanged: (value) {
+                  if (value == null) {
+                    return;
+                  }
+                  controller.selectedSortBy = value;
+                },
+              ),
+            ),
           ),
         ],
       );
@@ -83,7 +119,7 @@ class _InventoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) => AspectRatio(
-          aspectRatio: constraints.isDesktopView ? 7 / 2 : 5 / 2,
+          aspectRatio: 7 / 2,
           child: DecoratedBox(
             decoration: BoxDecoration(
               color: AppColors.white,

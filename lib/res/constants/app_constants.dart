@@ -21,6 +21,8 @@ class AppConstants {
   static const int bytesToMegaBytes = 1048576;
   static const int maxFileSizeInBytes = 5242880;
 
+  static const List<int> pageLimitList = [25, 50, 75, 100];
+
   static const double carCardAspectRatio = 1 / 1.25;
 
   static const double maxMobileWidth = 690;

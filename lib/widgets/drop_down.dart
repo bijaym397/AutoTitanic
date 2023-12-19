@@ -89,6 +89,7 @@ class DropDown<T> extends StatelessWidget {
             hint: AppText(
               (showTitle ? 'Select ' : '') + hint,
               style: Styles.bodyLarge,
+              isSelectable: false,
             ),
             underline: const SizedBox.shrink(),
             value: value,
@@ -99,6 +100,7 @@ class DropDown<T> extends StatelessWidget {
                     child: AppText(
                       labelBuilder(e),
                       style: Styles.labelLarge,
+                      isSelectable: false,
                     ),
                   ),
                 )

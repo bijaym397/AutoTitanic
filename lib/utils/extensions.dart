@@ -131,6 +131,8 @@ extension NumberExtension on num {
   String get formattedPrice => NumberFormat.currency(symbol: '£', decimalDigits: 0).format(this);
 
   String get formattedDistance => NumberFormat('###,###').format(this);
+
+  String get visibleDistance => '$formattedDistance miles';
 }
 
 extension ConstraintExtension on BoxConstraints {

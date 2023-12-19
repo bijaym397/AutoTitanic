@@ -10,12 +10,14 @@ class AppText extends StatelessWidget {
     this.style,
     this.textAlign,
     this.isSelectable = true,
+    this.softWrap,
   });
 
   final String data;
   final TextStyle? style;
   final bool isSelectable;
   final TextAlign? textAlign;
+  final bool? softWrap;
 
   @override
   Widget build(BuildContext context) => isSelectable
@@ -31,6 +33,7 @@ class AppText extends StatelessWidget {
           style: style,
           textAlign: textAlign,
           semanticsLabel: data,
+          softWrap: softWrap,
         );
 }
 
