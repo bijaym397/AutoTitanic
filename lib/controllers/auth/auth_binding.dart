@@ -10,7 +10,9 @@ class AuthBinding implements Bindings {
     Get.lazyPut<AuthController>(
       () => AuthController(
         AuthViewModel(
-          AuthRepository(),
+          AuthRepository(
+            Get.find(),
+          ),
         ),
       ),
     );

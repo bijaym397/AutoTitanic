@@ -1,11 +1,17 @@
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
+import 'package:auto_titanic/view_models/view_models.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CommonController extends GetxController {
+part 'mixins/api_mixin.dart';
+
+class CommonController extends GetxController with CommonAPIMixin {
+  CommonController(this._viewModel);
+  final CommonViewModel _viewModel;
+
   final Rx<Vehicle?> _hoveredVehicle = Rx<Vehicle?>(null);
   Vehicle? get hoveredVehicle => _hoveredVehicle.value;
   set hoveredVehicle(Vehicle? value) => _hoveredVehicle.value = value;

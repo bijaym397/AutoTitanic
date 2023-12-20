@@ -26,7 +26,7 @@ class AppConstants {
   static const double carCardAspectRatio = 1 / 1.25;
 
   static const double maxMobileWidth = 690;
-  static const double maxTabletWidth = 1152;
+  static const double maxTabletWidth = 1200;
   static const double maxDesktopWidth = 1900;
   static const double maxLargeDesktopWidth = 2290;
   static const double maxExtraLargeDesktopWidth = 3000;

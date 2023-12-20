@@ -17,15 +17,15 @@ enum AppFlavor {
 }
 
 enum Vehicle {
-  cars(AppStrings.cars, AppRoutes.cars),
-  vans(AppStrings.vans, AppRoutes.vans),
-  bikes(AppStrings.bikes, AppRoutes.bikes),
-  motorAndCaravans(AppStrings.motorAndCaravans, AppRoutes.motorAndCaravans),
-  trucks(AppStrings.trucks, AppRoutes.trucks),
-  farms(AppStrings.farms, AppRoutes.farms),
-  plants(AppStrings.plants, AppRoutes.plants),
-  carRentals(AppStrings.carRentals, AppRoutes.carRentals),
-  parts(AppStrings.partsAccessories, AppRoutes.parts);
+  cars('cars', AppStrings.cars, AppRoutes.cars),
+  vans('vans', AppStrings.vans, AppRoutes.vans),
+  bikes('bikes', AppStrings.bikes, AppRoutes.bikes),
+  motorAndCaravans('motorAndCaravans', AppStrings.motorAndCaravans, AppRoutes.motorAndCaravans),
+  trucks('trucks', AppStrings.trucks, AppRoutes.trucks),
+  farms('farms', AppStrings.farms, AppRoutes.farms),
+  plants('plants', AppStrings.plants, AppRoutes.plants),
+  carRentals('carRentals', AppStrings.carRentals, AppRoutes.carRentals),
+  parts('parts', AppStrings.partsAccessories, AppRoutes.parts);
   // safetyCentre(AppStrings.safetyCentre, AppRoutes.safetyCentre);
 
   factory Vehicle.fromRoute(String data) =>
@@ -43,20 +43,10 @@ enum Vehicle {
       }[data] ??
       Vehicle.cars;
 
-  const Vehicle(this.label, this.route);
+  const Vehicle(this.value, this.label, this.route);
   final String label;
   final String route;
-
-  static List<Vehicle> get visibleVehicles {
-    var maxWidth = Dimens.screenWidth;
-    if (maxWidth >= AppConstants.maxDesktopWidth) {
-      return Vehicle.values;
-    }
-    if (maxWidth >= AppConstants.maxTabletWidth) {
-      return Vehicle.values.where((e) => e.showIcon).toList();
-    }
-    return [];
-  }
+  final String value;
 }
 
 enum HoverItem {

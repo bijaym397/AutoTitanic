@@ -22,21 +22,17 @@ class ApiWrapper {
     bool showDialog = true,
   }) async {
     assert(
-      type != RequestType.upload ||
-          (type == RequestType.upload &&
-              payload is! Map<String, String> &&
-              field.isNotEmpty &&
-              filePath.isNotEmpty),
+      type != RequestType.upload || (type == RequestType.upload && payload is! Map<String, String> && field.isNotEmpty && filePath.isNotEmpty),
       'if type is passed as [RequestType.upload] then payload must be of type Map<String, String> and field & filePath must not be empty',
     );
 
     /// To see whether the network is available or not
     var uri = (baseUrl ?? Apis.baseUrl) + api;
     AppLog.info('[Request] - $type - $uri\n$payload');
-    if (headers['authorization'].isNullOrEmpty) {
-      AppLog.error('Authorization error - $headers');
-      return ResponseModel.message('Token not found', statusCode: 400);
-    }
+    // if (headers['authorization'].isNullOrEmpty) {
+    //   AppLog.error('Authorization error - $headers');
+    //   return ResponseModel.message('Token not found', statusCode: 400);
+    // }
 
     if (showLoader) Utility.showLoader();
     if (await Utility.isNetworkAvailable) {
@@ -237,8 +233,7 @@ class ApiWrapper {
     required DateTime startTime,
   }) async {
     var diff = DateTime.now().difference(startTime).inMilliseconds / 1000;
-    AppLog(
-        '[Response] - $diff s ${response.statusCode}\n${response.request?.url}\n${response.body}');
+    AppLog('[Response] - $diff s ${response.statusCode}\n${response.request?.url}\n${response.body}');
 
     switch (response.statusCode) {
       case 200:

@@ -3,5 +3,7 @@ part of '../home_controller.dart';
 mixin HomeAPIMixin {
   HomeController get _controller => Get.find<HomeController>();
 
-  Future<void> getVehicle() => _controller._viewModel.getVehicle();
+  CommonController get _commonController => Get.find<CommonController>();
+
+  Future<void> addVehicle() => _controller._viewModel.addVehicle(vehicle: _commonController.selectedVehicle ?? Vehicle.cars);
 }

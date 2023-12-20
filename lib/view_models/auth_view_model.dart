@@ -4,4 +4,6 @@ class AuthViewModel {
   const AuthViewModel(this._repository);
 
   final AuthRepository _repository;
+
+  Future<void> login() => _repository.login();
 }

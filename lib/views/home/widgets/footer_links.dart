@@ -15,7 +15,7 @@ class FooterLinks extends StatelessWidget {
           padding: Dimens.edgeInsets0_16,
           child: Row(
             children: [
-              if (context.isMobile) ...[
+              if (context.isMobileView) ...[
                 Expanded(
                   child: $LinkColumn(
                     links: [

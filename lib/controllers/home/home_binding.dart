@@ -11,7 +11,9 @@ class HomeBinding implements Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(
         HomeViewModel(
-          HomeRepository(),
+          HomeRepository(
+            Get.find(),
+          ),
         ),
       ),
     );

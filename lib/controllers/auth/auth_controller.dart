@@ -5,4 +5,6 @@ class AuthController extends GetxController {
   AuthController(this._viewModel);
 
   final AuthViewModel _viewModel;
+
+  Future<void> login() => _viewModel.login();
 }

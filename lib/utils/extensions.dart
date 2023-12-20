@@ -28,7 +28,9 @@ extension StringExtension on String {
 extension ContextExtension on BuildContext {
   bool get isWeb => width > AppConstants.maxTabletWidth;
 
-  bool get isMobile => width < AppConstants.maxMobileWidth;
+  bool get isTabletView => width <= AppConstants.maxTabletWidth;
+
+  bool get isMobileView => width <= AppConstants.maxMobileWidth;
 
   Size? get size => (findRenderObject() as RenderBox?)?.size;
 }

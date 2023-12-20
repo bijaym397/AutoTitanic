@@ -32,68 +32,59 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         alignment: Alignment.center,
         color: AppColors.white,
         child: GetBuilder<CommonController>(
-          builder: (controller) => Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              LayoutBuilder(
-                builder: (_, constraint) => SizedBox(
-                  width: Dimens.screenWidth,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      TapHandler(
-                        onTap: () => Get.toNamed(HomeView.route),
-                        onHover: _closeOverlay,
-                        child: Image.asset(
-                          AssetConstants.logo,
-                          height: Dimens.thirtyTwo,
-                        ),
-                      ),
-                      Expanded(
-                        child: TapHandler(
-                          onHover: _closeOverlay,
-                          showArrowCursor: true,
-                          child: SizedBox(
-                            height: _navHeight,
-                            width: Dimens.fortyEight,
-                          ),
-                        ),
-                      ),
-                      $HeaderItem(
-                        height: _navHeight,
-                        constraints: constraint,
-                      ),
-                      $SignInButton(
-                        onHover: _closeOverlay,
-                      ),
-                      if (Dimens.screenWidth >= AppConstants.maxDesktopWidth)
-                        TapHandler(
-                          onTap: () {},
-                          onHover: _closeOverlay,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const AppIcon(
-                              Icons.search_rounded,
-                            ),
-                          ),
-                        ),
-                      if (Dimens.screenWidth < AppConstants.maxMobileWidth) ...[
-                        TapHandler(
-                          onTap: () {},
-                          child: const AppIcon(
-                            Icons.menu,
-                          ),
-                        ),
-                      ],
-                    ],
+          builder: (controller) => SizedBox(
+            width: Dimens.screenWidth,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TapHandler(
+                  onTap: () => Get.toNamed(HomeView.route),
+                  onHover: _closeOverlay,
+                  child: Image.asset(
+                    AssetConstants.logo,
+                    height: Dimens.thirtyTwo,
                   ),
                 ),
-              ),
-            ],
+                // Expanded(
+                //   child: TapHandler(
+                //     onHover: _closeOverlay,
+                //     showArrowCursor: true,
+                //     child: SizedBox(
+                //       height: _navHeight,
+                //       width: Dimens.fortyEight,
+                //     ),
+                //   ),
+                // ),
+
+                $HeaderItem(
+                  height: _navHeight,
+                ),
+                $SignInButton(
+                  onHover: _closeOverlay,
+                ),
+                if (Dimens.screenWidth >= AppConstants.maxDesktopWidth)
+                  TapHandler(
+                    onTap: () {},
+                    onHover: _closeOverlay,
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const AppIcon(
+                        Icons.search_rounded,
+                      ),
+                    ),
+                  ),
+                if (Dimens.screenWidth < AppConstants.maxMobileWidth) ...[
+                  TapHandler(
+                    onTap: () {},
+                    child: const AppIcon(
+                      Icons.menu,
+                    ),
+                  ),
+                ],
+              ],
+            ),
           ),
         ),
       );
@@ -103,24 +94,42 @@ class $HeaderItem extends StatelessWidget {
   const $HeaderItem({
     super.key,
     required this.height,
-    required this.constraints,
   });
 
   final double height;
-  final BoxConstraints constraints;
 
   @override
-  Widget build(BuildContext context) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: List.generate(
-          Vehicle.visibleVehicles.length,
-          (i) => $NavItem(
-            Vehicle.visibleVehicles[i],
-            navBarContext: context,
-            height: height,
-          ),
-        ),
+  Widget build(BuildContext context) => Expanded(
+        flex: 1,
+        child: context.isMobileView
+            ? const SizedBox.shrink()
+            : Align(
+                alignment: Alignment.centerRight,
+                child: ListView.builder(
+                  itemCount: Vehicle.values.length,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, i) => $NavItem(
+                    Vehicle.values[i],
+                    navBarContext: context,
+                    height: height,
+                  ),
+                ),
+              ),
       );
+  // @override
+  // Widget build(BuildContext context) => Row(
+  //       mainAxisSize: MainAxisSize.min,
+  //       children: List.generate(
+  //         Vehicle.visibleVehicles.length,
+  //         (i) => $NavItem(
+  //           Vehicle.visibleVehicles[i],
+  //           navBarContext: context,
+  //           height: height,
+  //         ),
+  //       ),
+  //     );
 }
 
 class $NavItem extends StatelessWidget {
@@ -167,7 +176,7 @@ class $NavItem extends StatelessWidget {
               child: SizedBox(
                 height: height,
                 child: Padding(
-                  padding: Dimens.edgeInsets4_0,
+                  padding: context.isTabletView ? Dimens.edgeInsets2_0 : Dimens.edgeInsets4_0,
                   child: Row(
                     children: [
                       AppText(

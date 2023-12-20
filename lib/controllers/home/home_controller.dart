@@ -11,7 +11,7 @@ import 'package:get/get.dart';
 part 'mixins/api_mixin.dart';
 part 'mixins/sell_vehicle_mixin.dart';
 
-class HomeController extends GetxController with HomeAPIMixin, SellVehicleMixin {
+class HomeController extends GetxController with SellVehicleMixin {
   HomeController(this._viewModel);
 
   final HomeViewModel _viewModel;
