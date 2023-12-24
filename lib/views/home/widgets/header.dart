@@ -64,7 +64,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                 $SignInButton(
                   onHover: _closeOverlay,
                 ),
-                if (Dimens.screenWidth >= AppConstants.maxDesktopWidth)
+                if (context.isDesktopView)
                   TapHandler(
                     onTap: () {},
                     onHover: _closeOverlay,
@@ -72,6 +72,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                       onPressed: () {},
                       icon: const AppIcon(
                         Icons.search_rounded,
+                        color: AppColors.black,
                       ),
                     ),
                   ),

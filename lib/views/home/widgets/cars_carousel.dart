@@ -55,35 +55,24 @@ class CarsCarousel extends StatelessWidget {
                   ),
                   items: List.generate(
                     AppConstants.carouselItemCount,
-                    (i) => GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: AppConstants.maxVehiclePerItem,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 320,
-                        childAspectRatio: AppConstants.carCardAspectRatio,
-                        crossAxisSpacing: Dimens.twenty,
-                        mainAxisSpacing: Dimens.hundred,
-                      ),
-                      itemBuilder: (_, j) => CarCard(
-                        image: carouselList[i][j],
+                    (i) => ScrollConfiguration(
+                      behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: AppConstants.maxVehiclePerItem,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: AppConstants.carCardWidth,
+                          childAspectRatio: AppConstants.carCardAspectRatio,
+                          crossAxisSpacing: Dimens.twenty,
+                          mainAxisSpacing: Dimens.hundred,
+                        ),
+                        itemBuilder: (_, j) => CarCard(
+                          image: carouselList[i][j],
+                        ),
                       ),
                     ),
                   ),
-                  // items: List.generate(
-                  //   AppConstants.carouselItemCount,
-                  //   (i) => Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       ...List.generate(
-                  //         AppConstants.vehiclesPerItem,
-                  //         (j) => CarCard(
-                  //           image: carouselList[i][j],
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
                 ),
                 $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: true),
                 $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: false),

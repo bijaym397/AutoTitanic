@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:auto_titanic/res/constants/constants.dart';
+import 'package:flutter/foundation.dart';
 
 class AppLog {
   ///This Constructor of `AppLog` take 2 parameters
@@ -18,12 +19,19 @@ class AppLog {
   ///- `AppLog.info()` - for info log
   ///- `AppLog.success()` - for success log
   AppLog.error(this.message, [this.stackTrace]) {
-    log(
-      '\x1B[31m[${AppConstants.appName}] - $message\x1B[0m',
-      stackTrace: stackTrace,
-      name: 'Error',
-      level: 1200,
-    );
+    var statement = '\x1B[31m[${AppConstants.appName}] - $message\x1B[0m';
+    if (kIsWeb) {
+      if (kDebugMode) {
+        print(statement);
+      }
+    } else {
+      log(
+        statement,
+        stackTrace: stackTrace,
+        name: 'Error',
+        level: 1200,
+      );
+    }
   }
 
   ///This Constructor of `AppLog` take 2 parameters
@@ -41,12 +49,19 @@ class AppLog {
   ///- `AppLog.info()` - for info log
   ///- `AppLog.error()` - for error log
   AppLog.success(this.message, [this.stackTrace]) {
-    log(
-      '\x1B[32m[${AppConstants.appName}] - $message\x1B[0m',
-      stackTrace: stackTrace,
-      name: 'Success',
-      level: 800,
-    );
+    var statement = '\x1B[32m[${AppConstants.appName}] - $message\x1B[0m';
+    if (kIsWeb) {
+      if (kDebugMode) {
+        print(statement);
+      }
+    } else {
+      log(
+        statement,
+        stackTrace: stackTrace,
+        name: 'Success',
+        level: 800,
+      );
+    }
   }
 
   ///This Constructor of `AppLog` take 2 parameters
@@ -64,12 +79,19 @@ class AppLog {
   ///- `AppLog.success()` - for success log
   ///- `AppLog.error()` - for error log
   AppLog.info(this.message, [this.stackTrace]) {
-    log(
-      '\x1B[33m[${AppConstants.appName}] - $message\x1B[0m',
-      stackTrace: stackTrace,
-      name: 'Info',
-      level: 900,
-    );
+    var statement = '\x1B[33m[${AppConstants.appName}] - $message\x1B[0m';
+    if (kIsWeb) {
+      if (kDebugMode) {
+        print(statement);
+      }
+    } else {
+      log(
+        statement,
+        stackTrace: stackTrace,
+        name: 'Info',
+        level: 900,
+      );
+    }
   }
 
   ///This Constructor of `AppLog` take 2 parameters
@@ -87,11 +109,18 @@ class AppLog {
   ///- `AppLog.success()` - for success log
   ///- `AppLog.error()` - for error log
   AppLog(this.message, [this.stackTrace]) {
-    log(
-      '\x1B[37m[${AppConstants.appName}] - $message\x1B[0m',
-      stackTrace: stackTrace,
-      level: 700,
-    );
+    var statement = '\x1B[37m[${AppConstants.appName}] - $message\x1B[0m';
+    if (kIsWeb) {
+      if (kDebugMode) {
+        print(statement);
+      }
+    } else {
+      log(
+        statement,
+        stackTrace: stackTrace,
+        level: 700,
+      );
+    }
   }
 
   final dynamic message;

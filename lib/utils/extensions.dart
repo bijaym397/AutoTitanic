@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
@@ -25,10 +26,14 @@ extension StringExtension on String {
   }
 }
 
-extension ContextExtension on BuildContext {
-  bool get isWeb => width > AppConstants.maxTabletWidth;
+extension ResponseExtension on ResponseModel {
+  List<dynamic> get bodyList => (jsonDecode(data) as Map<String, dynamic>?)?['data']?['items'] as List<dynamic>? ?? [];
+}
 
-  bool get isTabletView => width <= AppConstants.maxTabletWidth;
+extension ContextExtension on BuildContext {
+  bool get isDesktopView => width > AppConstants.maxTabletWidth;
+
+  bool get isTabletView => width > AppConstants.maxMobileWidth && width <= AppConstants.maxTabletWidth;
 
   bool get isMobileView => width <= AppConstants.maxMobileWidth;
 
@@ -348,46 +353,51 @@ extension VehicleFilterExtension on VehicleFilter {
     }
   }
 
-  List<String> get sellDropDownList {
+  List<DropDownModel> get sellDropDownList {
     switch (this) {
       case VehicleFilter.mileage:
       case VehicleFilter.bodyType:
         return [];
       case VehicleFilter.year:
-        return AppConstants.yearList;
+        return AppConstants.yearList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.engineSize:
-        return AppConstants.engineSizeList;
+        return AppConstants.engineSizeList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.seat:
-        return AppConstants.seatsList;
+        return AppConstants.seatsList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.make:
-        return AppConstants.makeList;
+        return Get.find<HomeController>()
+            .brandsList
+            .map(
+              (e) => DropDownModel(label: e.label, id: e.id),
+            )
+            .toList();
       case VehicleFilter.model:
-        return AppConstants.modelList;
+        return AppConstants.modelList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.variant:
-        return AppConstants.variantList;
+        return AppConstants.variantList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.gearbox:
-        return AppConstants.gearTypeList;
+        return AppConstants.gearTypeList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.fuelType:
-        return AppConstants.fuelTypeList;
+        return AppConstants.fuelTypeList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.door:
-        return AppConstants.doorList;
+        return AppConstants.doorList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.exteriorColor:
       case VehicleFilter.interiorColor:
-        return AppConstants.colorsList;
+        return AppConstants.colorsList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.bootspace:
-        return AppConstants.bootspaceList;
+        return AppConstants.bootspaceList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.acceleration:
-        return AppConstants.accelerationList;
+        return AppConstants.accelerationList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.fuelConsumption:
-        return AppConstants.fuelConsumptionList;
+        return AppConstants.fuelConsumptionList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.co2Emission:
-        return AppConstants.co2EmissionList;
+        return AppConstants.co2EmissionList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.bodyStyle:
-        return AppConstants.bodyStyle;
+        return AppConstants.bodyStyle.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.condition:
-        return AppConstants.carConditions;
+        return AppConstants.carConditions.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.driverPosition:
-        return AppConstants.driverPositionList;
+        return AppConstants.driverPositionList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.price:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.enginePower:

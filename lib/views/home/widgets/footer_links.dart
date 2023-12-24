@@ -28,7 +28,7 @@ class FooterLinks extends StatelessWidget {
                 Expanded(child: $LinkColumn(links: controller.footer1)),
                 Expanded(child: $LinkColumn(links: controller.footer2)),
               ],
-              if (context.isWeb) ...[
+              if (context.isDesktopView) ...[
                 const Expanded(child: Dimens.box0),
                 const Expanded(child: Dimens.box0),
               ],

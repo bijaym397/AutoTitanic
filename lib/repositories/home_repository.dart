@@ -17,4 +17,19 @@ class HomeRepository {
       headers: {},
     );
   }
+
+  Future<ResponseModel> getBrands({
+    required Vehicle vehicle,
+  }) =>
+      _apiWrapper.makeRequest(
+        '${Apis.allMake}?type=${vehicle.value}',
+        type: RequestType.get,
+        headers: {},
+      );
+
+  Future<ResponseModel> getModels(String brandId) => _apiWrapper.makeRequest(
+        '${Apis.allModel}/$brandId',
+        type: RequestType.get,
+        headers: {},
+      );
 }

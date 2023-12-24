@@ -22,7 +22,7 @@ class HomeView extends StatelessWidget {
         builder: (controller) => ScreenWrapper(
           showFilterCard: true,
           onFilterSearch: () => RouteManagement.goToSearch(
-            controller.commongController.selectedVehicle ?? Vehicle.cars,
+            controller.commonController.selectedVehicle ?? Vehicle.cars,
           ),
           body: Column(
             children: [
@@ -32,8 +32,7 @@ class HomeView extends StatelessWidget {
                 color: AppColors.primary,
               ),
               ListView.builder(
-                itemCount: 1,
-                // itemCount: AppConstants.featuredCarsCount,
+                itemCount: AppConstants.featuredCarsCount,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {
@@ -51,8 +50,7 @@ class HomeView extends StatelessWidget {
                 color: AppColors.accent,
               ),
               ListView.builder(
-                itemCount: 1,
-                // itemCount: AppConstants.recentCarsCount,
+                itemCount: AppConstants.recentCarsCount,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (_, index) {

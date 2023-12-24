@@ -3,7 +3,8 @@ import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/view_models/view_models.dart';
-import 'package:auto_titanic/views/home/views/views.dart';
+import 'package:auto_titanic/views/views.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,18 +12,22 @@ import 'package:get/get.dart';
 part 'mixins/api_mixin.dart';
 part 'mixins/sell_vehicle_mixin.dart';
 
-class HomeController extends GetxController with SellVehicleMixin {
+class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin {
   HomeController(this._viewModel);
 
   final HomeViewModel _viewModel;
 
-  CommonController get commongController => Get.find<CommonController>();
+  CommonController get commonController => Get.find<CommonController>();
 
   final Rx<AdvanceSearchType> _selectedAdvanceSearchType = AdvanceSearchType.allVehicle.obs;
   AdvanceSearchType get selectedAdvanceSearchType => _selectedAdvanceSearchType.value;
   set selectedAdvanceSearchType(AdvanceSearchType value) => _selectedAdvanceSearchType.value = value;
 
   var debouncer = Debouncer();
+
+  DropDownModel? selectedFilterBrand;
+
+  String? selectedFilterCountry;
 
   // -------------------- Sell Variables -----------------
 
@@ -92,7 +97,17 @@ class HomeController extends GetxController with SellVehicleMixin {
   List<PlatformFile> get selectedImages => _selectedImages;
   set selectedImages(List<PlatformFile> value) => _selectedImages.value = value;
 
+  List<MakeModel> brandsList = [];
+
+  var isBrandsExpanded = false;
+
   // ==================== INIT =====================
+
+  @override
+  void onReady() {
+    super.onReady();
+    getBrands();
+  }
 
   VehicleHover _vehicleFromRoute() {
     var uri = Uri.base.toString();
@@ -121,12 +136,12 @@ class HomeController extends GetxController with SellVehicleMixin {
     if (isHome) {
       var (vehicle, hover) = _vehicleFromRoute();
 
-      commongController.goToVehicleListing(vehicle, hover);
+      commonController.goToVehicleListing(vehicle, hover);
     } else {
       var (v, i) = _vehicleFromRoute();
       Utility.updateLater(() {
-        commongController.selectedVehicle = v;
-        commongController.selectedItem = i;
+        commonController.selectedVehicle = v;
+        commonController.selectedItem = i;
       });
     }
   }
@@ -176,18 +191,27 @@ class HomeController extends GetxController with SellVehicleMixin {
     ),
   ];
 
-  var brandsList = const <BrandModel>[
-    BrandModel(name: 'BMW', icon: AssetConstants.bmw),
-    BrandModel(name: 'HONDA', icon: AssetConstants.honda),
-    BrandModel(name: 'HYUNDAI', icon: AssetConstants.hyundai),
-    BrandModel(name: 'LEXUS', icon: AssetConstants.lexus),
-    BrandModel(name: 'MERCEDES', icon: AssetConstants.mercedes),
-    BrandModel(name: 'MITSUBISHI', icon: AssetConstants.mitsubishi),
-    BrandModel(name: 'PORSCHE', icon: AssetConstants.porsche),
-    BrandModel(name: 'TOYOTA', icon: AssetConstants.toyota),
-  ];
-
   // ================= FUNCTIONS ===================
+
+  void onFilterCountryChanged(String? country) async {
+    selectedFilterCountry = country;
+    update([FilterSection.updateId]);
+  }
+
+  void onBrandChanged(DropDownModel? brand) async {
+    if (brand == null) {
+      return;
+    }
+    selectedFilterBrand = brand;
+    update([FilterSection.updateId]);
+    await getModels(brand.id);
+  }
+
+  void resetFilters() {
+    selectedFilterCountry = null;
+    selectedFilterBrand = null;
+    update([FilterSection.updateId]);
+  }
 
   void animateToLast() {
     imageScrollController.animateTo(
@@ -211,5 +235,4 @@ class HomeController extends GetxController with SellVehicleMixin {
       carsList.add(carousel);
     }
   }
-  // ================= API CALLS ===================
 }

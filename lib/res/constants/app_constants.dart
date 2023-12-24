@@ -1,6 +1,6 @@
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:csc_picker/csc_picker.dart';
-import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
 
 /// `AppConstants` is a singleton class with all static variables.
 ///
@@ -23,91 +23,20 @@ class AppConstants {
 
   static const List<int> pageLimitList = [25, 50, 75, 100];
 
-  static const double carCardAspectRatio = 1 / 1.25;
-
-  static const double maxMobileWidth = 690;
+  static const double maxMobileWidth = 768;
   static const double maxTabletWidth = 1200;
   static const double maxDesktopWidth = 1900;
-  static const double maxLargeDesktopWidth = 2290;
-  static const double maxExtraLargeDesktopWidth = 3000;
 
-  static const int featuredCarsCount = 6;
-  static const int recentCarsCount = 12;
+  static int get featuredCarsCount => kDebugMode ? 1 : 6;
+  static int get recentCarsCount => kDebugMode ? 1 : 12;
   static const int carouselItemCount = 3;
   static const int maxVehiclePerItem = 6;
 
+  static const double carCardAspectRatio = 1 / 1.2;
+  static double get carCardWidth => 333;
   static double get carouselHeight => 400;
-  // static double get carouselHeight {
-  //   if (Get.width < maxMobileWidth) {
-  //     return 365;
-  //   }
-  //   if (Get.width < maxTabletWidth) {
-  //     return 370;
-  //   }
-  //   if (Get.width < maxDesktopWidth) {
-  //     return 385;
-  //   }
-  //   if (Get.width < maxLargeDesktopWidth) {
-  //     return 400;
-  //   }
-  //   if (Get.width < maxExtraLargeDesktopWidth) {
-  //     return 415;
-  //   }
-  //   return 430;
-  // }
-
-  static int get vehiclesPerItem {
-    if (Get.width < maxMobileWidth) {
-      return 1;
-    }
-    if (Get.width < maxTabletWidth) {
-      return 2;
-    }
-    if (Get.width < maxDesktopWidth) {
-      return 3;
-    }
-    if (Get.width < maxLargeDesktopWidth) {
-      return 4;
-    }
-    if (Get.width < maxExtraLargeDesktopWidth) {
-      return 5;
-    }
-    return 6;
-  }
 
   static List<String> carConditions = HoverItem.selectableValues.map((e) => e.prefix).toList();
-
-  static const List<String> makeList = [
-    'Abarth',
-    'Aston Martin',
-    'Audi',
-    'BMW',
-    'Buggati',
-    'Chevrolet',
-    'Corvette',
-    'Datsun',
-    'Ferrari',
-    'Fiat',
-    'Ford',
-    'Honda',
-    'Hyundai',
-    'Jaguar',
-    'Jeep',
-    'Lamborghini',
-    'Land Rover',
-    'Lotus',
-    'McLaren',
-    'Mercedes-Benz',
-    'Mitsubishi',
-    'Morris',
-    'Nissan',
-    'Porsche',
-    'Renault',
-    'Tesla',
-    'Toyota',
-    'Volkswagen',
-    'Volvo',
-  ];
 
   static const List<String> modelList = [
     '300GT',

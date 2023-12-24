@@ -8,9 +8,11 @@ import 'package:get/get.dart';
 class BrandCard extends StatelessWidget {
   const BrandCard({super.key});
 
+  static const String updateId = 'brand-card';
+
   @override
   Widget build(BuildContext context) => Container(
-        height: Dimens.fiveHundred,
+        // height: Dimens.fiveHundred,
         width: Dimens.screenWidth,
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -18,16 +20,24 @@ class BrandCard extends StatelessWidget {
         ),
         padding: Dimens.edgeInsets16_20,
         margin: Dimens.edgeInsets0_40,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const TitleText('BROWSE BY MAKE'),
-            Dimens.boxHeight20,
-            Flexible(
-              child: GetBuilder<HomeController>(
-                builder: (controller) => GridView.builder(
-                  itemCount: controller.brandsList.length,
+        child: GetBuilder<HomeController>(
+          id: updateId,
+          builder: (controller) => Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const TitleText('BROWSE BY MAKE'),
+              Dimens.boxHeight20,
+              if (controller.brandsList.isEmpty) ...[
+                const Center(
+                  child: AppText('Loading Brands'),
+                )
+              ] else ...[
+                GridView.builder(
+                  itemCount: controller.brandsList.take(8).length,
                   padding: Dimens.edgeInsets10,
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: Dimens.twoHundredFifty,
                     // mainAxisExtent: Dimens.hundred,
@@ -39,17 +49,58 @@ class BrandCard extends StatelessWidget {
                     controller.brandsList[index],
                   ),
                 ),
+              ],
+              Dimens.boxHeight20,
+              UnconstrainedBox(
+                child: Button(
+                  onTap: controller.brandsList.isEmpty
+                      ? null
+                      : () {
+                          controller.isBrandsExpanded = !controller.isBrandsExpanded;
+                          controller.update(['$updateId-expand']);
+                        },
+                  label: 'Show All Makes',
+                  width: Dimens.twoHundred,
+                ),
               ),
-            ),
-            Dimens.boxHeight20,
-            UnconstrainedBox(
-              child: Button(
-                onTap: () {},
-                label: '+ Show All Makes',
-                width: Dimens.twoHundred,
+              GetBuilder<HomeController>(
+                id: '$updateId-expand',
+                builder: (_) => !controller.isBrandsExpanded
+                    ? const SizedBox.shrink()
+                    : GridView.builder(
+                        itemCount: controller.brandsList.length,
+                        padding: Dimens.edgeInsets10,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: Dimens.twoHundred,
+                          // mainAxisExtent: Dimens.hundred,
+                          childAspectRatio: 2.5 / 1,
+                          crossAxisSpacing: Dimens.sixteen,
+                          mainAxisSpacing: Dimens.eight,
+                        ),
+                        itemBuilder: (_, index) {
+                          var brand = controller.brandsList[index];
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              AppImage(
+                                imageUrl: brand.logo,
+                                dimensions: Dimens.thirtyTwo,
+                                isNetworkImage: true,
+                                name: brand.label,
+                              ),
+                              Dimens.boxWidth10,
+                              AppText(brand.label),
+                            ],
+                          );
+                        },
+                      ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       );
 }
@@ -60,7 +111,7 @@ class $BrandTile extends StatelessWidget {
     super.key,
   });
 
-  final BrandModel brand;
+  final MakeModel brand;
 
   @override
   Widget build(BuildContext context) => Container(
@@ -82,12 +133,13 @@ class $BrandTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              brand.icon,
-              height: Dimens.fortyEight,
-              width: Dimens.fortyEight,
+            AppImage(
+              imageUrl: brand.logo,
+              dimensions: Dimens.fortyEight,
+              isNetworkImage: true,
+              name: brand.label,
             ),
-            AppText(brand.name),
+            AppText(brand.label),
           ],
         ),
       );

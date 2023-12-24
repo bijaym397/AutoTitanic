@@ -19,12 +19,10 @@ class CommonRepository {
 
   Future<ResponseModel> getVehicle({
     required Vehicle vehicle,
-  }) async {
-    var res = await _apiWrapper.makeRequest(
-      '${Apis.allMake}?type=${vehicle.value}',
-      type: RequestType.get,
-      headers: {},
-    );
-    return res;
-  }
+  }) =>
+      _apiWrapper.makeRequest(
+        '',
+        type: RequestType.get,
+        headers: {},
+      );
 }

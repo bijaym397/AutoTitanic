@@ -1,4 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
@@ -73,15 +74,15 @@ class AdvanceSearchView extends StatelessWidget {
                                           hint: filter.label,
                                         );
                                       }
-                                      return DropDown(
+                                      return DropDown<DropDownModel>(
                                         maxHeight: Dimens.threeHundred,
                                         items: filter.sellDropDownList,
-                                        labelBuilder: (label) => label,
+                                        labelBuilder: (e) => e.label,
                                         hint: filter.label,
                                         value: controller.sellDetailsValue(filter),
                                         onChanged: (data) => controller.onDetailChanged(
                                           filter,
-                                          data: data,
+                                          data: data?.label,
                                           updateId: updateId,
                                         ),
                                       );
@@ -133,7 +134,7 @@ class _SearchHeader extends StatelessWidget {
               (i) {
                 var type = AdvanceSearchType.values[i];
                 return _TitleButton(
-                  label: type.label(controller.commongController.selectedVehicle ?? Vehicle.cars),
+                  label: type.label(controller.commonController.selectedVehicle ?? Vehicle.cars),
                   isSelected: controller.selectedAdvanceSearchType == type,
                   onTap: () => controller.selectedAdvanceSearchType = type,
                 );
@@ -149,7 +150,7 @@ class _SearchHeader extends StatelessWidget {
                   const AppIcon(Icons.arrow_right_rounded),
                   const AppText('(80)'),
                   AppText(
-                    (controller.commongController.selectedVehicle ?? Vehicle.cars).label.toUpperCase(),
+                    (controller.commonController.selectedVehicle ?? Vehicle.cars).label.toUpperCase(),
                     style: const TextStyle().copyWith(color: AppColors.primary),
                   ),
                 ],

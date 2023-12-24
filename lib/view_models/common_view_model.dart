@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/repositories/repositories.dart';
 import 'package:auto_titanic/utils/utils.dart';
 
@@ -18,22 +15,17 @@ class CommonViewModel {
     }
   }
 
-  Future<List<MakeModel>> getVehicle(Vehicle vehicle) async {
+  Future<void> getVehicle(Vehicle vehicle) async {
     try {
       var res = await _repository.getVehicle(vehicle: vehicle);
       if (res.hasError) {
-        return [];
+        return;
       }
 
-      var data = jsonDecode(res.data) as Map<String, dynamic>;
-      var list = data['data']?['items'] as List<dynamic>?;
-      if (list == null) {
-        return [];
-      }
-      return list.map((e) => MakeModel.fromMap(e as Map<String, dynamic>)).toList();
+      return;
     } catch (e, st) {
       AppLog.error(e, st);
-      return [];
+      return;
     }
   }
 }

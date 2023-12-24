@@ -4,13 +4,13 @@ import 'package:flutter/foundation.dart';
 
 class MakeModel {
   const MakeModel({
-    required this.id,
-    required this.label,
-    required this.logo,
-    required this.type,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.models,
+    this.id = '',
+    this.label = '',
+    this.logo = '',
+    this.type,
+    this.createdAt,
+    this.updatedAt,
+    this.models,
   });
 
   factory MakeModel.fromMap(Map<String, dynamic> map) => MakeModel(
@@ -28,10 +28,10 @@ class MakeModel {
   final String id;
   final String label;
   final String logo;
-  final List<String> type;
-  final DateTime createdAt;
-  final DateTime updatedAt;
-  final List<dynamic> models;
+  final List<String>? type;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final List<dynamic>? models;
 
   MakeModel copyWith({
     String? id,
@@ -57,8 +57,8 @@ class MakeModel {
         'label': label,
         'logo': logo,
         'type': type,
-        'createdAt': createdAt.millisecondsSinceEpoch,
-        'updatedAt': updatedAt.millisecondsSinceEpoch,
+        'createdAt': createdAt?.millisecondsSinceEpoch,
+        'updatedAt': updatedAt?.millisecondsSinceEpoch,
         'models': models,
       };
 

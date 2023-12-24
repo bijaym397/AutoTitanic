@@ -1,4 +1,5 @@
 import 'package:auto_titanic/controllers/home/home.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
@@ -85,17 +86,17 @@ class _DropdownDetailsSection extends StatelessWidget {
                     isRequired: true,
                   );
                 }
-                return DropDown(
+                return DropDown<DropDownModel>(
                   maxHeight: Dimens.threeHundred,
                   items: filter.sellDropDownList,
-                  labelBuilder: (label) => label,
+                  labelBuilder: (e) => e.label,
                   hint: filter.label,
                   isRequired: true,
                   showTitle: true,
                   value: controller.sellDetailsValue(filter),
                   onChanged: (data) => controller.onDetailChanged(
                     filter,
-                    data: data,
+                    data: data?.label,
                     updateId: SellVehicleDetailsView.updateId,
                   ),
                 );

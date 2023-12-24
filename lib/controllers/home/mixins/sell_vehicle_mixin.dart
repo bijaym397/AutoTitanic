@@ -28,50 +28,50 @@ mixin SellVehicleMixin {
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
-  String? sellDetailsValue(VehicleFilter filter) {
+  DropDownModel? sellDetailsValue(VehicleFilter filter) {
     switch (filter) {
       case VehicleFilter.condition:
-        return _controller.selectedCarCondition;
+        return DropDownModel(label: _controller.selectedCarCondition ?? '');
       case VehicleFilter.make:
-        return _controller.selectedMake;
+        return DropDownModel(label: _controller.selectedMake ?? '');
       case VehicleFilter.model:
-        return _controller.selectedModel;
+        return DropDownModel(label: _controller.selectedModel ?? '');
       case VehicleFilter.variant:
-        return _controller.selectedVariant;
+        return DropDownModel(label: _controller.selectedVariant ?? '');
       case VehicleFilter.year:
-        return _controller.selectedYear;
+        return DropDownModel(label: _controller.selectedYear ?? '');
       case VehicleFilter.gearbox:
-        return _controller.selectedGearBox;
+        return DropDownModel(label: _controller.selectedGearBox ?? '');
       case VehicleFilter.fuelType:
-        return _controller.selectedFuelType;
+        return DropDownModel(label: _controller.selectedFuelType ?? '');
       case VehicleFilter.bodyStyle:
-        return _controller.selectedBodyStyle;
+        return DropDownModel(label: _controller.selectedBodyStyle ?? '');
       case VehicleFilter.bodyType:
-        return _controller.selectedBodyType;
+        return DropDownModel(label: _controller.selectedBodyType ?? '');
       case VehicleFilter.engineSize:
-        return _controller.selectedEngineSize;
+        return DropDownModel(label: _controller.selectedEngineSize ?? '');
       case VehicleFilter.door:
-        return _controller.selectedDoor;
+        return DropDownModel(label: _controller.selectedDoor ?? '');
       case VehicleFilter.exteriorColor:
-        return _controller.selectedExteriorColor;
+        return DropDownModel(label: _controller.selectedExteriorColor ?? '');
       case VehicleFilter.interiorColor:
-        return _controller.selectedInteriorColor;
+        return DropDownModel(label: _controller.selectedInteriorColor ?? '');
       case VehicleFilter.seat:
-        return _controller.selectedSeat;
+        return DropDownModel(label: _controller.selectedSeat ?? '');
       case VehicleFilter.driverPosition:
-        return _controller.selectedDriverPosition;
+        return DropDownModel(label: _controller.selectedDriverPosition ?? '');
       case VehicleFilter.bootspace:
-        return _controller.selectedBootSpace;
+        return DropDownModel(label: _controller.selectedBootSpace ?? '');
       case VehicleFilter.acceleration:
-        return _controller.selectedAcceleration;
+        return DropDownModel(label: _controller.selectedAcceleration ?? '');
       case VehicleFilter.fuelConsumption:
-        return _controller.selectedFuelConsumption;
+        return DropDownModel(label: _controller.selectedFuelConsumption ?? '');
       case VehicleFilter.co2Emission:
-        return _controller.selectedCO2Emission;
+        return DropDownModel(label: _controller.selectedCO2Emission ?? '');
       case VehicleFilter.price:
-        return _controller.sellPriceTEC.text;
+        return DropDownModel(label: _controller.sellPriceTEC.text);
       case VehicleFilter.mileage:
-        return _controller.sellMileageTEC.text;
+        return DropDownModel(label: _controller.sellMileageTEC.text);
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.annualTax:

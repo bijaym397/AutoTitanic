@@ -28,7 +28,7 @@ class ApiWrapper {
 
     /// To see whether the network is available or not
     var uri = (baseUrl ?? Apis.baseUrl) + api;
-    AppLog.info('[Request] - $type - $uri\n$payload');
+    AppLog.info('[Request] - ${type.name.toUpperCase()} - $uri\n$payload\n$headers');
     // if (headers['authorization'].isNullOrEmpty) {
     //   AppLog.error('Authorization error - $headers');
     //   return ResponseModel.message('Token not found', statusCode: 400);
@@ -40,7 +40,7 @@ class ApiWrapper {
         // Handles API call
         var start = DateTime.now();
         var response = await _handleRequest(
-          api,
+          uri,
           type: type,
           headers: headers,
           payload: payload,
@@ -143,8 +143,8 @@ class ApiWrapper {
   Future<http.Response> _get(
     String api, {
     required Map<String, String> headers,
-  }) async =>
-      await http
+  }) =>
+      http
           .get(
             Uri.parse(api),
             headers: headers,
@@ -155,8 +155,8 @@ class ApiWrapper {
     String api, {
     required dynamic payload,
     required Map<String, String> headers,
-  }) async =>
-      await http
+  }) =>
+      http
           .post(
             Uri.parse(api),
             body: jsonEncode(payload),
@@ -168,8 +168,8 @@ class ApiWrapper {
     String api, {
     required dynamic payload,
     required Map<String, String> headers,
-  }) async =>
-      await http
+  }) =>
+      http
           .put(
             Uri.parse(api),
             body: jsonEncode(payload),
@@ -181,8 +181,8 @@ class ApiWrapper {
     String api, {
     required dynamic payload,
     required Map<String, String> headers,
-  }) async =>
-      await http
+  }) =>
+      http
           .patch(
             Uri.parse(api),
             body: jsonEncode(payload),
@@ -194,8 +194,8 @@ class ApiWrapper {
     String api, {
     required dynamic payload,
     required Map<String, String> headers,
-  }) async =>
-      await http
+  }) =>
+      http
           .delete(
             Uri.parse(api),
             body: jsonEncode(payload),
@@ -235,6 +235,10 @@ class ApiWrapper {
     var diff = DateTime.now().difference(startTime).inMilliseconds / 1000;
     AppLog('[Response] - $diff s ${response.statusCode}\n${response.request?.url}\n${response.body}');
 
+    var data = utf8.decode(response.bodyBytes);
+
+    var hasError = (jsonDecode(data) as Map<String, dynamic>)['status'] == false;
+
     switch (response.statusCode) {
       case 200:
       case 201:
@@ -245,7 +249,7 @@ class ApiWrapper {
       case 208:
         return ResponseModel(
           data: utf8.decode(response.bodyBytes),
-          hasError: false,
+          hasError: hasError,
           statusCode: response.statusCode,
         );
       case 400:
@@ -271,7 +275,7 @@ class ApiWrapper {
         }
         var res = ResponseModel(
           data: utf8.decode(response.bodyBytes),
-          hasError: true,
+          hasError: hasError,
           statusCode: response.statusCode,
         );
         if (![401, 404, 406, 410].contains(response.statusCode) && showDialog) {
@@ -282,6 +286,7 @@ class ApiWrapper {
         var res = ResponseModel.message(
           'Server error',
           statusCode: response.statusCode,
+          isSuccess: !hasError,
         );
         if (showDialog) {
           await Utility.showAlertDialog(res);
@@ -291,7 +296,7 @@ class ApiWrapper {
       default:
         return ResponseModel(
           data: utf8.decode(response.bodyBytes),
-          hasError: true,
+          hasError: hasError,
           statusCode: response.statusCode,
         );
     }

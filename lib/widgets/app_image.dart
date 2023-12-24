@@ -1,8 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class AppImage extends StatelessWidget {
@@ -94,8 +93,8 @@ class _AssetImage extends StatelessWidget {
       return Image.asset(
         imageUrl,
         fit: fit ?? BoxFit.cover,
-        height: double.maxFinite,
-        width: double.maxFinite,
+        height: dimension,
+        width: dimension,
       );
     } catch (e) {
       return Container(
@@ -182,6 +181,8 @@ class _NetworkImage extends StatelessWidget {
         imageUrl: imageUrl,
         fit: fit ?? BoxFit.cover,
         alignment: Alignment.center,
+        height: dimension,
+        width: dimension,
         cacheKey: imageUrl,
         imageBuilder: (_, image) {
           try {
@@ -221,10 +222,13 @@ class _NetworkImage extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(),
                 ),
         ),
-        errorWidget: (context, url, error) => _ErrorImage(
-          isProfileImage: _isProfileImage,
-          name: _name,
-        ),
+        errorWidget: (context, url, error) {
+          AppLog.error('$url\n$error');
+          return _ErrorImage(
+            isProfileImage: _isProfileImage,
+            name: _name,
+          );
+        },
       );
 }
 

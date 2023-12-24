@@ -39,8 +39,8 @@ class CountryPicker extends StatelessWidget {
         countryFilter: AppConstants.allowedCountries,
         currentCountry: currentCountry,
         currentState: currentState,
-        onCountryChanged: onCountryChanged,
-        onStateChanged: onStateChanged,
+        onCountryChanged: onCountryChanged ?? (_) {},
+        onStateChanged: onStateChanged ?? (_) {},
         onCityChanged: (_) {},
       );
 }
