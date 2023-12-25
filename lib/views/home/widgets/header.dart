@@ -119,18 +119,6 @@ class $HeaderItem extends StatelessWidget {
                 ),
               ),
       );
-  // @override
-  // Widget build(BuildContext context) => Row(
-  //       mainAxisSize: MainAxisSize.min,
-  //       children: List.generate(
-  //         Vehicle.visibleVehicles.length,
-  //         (i) => $NavItem(
-  //           Vehicle.visibleVehicles[i],
-  //           navBarContext: context,
-  //           height: height,
-  //         ),
-  //       ),
-  //     );
 }
 
 class $NavItem extends StatelessWidget {

@@ -28,7 +28,7 @@ class ApiWrapper {
 
     /// To see whether the network is available or not
     var uri = (baseUrl ?? Apis.baseUrl) + api;
-    AppLog.info('[Request] - ${type.name.toUpperCase()} - $uri\n$payload\n$headers');
+    AppLog.info('[Request] - ${type.name.toUpperCase()} - $uri\n${jsonEncode(payload)}\n$headers');
     // if (headers['authorization'].isNullOrEmpty) {
     //   AppLog.error('Authorization error - $headers');
     //   return ResponseModel.message('Token not found', statusCode: 400);

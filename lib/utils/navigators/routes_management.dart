@@ -12,7 +12,7 @@ abstract class RouteManagement {
   /// Go to the Register Screen
   static void goToRegister() {
     Get.toNamed<void>(
-      AppRoutes.login,
+      AppRoutes.register,
     );
   }
 

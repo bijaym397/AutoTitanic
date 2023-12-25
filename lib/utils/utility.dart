@@ -37,6 +37,26 @@ class Utility {
     });
   }
 
+  static VehicleHover vehicleFromRoute() {
+    var uri = Uri.base.toString();
+    var list = uri.split('/');
+    var data = <String>[];
+    var vehicles = Vehicle.values.map((e) => e.path);
+    var items = HoverItem.values.map((e) => e.path);
+    for (var i in list) {
+      if (vehicles.contains(i) || items.contains(i)) {
+        data.add(i);
+      }
+    }
+    var v = Vehicle.fromRoute(
+      data.firstWhere((e) => vehicles.contains(e), orElse: () => Vehicle.cars.path),
+    );
+    var h = HoverItem.fromRoute(
+      data.firstWhere((e) => items.contains(e), orElse: () => HoverItem.used.path),
+    );
+    return (v, h);
+  }
+
   static Future<T?> openBottomSheet<T>(
     Widget child, {
     Color? backgroundColor,

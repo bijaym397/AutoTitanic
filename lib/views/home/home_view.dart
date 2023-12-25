@@ -53,8 +53,9 @@ class HomeView extends StatelessWidget {
                 itemCount: AppConstants.recentCarsCount,
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (_, index) {
+                itemBuilder: (_, i) {
                   var carouselController = CarouselController();
+                  var index = AppConstants.featuredCarsCount + i;
                   return CarsCarousel(
                     carouselList: controller.carsList[index],
                     duration: carouselController.duration,

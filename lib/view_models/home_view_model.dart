@@ -25,17 +25,45 @@ class HomeViewModel {
     }
   }
 
-  Future<List> getModels(String brandId) async {
+  Future<List<MakeModel>> getModels(String brandId) async {
     try {
       var res = await _repository.getModels(brandId);
       if (res.hasError) {
         return [];
       }
-      AppLog.success(res);
-      return [];
+      var list = res.bodyList;
+
+      return list.map((e) => MakeModel.fromMap(e as Map<String, dynamic>)).toList();
     } catch (e, st) {
       AppLog.error(e, st);
       return [];
+    }
+  }
+
+  Future<int?> resultCount({
+    String? country,
+    int? minPrice,
+    int? maxPrice,
+    String? makeId,
+    String? modelId,
+  }) async {
+    try {
+      var data = {
+        'country': country,
+        'minPrice': minPrice,
+        'maxPrice': maxPrice,
+        'makeId': makeId,
+        'modelId': modelId,
+      };
+      var res = await _repository.resultCount(data.removeNullValues());
+      if (res.hasError) {
+        return null;
+      }
+      AppLog.success(res);
+      return null;
+    } catch (e, st) {
+      AppLog.error(e, st);
+      return null;
     }
   }
 }

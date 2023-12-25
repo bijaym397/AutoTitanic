@@ -38,24 +38,6 @@ class AppConstants {
 
   static List<String> carConditions = HoverItem.selectableValues.map((e) => e.prefix).toList();
 
-  static const List<String> modelList = [
-    '300GT',
-    'A4',
-    'A8',
-    'Alphard',
-    'Alpina B3',
-    'Aventador',
-    'Carisma',
-    'DB9',
-    'Elise',
-    'G Class',
-    'Gallardo',
-    'Mc20',
-    'Murcielago',
-    'Spyder',
-    'Z4',
-  ];
-
   static const List<String> variantList = ['110di', '120v', 'SE', 'Sports'];
 
   static const List<String> yearList = [

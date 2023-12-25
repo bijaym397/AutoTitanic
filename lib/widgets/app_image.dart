@@ -50,6 +50,7 @@ class AppImage extends StatelessWidget {
       ? _MemeroyImage(
           bytes: bytes!,
           name: _name,
+          isProfileImage: _isProfileImage,
           dimension: dimensions,
           radius: radius,
           fit: fit,
@@ -118,6 +119,7 @@ class _MemeroyImage extends StatelessWidget {
   const _MemeroyImage({
     required this.bytes,
     required this.name,
+    required this.isProfileImage,
     this.dimension,
     this.radius,
     this.fit,
@@ -125,6 +127,7 @@ class _MemeroyImage extends StatelessWidget {
 
   final Uint8List bytes;
   final String name;
+  final bool isProfileImage;
   final double? dimension;
   final double? radius;
   final BoxFit? fit;
@@ -154,6 +157,14 @@ class _MemeroyImage extends StatelessWidget {
             cacheHeight: dimension?.toInt(),
             cacheWidth: dimension?.toInt(),
             fit: fit ?? BoxFit.cover,
+            errorBuilder: (context, url, error) {
+              AppLog.error('$url\n$error');
+              return _ErrorImage(
+                isProfileImage: isProfileImage,
+                name: name,
+                dimension: dimension,
+              );
+            },
           ),
         );
 }
@@ -190,6 +201,7 @@ class _NetworkImage extends StatelessWidget {
               return _ErrorImage(
                 isProfileImage: _isProfileImage,
                 name: _name,
+                dimension: dimension,
               );
             }
             return Container(
@@ -201,7 +213,11 @@ class _NetworkImage extends StatelessWidget {
             );
           } catch (e, st) {
             AppLog.error(e, st);
-            return _ErrorImage(isProfileImage: _isProfileImage, name: _name);
+            return _ErrorImage(
+              isProfileImage: _isProfileImage,
+              name: _name,
+              dimension: dimension,
+            );
           }
         },
         placeholder: (context, url) => Container(
@@ -227,6 +243,7 @@ class _NetworkImage extends StatelessWidget {
           return _ErrorImage(
             isProfileImage: _isProfileImage,
             name: _name,
+            dimension: dimension,
           );
         },
       );
@@ -236,18 +253,23 @@ class _ErrorImage extends StatelessWidget {
   const _ErrorImage({
     required bool isProfileImage,
     required String name,
+    this.dimension,
   })  : _isProfileImage = isProfileImage,
         _name = name;
 
   final bool _isProfileImage;
   final String _name;
+  final double? dimension;
 
   @override
   Widget build(BuildContext context) => Container(
         alignment: Alignment.center,
+        height: dimension,
+        width: dimension,
         decoration: BoxDecoration(
-          color: AppColors.primary.withOpacity(0.2),
+          color: AppColors.grey,
           shape: _isProfileImage ? BoxShape.circle : BoxShape.rectangle,
+          borderRadius: _isProfileImage ? null : BorderRadius.circular(Dimens.eight),
         ),
         child: _isProfileImage
             ? Text(
@@ -257,15 +279,9 @@ class _ErrorImage extends StatelessWidget {
                   color: AppColors.primary,
                 ),
               )
-            : Container(
-                decoration: BoxDecoration(
-                  color: AppColors.grey,
-                  borderRadius: BorderRadius.circular(Dimens.eight),
-                ),
-                alignment: Alignment.center,
-                child: const Text(
-                  AppStrings.errorLoadingImage,
-                ),
+            : Text(
+                '$_name: ${AppStrings.errorLoadingImage}',
+                textAlign: TextAlign.center,
               ),
       );
 }

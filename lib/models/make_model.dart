@@ -6,7 +6,8 @@ class MakeModel {
   const MakeModel({
     this.id = '',
     this.label = '',
-    this.logo = '',
+    this.logo,
+    this.make,
     this.type,
     this.createdAt,
     this.updatedAt,
@@ -16,7 +17,8 @@ class MakeModel {
   factory MakeModel.fromMap(Map<String, dynamic> map) => MakeModel(
         id: map['_id'] as String,
         label: map['label'] as String,
-        logo: map['logo'] as String,
+        logo: map['logo'] as String?,
+        make: map['make'] as String?,
         type: (map['type'] as List<dynamic>).cast<String>(),
         createdAt: map['createdAt'] != null ? DateTime.parse(map['createdAt'] as String) : DateTime.now(),
         updatedAt: map['updatedAt'] != null ? DateTime.parse(map['updatedAt'] as String) : DateTime.now(),
@@ -27,7 +29,8 @@ class MakeModel {
 
   final String id;
   final String label;
-  final String logo;
+  final String? logo;
+  final String? make;
   final List<String>? type;
   final DateTime? createdAt;
   final DateTime? updatedAt;
@@ -37,6 +40,7 @@ class MakeModel {
     String? id,
     String? label,
     String? logo,
+    String? make,
     List<String>? type,
     DateTime? createdAt,
     DateTime? updatedAt,
@@ -46,6 +50,7 @@ class MakeModel {
         id: id ?? this.id,
         label: label ?? this.label,
         logo: logo ?? this.logo,
+        make: make ?? this.make,
         type: type ?? this.type,
         createdAt: createdAt ?? this.createdAt,
         updatedAt: updatedAt ?? this.updatedAt,
@@ -56,6 +61,7 @@ class MakeModel {
         '_id': id,
         'label': label,
         'logo': logo,
+        'make': make,
         'type': type,
         'createdAt': createdAt?.millisecondsSinceEpoch,
         'updatedAt': updatedAt?.millisecondsSinceEpoch,
@@ -65,7 +71,8 @@ class MakeModel {
   String toJson() => json.encode(toMap());
 
   @override
-  String toString() => 'MakeModel(_id: $id, label: $label, logo: $logo, type: $type, createdAt: $createdAt, updatedAt: $updatedAt, models: $models)';
+  String toString() =>
+      'MakeModel(_id: $id, label: $label, logo: $logo, make: $make, type: $type, createdAt: $createdAt, updatedAt: $updatedAt, models: $models)';
 
   @override
   bool operator ==(covariant MakeModel other) {
@@ -74,6 +81,7 @@ class MakeModel {
     return other.id == id &&
         other.label == label &&
         other.logo == logo &&
+        other.make == make &&
         listEquals(other.type, type) &&
         other.createdAt == createdAt &&
         other.updatedAt == updatedAt &&
@@ -81,5 +89,6 @@ class MakeModel {
   }
 
   @override
-  int get hashCode => id.hashCode ^ label.hashCode ^ logo.hashCode ^ type.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ models.hashCode;
+  int get hashCode =>
+      id.hashCode ^ label.hashCode ^ logo.hashCode ^ make.hashCode ^ type.hashCode ^ createdAt.hashCode ^ updatedAt.hashCode ^ models.hashCode;
 }

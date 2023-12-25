@@ -24,6 +24,9 @@ class AssetConstants {
   static const String pageHeaderBg = '$_imagePath/page_header_bg.webp';
   static const String homeTopBg = '$_imagePath/home_top_bg.webp';
 
+  static const String loginBG = '$_imagePath/login.png';
+  static const String signupBG = '$_imagePath/signup.png';
+
   static const String car1 = '$_imagePath/car1.jpeg';
   static const String car2 = '$_imagePath/car2.jpg';
   static const String car3 = '$_imagePath/car3.jpg';

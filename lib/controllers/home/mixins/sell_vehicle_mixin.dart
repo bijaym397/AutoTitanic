@@ -6,7 +6,8 @@ mixin SellVehicleMixin {
   bool get isNextButtonEnabled =>
       [_controller.selectedVehicleCategory, _controller.selectedCountry, _controller.selectedState]
           .every((e) => e != null && e.toString().trim().isNotEmpty) &&
-      _controller.selectedImages.length > 5;
+      _controller.selectedImages.length >= 5 &&
+      (_controller.vehicleVideoTEC.isEmpty || (_controller.vehicleVideoTEC.isNotEmpty && _controller.videoLinkError == null));
 
   void onChangeSellPage([bool fromLocationView = false]) {
     _controller.showLocationPage = fromLocationView;
@@ -28,50 +29,127 @@ mixin SellVehicleMixin {
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
+  String? videoLinkValidator(String? link) {
+    if (link == null || link.trim().isEmpty) {
+      return null;
+    }
+
+    return _controller.videoLinkError;
+  }
+
+  void onVideoLinkChanged(String? link) {
+    _controller.debouncer.run(() async {
+      _controller.isValidatingLink = true;
+      var isValid = await Validators.isValidUrl(link!);
+      if (isValid) {
+        _controller.videoLinkError = null;
+      } else {
+        _controller.videoLinkError = 'Invalid link';
+      }
+      _controller.isValidatingLink = false;
+      _controller.update([SellVehicleLocationView.updateId]);
+    });
+  }
+
   DropDownModel? sellDetailsValue(VehicleFilter filter) {
     switch (filter) {
       case VehicleFilter.condition:
+        if (_controller.selectedCarCondition == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedCarCondition ?? '');
       case VehicleFilter.make:
+        if (_controller.selectedMake == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedMake ?? '');
       case VehicleFilter.model:
+        if (_controller.selectedModel == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedModel ?? '');
       case VehicleFilter.variant:
+        if (_controller.selectedVariant == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedVariant ?? '');
       case VehicleFilter.year:
+        if (_controller.selectedYear == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedYear ?? '');
       case VehicleFilter.gearbox:
+        if (_controller.selectedGearBox == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedGearBox ?? '');
       case VehicleFilter.fuelType:
+        if (_controller.selectedFuelType == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedFuelType ?? '');
       case VehicleFilter.bodyStyle:
+        if (_controller.selectedBodyStyle == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedBodyStyle ?? '');
       case VehicleFilter.bodyType:
+        if (_controller.selectedBodyType == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedBodyType ?? '');
       case VehicleFilter.engineSize:
+        if (_controller.selectedEngineSize == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedEngineSize ?? '');
       case VehicleFilter.door:
+        if (_controller.selectedDoor == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedDoor ?? '');
       case VehicleFilter.exteriorColor:
+        if (_controller.selectedExteriorColor == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedExteriorColor ?? '');
       case VehicleFilter.interiorColor:
+        if (_controller.selectedInteriorColor == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedInteriorColor ?? '');
       case VehicleFilter.seat:
+        if (_controller.selectedSeat == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedSeat ?? '');
       case VehicleFilter.driverPosition:
+        if (_controller.selectedDriverPosition == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedDriverPosition ?? '');
       case VehicleFilter.bootspace:
+        if (_controller.selectedBootSpace == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedBootSpace ?? '');
       case VehicleFilter.acceleration:
+        if (_controller.selectedAcceleration == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedAcceleration ?? '');
       case VehicleFilter.fuelConsumption:
+        if (_controller.selectedFuelConsumption == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedFuelConsumption ?? '');
       case VehicleFilter.co2Emission:
+        if (_controller.selectedCO2Emission == null) {
+          return null;
+        }
         return DropDownModel(label: _controller.selectedCO2Emission ?? '');
       case VehicleFilter.price:
-        return DropDownModel(label: _controller.sellPriceTEC.text);
       case VehicleFilter.mileage:
-        return DropDownModel(label: _controller.sellMileageTEC.text);
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.annualTax:
@@ -183,11 +261,7 @@ mixin SellVehicleMixin {
         _controller.selectedCO2Emission = data;
         break;
       case VehicleFilter.price:
-        // _controller.sellPriceTEC.text = data ?? '';
-        break;
       case VehicleFilter.mileage:
-        // _controller.sellMileageTEC.text = data ?? '';
-        break;
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.annualTax:

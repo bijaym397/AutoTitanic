@@ -25,6 +25,9 @@ class SellVehicleLocationView extends StatelessWidget {
             width: Dimens.fiveHundred,
             child: GetBuilder<HomeController>(
               id: updateId,
+              initState: (_) {
+                Get.find<HomeController>().selectedVehicleCategory = Utility.vehicleFromRoute().$1;
+              },
               builder: (controller) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
@@ -66,16 +69,20 @@ class SellVehicleLocationView extends StatelessWidget {
                   ),
                   const _ImageSection(),
                   Dimens.boxHeight10,
-                  InputField(
-                    controller: controller.vehicleVideoTEC,
-                    hint: 'Link to Video',
-                    showLabel: true,
-                    floatingLabel: true,
-                    onChanged: (_) {
-                      controller.debouncer.run(() async {
-                        controller.isLinkValid = await Validators.isValidUrl(_!);
-                      });
-                    },
+                  Obx(
+                    () => InputField(
+                      controller: controller.vehicleVideoTEC,
+                      hint: 'Link to Video',
+                      showLabel: true,
+                      floatingLabel: true,
+                      validator: controller.videoLinkValidator,
+                      onChanged: controller.onVideoLinkChanged,
+                      suffixIcon: FieldSuffixLoader(
+                        showIcon: controller.vehicleVideoTEC.text.trim().isNotEmpty,
+                        isError: controller.videoLinkError != null,
+                        isLoading: controller.isValidatingLink,
+                      ),
+                    ),
                   ),
                   const Spacer(),
                   Button(
@@ -104,7 +111,16 @@ class _ImageSection extends StatelessWidget {
             controller: controller.imageScrollController,
             itemBuilder: (_, index) {
               if (index == controller.selectedImages.length) {
-                return _AddImageButton();
+                return AddImage(
+                  onTap: () async {
+                    var files = await FileManager.pickImages();
+                    controller.selectedImages.addAll(files);
+                    controller.selectedImages = [...controller.selectedImages.take(20)];
+                    controller.update([SellVehicleLocationView.updateId]);
+                    await Future.delayed(Duration.zero);
+                    controller.animateToLast();
+                  },
+                );
               }
               var image = controller.selectedImages[index];
               return UnconstrainedBox(
@@ -114,6 +130,7 @@ class _ImageSection extends StatelessWidget {
                   children: [
                     AppImage(
                       bytes: image.bytes!,
+                      name: image.name,
                       dimensions: Dimens.eighty,
                       radius: Dimens.eight,
                       isNetworkImage: false,
@@ -143,40 +160,6 @@ class _ImageSection extends StatelessWidget {
                 ),
               );
             },
-          ),
-        ),
-      );
-}
-
-class _AddImageButton extends StatelessWidget {
-  _AddImageButton() : controller = Get.find<HomeController>();
-
-  final HomeController controller;
-
-  @override
-  Widget build(BuildContext context) => UnconstrainedBox(
-        child: TapHandler(
-          onTap: () async {
-            var files = await FileManager.pickImages();
-            controller.selectedImages.addAll(files);
-            controller.selectedImages = [...controller.selectedImages.take(20)];
-            controller.update([SellVehicleLocationView.updateId]);
-            await Future.delayed(Duration.zero);
-            controller.animateToLast();
-          },
-          child: Container(
-            height: Dimens.eighty,
-            width: Dimens.eighty,
-            decoration: BoxDecoration(
-              border: Border.all(color: AppColors.primary),
-              borderRadius: BorderRadius.circular(Dimens.eight),
-              color: AppColors.primary.withOpacity(0.1),
-            ),
-            alignment: Alignment.center,
-            child: const AppIcon(
-              Icons.add_rounded,
-              color: AppColors.primary,
-            ),
           ),
         ),
       );

@@ -12,14 +12,16 @@ class InputField extends StatelessWidget {
     this.showLabel = false,
     this.floatingLabel = false,
     this.isRequired = false,
-    String hint = '',
+    String? hint,
     this.minLines,
     this.maxLines,
     this.onChanged,
     this.textInputType,
     this.inputFormatters,
-  })  : _hint = 'Enter $hint',
-        _label = label ?? hint;
+    this.validator,
+    this.suffixIcon,
+  })  : _hint = 'Enter ${hint ?? label}',
+        _label = label ?? '';
 
   final TextEditingController? controller;
   final bool isRequired;
@@ -32,6 +34,8 @@ class InputField extends StatelessWidget {
   final void Function(String?)? onChanged;
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
+  final AppValidator? validator;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) => Column(
@@ -57,39 +61,40 @@ class InputField extends StatelessWidget {
                 ],
               ),
             ),
-          SizedBox(
-            height: (minLines ?? 1) > 1 ? null : Dimens.forty,
-            child: TextFormField(
-              controller: controller,
-              decoration: InputDecoration(
-                alignLabelWithHint: true,
-                filled: true,
-                fillColor: AppColors.grey,
-                hintText: _hint.isEmpty
-                    ? null
-                    : isRequired && !showLabel
-                        ? '*$_hint'
-                        : _hint,
-                labelText: showLabel && floatingLabel ? _label : null,
-                labelStyle: Styles.bodyMedium,
-                hintStyle: Styles.bodyMedium,
-                hintMaxLines: 1,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(Dimens.eight),
-                ),
-                isDense: true,
-                contentPadding: Dimens.edgeInsets16_12,
+          TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              alignLabelWithHint: true,
+              filled: true,
+              fillColor: AppColors.grey,
+              hintText: _hint.isEmpty
+                  ? null
+                  : isRequired && !showLabel
+                      ? '*$_hint'
+                      : _hint,
+              labelText: showLabel && floatingLabel ? _label : null,
+              labelStyle: Styles.bodyMedium,
+              hintStyle: Styles.bodyMedium,
+              hintMaxLines: 1,
+              border: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(Dimens.eight),
               ),
-              cursorHeight: Dimens.sixteen,
-              cursorWidth: Dimens.two,
-              canRequestFocus: true,
-              onChanged: onChanged,
-              minLines: minLines,
-              maxLines: maxLines ?? 1,
-              keyboardType: textInputType,
-              inputFormatters: inputFormatters ?? (textInputType == TextInputType.number ? Utility.numberFormatters : null),
+              isDense: true,
+              contentPadding: Dimens.edgeInsets16_12,
+              suffixIcon: suffixIcon,
             ),
+            validator: validator,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorHeight: Dimens.sixteen,
+            cursorWidth: Dimens.two,
+            style: Styles.bodyMedium,
+            canRequestFocus: true,
+            onChanged: onChanged,
+            minLines: minLines,
+            maxLines: maxLines ?? 1,
+            keyboardType: textInputType,
+            inputFormatters: inputFormatters ?? (textInputType == TextInputType.number ? Utility.numberFormatters : null),
           ),
         ],
       );

@@ -12,6 +12,8 @@ class Apis {
   static const String allMake = 'allMake';
   static const String allModel = 'allModel';
 
+  static const String resultCount = 'getResultCount';
+
   static const String allVehicle = 'AllVehicles';
   static const String addVehicle = 'addVehicle';
 }

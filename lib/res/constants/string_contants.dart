@@ -134,6 +134,9 @@ class AppStrings {
   static const String mileageH2L = 'Mileage: High to Low';
   static const String ageNew = 'Age: Newest first';
   static const String ageOld = 'Age: Oldest first';
+
+  static const String policyStatement =
+      'Your personal data will be used in mapping with the vehicles you added to the website, to manage access to your account, and for other purposes described in our ';
 }
 
 class StringData {

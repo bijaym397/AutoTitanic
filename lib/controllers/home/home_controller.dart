@@ -25,9 +25,15 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   var debouncer = Debouncer();
 
+  String? selectedFilterCountry;
+
   DropDownModel? selectedFilterBrand;
 
-  String? selectedFilterCountry;
+  DropDownModel? selectedFilterModel;
+
+  num? selectedFilterMinPrice;
+
+  num? selectedFilterMaxPrice;
 
   // -------------------- Sell Variables -----------------
 
@@ -35,9 +41,13 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   var vehicleVideoTEC = TextEditingController();
 
-  final RxBool _isLinkValid = false.obs;
-  bool get isLinkValid => _isLinkValid.value;
-  set isLinkValid(bool value) => _isLinkValid.value = value;
+  final Rx<String?> _videoLinkError = Rx<String?>(null);
+  String? get videoLinkError => _videoLinkError.value;
+  set videoLinkError(String? value) => _videoLinkError.value = value;
+
+  final RxBool _isValidatingLink = false.obs;
+  bool get isValidatingLink => _isValidatingLink.value;
+  set isValidatingLink(bool value) => _isValidatingLink.value = value;
 
   bool showLocationPage = true;
 
@@ -99,6 +109,8 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   List<MakeModel> brandsList = [];
 
+  List<MakeModel> modelList = [];
+
   var isBrandsExpanded = false;
 
   // ==================== INIT =====================
@@ -109,36 +121,16 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
     getBrands();
   }
 
-  VehicleHover _vehicleFromRoute() {
-    var uri = Uri.base.toString();
-    var list = uri.split('/');
-    var data = <String>[];
-    var vehicles = Vehicle.values.map((e) => e.path);
-    var items = HoverItem.values.map((e) => e.path);
-    for (var i in list) {
-      if (vehicles.contains(i) || items.contains(i)) {
-        data.add(i);
-      }
-    }
-    var v = Vehicle.fromRoute(
-      data.firstWhere((e) => vehicles.contains(e), orElse: () => Vehicle.cars.path),
-    );
-    var h = HoverItem.fromRoute(
-      data.firstWhere((e) => items.contains(e), orElse: () => HoverItem.used.path),
-    );
-    return (v, h);
-  }
-
   void checkRoute() {
     var uri = Uri.base.toString();
     var route = 'home';
     var isHome = uri.contains(route);
     if (isHome) {
-      var (vehicle, hover) = _vehicleFromRoute();
+      var (vehicle, hover) = Utility.vehicleFromRoute();
 
       commonController.goToVehicleListing(vehicle, hover);
     } else {
-      var (v, i) = _vehicleFromRoute();
+      var (v, i) = Utility.vehicleFromRoute();
       Utility.updateLater(() {
         commonController.selectedVehicle = v;
         commonController.selectedItem = i;
@@ -198,13 +190,37 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
     update([FilterSection.updateId]);
   }
 
-  void onBrandChanged(DropDownModel? brand) async {
+  void onFilterBrandChanged(DropDownModel? brand) async {
     if (brand == null) {
       return;
     }
     selectedFilterBrand = brand;
     update([FilterSection.updateId]);
     await getModels(brand.id);
+  }
+
+  void onFilterModelChanged(DropDownModel? model) async {
+    if (model == null) {
+      return;
+    }
+    selectedFilterModel = model;
+    update([FilterSection.updateId]);
+  }
+
+  void onFilterMinPriceChanged(num? price) async {
+    if (price == null) {
+      return;
+    }
+    selectedFilterMinPrice = price;
+    update([FilterSection.updateId]);
+  }
+
+  void onFilterMaxPriceChanged(num? price) async {
+    if (price == null) {
+      return;
+    }
+    selectedFilterMaxPrice = price;
+    update([FilterSection.updateId]);
   }
 
   void resetFilters() {

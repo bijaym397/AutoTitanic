@@ -8,3 +8,5 @@ typedef WidgetCallback<T> = Widget Function(T);
 typedef StringCallback<T> = String Function(T);
 
 typedef VehicleHover = (Vehicle, HoverItem);
+
+typedef AppValidator = String? Function(String?);

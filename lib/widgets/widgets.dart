@@ -1,3 +1,4 @@
+export 'add_image.dart';
 export 'animated_lines.dart';
 export 'app_icon.dart';
 export 'app_image.dart';
@@ -7,6 +8,7 @@ export 'car_card.dart';
 export 'checkbox.dart';
 export 'country_picker.dart';
 export 'drop_down.dart';
+export 'field_suffix_loader.dart';
 export 'filter_section.dart';
 export 'full_screen_dialog.dart';
 export 'html_widget.dart';

@@ -6,7 +6,9 @@ class HomeRepository {
   const HomeRepository(this._apiWrapper);
   final ApiWrapper _apiWrapper;
 
-  Future<ResponseModel> addVehicle({required Vehicle vehicle}) async {
+  Future<ResponseModel> addVehicle({
+    required Vehicle vehicle,
+  }) async {
     var data = {};
 
     return _apiWrapper.makeRequest(
@@ -27,9 +29,24 @@ class HomeRepository {
         headers: {},
       );
 
-  Future<ResponseModel> getModels(String brandId) => _apiWrapper.makeRequest(
+  Future<ResponseModel> getModels(
+    String brandId,
+  ) =>
+      _apiWrapper.makeRequest(
         '${Apis.allModel}/$brandId',
         type: RequestType.get,
+        headers: {},
+      );
+
+  Future<ResponseModel> resultCount(
+    Map<String, dynamic> payload,
+  ) =>
+      _apiWrapper.makeRequest(
+        Apis.resultCount,
+        type: RequestType.post,
+        payload: {
+          'filters': payload,
+        },
         headers: {},
       );
 }

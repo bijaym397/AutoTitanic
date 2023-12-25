@@ -45,7 +45,7 @@ class AppPages {
     ),
     GetPage<RegisterView>(
       name: AppRoutes.register,
-      page: LoginView.new,
+      page: RegisterView.new,
       binding: AuthBinding(),
       transition: transition,
     ),

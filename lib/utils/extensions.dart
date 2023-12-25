@@ -15,6 +15,29 @@ extension NullString on String? {
   bool get isNullOrEmpty => this == null || this!.trim().isEmpty;
 }
 
+extension MapExtension on Map<String, dynamic> {
+  Map<String, dynamic> removeNullValues() {
+    var result = <String, dynamic>{};
+    for (var entry in entries) {
+      var k = entry.key;
+      if (entry.value != null) {
+        if (entry.value.runtimeType.toString().contains('Map')) {
+          result[k] = (entry.value as Map<String, dynamic>).removeNullValues();
+        } else {
+          result[k] = entry.value;
+        }
+      }
+    }
+    return result;
+  }
+}
+
+extension TECExtension on TextEditingController {
+  bool get isEmpty => text.trim().isEmpty;
+
+  bool get isNotEmpty => text.trim().isNotEmpty;
+}
+
 extension StringExtension on String {
   String get svgPath => kIsWeb ? replaceAll('assets/', '') : this;
 
@@ -36,6 +59,16 @@ extension ContextExtension on BuildContext {
   bool get isTabletView => width > AppConstants.maxMobileWidth && width <= AppConstants.maxTabletWidth;
 
   bool get isMobileView => width <= AppConstants.maxMobileWidth;
+
+  double? get fieldWidth {
+    if (isDesktopView) {
+      return 0.3.pw;
+    }
+    if (isTabletView) {
+      return 0.4.pw;
+    }
+    return null;
+  }
 
   Size? get size => (findRenderObject() as RenderBox?)?.size;
 }
@@ -372,7 +405,12 @@ extension VehicleFilterExtension on VehicleFilter {
             )
             .toList();
       case VehicleFilter.model:
-        return AppConstants.modelList.map((e) => DropDownModel(label: e)).toList();
+        return Get.find<HomeController>()
+            .modelList
+            .map(
+              (e) => DropDownModel(label: e.label, id: e.id),
+            )
+            .toList();
       case VehicleFilter.variant:
         return AppConstants.variantList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.gearbox:

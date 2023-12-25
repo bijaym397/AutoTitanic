@@ -39,7 +39,7 @@ class AppCheckBoxListTile extends StatelessWidget {
           value: value,
           title: Text(
             title,
-            style: Styles.labelMedium,
+            style: Styles.labelLarge,
           ),
           subtitle: subtitle == null ? null : Text(subtitle!),
           controlAffinity: ListTileControlAffinity.leading,

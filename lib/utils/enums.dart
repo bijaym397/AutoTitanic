@@ -193,7 +193,7 @@ enum VehicleFilter {
 
 enum SellerType {
   dealer(AppStrings.dealer),
-  private(AppStrings.private);
+  private(AppStrings.seller);
 
   const SellerType(this.label);
   final String label;
