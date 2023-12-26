@@ -8,6 +8,7 @@ import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quill_html_editor/quill_html_editor.dart';
 
 part 'mixins/api_mixin.dart';
 part 'mixins/sell_vehicle_mixin.dart';
@@ -59,7 +60,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   var sellTitleTEC = TextEditingController();
 
-  var sellDescriptionTEC = TextEditingController();
+  var sellDescriptionTEC = QuillEditorController();
 
   String? selectedCarCondition;
 
@@ -114,12 +115,6 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
   var isBrandsExpanded = false;
 
   // ==================== INIT =====================
-
-  @override
-  void onReady() {
-    super.onReady();
-    getBrands();
-  }
 
   void checkRoute() {
     var uri = Uri.base.toString();

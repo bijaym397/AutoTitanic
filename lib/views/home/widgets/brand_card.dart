@@ -1,6 +1,7 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class BrandCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         // height: Dimens.fiveHundred,
-        width: Dimens.screenWidth,
+        width: context.screenWidth,
         decoration: BoxDecoration(
           color: AppColors.white,
           borderRadius: BorderRadius.circular(Dimens.sixteen),

@@ -33,7 +33,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
         color: AppColors.white,
         child: GetBuilder<CommonController>(
           builder: (controller) => SizedBox(
-            width: Dimens.screenWidth,
+            width: context.screenWidth,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                   ),
-                if (Dimens.screenWidth < AppConstants.maxMobileWidth) ...[
+                if (Get.width < AppConstants.maxMobileWidth) ...[
                   TapHandler(
                     onTap: () {},
                     child: const AppIcon(

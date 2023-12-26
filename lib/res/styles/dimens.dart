@@ -7,36 +7,34 @@ class Dimens {
 
   static double get appbarHeight => sixtyFour;
 
-  static double get screenWidth => 0.7.pw;
-
   static EdgeInsets appbarPadding = EdgeInsets.symmetric(horizontal: 0.15.pw, vertical: thirtyTwo);
 
-  static double get two => 2.sp;
-  static double get four => 4.sp;
-  static double get six => 6.sp;
-  static double get eight => 8.sp;
-  static double get ten => 10.sp;
-  static double get twelve => 12.sp;
-  static double get sixteen => 16.sp;
-  static double get twenty => 20.sp;
-  static double get twentyFour => 24.sp;
-  static double get twentyEight => 28.sp;
-  static double get thirtyTwo => 32.sp;
-  static double get forty => 40.sp;
-  static double get fortyEight => 48.sp;
-  static double get sixtyFour => 64.sp;
-  static double get eighty => 80.sp;
-  static double get hundred => 100.sp;
-  static double get twoHundred => 200.sp;
-  static double get twoHundredFifty => 250.sp;
-  static double get twoHundredSeventyFive => 275.sp;
-  static double get threeHundred => 300.sp;
-  static double get threeFifty => 350.sp;
-  static double get fourHundred => 400.sp;
-  static double get fourTwentyFive => 400.sp;
-  static double get fourFifty => 450.sp;
-  static double get fiveHundred => 500.sp;
-  static double get fiveFifty => 550.sp;
+  static double get two => 2.spMax;
+  static double get four => 4.spMax;
+  static double get six => 6.spMax;
+  static double get eight => 8.spMax;
+  static double get ten => 10.spMax;
+  static double get twelve => 12.spMax;
+  static double get sixteen => 16.spMax;
+  static double get twenty => 20.spMax;
+  static double get twentyFour => 24.spMax;
+  static double get twentyEight => 28.spMax;
+  static double get thirtyTwo => 32.spMax;
+  static double get forty => 40.spMax;
+  static double get fortyEight => 48.spMax;
+  static double get sixtyFour => 64.spMax;
+  static double get eighty => 80.spMax;
+  static double get hundred => 100.spMax;
+  static double get twoHundred => 200.spMax;
+  static double get twoHundredFifty => 250.spMax;
+  static double get twoHundredSeventyFive => 275.spMax;
+  static double get threeHundred => 300.spMax;
+  static double get threeFifty => 350.spMax;
+  static double get fourHundred => 400.spMax;
+  static double get fourTwentyFive => 400.spMax;
+  static double get fourFifty => 450.spMax;
+  static double get fiveHundred => 500.spMax;
+  static double get fiveFifty => 550.spMax;
 
   static const Widget box0 = SizedBox.shrink();
 

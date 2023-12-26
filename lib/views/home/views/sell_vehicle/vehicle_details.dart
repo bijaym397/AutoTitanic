@@ -40,9 +40,11 @@ class _DropdownDetailsSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              width: 0.3.pw,
+              width: context.fieldWidth,
               child: InputField(
                 label: 'Title',
+                showLabel: true,
+                floatingLabel: true,
                 controller: controller.sellTitleTEC,
               ),
             ),
@@ -57,10 +59,11 @@ class _DropdownDetailsSection extends StatelessWidget {
             ),
             Dimens.boxHeight16,
             SizedBox(
-              width: 0.3.pw,
-              child: InputField(
-                hint: 'Description',
+              width: context.fieldWidth,
+              child: InputEditor(
                 controller: controller.sellDescriptionTEC,
+                label: 'Description',
+                isRequired: true,
                 minLines: 5,
                 maxLines: 8,
               ),
@@ -72,7 +75,7 @@ class _DropdownDetailsSection extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 crossAxisSpacing: Dimens.thirtyTwo,
-                mainAxisSpacing: Dimens.sixteen,
+                mainAxisSpacing: 0,
                 maxCrossAxisExtent: Dimens.threeHundred,
                 mainAxisExtent: Dimens.hundred,
               ),
@@ -103,7 +106,7 @@ class _DropdownDetailsSection extends StatelessWidget {
               },
             ),
             SizedBox(
-              width: 0.3.pw,
+              width: context.fieldWidth,
               child: InputField(
                 controller: controller.sellDetailsTEC(VehicleFilter.price),
                 label: 'Sale Price',
@@ -111,7 +114,15 @@ class _DropdownDetailsSection extends StatelessWidget {
                 isRequired: true,
                 textInputType: TextInputType.number,
               ),
-            )
+            ),
+            Dimens.boxHeight32,
+            SizedBox(
+              width: context.fieldWidth,
+              child: Button(
+                label: 'Submit',
+                onTap: () {},
+              ),
+            ),
           ],
         ),
       );

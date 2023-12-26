@@ -1,5 +1,6 @@
 import 'package:auto_titanic/controllers/controllers.dart';
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class ScreenWrapper extends StatelessWidget {
                   if (showAppBarImage) const $BackgroundImage(),
                   if (showFilterCard) FilterSection(onTap: onFilterSearch!),
                   SizedBox(
-                    width: Dimens.screenWidth,
+                    width: context.screenWidth,
                     child: bodyBuilder != null
                         ? ObxValue<RxBool>(
                             (value) => TapHandler(

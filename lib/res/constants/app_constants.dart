@@ -11,7 +11,7 @@ class AppConstants {
 
   static const String appName = 'AutoTitanic';
 
-  static const Duration timeOutDuration = Duration(seconds: 60);
+  static const Duration timeOutDuration = Duration(seconds: 90);
 
   static const Duration animationDuration = Duration(milliseconds: 300);
 

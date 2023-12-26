@@ -70,6 +70,16 @@ extension ContextExtension on BuildContext {
     return null;
   }
 
+  double get screenWidth {
+    if (isDesktopView) {
+      return 0.7.pw;
+    }
+    if (isTabletView) {
+      return 0.8.pw;
+    }
+    return 0.9.pw;
+  }
+
   Size? get size => (findRenderObject() as RenderBox?)?.size;
 }
 

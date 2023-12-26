@@ -52,8 +52,8 @@ class HomeViewModel {
         'country': country,
         'minPrice': minPrice,
         'maxPrice': maxPrice,
-        'makeId': makeId,
-        'modelId': modelId,
+        'make': makeId,
+        'model': modelId,
       };
       var res = await _repository.resultCount(data.removeNullValues());
       if (res.hasError) {

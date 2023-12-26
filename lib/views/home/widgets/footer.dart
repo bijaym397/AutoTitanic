@@ -21,7 +21,7 @@ class DashboardFooter extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: Dimens.screenWidth,
+              width: context.screenWidth,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

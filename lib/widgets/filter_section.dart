@@ -22,14 +22,14 @@ class FilterSection extends StatelessWidget {
         color: AppColors.white,
         alignment: Alignment.center,
         child: SizedBox(
-          width: context.isMobileView ? Get.width : Dimens.screenWidth,
+          width: context.screenWidth,
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
               Image.asset(
                 AssetConstants.homeTopBg,
                 height: 0.4.ph,
-                width: context.isMobileView ? Get.width : Dimens.screenWidth,
+                width: context.screenWidth,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
               ),
