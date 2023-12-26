@@ -12,7 +12,9 @@ class InventoryBinding implements Bindings {
     Get.lazyPut<InventoryController>(
       () => InventoryController(
         InventoryViewModel(
-          InventoryRepository(),
+          InventoryRepository(
+            Get.find(),
+          ),
         ),
       ),
     );

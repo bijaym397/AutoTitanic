@@ -42,7 +42,7 @@ class _DropdownDetailsSection extends StatelessWidget {
             SizedBox(
               width: 0.3.pw,
               child: InputField(
-                hint: 'Title',
+                label: 'Title',
                 controller: controller.sellTitleTEC,
               ),
             ),
@@ -81,7 +81,7 @@ class _DropdownDetailsSection extends StatelessWidget {
                 if (filter == VehicleFilter.mileage) {
                   return InputField(
                     controller: controller.sellDetailsTEC(filter),
-                    hint: filter.label,
+                    label: filter.label,
                     showLabel: true,
                     isRequired: true,
                   );
@@ -106,7 +106,7 @@ class _DropdownDetailsSection extends StatelessWidget {
               width: 0.3.pw,
               child: InputField(
                 controller: controller.sellDetailsTEC(VehicleFilter.price),
-                hint: 'Sale Price',
+                label: 'Sale Price',
                 showLabel: true,
                 isRequired: true,
                 textInputType: TextInputType.number,

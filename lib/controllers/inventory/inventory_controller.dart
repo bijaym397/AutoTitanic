@@ -4,22 +4,28 @@ import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/view_models/view_models.dart';
+import 'package:auto_titanic/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class InventoryController extends GetxController {
+part 'mixins/api_mixin.dart';
+
+class InventoryController extends GetxController with InventoryAPIMixin {
   InventoryController(this._viewModel);
 
   final InventoryViewModel _viewModel;
 
   InventoryModel get inventory => InventoryModel(
+        type: Vehicle.cars,
         make: 'Nissan',
         model: 'Micra',
         variant: 'TDi 4x4 5dr',
+        currency: '\$',
+        condition: 'New',
         price: 2499,
         year: '2021 (18 reg)',
         capacity: 1.2,
-        images: List.generate(Random().nextInt(6) + 2, (index) => AssetConstants.car),
+        media: List.generate(Random().nextInt(6) + 2, (_) => AssetConstants.car),
         features: ['12 months warranty', '2 keys'],
         gearType: GearType.automatic,
         fuelType: FuelType.diesel,
@@ -43,6 +49,8 @@ class InventoryController extends GetxController {
 
   List<bool> yearToggleList = [true, false];
 
+  List<InventoryModel> vehicles = [];
+
   final RxList<String> _selectedMoreFilters = <String>[].obs;
   List<String> get selectedMoreFilters => _selectedMoreFilters;
   set selectedMoreFilters(List<String> value) => _selectedMoreFilters.value = value;
@@ -54,4 +62,6 @@ class InventoryController extends GetxController {
   final RxInt _selectedPageLimit = 25.obs;
   int get selectedPageLimit => _selectedPageLimit.value;
   set selectedPageLimit(int value) => _selectedPageLimit.value = value;
+
+  int pageNumber = 1;
 }

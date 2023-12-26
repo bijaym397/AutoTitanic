@@ -1,6 +1,5 @@
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
-import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +32,7 @@ class InventoryDetails extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       AppText(
-                        data.price.formattedPrice,
+                        data.amount,
                         style: Styles.titleLarge.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

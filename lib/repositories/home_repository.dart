@@ -8,7 +8,7 @@ class HomeRepository {
 
   Future<ResponseModel> addVehicle({
     required Vehicle vehicle,
-  }) async {
+  }) {
     var data = {};
 
     return _apiWrapper.makeRequest(
@@ -47,6 +47,7 @@ class HomeRepository {
         payload: {
           'filters': payload,
         },
+        showDialog: false,
         headers: {},
       );
 }

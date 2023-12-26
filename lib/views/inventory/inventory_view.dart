@@ -12,6 +12,8 @@ class InventoryView extends StatelessWidget {
 
   final Vehicle vehicle;
 
+  static const String updateId = 'inventory-view';
+
   static const String route = AppRoutes.search;
 
   @override
@@ -28,16 +30,22 @@ class InventoryView extends StatelessWidget {
               Expanded(
                 flex: 4,
                 child: GetBuilder<InventoryController>(
+                  id: updateId,
+                  initState: (_) {
+                    Get.find<InventoryController>().getVehicles();
+                  },
                   builder: (controller) => Column(
                     children: [
                       const PaginationRow(),
                       ListView.separated(
-                        itemCount: 12,
+                        itemCount: controller.vehicles.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         padding: Dimens.edgeInsets0_20,
                         separatorBuilder: (_, __) => Dimens.boxHeight32,
-                        itemBuilder: (_, index) => _InventoryCard(controller.inventory),
+                        itemBuilder: (_, index) => _InventoryCard(
+                          controller.vehicles[index],
+                        ),
                       ),
                     ],
                   ),
@@ -137,7 +145,7 @@ class _InventoryCard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: InventoryImages(data.images),
+                    child: InventoryImages(data.media),
                   ),
                   Expanded(
                     flex: 4,

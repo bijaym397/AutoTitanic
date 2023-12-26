@@ -134,6 +134,7 @@ class $FilterCard extends StatelessWidget {
                     label: 'Search Results',
                     onTap: () {
                       controller.resultCount();
+                      onTap();
                     },
                     width: Dimens.twoHundred,
                   ),

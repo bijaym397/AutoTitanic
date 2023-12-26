@@ -168,7 +168,7 @@ extension CarouselControllerExtension on CarouselController {
 }
 
 extension NumberExtension on num {
-  String get formattedPrice => NumberFormat.currency(symbol: '£', decimalDigits: 0).format(this);
+  String formattedPrice(String curreny) => NumberFormat.currency(symbol: curreny, decimalDigits: 0).format(this);
 
   String get formattedDistance => NumberFormat('###,###').format(this);
 

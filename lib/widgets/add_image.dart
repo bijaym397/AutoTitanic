@@ -1,7 +1,6 @@
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-
-import 'widgets.dart';
 
 class AddImage extends StatelessWidget {
   const AddImage({

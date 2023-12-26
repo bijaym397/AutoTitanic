@@ -88,7 +88,7 @@ class DropDown<T> extends StatelessWidget {
             isDense: true,
             hint: AppText(
               (showTitle ? 'Select ' : '') + hint,
-              style: Styles.bodyLarge,
+              style: Styles.bodyMedium,
               isSelectable: false,
             ),
             underline: const SizedBox.shrink(),

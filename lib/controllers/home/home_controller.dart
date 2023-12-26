@@ -195,6 +195,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
       return;
     }
     selectedFilterBrand = brand;
+    selectedFilterModel = null;
     update([FilterSection.updateId]);
     await getModels(brand.id);
   }

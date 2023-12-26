@@ -72,7 +72,7 @@ class SellVehicleLocationView extends StatelessWidget {
                   Obx(
                     () => InputField(
                       controller: controller.vehicleVideoTEC,
-                      hint: 'Link to Video',
+                      label: 'Link to Video',
                       showLabel: true,
                       floatingLabel: true,
                       validator: controller.videoLinkValidator,
