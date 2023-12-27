@@ -74,9 +74,9 @@ class LoginView extends StatelessWidget {
                               ),
                             ),
                             const Spacer(),
-                            LinkText(
+                            const LinkText(
                               'Forgot Password?',
-                              onTap: () {},
+                              onTap: RouteManagement.goToForgotPassword,
                             )
                           ],
                         ),

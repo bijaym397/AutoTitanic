@@ -137,6 +137,9 @@ class AppStrings {
 
   static const String policyStatement =
       'Your personal data will be used in mapping with the vehicles you added to the website, to manage access to your account, and for other purposes described in our ';
+
+  static const String lostPassword =
+      'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.';
 }
 
 class StringData {

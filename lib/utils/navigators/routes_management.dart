@@ -16,6 +16,13 @@ abstract class RouteManagement {
     );
   }
 
+  /// Go to the Register Screen
+  static void goToForgotPassword() {
+    Get.toNamed<void>(
+      AppRoutes.forgotPassword,
+    );
+  }
+
   /// Go to the Home Screen
   static void goToHome() {
     Get.offAllNamed<void>(

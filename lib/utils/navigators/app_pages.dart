@@ -49,6 +49,12 @@ class AppPages {
       binding: AuthBinding(),
       transition: transition,
     ),
+    GetPage<ForgotPasswordView>(
+      name: AppRoutes.forgotPassword,
+      page: ForgotPasswordView.new,
+      binding: AuthBinding(),
+      transition: transition,
+    ),
     GetPage<AboutUsView>(
       name: AppRoutes.aboutUs,
       page: AboutUsView.new,

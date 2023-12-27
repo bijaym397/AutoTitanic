@@ -37,7 +37,6 @@ class RegisterView extends StatelessWidget {
                     imageUrl: AssetConstants.signupBG,
                   ),
                 ),
-                Dimens.boxWidth16,
                 Expanded(
                   child: SingleChildScrollView(
                     padding: Dimens.edgeInsets24_32,

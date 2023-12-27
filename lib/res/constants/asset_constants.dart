@@ -26,6 +26,7 @@ class AssetConstants {
 
   static const String loginBG = '$_imagePath/login.png';
   static const String signupBG = '$_imagePath/signup.png';
+  static const String forgotPasswordBG = '$_imagePath/forgotPassword.png';
 
   static const String car1 = '$_imagePath/car1.jpeg';
   static const String car2 = '$_imagePath/car2.jpg';
