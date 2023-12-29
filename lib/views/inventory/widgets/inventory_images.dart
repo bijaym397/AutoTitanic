@@ -18,7 +18,7 @@ class InventoryImages extends StatelessWidget {
               flex: isRowLayout ? 3 : 2,
               child: AppImage(
                 imageUrl: images.first,
-                isNetworkImage: false,
+                isNetworkImage: images.first.isNetworkImage,
               ),
             ),
             ColoredBox(
@@ -58,16 +58,29 @@ class _MoreImages extends StatelessWidget {
   Widget build(BuildContext context) {
     var children = <Widget>[
       Expanded(
-        child: images.length > 1 ? AppImage(imageUrl: images[1], isNetworkImage: false) : const SizedBox.shrink(),
+        child: images.length > 1
+            ? AppImage(
+                imageUrl: images[1],
+                isNetworkImage: images[1].isNetworkImage,
+              )
+            : const SizedBox.shrink(),
       ),
       Expanded(
-        child: images.length > 2 ? AppImage(imageUrl: images[2], isNetworkImage: false) : const SizedBox.shrink(),
+        child: images.length > 2
+            ? AppImage(
+                imageUrl: images[2],
+                isNetworkImage: images[2].isNetworkImage,
+              )
+            : const SizedBox.shrink(),
       ),
       Expanded(
         child: images.length > 3
             ? Stack(
                 children: [
-                  AppImage(imageUrl: images[3], isNetworkImage: false),
+                  AppImage(
+                    imageUrl: images[3],
+                    isNetworkImage: images[3].isNetworkImage,
+                  ),
                   if (images.length > 4)
                     ColoredBox(
                       color: Colors.black38,

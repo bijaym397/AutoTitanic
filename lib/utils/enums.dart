@@ -230,12 +230,12 @@ enum GearType {
 }
 
 enum FuelType {
-  petrol(0, AppStrings.petrol),
-  diesel(1, AppStrings.diesel),
-  electric(2, AppStrings.electric);
+  petrol('petrol', AppStrings.petrol),
+  diesel('diesel', AppStrings.diesel),
+  electric('electric', AppStrings.electric);
 
-  factory FuelType.fromValue(int data) =>
-      <int, FuelType>{
+  factory FuelType.fromValue(String data) =>
+      <String, FuelType>{
         FuelType.petrol.value: FuelType.petrol,
         FuelType.diesel.value: FuelType.diesel,
         FuelType.electric.value: FuelType.electric,
@@ -243,7 +243,7 @@ enum FuelType {
       FuelType.petrol;
 
   const FuelType(this.value, this.label);
-  final int value;
+  final String value;
   final String label;
 }
 

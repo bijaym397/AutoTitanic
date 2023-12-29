@@ -1,3 +1,4 @@
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/repositories/repositories.dart';
 import 'package:auto_titanic/utils/utils.dart';
 
@@ -15,17 +16,49 @@ class CommonViewModel {
     }
   }
 
-  Future<void> getVehicle(Vehicle vehicle) async {
+  Future<List<MakeModel>> getBrands(Vehicle vehicle) async {
     try {
-      var res = await _repository.getVehicle(vehicle: vehicle);
+      var res = await _repository.getBrands(vehicle: vehicle);
       if (res.hasError) {
-        return;
+        return [];
       }
 
-      return;
+      var list = res.bodyList;
+
+      return list.map((e) => MakeModel.fromMap(e as Map<String, dynamic>)).toList();
     } catch (e, st) {
       AppLog.error(e, st);
-      return;
+      return [];
+    }
+  }
+
+  Future<List<MakeModel>> getModels(String brandId) async {
+    try {
+      var res = await _repository.getModels(brandId);
+      if (res.hasError) {
+        return [];
+      }
+      var list = res.bodyList;
+
+      return list.map((e) => MakeModel.fromMap(e as Map<String, dynamic>)).toList();
+    } catch (e, st) {
+      AppLog.error(e, st);
+      return [];
+    }
+  }
+
+  Future<List<CountryModel>> getCountries() async {
+    try {
+      var res = await _repository.getCountries();
+      if (res.hasError) {
+        return [];
+      }
+      var list = res.bodyList;
+
+      return list.map((e) => CountryModel.fromMap(e as Map<String, dynamic>)).toList();
+    } catch (e, st) {
+      AppLog.error(e, st);
+      return [];
     }
   }
 }

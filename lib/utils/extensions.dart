@@ -41,6 +41,8 @@ extension TECExtension on TextEditingController {
 extension StringExtension on String {
   String get svgPath => kIsWeb ? replaceAll('assets/', '') : this;
 
+  bool get isNetworkImage => contains('http');
+
   Uint8List get strigToUnit8List {
     var list = Uint8List.fromList(
       List.from(jsonDecode(this) as List),
@@ -408,14 +410,14 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.seat:
         return AppConstants.seatsList.map((e) => DropDownModel(label: e)).toList();
       case VehicleFilter.make:
-        return Get.find<HomeController>()
+        return Get.find<CommonController>()
             .brandsList
             .map(
               (e) => DropDownModel(label: e.label, id: e.id),
             )
             .toList();
       case VehicleFilter.model:
-        return Get.find<HomeController>()
+        return Get.find<CommonController>()
             .modelList
             .map(
               (e) => DropDownModel(label: e.label, id: e.id),

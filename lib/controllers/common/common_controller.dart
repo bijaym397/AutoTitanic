@@ -1,8 +1,10 @@
+import 'package:auto_titanic/controllers/home/home.dart';
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/view_models/view_models.dart';
 import 'package:auto_titanic/views/views.dart';
+import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +42,24 @@ class CommonController extends GetxController with CommonAPIMixin {
   Social? get selectedSocial => _selectedSocial.value;
   set selectedSocial(Social? value) => _selectedSocial.value = value;
 
+  // ---------------- INIT --------------------
+
+  @override
+  void onReady() {
+    super.onReady();
+    getBrands();
+    getCountries();
+  }
+
   // ---------------- Data --------------------
+
+  List<MakeModel> brandsList = [];
+
+  List<MakeModel> modelList = [];
+
+  List<CountryModel> countries = [];
+
+  var isBrandsExpanded = false;
 
   final footer1 = const <LinkModel>[
     LinkModel(

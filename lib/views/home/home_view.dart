@@ -17,8 +17,7 @@ class HomeView extends StatelessWidget {
         initState: (_) {
           Get.find<HomeController>()
             ..checkRoute()
-            ..generateCarsData()
-            ..getBrands();
+            ..generateCarsData();
         },
         builder: (controller) => ScreenWrapper(
           showFilterCard: true,

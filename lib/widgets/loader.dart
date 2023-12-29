@@ -2,19 +2,22 @@ import 'package:auto_titanic/res/res.dart';
 import 'package:flutter/material.dart';
 
 class AppLoader extends StatelessWidget {
-  const AppLoader({super.key});
+  const AppLoader({
+    super.key,
+    this.isDialog = true,
+  });
+
+  final bool isDialog;
 
   @override
-  Widget build(BuildContext context) => const Center(
-        child: SizedBox(
-          height: 60,
-          width: 60,
-          child: Card(
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: CircularProgressIndicator(
-                color: AppColors.primary,
-              ),
+  Widget build(BuildContext context) => Center(
+        child: Card(
+          elevation: isDialog ? null : 0,
+          color: isDialog ? null : Colors.transparent,
+          child: Padding(
+            padding: Dimens.edgeInsets8,
+            child: const CircularProgressIndicator(
+              color: AppColors.primary,
             ),
           ),
         ),

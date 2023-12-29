@@ -21,7 +21,7 @@ class BrandCard extends StatelessWidget {
         ),
         padding: Dimens.edgeInsets16_20,
         margin: Dimens.edgeInsets0_40,
-        child: GetBuilder<HomeController>(
+        child: GetBuilder<CommonController>(
           id: updateId,
           builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,

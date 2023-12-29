@@ -108,12 +108,6 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
   List<PlatformFile> get selectedImages => _selectedImages;
   set selectedImages(List<PlatformFile> value) => _selectedImages.value = value;
 
-  List<MakeModel> brandsList = [];
-
-  List<MakeModel> modelList = [];
-
-  var isBrandsExpanded = false;
-
   // ==================== INIT =====================
 
   void checkRoute() {
@@ -192,7 +186,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
     selectedFilterBrand = brand;
     selectedFilterModel = null;
     update([FilterSection.updateId]);
-    await getModels(brand.id);
+    await _commonController.getModels(brand.id);
   }
 
   void onFilterModelChanged(DropDownModel? model) async {

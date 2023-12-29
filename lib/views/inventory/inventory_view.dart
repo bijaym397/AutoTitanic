@@ -37,16 +37,22 @@ class InventoryView extends StatelessWidget {
                   builder: (controller) => Column(
                     children: [
                       const PaginationRow(),
-                      ListView.separated(
-                        itemCount: controller.vehicles.length,
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: Dimens.edgeInsets0_20,
-                        separatorBuilder: (_, __) => Dimens.boxHeight32,
-                        itemBuilder: (_, index) => _InventoryCard(
-                          controller.vehicles[index],
+                      if (controller.vehicles.isEmpty)
+                        SizedBox(
+                          height: 0.5.ph,
+                          child: const AppLoader(),
+                        )
+                      else
+                        ListView.separated(
+                          itemCount: controller.vehicles.length,
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: Dimens.edgeInsets0_20,
+                          separatorBuilder: (_, __) => Dimens.boxHeight32,
+                          itemBuilder: (_, index) => _InventoryCard(
+                            controller.vehicles[index],
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
