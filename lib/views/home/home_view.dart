@@ -46,6 +46,10 @@ class HomeView extends StatelessWidget {
                   );
                 },
               ),
+              AspectRatio(
+                aspectRatio: 6 / 1,
+                child: AdCard.horizontal(length: context.screenWidth, width: 1),
+              ),
               const TitleText(
                 AppStrings.recentlyPostedCars,
                 color: AppColors.accent,

@@ -56,7 +56,9 @@ extension ResponseExtension on ResponseModel {
 }
 
 extension ContextExtension on BuildContext {
-  bool get isDesktopView => width > AppConstants.maxTabletWidth;
+  bool get isDesktopView => width > AppConstants.maxBigTabletWidth;
+
+  bool get isBigTabletView => width > AppConstants.maxTabletWidth && width <= AppConstants.maxBigTabletWidth;
 
   bool get isTabletView => width > AppConstants.maxMobileWidth && width <= AppConstants.maxTabletWidth;
 
@@ -68,6 +70,9 @@ extension ContextExtension on BuildContext {
     if (isDesktopView) {
       return 0.3.pw;
     }
+    if (isBigTabletView) {
+      return 0.35.pw;
+    }
     if (isTabletView) {
       return 0.4.pw;
     }
@@ -77,6 +82,9 @@ extension ContextExtension on BuildContext {
   double get screenWidth {
     if (isDesktopView) {
       return 0.7.pw;
+    }
+    if (isBigTabletView) {
+      return 0.75.pw;
     }
     if (isTabletView) {
       return 0.8.pw;
@@ -88,22 +96,21 @@ extension ContextExtension on BuildContext {
     if (isDesktopView) {
       return 0.1.pw;
     }
+    if (isBigTabletView) {
+      return 0.1.pw;
+    }
     if (isTabletView) {
       return 0.07.pw;
     }
     return 0;
   }
 
-  double get filterCardHeight {
-    if (isMobileView) {
-      return 0.6.ph;
-    }
-    return 0.4.ph;
-  }
-
   double get filterCardWidth {
     if (isDesktopView) {
       return 0.25.pw;
+    }
+    if (isBigTabletView) {
+      return 0.3.pw;
     }
     if (isTabletView) {
       return 0.4.pw;
@@ -112,6 +119,45 @@ extension ContextExtension on BuildContext {
   }
 
   EdgeInsets get staticPagePadding => (isDesktopView ? Dimens.edgeInsetsR200 : Dimens.edgeInsets0).copyWith(bottom: Dimens.twenty);
+
+  double get inventoryAspectRatio {
+    if (isDesktopView) {
+      return 7 / 2;
+    }
+    if (isBigTabletView) {
+      return 9 / 3;
+    }
+    if (isTabletView) {
+      return 11 / 4;
+    }
+    return 6 / 2;
+  }
+
+  int get socialCrossAxisCount {
+    if (isDesktopView) {
+      return 4;
+    }
+    if (isBigTabletView) {
+      return 4;
+    }
+    if (isTabletView) {
+      return 2;
+    }
+    return 1;
+  }
+
+  double get sellDetailsWidth {
+    if (isDesktopView) {
+      return 0.5.pw;
+    }
+    if (isBigTabletView) {
+      return 0.7.pw;
+    }
+    if (isTabletView) {
+      return 0.8.pw;
+    }
+    return 0.9.pw;
+  }
 
   Size? get size => (findRenderObject() as RenderBox?)?.size;
 }
@@ -228,9 +274,6 @@ extension FilterTypeExtension on FilterType {
       case FilterType.popup:
         return false;
       case FilterType.expandable:
-      case FilterType.expandableWithOptions:
-      case FilterType.input:
-      case FilterType.checkbox:
         return true;
     }
   }
@@ -259,13 +302,8 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
       case VehicleFilter.fuelConsumption:
-      case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
@@ -295,13 +333,8 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
       case VehicleFilter.fuelConsumption:
-      case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
@@ -335,13 +368,8 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
       case VehicleFilter.fuelConsumption:
-      case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
@@ -375,13 +403,8 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
       case VehicleFilter.fuelConsumption:
-      case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
@@ -393,12 +416,6 @@ extension VehicleFilterExtension on VehicleFilter {
     switch (this) {
       case VehicleFilter.year:
         return [AppStrings.selectYear, AppStrings.brandNew];
-      case VehicleFilter.more:
-        return [
-          AppStrings.wheelChair,
-          AppStrings.manufacturerApproved,
-          AppStrings.irelandAdverts,
-        ];
       case VehicleFilter.price:
       case VehicleFilter.mileage:
       case VehicleFilter.engineSize:
@@ -416,12 +433,8 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.interiorColor:
       case VehicleFilter.bootspace:
       case VehicleFilter.acceleration:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
       case VehicleFilter.fuelConsumption:
-      case VehicleFilter.insuranceGroup:
       case VehicleFilter.co2Emission:
-      case VehicleFilter.keywords:
       case VehicleFilter.condition:
       case VehicleFilter.bodyStyle:
       case VehicleFilter.driverPosition:
@@ -482,11 +495,6 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.price:
       case VehicleFilter.privateAndTrade:
       case VehicleFilter.enginePower:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
-      case VehicleFilter.insuranceGroup:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
         return [];
     }
   }

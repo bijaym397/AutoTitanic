@@ -25,6 +25,7 @@ class AppConstants {
 
   static const double maxMobileWidth = 768;
   static const double maxTabletWidth = 1200;
+  static const double maxBigTabletWidth = 1500;
   static const double maxDesktopWidth = 1900;
 
   static int get featuredCarsCount => kDebugMode ? 1 : 6;

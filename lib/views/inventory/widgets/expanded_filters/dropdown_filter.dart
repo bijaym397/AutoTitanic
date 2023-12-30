@@ -14,7 +14,6 @@ class DropDownExpandedFilter<T> extends StatelessWidget {
     required this.labelBuilder,
     this.onMinChanged,
     this.onMaxChanged,
-    this.hasSwitch = false,
   });
 
   final VehicleFilter filter;
@@ -23,25 +22,24 @@ class DropDownExpandedFilter<T> extends StatelessWidget {
   final StringCallback<T> labelBuilder;
   final void Function(T?)? onMinChanged;
   final void Function(T?)? onMaxChanged;
-  final bool hasSwitch;
 
   @override
   Widget build(BuildContext context) => GetBuilder<InventoryController>(
         id: 'dropdown-filter',
         builder: (controller) => Column(
           children: [
-            if (filter.filterType == FilterType.expandableWithOptions) ...[
-              FilterToggleButtons(
-                labels: filter.toggleLabels,
-                isSelected: controller.yearToggleList,
-                onTap: (index) {
-                  controller.yearToggleList[1 - index] = false;
-                  controller.yearToggleList[index] = true;
-                  controller.update(['dropdown-filter']);
-                },
-              ),
-              Dimens.boxHeight16,
-            ],
+            // if (filter.filterType == FilterType.expandableWithOptions) ...[
+            //   FilterToggleButtons(
+            //     labels: filter.toggleLabels,
+            //     isSelected: controller.yearToggleList,
+            //     onTap: (index) {
+            //       controller.yearToggleList[1 - index] = false;
+            //       controller.yearToggleList[index] = true;
+            //       controller.update(['dropdown-filter']);
+            //     },
+            //   ),
+            //   Dimens.boxHeight16,
+            // ],
             Row(
               children: [
                 Expanded(

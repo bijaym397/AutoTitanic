@@ -118,13 +118,7 @@ enum Social {
   final String icon;
 }
 
-enum FilterType {
-  expandable,
-  expandableWithOptions,
-  popup,
-  input,
-  checkbox;
-}
+enum FilterType { expandable, popup }
 
 enum VehicleFilter {
   condition(AppStrings.condition, FilterType.expandable),
@@ -132,7 +126,7 @@ enum VehicleFilter {
   model(AppStrings.model, FilterType.popup),
   variant(AppStrings.variant, FilterType.popup),
   price(AppStrings.price, FilterType.expandable),
-  year(AppStrings.year, FilterType.expandableWithOptions),
+  year(AppStrings.year, FilterType.expandable),
   mileage(AppStrings.mileage, FilterType.expandable),
   gearbox(AppStrings.gearbox, FilterType.popup),
   fuelType(AppStrings.fuelType, FilterType.popup),
@@ -148,13 +142,8 @@ enum VehicleFilter {
   driverPosition(AppStrings.driverPosition, FilterType.popup),
   bootspace(AppStrings.bootSpace, FilterType.popup),
   acceleration(AppStrings.acceleration, FilterType.popup),
-  annualTax(AppStrings.annualTax, FilterType.popup),
-  drivetrain(AppStrings.drivetrain, FilterType.popup),
   fuelConsumption(AppStrings.fuelConsumption, FilterType.popup),
-  insuranceGroup(AppStrings.insuranceGroup, FilterType.popup),
-  co2Emission(AppStrings.co2Emission, FilterType.popup),
-  keywords(AppStrings.keywords, FilterType.input),
-  more(AppStrings.more, FilterType.checkbox);
+  co2Emission(AppStrings.co2Emission, FilterType.popup);
 
   const VehicleFilter(this.label, this.filterType);
 
@@ -163,8 +152,11 @@ enum VehicleFilter {
 
   static List<VehicleFilter> get searchFilters {
     var list = [...VehicleFilter.values];
-    list.remove(VehicleFilter.condition);
-    list.remove(VehicleFilter.bodyStyle);
+    var removables = [
+      VehicleFilter.condition,
+      VehicleFilter.bodyStyle,
+    ];
+    list.removeWhere((e) => removables.any((r) => e == r));
     return list;
   }
 
@@ -174,11 +166,6 @@ enum VehicleFilter {
       VehicleFilter.price,
       VehicleFilter.enginePower,
       VehicleFilter.privateAndTrade,
-      VehicleFilter.annualTax,
-      VehicleFilter.drivetrain,
-      VehicleFilter.insuranceGroup,
-      VehicleFilter.keywords,
-      VehicleFilter.more,
     ];
     list.removeWhere((e) => removables.any((r) => e == r));
     return list;
@@ -192,11 +179,6 @@ enum VehicleFilter {
       VehicleFilter.price,
       VehicleFilter.enginePower,
       VehicleFilter.privateAndTrade,
-      VehicleFilter.annualTax,
-      VehicleFilter.drivetrain,
-      VehicleFilter.insuranceGroup,
-      VehicleFilter.keywords,
-      VehicleFilter.more,
     ];
     list.removeWhere((e) => removables.any((r) => e == r));
     return list;

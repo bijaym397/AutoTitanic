@@ -11,86 +11,82 @@ class SellVehicleLocationView extends StatelessWidget {
   static const String updateId = 'sell-vehicle-location-id';
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-        height: 0.7.ph,
-        child: Container(
-          margin: Dimens.edgeInsets16,
-          padding: Dimens.edgeInsets40,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(Dimens.twentyFour),
-            color: AppColors.white,
-          ),
-          alignment: Alignment.center,
-          child: SizedBox(
-            width: Dimens.fiveHundred,
-            child: GetBuilder<HomeController>(
-              id: updateId,
-              initState: (_) {
-                Get.find<HomeController>().selectedVehicleCategory = Utility.vehicleFromRoute().$1;
-              },
-              builder: (controller) => Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  const Center(child: PageHeadLabel(AppStrings.postAdvert)),
-                  Dimens.boxHeight32,
-                  Flexible(
-                    child: DropDown<Vehicle>(
-                      hint: AppStrings.category,
-                      items: Vehicle.values,
-                      labelBuilder: (e) => e.label,
-                      value: controller.selectedVehicleCategory,
-                      onChanged: controller.onCategoryChange,
+  Widget build(BuildContext context) => Container(
+        margin: Dimens.edgeInsets16,
+        padding: Dimens.edgeInsets40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Dimens.twentyFour),
+          color: AppColors.white,
+        ),
+        constraints: BoxConstraints(minHeight: 0.7.ph),
+        alignment: Alignment.center,
+        child: SizedBox(
+          width: Dimens.fiveHundred,
+          child: GetBuilder<HomeController>(
+            id: updateId,
+            initState: (_) {
+              Get.find<HomeController>().selectedVehicleCategory = Utility.vehicleFromRoute().$1;
+            },
+            builder: (controller) => Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const Center(child: PageHeadLabel(AppStrings.postAdvert)),
+                Dimens.boxHeight32,
+                DropDown<Vehicle>(
+                  hint: AppStrings.category,
+                  items: Vehicle.values,
+                  labelBuilder: (e) => e.label,
+                  value: controller.selectedVehicleCategory,
+                  onChanged: controller.onCategoryChange,
+                ),
+                Dimens.boxHeight16,
+                CountryPicker(
+                  showStates: true,
+                  currentCountry: controller.selectedCountry,
+                  currentState: controller.selectedState,
+                  onCountryChanged: controller.onCountryChanged,
+                  onStateChanged: controller.onStateChanged,
+                ),
+                Dimens.boxHeight8,
+                Divider(
+                  indent: Dimens.twentyFour,
+                  endIndent: Dimens.twentyFour,
+                  color: Colors.grey,
+                  thickness: 0.5,
+                ),
+                Dimens.boxHeight8,
+                AppText(
+                  'Images',
+                  style: Styles.titleMedium,
+                ),
+                AppText(
+                  AppStrings.imageSubtitle,
+                  style: Styles.labelLarge.copyWith(color: Colors.grey),
+                ),
+                const _ImageSection(),
+                Dimens.boxHeight10,
+                Obx(
+                  () => InputField(
+                    controller: controller.vehicleVideoTEC,
+                    label: 'Link to Video',
+                    showLabel: true,
+                    floatingLabel: true,
+                    validator: controller.videoLinkValidator,
+                    onChanged: controller.onVideoLinkChanged,
+                    suffixIcon: FieldSuffixLoader(
+                      showIcon: controller.vehicleVideoTEC.text.trim().isNotEmpty,
+                      isError: controller.videoLinkError != null,
+                      isLoading: controller.isValidatingLink,
                     ),
                   ),
-                  Dimens.boxHeight16,
-                  CountryPicker(
-                    showStates: true,
-                    currentCountry: controller.selectedCountry,
-                    currentState: controller.selectedState,
-                    onCountryChanged: controller.onCountryChanged,
-                    onStateChanged: controller.onStateChanged,
-                  ),
-                  Dimens.boxHeight8,
-                  Divider(
-                    indent: Dimens.twentyFour,
-                    endIndent: Dimens.twentyFour,
-                    color: Colors.grey,
-                    thickness: 0.5,
-                  ),
-                  Dimens.boxHeight8,
-                  AppText(
-                    'Images',
-                    style: Styles.titleMedium,
-                  ),
-                  AppText(
-                    AppStrings.imageSubtitle,
-                    style: Styles.labelLarge.copyWith(color: Colors.grey),
-                  ),
-                  const _ImageSection(),
-                  Dimens.boxHeight10,
-                  Obx(
-                    () => InputField(
-                      controller: controller.vehicleVideoTEC,
-                      label: 'Link to Video',
-                      showLabel: true,
-                      floatingLabel: true,
-                      validator: controller.videoLinkValidator,
-                      onChanged: controller.onVideoLinkChanged,
-                      suffixIcon: FieldSuffixLoader(
-                        showIcon: controller.vehicleVideoTEC.text.trim().isNotEmpty,
-                        isError: controller.videoLinkError != null,
-                        isLoading: controller.isValidatingLink,
-                      ),
-                    ),
-                  ),
-                  const Spacer(),
-                  Button(
-                    onTap: controller.isNextButtonEnabled ? controller.onChangeSellPage : null,
-                    label: 'Next',
-                  ),
-                ],
-              ),
+                ),
+                Dimens.boxHeight48,
+                Button(
+                  onTap: controller.isNextButtonEnabled ? controller.onChangeSellPage : null,
+                  label: 'Next',
+                ),
+              ],
             ),
           ),
         ),

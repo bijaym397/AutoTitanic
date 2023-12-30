@@ -10,7 +10,8 @@ mixin HomeAPIMixin {
   Future<void> resultCount() async {
     var count = await _controller._viewModel.resultCount(
       country: _controller.selectedFilterCountry?.split(' ').last.toLowerCase(),
-      modelId: _controller.selectedFilterBrand?.id,
+      makeId: _controller.selectedFilterBrand?.id,
+      modelId: _controller.selectedFilterModel?.id,
       minPrice: _controller.selectedFilterMinPrice?.toInt(),
       maxPrice: _controller.selectedFilterMaxPrice?.toInt(),
     );

@@ -152,11 +152,6 @@ mixin SellVehicleMixin {
       case VehicleFilter.mileage:
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
-      case VehicleFilter.insuranceGroup:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
         return null;
     }
   }
@@ -188,11 +183,6 @@ mixin SellVehicleMixin {
       case VehicleFilter.co2Emission:
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
-      case VehicleFilter.insuranceGroup:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
         return TextEditingController();
     }
   }
@@ -264,11 +254,6 @@ mixin SellVehicleMixin {
       case VehicleFilter.mileage:
       case VehicleFilter.enginePower:
       case VehicleFilter.privateAndTrade:
-      case VehicleFilter.annualTax:
-      case VehicleFilter.drivetrain:
-      case VehicleFilter.insuranceGroup:
-      case VehicleFilter.keywords:
-      case VehicleFilter.more:
         break;
     }
     _controller.update([updateId]);

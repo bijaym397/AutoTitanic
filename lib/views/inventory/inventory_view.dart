@@ -26,8 +26,10 @@ class InventoryView extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Expanded(child: $FilterColumn()),
-              Dimens.boxWidth16,
+              if (!context.isMobileView) ...[
+                const Expanded(child: $FilterColumn()),
+                Dimens.boxWidth16,
+              ],
               Expanded(
                 flex: 4,
                 child: GetBuilder<InventoryController>(
@@ -132,34 +134,32 @@ class _InventoryCard extends StatelessWidget {
   final InventoryModel data;
 
   @override
-  Widget build(BuildContext context) => LayoutBuilder(
-        builder: (context, constraints) => AspectRatio(
-          aspectRatio: 7 / 2,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.circular(Dimens.eight),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.shade300,
-                  blurRadius: Dimens.eight,
+  Widget build(BuildContext context) => AspectRatio(
+        aspectRatio: context.inventoryAspectRatio,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(Dimens.eight),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: Dimens.eight,
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(Dimens.eight),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: InventoryImages(data.media),
+                ),
+                Expanded(
+                  flex: 4,
+                  child: InventoryDetails(data),
                 ),
               ],
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(Dimens.eight),
-              child: Row(
-                children: [
-                  Expanded(
-                    flex: 3,
-                    child: InventoryImages(data.media),
-                  ),
-                  Expanded(
-                    flex: 4,
-                    child: InventoryDetails(data),
-                  ),
-                ],
-              ),
             ),
           ),
         ),

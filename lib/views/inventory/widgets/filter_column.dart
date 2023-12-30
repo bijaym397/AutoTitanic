@@ -97,6 +97,6 @@ class _FilterTile extends StatelessWidget {
             ],
           ],
         ),
-        false.obs,
+        filter.filterType.isExpandable.obs,
       );
 }

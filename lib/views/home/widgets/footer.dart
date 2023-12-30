@@ -6,12 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DashboardFooter extends StatelessWidget {
-  const DashboardFooter({
-    super.key,
-    // this.showSubcribeCard = false,
-  });
-
-  // final bool showSubcribeCard;
+  const DashboardFooter({super.key});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -30,8 +25,8 @@ class DashboardFooter extends StatelessWidget {
                     itemCount: Social.values.length,
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: Dimens.threeFifty,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: context.socialCrossAxisCount,
                       mainAxisExtent: Dimens.sixtyFour,
                     ),
                     itemBuilder: (_, index) => SocialCard(Social.values[index]),

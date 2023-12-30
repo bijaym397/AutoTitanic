@@ -87,7 +87,7 @@ class BrandCard extends StatelessWidget {
                           var brand = controller.brandsList[index];
                           return Row(
                             mainAxisSize: MainAxisSize.min,
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               AppImage(

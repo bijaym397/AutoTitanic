@@ -42,9 +42,11 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) => ScreenUtilInit(
         designSize: context.isDesktopView
             ? const Size(1920, 1200)
-            : context.isTabletView
+            : context.isBigTabletView
                 ? const Size(1366, 911)
-                : const Size(414, 896),
+                : context.isTabletView
+                    ? const Size(1366, 911)
+                    : const Size(414, 896),
         ensureScreenSize: true,
         child: GetMaterialApp(
           title: 'Autotitanic',

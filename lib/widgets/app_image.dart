@@ -1,3 +1,6 @@
+import 'dart:html';
+import 'dart:ui_web' as ui;
+
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -236,14 +239,7 @@ class _NetworkImage extends StatelessWidget {
                   child: CircularProgressIndicator.adaptive(),
                 ),
         ),
-        errorWidget: (context, url, error) {
-          AppLog.error('$url\n$error');
-          return _ErrorImage(
-            isProfileImage: _isProfileImage,
-            name: _name,
-            dimension: dimension,
-          );
-        },
+        errorWidget: (context, url, error) => RenderLinkImage(imageUrl),
       );
 }
 
@@ -282,4 +278,26 @@ class _ErrorImage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
       );
+}
+
+class RenderLinkImage extends StatelessWidget {
+  const RenderLinkImage(this.imageUrl, {super.key});
+  final String imageUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    ui.platformViewRegistry.registerViewFactory(
+      'link_image_instance$imageUrl',
+      (int viewId) {
+        var element = ImageElement()
+          ..src = imageUrl
+          ..style.border = 'none';
+        return element;
+      },
+    );
+
+    return HtmlElementView(
+      viewType: 'link_image_instance$imageUrl',
+    );
+  }
 }

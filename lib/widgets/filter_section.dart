@@ -21,14 +21,16 @@ class FilterSection extends StatelessWidget {
         width: Get.width,
         color: AppColors.white,
         alignment: Alignment.center,
-        child: SizedBox(
-          width: context.isMobileView ? 1.pw : context.screenWidth,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: context.isMobileView ? 1.pw : context.screenWidth,
+            maxHeight: context.isMobileView ? Dimens.fourHundred : Dimens.threeFifty,
+          ),
           child: Stack(
             alignment: Alignment.centerLeft,
             children: [
               Image.asset(
                 AssetConstants.homeTopBg,
-                height: context.filterCardHeight,
                 width: context.isMobileView ? 1.pw : context.screenWidth,
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
@@ -129,8 +131,10 @@ class $FilterCard extends StatelessWidget {
                   Button(
                     label: 'Search Results',
                     onTap: () {
-                      controller.resultCount();
-                      onTap();
+                      AppLog(context.size);
+
+                      // controller.resultCount();
+                      // onTap();
                     },
                     width: Dimens.twoHundred,
                   ),

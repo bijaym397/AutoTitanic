@@ -15,18 +15,15 @@ class ExpandedFilterTile<T> extends StatelessWidget {
   Widget build(BuildContext context) => Padding(
         padding: Dimens.edgeInsets8,
         child: switch (filter.filterType) {
-          FilterType.expandable || FilterType.expandableWithOptions => DropDownExpandedFilter(
+          FilterType.expandable => DropDownExpandedFilter(
               filter: filter,
               minItems: filter.minList,
               maxItems: filter.maxList,
               labelBuilder: (value) => '$value',
               onMinChanged: (_) {},
               onMaxChanged: (_) {},
-              hasSwitch: filter.filterType == FilterType.expandableWithOptions,
             ),
           FilterType.popup => const SizedBox.shrink(),
-          FilterType.input => const InputExpandedFilters(),
-          FilterType.checkbox => CheckboxExpandedFilter(filter: filter),
         },
       );
 }

@@ -12,11 +12,15 @@ class SellVehicleDetailsView extends StatelessWidget {
   static const String updateId = 'sell-vehicle-details-id';
 
   @override
-  Widget build(BuildContext context) => Padding(
+  Widget build(BuildContext context) => Container(
         padding: Dimens.edgeInsets20,
+        constraints: BoxConstraints(
+          maxWidth: context.sellDetailsWidth,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Dimens.boxHeight16,
             AppText(
               'Title',
               style: Styles.headlineSmall,
@@ -59,7 +63,7 @@ class _DropdownDetailsSection extends StatelessWidget {
             ),
             Dimens.boxHeight16,
             SizedBox(
-              width: context.fieldWidth,
+              width: double.maxFinite,
               child: InputEditor(
                 controller: controller.sellDescriptionTEC,
                 label: 'Description',
@@ -73,10 +77,11 @@ class _DropdownDetailsSection extends StatelessWidget {
               shrinkWrap: true,
               padding: Dimens.edgeInsets0_40,
               physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisSpacing: Dimens.thirtyTwo,
                 mainAxisSpacing: 0,
-                maxCrossAxisExtent: Dimens.threeHundred,
+                crossAxisCount: context.isMobileView ? 1 : 2,
+                // maxCrossAxisExtent: Dimens.threeHundred,
                 mainAxisExtent: Dimens.hundred,
               ),
               itemBuilder: (_, index) {
@@ -105,22 +110,26 @@ class _DropdownDetailsSection extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(
-              width: context.fieldWidth,
-              child: InputField(
-                controller: controller.sellDetailsTEC(VehicleFilter.price),
-                label: 'Sale Price',
-                showLabel: true,
-                isRequired: true,
-                textInputType: TextInputType.number,
+            Center(
+              child: SizedBox(
+                width: context.fieldWidth,
+                child: InputField(
+                  controller: controller.sellDetailsTEC(VehicleFilter.price),
+                  label: 'Sale Price',
+                  showLabel: true,
+                  isRequired: true,
+                  textInputType: TextInputType.number,
+                ),
               ),
             ),
             Dimens.boxHeight32,
-            SizedBox(
-              width: context.fieldWidth,
-              child: Button(
-                label: 'Submit',
-                onTap: () {},
+            Center(
+              child: SizedBox(
+                width: context.fieldWidth,
+                child: Button(
+                  label: 'Submit',
+                  onTap: () {},
+                ),
               ),
             ),
           ],
