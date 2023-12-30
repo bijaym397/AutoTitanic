@@ -47,6 +47,7 @@ class _MyAppState extends State<MyApp> {
                 : const Size(414, 896),
         ensureScreenSize: true,
         child: GetMaterialApp(
+          title: 'Autotitanic',
           debugShowCheckedModeBanner: false,
           theme: kAppTheme,
           enableLog: true,
