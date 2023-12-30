@@ -10,6 +10,7 @@ class WelcomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
+        title: 'Welcome',
         bodyBuilder: (_, isHovering) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,12 +25,12 @@ class WelcomeView extends StatelessWidget {
                 children: [
                   Image.asset(
                     AssetConstants.getOnPlaystore,
-                    height: Dimens.eighty,
+                    height: context.isMobileView ? Dimens.forty : Dimens.eighty,
                   ),
                   Dimens.boxWidth20,
                   Image.asset(
                     AssetConstants.getOnAppstore,
-                    height: Dimens.eighty,
+                    height: context.isMobileView ? Dimens.forty : Dimens.eighty,
                   ),
                 ],
               ),

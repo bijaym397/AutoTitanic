@@ -9,19 +9,8 @@ class BuyNewVehicleView extends StatelessWidget {
   static const String route = AppRoutes.buyingNewVehicle;
 
   @override
-  Widget build(BuildContext context) => ScreenWrapper(
-        bodyBuilder: (_, isHovering) => Padding(
-          padding: Dimens.edgeInsetsR200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Dimens.boxHeight32,
-              const PageHeadLabel(AppStrings.buyingNew),
-              AnimatedLines(isHovering: isHovering),
-              Dimens.boxHeight16,
-              const HTMLWidget(content: StringData.buyingNewVehicle),
-            ],
-          ),
-        ),
+  Widget build(BuildContext context) => const StaticPage(
+        title: AppStrings.buyingNew,
+        content: StringData.buyingNewVehicle,
       );
 }

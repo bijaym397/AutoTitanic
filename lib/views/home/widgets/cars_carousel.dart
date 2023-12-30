@@ -74,8 +74,16 @@ class CarsCarousel extends StatelessWidget {
                     ),
                   ),
                 ),
-                $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: true),
-                $CarouselMoveButton(isHovering: isHovering.value, controller: controller, isPreviousIcon: false),
+                $CarouselMoveButton(
+                  isHovering: isHovering.value,
+                  controller: controller,
+                  isPreviousIcon: true,
+                ),
+                $CarouselMoveButton(
+                  isHovering: isHovering.value,
+                  controller: controller,
+                  isPreviousIcon: false,
+                ),
               ],
             ),
           ),

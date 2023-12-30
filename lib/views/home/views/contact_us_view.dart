@@ -13,6 +13,7 @@ class ContactUsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
+        title: 'Contact Us',
         showAppBarImage: true,
         bodyBuilder: (_, isHovering) => Column(
           mainAxisAlignment: MainAxisAlignment.center,

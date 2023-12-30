@@ -1,5 +1,4 @@
 import 'package:auto_titanic/res/res.dart';
-import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 
@@ -33,20 +32,23 @@ class CountryPicker extends StatelessWidget {
           if (showLabel)
             Padding(
               padding: Dimens.edgeInsets4,
-              child: Row(
-                children: [
-                  if (isRequired)
-                    AppText(
-                      '*',
-                      style: Styles.titleLarge.copyWith(
-                        color: AppColors.red,
+              child: RichText(
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  children: [
+                    if (isRequired)
+                      TextSpan(
+                        text: '*',
+                        style: Styles.titleLarge.copyWith(
+                          color: AppColors.red,
+                        ),
                       ),
+                    TextSpan(
+                      text: 'Country',
+                      style: Styles.titleMedium,
                     ),
-                  AppText(
-                    'Country',
-                    style: Styles.titleMedium,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           CSCPicker(

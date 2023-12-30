@@ -20,6 +20,7 @@ class HomeView extends StatelessWidget {
             ..generateCarsData();
         },
         builder: (controller) => ScreenWrapper(
+          title: 'Home',
           showFilterCard: true,
           onFilterSearch: () => RouteManagement.goToSearch(
             controller.commonController.selectedVehicle ?? Vehicle.cars,
@@ -63,7 +64,12 @@ class HomeView extends StatelessWidget {
                   );
                 },
               ),
-              Dimens.boxHeight48,
+              Dimens.boxHeight24,
+              AspectRatio(
+                aspectRatio: 6 / 1,
+                child: AdCard.horizontal(length: context.screenWidth, width: 1),
+              ),
+              Dimens.boxHeight24,
               const BrandCard(),
             ],
           ),

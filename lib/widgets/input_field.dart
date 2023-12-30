@@ -46,56 +46,62 @@ class InputField extends StatelessWidget {
           if (!floatingLabel && showLabel)
             Padding(
               padding: Dimens.edgeInsets4,
-              child: Row(
-                children: [
-                  if (isRequired)
-                    AppText(
-                      '*',
-                      style: Styles.titleLarge.copyWith(
-                        color: AppColors.red,
+              child: RichText(
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  children: [
+                    if (isRequired)
+                      TextSpan(
+                        text: '*',
+                        style: Styles.titleLarge.copyWith(
+                          color: AppColors.red,
+                        ),
                       ),
+                    TextSpan(
+                      text: _label,
+                      style: Styles.titleMedium,
                     ),
-                  AppText(
-                    _label,
-                    style: Styles.titleMedium,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          TextFormField(
-            controller: controller,
-            decoration: InputDecoration(
-              alignLabelWithHint: true,
-              filled: true,
-              fillColor: AppColors.grey,
-              hintText: _hint.isEmpty
-                  ? null
-                  : isRequired && !showLabel
-                      ? '*$_hint'
-                      : _hint,
-              labelText: showLabel && floatingLabel ? _label : null,
-              labelStyle: Styles.bodyMedium,
-              hintStyle: Styles.bodyMedium,
-              hintMaxLines: 1,
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(Dimens.eight),
+          SizedBox(
+            height: context.fieldHeight,
+            child: TextFormField(
+              controller: controller,
+              decoration: InputDecoration(
+                alignLabelWithHint: true,
+                filled: true,
+                fillColor: AppColors.grey,
+                hintText: _hint.isEmpty
+                    ? null
+                    : isRequired && !showLabel
+                        ? '*$_hint'
+                        : _hint,
+                labelText: showLabel && floatingLabel ? _label : null,
+                labelStyle: Styles.bodyMedium,
+                hintStyle: Styles.bodyMedium,
+                hintMaxLines: 1,
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(Dimens.eight),
+                ),
+                isDense: true,
+                contentPadding: context.isMobileView ? Dimens.edgeInsets12_8 : Dimens.edgeInsets16_12,
+                suffixIcon: suffixIcon,
               ),
-              isDense: true,
-              contentPadding: Dimens.edgeInsets16_12,
-              suffixIcon: suffixIcon,
+              validator: validator,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              cursorHeight: Dimens.sixteen,
+              cursorWidth: Dimens.two,
+              style: Styles.bodyMedium,
+              canRequestFocus: true,
+              onChanged: onChanged,
+              minLines: minLines,
+              maxLines: maxLines ?? 1,
+              keyboardType: textInputType,
+              inputFormatters: inputFormatters ?? (textInputType == TextInputType.number ? Utility.numberFormatters : null),
             ),
-            validator: validator,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            cursorHeight: Dimens.sixteen,
-            cursorWidth: Dimens.two,
-            style: Styles.bodyMedium,
-            canRequestFocus: true,
-            onChanged: onChanged,
-            minLines: minLines,
-            maxLines: maxLines ?? 1,
-            keyboardType: textInputType,
-            inputFormatters: inputFormatters ?? (textInputType == TextInputType.number ? Utility.numberFormatters : null),
           ),
         ],
       );

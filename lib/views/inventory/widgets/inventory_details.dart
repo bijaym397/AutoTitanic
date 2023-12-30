@@ -14,96 +14,68 @@ class InventoryDetails extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // SizedBox(
-            //   height: Dimens.thirtyTwo,
-            //   child: ListView.separated(
-            //     scrollDirection: Axis.horizontal,
-            //     itemCount: data.labels.length,
-            //     separatorBuilder: (_, __) => Dimens.boxWidth8,
-            //     itemBuilder: (_, index) => _InventoryLabel(data.labels[index]),
-            //   ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                AppText(
+                  data.amount,
+                  style: Styles.titleLarge.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Button.icon(
+                  onTap: () {},
+                  icon: Icons.favorite_outline_rounded,
+                  label: 'Save',
+                ),
+              ],
+            ),
+            AppText(
+              data.name,
+              style: Styles.titleMedium,
+            ),
+            AppText(
+              data.variant,
+              style: Styles.labelLarge,
+            ),
+            // Dimens.boxHeight8,
+            // AppText(
+            //   data.features.join(' | '),
+            //   style: Styles.labelMedium,
             // ),
-            Expanded(
-              flex: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      AppText(
-                        data.amount,
-                        style: Styles.titleLarge.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(Icons.favorite_outline_rounded),
-                        label: const AppText('Save'),
-                      ),
-                    ],
-                  ),
-                  AppText(
-                    data.name,
-                    style: Styles.titleMedium,
-                  ),
-                  AppText(
-                    data.variant,
-                    style: Styles.labelLarge,
-                  ),
-                  // Dimens.boxHeight8,
-                  // AppText(
-                  //   data.features.join(' | '),
-                  //   style: Styles.labelMedium,
-                  // ),
-                  Dimens.boxHeight8,
-                  AppText(
-                    data.details,
-                    style: Styles.labelLarge.copyWith(
-                      fontWeight: FontWeight.w600,
-                    ),
-                    softWrap: true,
-                  ),
-                ],
-              ),
+            AppText(
+              data.details,
+              style: Styles.labelMedium,
+              softWrap: true,
             ),
             const Divider(),
-            Expanded(
-              flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  AppText(
-                    data.seller,
-                    style: Styles.labelLarge,
-                  ),
-                  Row(
-                    children: [
-                      AppIcon(
-                        Icons.star_border_rounded,
-                        size: Dimens.twenty,
-                      ),
-                      AppText(
-                        data.customerReviews,
-                        style: Styles.labelMedium,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      AppIcon(
-                        Icons.location_on_outlined,
-                        size: Dimens.twenty,
-                      ),
-                      AppText(
-                        data.address.toAddress,
-                        style: Styles.labelMedium,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            AppText(
+              data.seller,
+              style: Styles.labelLarge,
+            ),
+            Row(
+              children: [
+                AppIcon(
+                  Icons.star_border_rounded,
+                  size: Dimens.twenty,
+                ),
+                AppText(
+                  data.customerReviews,
+                  style: Styles.labelMedium,
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                AppIcon(
+                  Icons.location_on_outlined,
+                  size: Dimens.twenty,
+                ),
+                AppText(
+                  data.address.toAddress,
+                  style: Styles.labelMedium,
+                ),
+              ],
             ),
           ],
         ),

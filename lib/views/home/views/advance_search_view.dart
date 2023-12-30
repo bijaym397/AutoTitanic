@@ -15,6 +15,7 @@ class AdvanceSearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
+        title: 'Advance Search',
         showAppBarImage: true,
         isWhiteBackground: true,
         body: GetBuilder<HomeController>(

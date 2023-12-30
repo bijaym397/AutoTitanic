@@ -5,7 +5,6 @@ mixin CommonAPIMixin {
 
   HomeController? get _homeController {
     if (Get.isRegistered<HomeController>()) {
-      AppLog.success('Have home controller');
       return Get.find<HomeController>();
     }
     return null;

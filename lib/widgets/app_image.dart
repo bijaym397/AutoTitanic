@@ -207,7 +207,6 @@ class _NetworkImage extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 shape: _isProfileImage ? BoxShape.circle : BoxShape.rectangle,
-                color: AppColors.grey,
                 image: DecorationImage(image: image, fit: BoxFit.cover),
               ),
             );
@@ -223,7 +222,6 @@ class _NetworkImage extends StatelessWidget {
         placeholder: (context, url) => Container(
           alignment: Alignment.center,
           decoration: BoxDecoration(
-            color: AppColors.primary.withOpacity(0.2),
             shape: _isProfileImage ? BoxShape.circle : BoxShape.rectangle,
           ),
           child: _isProfileImage

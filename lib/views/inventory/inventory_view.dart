@@ -18,6 +18,7 @@ class InventoryView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => ScreenWrapper(
+        title: 'Search Results',
         showAppBarImage: true,
         isWhiteBackground: true,
         body: Padding(

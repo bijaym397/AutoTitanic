@@ -62,6 +62,8 @@ extension ContextExtension on BuildContext {
 
   bool get isMobileView => width <= AppConstants.maxMobileWidth;
 
+  double get fieldHeight => isMobileView ? Dimens.thirtyTwo : Dimens.forty;
+
   double? get fieldWidth {
     if (isDesktopView) {
       return 0.3.pw;
@@ -81,6 +83,35 @@ extension ContextExtension on BuildContext {
     }
     return 0.9.pw;
   }
+
+  double get adWidth {
+    if (isDesktopView) {
+      return 0.1.pw;
+    }
+    if (isTabletView) {
+      return 0.07.pw;
+    }
+    return 0;
+  }
+
+  double get filterCardHeight {
+    if (isMobileView) {
+      return 0.6.ph;
+    }
+    return 0.4.ph;
+  }
+
+  double get filterCardWidth {
+    if (isDesktopView) {
+      return 0.25.pw;
+    }
+    if (isTabletView) {
+      return 0.4.pw;
+    }
+    return 0.9.pw;
+  }
+
+  EdgeInsets get staticPagePadding => (isDesktopView ? Dimens.edgeInsetsR200 : Dimens.edgeInsets0).copyWith(bottom: Dimens.twenty);
 
   Size? get size => (findRenderObject() as RenderBox?)?.size;
 }

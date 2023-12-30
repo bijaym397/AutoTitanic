@@ -20,6 +20,7 @@ class SellVehicleView extends StatelessWidget {
           Get.find<HomeController>().checkRoute();
         },
         builder: (controller) => ScreenWrapper(
+          title: 'Sell - ${(controller.selectedVehicleCategory ?? Vehicle.cars).label}',
           isWhiteBackground: !controller.showLocationPage,
           body: AnimatedSwitcher(
             duration: AppConstants.animationDuration,

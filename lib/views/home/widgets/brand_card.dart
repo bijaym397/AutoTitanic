@@ -52,19 +52,22 @@ class BrandCard extends StatelessWidget {
                 ),
               ],
               Dimens.boxHeight20,
-              UnconstrainedBox(
-                child: Button(
-                  onTap: controller.brandsList.isEmpty
-                      ? null
-                      : () {
-                          controller.isBrandsExpanded = !controller.isBrandsExpanded;
-                          controller.update(['$updateId-expand']);
-                        },
-                  label: 'Show All Makes',
-                  width: Dimens.twoHundred,
+              GetBuilder<CommonController>(
+                id: '$updateId-button',
+                builder: (_) => UnconstrainedBox(
+                  child: Button(
+                    onTap: controller.brandsList.isEmpty
+                        ? null
+                        : () {
+                            controller.isBrandsExpanded = !controller.isBrandsExpanded;
+                            controller.update(['$updateId-button', '$updateId-expand']);
+                          },
+                    label: controller.isBrandsExpanded ? 'Hide All Makes' : 'Show All Makes',
+                    width: Dimens.twoHundred,
+                  ),
                 ),
               ),
-              GetBuilder<HomeController>(
+              GetBuilder<CommonController>(
                 id: '$updateId-expand',
                 builder: (_) => !controller.isBrandsExpanded
                     ? const SizedBox.shrink()

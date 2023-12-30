@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 class ScreenWrapper extends StatelessWidget {
   const ScreenWrapper({
     super.key,
+    required this.title,
     this.body,
     this.bodyBuilder,
     this.showAppBarImage = false,
@@ -21,6 +22,7 @@ class ScreenWrapper extends StatelessWidget {
         ),
         assert(!showFilterCard || (showFilterCard && onFilterSearch != null), 'If showFilterCard is set to true, onFilterSearch must be non-null');
 
+  final String title;
   final Widget? body;
   final bool showAppBarImage;
   final Widget Function(BuildContext, bool)? bodyBuilder;
@@ -29,39 +31,51 @@ class ScreenWrapper extends StatelessWidget {
   final VoidCallback? onFilterSearch;
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
-        appBar: const DashboardHeader(),
-        body: GetBuilder<CommonController>(
-          builder: (controller) => TapHandler(
-            showArrowCursor: true,
-            onHover: (isHovering) {
-              if (isHovering) {
-                controller.closeOverlay();
-              }
-            },
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  if (showAppBarImage) const $BackgroundImage(),
-                  if (showFilterCard) FilterSection(onTap: onFilterSearch!),
-                  SizedBox(
-                    width: context.screenWidth,
-                    child: bodyBuilder != null
-                        ? ObxValue<RxBool>(
-                            (value) => TapHandler(
-                              showArrowCursor: true,
-                              onHover: (isHovering) {
-                                value.value = isHovering;
-                              },
-                              child: bodyBuilder!(context, value.value),
-                            ),
-                            false.obs,
-                          )
-                        : body,
-                  ),
-                  const DashboardFooter(),
-                ],
+  Widget build(BuildContext context) => Title(
+        title: 'AutoTitanic | $title',
+        color: AppColors.white,
+        child: Scaffold(
+          backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
+          appBar: const DashboardHeader(),
+          body: GetBuilder<CommonController>(
+            builder: (controller) => TapHandler(
+              showArrowCursor: true,
+              onHover: (isHovering) {
+                if (isHovering) {
+                  controller.closeOverlay();
+                }
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    if (showAppBarImage) const $BackgroundImage(),
+                    if (showFilterCard) FilterSection(onTap: onFilterSearch!),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        AdCard.verticle(length: 0.5.ph, width: context.adWidth),
+                        SizedBox(
+                          width: context.screenWidth,
+                          child: bodyBuilder != null
+                              ? ObxValue<RxBool>(
+                                  (value) => TapHandler(
+                                    showArrowCursor: true,
+                                    onHover: (isHovering) {
+                                      value.value = isHovering;
+                                    },
+                                    child: bodyBuilder!(context, value.value),
+                                  ),
+                                  false.obs,
+                                )
+                              : body,
+                        ),
+                        AdCard.verticle(length: 0.5.ph, width: context.adWidth),
+                      ],
+                    ),
+                    const DashboardFooter(),
+                  ],
+                ),
               ),
             ),
           ),

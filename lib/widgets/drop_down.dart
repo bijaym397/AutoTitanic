@@ -34,25 +34,28 @@ class DropDown<T> extends StatelessWidget {
           if (showTitle)
             Padding(
               padding: Dimens.edgeInsets4,
-              child: Row(
-                children: [
-                  if (isRequired)
-                    AppText(
-                      '*',
-                      style: Styles.titleLarge.copyWith(
-                        color: AppColors.red,
+              child: RichText(
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  children: [
+                    if (isRequired)
+                      TextSpan(
+                        text: '*',
+                        style: Styles.titleLarge.copyWith(
+                          color: AppColors.red,
+                        ),
                       ),
+                    TextSpan(
+                      text: hint,
+                      style: Styles.titleMedium,
                     ),
-                  AppText(
-                    hint,
-                    style: Styles.titleMedium,
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           DropdownButton2<T>(
             buttonStyleData: ButtonStyleData(
-              height: Dimens.forty,
+              height: context.isMobileView ? Dimens.thirtyTwo : Dimens.forty,
               decoration: BoxDecoration(
                 color: AppColors.grey,
                 borderRadius: BorderRadius.circular(Dimens.eight),
@@ -70,9 +73,7 @@ class DropDown<T> extends StatelessWidget {
             ),
             iconStyleData: const IconStyleData(
               icon: AppIcon(Icons.keyboard_arrow_down_rounded),
-              // icon: AppIcon(Icons.arrow_drop_down_rounded),
               openMenuIcon: AppIcon(Icons.keyboard_arrow_up_rounded),
-              // openMenuIcon: AppIcon(Icons.arrow_drop_up_rounded),
             ),
             menuItemStyleData: MenuItemStyleData(
               height: Dimens.twentyEight,
@@ -90,6 +91,7 @@ class DropDown<T> extends StatelessWidget {
               (showTitle ? 'Select ' : '') + hint,
               style: Styles.bodyMedium,
               isSelectable: false,
+              overflow: TextOverflow.ellipsis,
             ),
             underline: const SizedBox.shrink(),
             value: value,
