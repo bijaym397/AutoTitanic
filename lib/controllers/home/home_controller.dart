@@ -26,6 +26,8 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   var debouncer = Debouncer();
 
+  bool isFullScreen = false;
+
   String? selectedFilterCountry;
 
   DropDownModel? selectedFilterBrand;

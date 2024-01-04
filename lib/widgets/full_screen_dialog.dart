@@ -4,13 +4,29 @@ import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FullScreenDialog extends StatelessWidget {
+class FullScreenDialog extends StatefulWidget {
   const FullScreenDialog({
     super.key,
     required this.images,
   });
 
   final List<String> images;
+
+  @override
+  State<FullScreenDialog> createState() => _FullScreenDialogState();
+}
+
+class _FullScreenDialogState extends State<FullScreenDialog> {
+  bool isFullScreen = false;
+
+  void _toggleFullScreen() {
+    if (isFullScreen) {
+      PlatformHandler().exitFullScreen();
+    } else {
+      PlatformHandler().enterFullScreen();
+    }
+    isFullScreen = !isFullScreen;
+  }
 
   @override
   Widget build(BuildContext context) => Material(
@@ -28,7 +44,7 @@ class FullScreenDialog extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Image.asset(
-                    images.first,
+                    widget.images.first,
                     height: 0.8.ph,
                     width: 0.8.pw,
                     fit: BoxFit.contain,
@@ -40,16 +56,16 @@ class FullScreenDialog extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            '1 / ${images.length}',
+                            '1 / ${widget.images.length}',
                             style: Styles.labelLarge.copyWith(
                               color: AppColors.white,
                             ),
                           ),
                           const Spacer(),
                           IconButton(
-                            onPressed: () {},
-                            icon: const AppIcon(
-                              Icons.fullscreen_rounded,
+                            onPressed: _toggleFullScreen,
+                            icon: AppIcon(
+                              isFullScreen ? Icons.fullscreen_exit_rounded : Icons.fullscreen_rounded,
                             ),
                           ),
                           IconButton(
@@ -60,7 +76,7 @@ class FullScreenDialog extends StatelessWidget {
                           ),
                         ],
                       ),
-                      if (images.length > 1)
+                      if (widget.images.length > 1)
                         Row(
                           children: [
                             IconButton(

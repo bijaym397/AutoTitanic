@@ -5,6 +5,7 @@ export 'extensions.dart';
 export 'log.dart';
 export 'managers/managers.dart';
 export 'navigators/navigators.dart';
+export 'platform_handler/platform_handler.dart';
 export 'typedef.dart';
 export 'utility.dart';
 export 'validators.dart';

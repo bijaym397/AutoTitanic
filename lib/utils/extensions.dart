@@ -347,7 +347,7 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.year:
         return [2023, 2022, 2021, 2020, 2019];
       case VehicleFilter.price:
-        return [0, 500, 1000, 1500, 2000];
+        return [0, 500, 1000, 2000, 5000, 10000, 15000, 20000];
       case VehicleFilter.mileage:
         return [100, 500, 1000, 5000];
       case VehicleFilter.engineSize:
@@ -382,7 +382,7 @@ extension VehicleFilterExtension on VehicleFilter {
       case VehicleFilter.year:
         return [2023, 2022, 2021, 2020, 2019];
       case VehicleFilter.price:
-        return [0, 500, 1000, 1500, 2000];
+        return [1000, 2000, 5000, 10000, 15000, 20000, 30000, 50000];
       case VehicleFilter.mileage:
         return [100, 500, 1000, 5000];
       case VehicleFilter.engineSize:
