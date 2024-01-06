@@ -76,10 +76,14 @@ class $FilterCard extends StatelessWidget {
                     ),
                   ),
                   Dimens.boxHeight10,
-                  CountryPicker(
-                    currentCountry: controller.selectedFilterCountry,
-                    onCountryChanged: controller.onFilterCountryChanged,
+                  DropDown<DropDownModel>(
+                    hint: 'Country',
+                    labelBuilder: (e) => e.label,
+                    items: controller.countryList,
+                    value: controller.selectedFilterCountry,
+                    onChanged: controller.onFilterCountryChanged,
                   ),
+                  Dimens.boxHeight10,
                   Row(
                     children: [
                       Flexible(

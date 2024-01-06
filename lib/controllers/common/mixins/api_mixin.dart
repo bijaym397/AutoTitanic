@@ -30,7 +30,5 @@ mixin CommonAPIMixin {
     _homeController?.update([FilterSection.updateId]);
   }
 
-  Future<void> getCountries() async {
-    _controller.countries = await _controller._viewModel.getCountries();
-  }
+  Future<List<CountryModel>> getCountries() => _controller._viewModel.getCountries();
 }

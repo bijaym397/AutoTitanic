@@ -28,7 +28,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   bool isFullScreen = false;
 
-  String? selectedFilterCountry;
+  DropDownModel? selectedFilterCountry;
 
   DropDownModel? selectedFilterBrand;
 
@@ -56,9 +56,9 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   Vehicle? selectedVehicleCategory;
 
-  String? selectedCountry;
+  DropDownModel? selectedCountry;
 
-  String? selectedState;
+  DropDownModel? selectedCity;
 
   var sellTitleTEC = TextEditingController();
 
@@ -110,7 +110,25 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
   List<PlatformFile> get selectedImages => _selectedImages;
   set selectedImages(List<PlatformFile> value) => _selectedImages.value = value;
 
+  List<CountryModel> countries = [];
+
+  List<CountryModel> cities = [];
+
   // ==================== INIT =====================
+
+  List<DropDownModel> get countryList => countries
+      .map((e) => DropDownModel(
+            id: e.id,
+            label: e.name,
+          ))
+      .toList();
+
+  List<DropDownModel> get cityList => cities
+      .map((e) => DropDownModel(
+            id: e.id,
+            label: e.name,
+          ))
+      .toList();
 
   void checkRoute() {
     var uri = Uri.base.toString();
@@ -176,7 +194,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   // ================= FUNCTIONS ===================
 
-  void onFilterCountryChanged(String? country) async {
+  void onFilterCountryChanged(DropDownModel? country) async {
     selectedFilterCountry = country;
     update([FilterSection.updateId]);
   }

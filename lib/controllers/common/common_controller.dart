@@ -48,7 +48,6 @@ class CommonController extends GetxController with CommonAPIMixin {
   void onReady() {
     super.onReady();
     getBrands();
-    getCountries();
   }
 
   // ---------------- Data --------------------
@@ -56,8 +55,6 @@ class CommonController extends GetxController with CommonAPIMixin {
   List<MakeModel> brandsList = [];
 
   List<MakeModel> modelList = [];
-
-  List<CountryModel> countries = [];
 
   var isBrandsExpanded = false;
 

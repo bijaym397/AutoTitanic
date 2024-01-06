@@ -4,7 +4,7 @@ mixin SellVehicleMixin {
   HomeController get _controller => Get.find<HomeController>();
 
   bool get isNextButtonEnabled =>
-      [_controller.selectedVehicleCategory, _controller.selectedCountry, _controller.selectedState]
+      [_controller.selectedVehicleCategory, _controller.selectedCountry, _controller.selectedCity]
           .every((e) => e != null && e.toString().trim().isNotEmpty) &&
       _controller.selectedImages.length >= 5 &&
       (_controller.vehicleVideoTEC.isEmpty || (_controller.vehicleVideoTEC.isNotEmpty && _controller.videoLinkError == null));
@@ -19,13 +19,13 @@ mixin SellVehicleMixin {
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
-  void onCountryChanged(String country) {
+  void onCountryChanged(DropDownModel? country) {
     _controller.selectedCountry = country;
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
-  void onStateChanged(String? state) {
-    _controller.selectedState = state ?? '';
+  void onCityChanged(DropDownModel? state) {
+    _controller.selectedCity = state;
     _controller.update([SellVehicleLocationView.updateId]);
   }
 

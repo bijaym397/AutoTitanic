@@ -6,7 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NavDrawer extends StatelessWidget {
-  const NavDrawer({super.key});
+  const NavDrawer({
+    super.key,
+    required this.globalKey,
+  });
+
+  final GlobalKey<ScaffoldState> globalKey;
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
@@ -20,7 +25,10 @@ class NavDrawer extends StatelessWidget {
             itemCount: Vehicle.values.length,
             padding: Dimens.edgeInsets8_16,
             shrinkWrap: true,
-            itemBuilder: (_, i) => _DrawerItem(Vehicle.values[i]),
+            itemBuilder: (_, i) => _DrawerItem(
+              Vehicle.values[i],
+              globalKey: globalKey,
+            ),
           ),
         ),
       );
@@ -28,10 +36,12 @@ class NavDrawer extends StatelessWidget {
 
 class _DrawerItem extends StatelessWidget {
   const _DrawerItem(
-    this.vehicle,
-  );
+    this.vehicle, {
+    required this.globalKey,
+  });
 
   final Vehicle vehicle;
+  final GlobalKey<ScaffoldState> globalKey;
 
   @override
   Widget build(BuildContext context) => GetBuilder<CommonController>(
@@ -53,7 +63,7 @@ class _DrawerItem extends StatelessWidget {
                   return TapHandler(
                     onTap: () {
                       if (vehicle == Vehicle.cars) {
-                        ScreenWrapper.globalKey.currentState?.closeEndDrawer();
+                        globalKey.currentState?.closeEndDrawer();
                         controller.goToVehicleListing(vehicle, item);
                       }
                     },

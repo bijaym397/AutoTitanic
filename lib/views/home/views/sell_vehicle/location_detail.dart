@@ -1,4 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
@@ -41,12 +42,28 @@ class SellVehicleLocationView extends StatelessWidget {
                   onChanged: controller.onCategoryChange,
                 ),
                 Dimens.boxHeight16,
-                CountryPicker(
-                  showStates: true,
-                  currentCountry: controller.selectedCountry,
-                  currentState: controller.selectedState,
-                  onCountryChanged: controller.onCountryChanged,
-                  onStateChanged: controller.onStateChanged,
+                Row(
+                  children: [
+                    Flexible(
+                      child: DropDown<DropDownModel>(
+                        hint: 'Country',
+                        labelBuilder: (e) => e.label,
+                        items: controller.countryList,
+                        value: controller.selectedCountry,
+                        onChanged: controller.onCountryChanged,
+                      ),
+                    ),
+                    Dimens.boxWidth32,
+                    Flexible(
+                      child: DropDown<DropDownModel>(
+                        hint: 'City',
+                        labelBuilder: (e) => e.label,
+                        items: controller.cityList,
+                        value: controller.selectedCity,
+                        onChanged: controller.onCityChanged,
+                      ),
+                    ),
+                  ],
                 ),
                 Dimens.boxHeight8,
                 Divider(

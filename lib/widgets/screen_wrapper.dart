@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ScreenWrapper extends StatelessWidget {
-  const ScreenWrapper({
+  ScreenWrapper({
     super.key,
     required this.title,
     this.body,
@@ -20,9 +20,10 @@ class ScreenWrapper extends StatelessWidget {
           body != null || bodyBuilder != null,
           'Both body and bodyBuilder cannot be null',
         ),
-        assert(!showFilterCard || (showFilterCard && onFilterSearch != null), 'If showFilterCard is set to true, onFilterSearch must be non-null');
+        assert(!showFilterCard || (showFilterCard && onFilterSearch != null), 'If showFilterCard is set to true, onFilterSearch must be non-null'),
+        globalKey = GlobalKey<ScaffoldState>();
 
-  static final globalKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> globalKey;
 
   final String title;
   final Widget? body;
@@ -39,8 +40,8 @@ class ScreenWrapper extends StatelessWidget {
         child: Scaffold(
           key: globalKey,
           backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
-          appBar: const DashboardHeader(),
-          endDrawer: context.isMobileView ? const NavDrawer() : null,
+          appBar: DashboardHeader(globalKey: globalKey),
+          endDrawer: context.isMobileView ? NavDrawer(globalKey: globalKey) : null,
           body: GetBuilder<CommonController>(
             builder: (controller) => TapHandler(
               showArrowCursor: true,

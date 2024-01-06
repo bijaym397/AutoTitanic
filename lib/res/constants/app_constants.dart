@@ -1,5 +1,4 @@
 import 'package:auto_titanic/utils/utils.dart';
-import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/foundation.dart';
 
 /// `AppConstants` is a singleton class with all static variables.
@@ -194,57 +193,5 @@ class AppConstants {
     'Upto 225g/km CO2',
     'Upto 250g/km CO2',
     'More than 250g/km CO2',
-  ];
-
-  static List<CscCountry> allowedCountries = [
-    CscCountry.Algeria,
-    CscCountry.Angola,
-    CscCountry.Benin,
-    CscCountry.Botswana,
-    CscCountry.Burkina_Faso,
-    CscCountry.Burundi,
-    CscCountry.Cameroon,
-    CscCountry.Central_African_Republic,
-    CscCountry.Chad,
-    CscCountry.Cote_D_Ivoire_Ivory_Coast,
-    CscCountry.Djibouti,
-    CscCountry.Congo,
-    CscCountry.Egypt,
-    CscCountry.Equatorial_Guinea,
-    CscCountry.Eritrea,
-    CscCountry.Gabon,
-    CscCountry.Gambia_The,
-    CscCountry.Ghana,
-    CscCountry.Guinea,
-    CscCountry.Guinea_Bissau,
-    CscCountry.Kenya,
-    CscCountry.Lesotho,
-    CscCountry.Liberia,
-    CscCountry.Libya,
-    CscCountry.Madagascar,
-    CscCountry.Malawi,
-    CscCountry.Mali,
-    CscCountry.Mauritania,
-    CscCountry.Mauritius,
-    CscCountry.Morocco,
-    CscCountry.Mozambique,
-    CscCountry.Namibia,
-    CscCountry.Niger,
-    CscCountry.Nigeria,
-    CscCountry.Rwanda,
-    CscCountry.Saint_Pierre_and_Miquelon,
-    CscCountry.Senegal,
-    CscCountry.Seychelles,
-    CscCountry.Sierra_Leone,
-    CscCountry.Somalia,
-    CscCountry.South_Africa,
-    CscCountry.South_Sudan,
-    CscCountry.Sudan,
-    CscCountry.Tanzania,
-    CscCountry.Togo,
-    CscCountry.Tunisia,
-    CscCountry.Uganda,
-    CscCountry.Zambia,
-    CscCountry.Zimbabwe,
   ];
 }
