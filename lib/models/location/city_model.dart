@@ -2,11 +2,11 @@ import 'dart:convert';
 
 class CityModel {
   const CityModel({
-    required this.id,
-    required this.country,
+    this.id = '',
+    this.country = '',
     required this.name,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory CityModel.fromMap(Map<String, dynamic> map) => CityModel(
@@ -22,8 +22,8 @@ class CityModel {
   final String id;
   final String country;
   final String name;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   CityModel copyWith({
     String? id,
@@ -44,8 +44,8 @@ class CityModel {
         '_id': id,
         'country': country,
         'name': name,
-        'createdAt': createdAt.millisecondsSinceEpoch,
-        'updatedAt': updatedAt.millisecondsSinceEpoch,
+        'createdAt': createdAt?.millisecondsSinceEpoch,
+        'updatedAt': updatedAt?.millisecondsSinceEpoch,
       };
 
   String toJson() => json.encode(toMap());

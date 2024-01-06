@@ -9,6 +9,7 @@ class Button extends StatelessWidget {
     super.key,
     this.onTap,
     required this.label,
+    this.icon,
     this.height,
     this.width,
     this.hoverColor,
@@ -16,8 +17,7 @@ class Button extends StatelessWidget {
     this.textColor,
     this.hoverTextColor,
     this.makeResponsive = false,
-  })  : _withIcon = false,
-        icon = null;
+  }) : _withIcon = false;
 
   const Button.icon({
     super.key,
@@ -45,6 +45,9 @@ class Button extends StatelessWidget {
   final Color? textColor;
   final Color? hoverTextColor;
   final bool makeResponsive;
+
+  Color _textColor(bool isHovering) =>
+      onTap == null ? Colors.grey : (isHovering ? (hoverTextColor ?? AppColors.white) : (textColor ?? AppColors.white));
 
   @override
   Widget build(BuildContext context) {
@@ -77,14 +80,27 @@ class Button extends StatelessWidget {
           duration: AppConstants.animationDuration,
           padding: context.isMobileView ? Dimens.edgeInsets6 : Dimens.edgeInsets8,
           alignment: Alignment.center,
-          child: AppText(
-            label,
-            isSelectable: false,
-            style: Styles.labelLarge.copyWith(
-              color: onTap == null ? Colors.grey : (isHovering.value ? (hoverTextColor ?? AppColors.white) : (textColor ?? AppColors.white)),
-              overflow: TextOverflow.visible,
-            ),
-            textAlign: TextAlign.center,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              if (icon != null) ...[
+                AppIcon(
+                  icon!,
+                  color: _textColor(isHovering.value),
+                ),
+                Dimens.boxWidth10,
+              ],
+              AppText(
+                label,
+                isSelectable: false,
+                style: Styles.labelLarge.copyWith(
+                  color: _textColor(isHovering.value),
+                  overflow: TextOverflow.visible,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
         ),
       ),
@@ -109,12 +125,12 @@ class _IconButton extends StatelessWidget {
     if (context.isMobileView) {
       return IconButton(
         onPressed: onTap,
-        icon: Icon(icon),
+        icon: AppIcon(icon),
       );
     }
     return ElevatedButton.icon(
       onPressed: onTap,
-      icon: Icon(icon),
+      icon: AppIcon(icon),
       label: AppText(label),
     );
   }

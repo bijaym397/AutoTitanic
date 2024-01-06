@@ -5,14 +5,14 @@ import 'package:flutter/foundation.dart';
 
 class CountryModel {
   const CountryModel({
-    required this.id,
+    this.id = '',
     required this.name,
-    required this.flag,
-    required this.countryCode,
-    required this.currency,
+    this.flag = '',
+    this.countryCode = '',
+    this.currency = '',
     required this.cities,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
   });
 
   factory CountryModel.fromMap(Map<String, dynamic> map) => CountryModel(
@@ -38,8 +38,8 @@ class CountryModel {
   final String countryCode;
   final String currency;
   final List<CityModel> cities;
-  final DateTime createdAt;
-  final DateTime updatedAt;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   CountryModel copyWith({
     String? id,
@@ -69,8 +69,8 @@ class CountryModel {
         'countryCode': countryCode,
         'currency': currency,
         'cities': cities,
-        'createdAt': createdAt.millisecondsSinceEpoch,
-        'updatedAt': updatedAt.millisecondsSinceEpoch,
+        'createdAt': createdAt?.millisecondsSinceEpoch,
+        'updatedAt': updatedAt?.millisecondsSinceEpoch,
       };
 
   String toJson() => json.encode(toMap());

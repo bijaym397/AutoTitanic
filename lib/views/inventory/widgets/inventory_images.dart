@@ -11,11 +11,10 @@ class InventoryImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) {
-          var isRowLayout = true;
-          // var isRowLayout = constraints.maxWidth > AppConstants.maxDesktopWidth;
+          var isRowLayout = context.isDesktopView || context.isMobileView;
           var children = [
             Expanded(
-              flex: isRowLayout ? 3 : 2,
+              flex: 3,
               child: AppImage(
                 imageUrl: images.first,
                 isNetworkImage: images.first.isNetworkImage,
@@ -24,8 +23,8 @@ class InventoryImages extends StatelessWidget {
             ColoredBox(
               color: AppColors.white,
               child: SizedBox(
-                height: double.maxFinite,
-                width: Dimens.two,
+                height: isRowLayout ? double.maxFinite : Dimens.two,
+                width: isRowLayout ? Dimens.two : double.maxFinite,
               ),
             ),
             _MoreImages(
@@ -36,10 +35,7 @@ class InventoryImages extends StatelessWidget {
           if (isRowLayout) {
             return Row(children: children);
           } else {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: children,
-            );
+            return Column(children: children);
           }
         },
       );
@@ -98,29 +94,10 @@ class _MoreImages extends StatelessWidget {
               )
             : const SizedBox.shrink(),
       ),
-    ]
-        .separate(
-          context,
-          (_, __) => ColoredBox(
-            color: AppColors.white,
-            child: SizedBox(
-              height: isRowLayout ? Dimens.two : double.maxFinite,
-              width: isRowLayout ? double.maxFinite : Dimens.two,
-            ),
-          ),
-        )
-        .toList();
+    ];
     return Expanded(
       flex: 1,
-      child: isRowLayout
-          ? Column(
-              mainAxisSize: MainAxisSize.min,
-              children: children,
-            )
-          : Row(
-              mainAxisSize: MainAxisSize.min,
-              children: children,
-            ),
+      child: isRowLayout ? Column(children: children) : Row(children: children),
     );
   }
 }

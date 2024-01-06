@@ -28,10 +28,12 @@ class InventoryModel {
     required this.power,
     required this.distance,
     required this.seller,
-    required this.address,
+    this.country,
+    this.city,
     required this.rating,
     required this.reviews,
     required this.labels,
+    required this.dealer,
   });
 
   factory InventoryModel.fromMap(Map<String, dynamic> map) {
@@ -39,11 +41,11 @@ class InventoryModel {
       id: map['_id'] as String,
       type: Vehicle.fromValue(map['type'] as String),
       title: map['title'] as String,
-      make: map['make'] as String? ?? '',
-      model: map['model'] as String? ?? '',
-      variant: map['variant'] as String? ?? '',
+      make: MakeModel.fromMap(map['make'] as Map<String, dynamic>? ?? {}),
+      model: MakeModel.fromMap(map['model'] as Map<String, dynamic>? ?? {}),
+      variant: (map['variant'] as List? ?? []).map((e) => VariantModel.fromMap(e as Map<String, dynamic>)).toList(),
       price: map['price'] != null ? double.parse(map['price'].toString()) : 0,
-      year: map['year'] as String? ?? '',
+      year: map['year'] != null ? (map['year'] as int).toString() : '',
       capacity: map['capacity'] as double? ?? 0,
       description: map['description'] as String? ?? '',
       condition: map['condition'] as String? ?? '',
@@ -56,14 +58,12 @@ class InventoryModel {
       power: map['power'] as String? ?? '',
       distance: map['distance'] as double? ?? 0,
       seller: map['seller'] as String? ?? '',
-      // address: AddressModel.fromMap(map['address'] as Map<String, dynamic>),
-      address: AddressModel(
-        state: map['state'] as String? ?? '',
-        country: map['country'] as String? ?? '',
-      ),
+      country: map['country'] != null ? CountryModel.fromMap(map['country'] as Map<String, dynamic>) : null,
+      city: map['city'] != null ? CityModel.fromMap(map['city'] as Map<String, dynamic>) : null,
       rating: map['rating'] as double? ?? 0,
       reviews: map['reviews'].runtimeType == List ? (map['reviews'] as List).length : int.tryParse(map['reviews'].toString()) ?? 0,
       labels: (map['labels'] as List<dynamic>? ?? []).map((e) => LabelModel.fromMap(e as Map<String, dynamic>)).toList(),
+      dealer: '',
     );
     var images = model.media;
     if (images.length < 2) {
@@ -81,9 +81,9 @@ class InventoryModel {
   final String id;
   final String title;
   final Vehicle type;
-  final String make;
-  final String model;
-  final String variant;
+  final MakeModel make;
+  final MakeModel model;
+  final List<VariantModel> variant;
   final double price;
   final String year;
   final double capacity;
@@ -98,12 +98,14 @@ class InventoryModel {
   final String power;
   final double distance;
   final String seller;
-  final AddressModel address;
+  final String dealer;
+  final CountryModel? country;
+  final CityModel? city;
   final double rating;
   final int reviews;
   final List<LabelModel> labels;
 
-  String get name => '$make $model';
+  String get name => '${make.label} ${model.label}';
 
   String get details => [year, bodyType, distance.visibleDistance, '$capacity L', power, gearType.label, fuelType.label].join(' | ');
 
@@ -111,12 +113,16 @@ class InventoryModel {
 
   String get amount => price.formattedPrice(currency);
 
+  String get toAddress => [city?.name, country?.name].where((e) => e != null && e.trim().isNotEmpty).join(', ');
+
+  String get variants => variant.map((e) => e.label).join(', ');
+
   InventoryModel copyWith({
     String? id,
     Vehicle? type,
-    String? make,
-    String? model,
-    String? variant,
+    MakeModel? make,
+    MakeModel? model,
+    List<VariantModel>? variant,
     double? price,
     String? year,
     double? capacity,
@@ -131,10 +137,12 @@ class InventoryModel {
     String? power,
     double? distance,
     String? seller,
-    AddressModel? address,
+    CountryModel? country,
+    CityModel? city,
     double? rating,
     int? reviews,
     List<LabelModel>? labels,
+    String? dealer,
   }) =>
       InventoryModel(
         id: id ?? this.id,
@@ -156,18 +164,20 @@ class InventoryModel {
         power: power ?? this.power,
         distance: distance ?? this.distance,
         seller: seller ?? this.seller,
-        address: address ?? this.address,
+        country: country ?? this.country,
+        city: city ?? this.city,
         rating: rating ?? this.rating,
         reviews: reviews ?? this.reviews,
         labels: labels ?? this.labels,
+        dealer: dealer ?? this.dealer,
       );
 
   Map<String, dynamic> toMap() => <String, dynamic>{
         'id': id,
         'type': type.value,
-        'make': make,
-        'model': model,
-        'variant': variant,
+        'make': make.toMap(),
+        'model': model.toMap(),
+        'variant': variant.map((e) => e.toMap()).toList(),
         'price': price,
         'year': year,
         'capacity': capacity,
@@ -182,7 +192,8 @@ class InventoryModel {
         'power': power,
         'distance': distance,
         'seller': seller,
-        'address': address.toMap(),
+        'country': country?.toMap(),
+        'city': city?.toMap(),
         'rating': rating,
         'reviews': reviews,
         'labels': labels,
@@ -192,7 +203,7 @@ class InventoryModel {
 
   @override
   String toString() =>
-      'InventoryModel(id: $id, type: $type, make: $make, model: $model, variant: $variant, price: $price, year: $year, capacity: $capacity, currency: $currency, condition: $condition, description: $description, media: $media, features: $features, gearType: $gearType, fuelType: $fuelType, bodyType: $bodyType, power: $power, distance: $distance, seller: $seller, address: $address, rating: $rating, reviews: $reviews, labels: $labels)';
+      'InventoryModel(id: $id, type: $type, make: $make, model: $model, variant: $variant, price: $price, year: $year, capacity: $capacity, currency: $currency, condition: $condition, description: $description, media: $media, features: $features, gearType: $gearType, fuelType: $fuelType, bodyType: $bodyType, power: $power, distance: $distance, seller: $seller, country: $country, city: $city, rating: $rating, reviews: $reviews, labels: $labels)';
 
   @override
   bool operator ==(covariant InventoryModel other) {
@@ -217,7 +228,8 @@ class InventoryModel {
         other.power == power &&
         other.distance == distance &&
         other.seller == seller &&
-        other.address == address &&
+        other.country == country &&
+        other.city == city &&
         other.rating == rating &&
         other.reviews == reviews &&
         listEquals(other.labels, labels);
@@ -244,7 +256,8 @@ class InventoryModel {
       power.hashCode ^
       distance.hashCode ^
       seller.hashCode ^
-      address.hashCode ^
+      country.hashCode ^
+      city.hashCode ^
       rating.hashCode ^
       reviews.hashCode ^
       labels.hashCode;

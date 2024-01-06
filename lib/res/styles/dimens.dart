@@ -25,6 +25,7 @@ class Dimens {
   static double get sixtyFour => 64.spMax;
   static double get eighty => 80.spMax;
   static double get hundred => 100.spMax;
+  static double get oneHunderFifty => 150.spMax;
   static double get twoHundred => 200.spMax;
   static double get twoHundredFifty => 250.spMax;
   static double get twoHundredSeventyFive => 275.spMax;

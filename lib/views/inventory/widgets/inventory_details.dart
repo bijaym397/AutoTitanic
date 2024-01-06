@@ -1,5 +1,6 @@
 import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
+import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -34,75 +35,69 @@ class InventoryDetails extends StatelessWidget {
               data.name,
               style: Styles.titleMedium,
             ),
-            AppText(
-              data.variant,
-              style: Styles.labelLarge,
-            ),
-            // Dimens.boxHeight8,
-            // AppText(
-            //   data.features.join(' | '),
-            //   style: Styles.labelMedium,
-            // ),
+            if (data.variants.isNotEmpty)
+              AppText(
+                data.variants,
+                style: Styles.labelLarge,
+              ),
             AppText(
               data.details,
               style: Styles.labelMedium,
               softWrap: true,
             ),
             const Divider(),
-            AppText(
-              data.seller,
-              style: Styles.labelLarge,
-            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AppIcon(
-                  Icons.star_border_rounded,
-                  size: Dimens.twenty,
-                ),
                 AppText(
-                  data.customerReviews,
-                  style: Styles.labelMedium,
+                  data.seller,
+                  style: Styles.labelLarge,
                 ),
               ],
             ),
-            Row(
-              children: [
-                AppIcon(
-                  Icons.location_on_outlined,
-                  size: Dimens.twenty,
-                ),
-                AppText(
-                  data.address.toAddress,
-                  style: Styles.labelMedium,
-                ),
-              ],
-            ),
+            _ReviewAndLocation(data),
           ],
         ),
       );
 }
 
-// class _InventoryLabel extends StatelessWidget {
-//   const _InventoryLabel(this.label);
+class _ReviewAndLocation extends StatelessWidget {
+  const _ReviewAndLocation(this.data);
 
-//   final LabelModel label;
+  final InventoryModel data;
 
-//   @override
-//   Widget build(BuildContext context) => UnconstrainedBox(
-//         child: DecoratedBox(
-//           decoration: BoxDecoration(
-//             color: label.color,
-//             borderRadius: BorderRadius.circular(Dimens.four),
-//           ),
-//           child: Padding(
-//             padding: Dimens.edgeInsets8_4,
-//             child: Text(
-//               label.label,
-//               style: Styles.labelSmall.copyWith(
-//                 color: AppColors.white,
-//               ),
-//             ),
-//           ),
-//         ),
-//       );
-// }
+  @override
+  Widget build(BuildContext context) {
+    final children = [
+      Row(
+        children: [
+          AppIcon(
+            Icons.star_border_rounded,
+            size: Dimens.twenty,
+          ),
+          AppText(
+            data.customerReviews,
+            style: Styles.labelMedium,
+          ),
+        ],
+      ),
+      if (context.isMobileView) Dimens.boxWidth10,
+      Row(
+        children: [
+          AppIcon(
+            Icons.location_on_outlined,
+            size: Dimens.twenty,
+          ),
+          AppText(
+            data.toAddress,
+            style: Styles.labelMedium,
+          ),
+        ],
+      ),
+    ];
+    if (context.isMobileView) {
+      return Row(children: children);
+    }
+    return Column(children: children);
+  }
+}

@@ -41,7 +41,6 @@ class BrandCard extends StatelessWidget {
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: Dimens.twoHundredFifty,
-                    // mainAxisExtent: Dimens.hundred,
                     childAspectRatio: 2.5 / 1,
                     crossAxisSpacing: Dimens.sixteen,
                     mainAxisSpacing: Dimens.sixteen,
@@ -139,7 +138,7 @@ class $BrandTile extends StatelessWidget {
           children: [
             AppImage(
               imageUrl: brand.logo,
-              dimensions: Dimens.fortyEight,
+              dimensions: context.isMobileView ? Dimens.thirtyTwo : Dimens.fortyEight,
               isNetworkImage: true,
               name: brand.label,
             ),

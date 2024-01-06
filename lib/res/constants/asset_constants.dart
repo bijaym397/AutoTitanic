@@ -11,6 +11,7 @@ class AssetConstants {
   static const String _svgPath = 'assets/svg';
   static const String _imagePath = 'assets/images';
   static const String _brandPath = '$_imagePath/brands';
+  static const String _dealerPath = '$_imagePath/dealers';
 
   static const String logo = '$_logoPath/logo.png';
 
@@ -50,4 +51,12 @@ class AssetConstants {
   static const String mitsubishi = '$_brandPath/mitsubishi.png';
   static const String porsche = '$_brandPath/porsche.png';
   static const String toyota = '$_brandPath/toyota.jpg';
+
+  static const String dealer1 = '$_dealerPath/dealer1.webp';
+  static const String dealer2 = '$_dealerPath/dealer2.jpeg';
+  static const String dealer3 = '$_dealerPath/dealer3.jpeg';
+  static const String dealer4 = '$_dealerPath/dealer4.png';
+
+  static const List<String> _dealers = [dealer1, dealer2, dealer3, dealer4];
+  static String get dealer => _dealers.random;
 }

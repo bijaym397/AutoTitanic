@@ -17,9 +17,15 @@ class InventoryController extends GetxController with InventoryAPIMixin {
 
   InventoryModel get inventory => InventoryModel(
         type: Vehicle.cars,
-        make: 'Nissan',
-        model: 'Micra',
-        variant: 'TDi 4x4 5dr',
+        make: const MakeModel(label: 'Nissan'),
+        model: const MakeModel(label: 'Micra'),
+        variant: [
+          VariantModel(
+            label: 'TDi 4x4 5dr',
+            createdAt: DateTime.now(),
+            updatedAt: DateTime.now(),
+          ),
+        ],
         currency: '\$',
         condition: 'New',
         price: 2499,
@@ -33,12 +39,9 @@ class InventoryController extends GetxController with InventoryAPIMixin {
         power: '145BHP',
         distance: 346700,
         seller: 'Joys Motors',
-        address: const AddressModel(
-          street: '12',
-          city: 'Heywood',
-          state: 'Greater Manchester',
-          country: 'England',
-        ),
+        dealer: AssetConstants.dealer,
+        city: const CityModel(name: 'Heywood'),
+        country: const CountryModel(name: 'England', cities: []),
         rating: 4.3,
         reviews: 1200,
         labels: [

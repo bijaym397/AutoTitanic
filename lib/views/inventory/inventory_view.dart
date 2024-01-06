@@ -27,11 +27,14 @@ class InventoryView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               if (!context.isMobileView) ...[
-                const Expanded(child: $FilterColumn()),
+                Expanded(
+                  flex: context.isDesktopView ? 1 : 2,
+                  child: const $FilterColumn(),
+                ),
                 Dimens.boxWidth16,
               ],
               Expanded(
-                flex: 4,
+                flex: context.isDesktopView ? 4 : 5,
                 child: GetBuilder<InventoryController>(
                   id: updateId,
                   initState: (_) {
@@ -39,6 +42,10 @@ class InventoryView extends StatelessWidget {
                   },
                   builder: (controller) => Column(
                     children: [
+                      if (context.isMobileView) ...[
+                        const FilterRow(),
+                        Dimens.boxHeight16,
+                      ],
                       const PaginationRow(),
                       if (controller.vehicles.isEmpty)
                         SizedBox(
@@ -51,10 +58,8 @@ class InventoryView extends StatelessWidget {
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           padding: Dimens.edgeInsets0_20,
-                          separatorBuilder: (_, __) => Dimens.boxHeight32,
-                          itemBuilder: (_, index) => _InventoryCard(
-                            controller.vehicles[index],
-                          ),
+                          separatorBuilder: (_, __) => context.isMobileView ? Dimens.boxHeight20 : Dimens.boxHeight32,
+                          itemBuilder: (_, index) => _InventoryCard(controller.vehicles[index]),
                         ),
                     ],
                   ),
@@ -63,6 +68,27 @@ class InventoryView extends StatelessWidget {
             ],
           ),
         ),
+      );
+}
+
+class FilterRow extends StatelessWidget {
+  const FilterRow({super.key});
+
+  @override
+  Widget build(BuildContext context) => Row(
+        children: [
+          Expanded(
+            child: Button(
+              label: 'Filters',
+              icon: Icons.tune_rounded,
+              onTap: () {},
+            ),
+          ),
+          Dimens.boxWidth16,
+          const Expanded(
+            child: _SortButton(),
+          ),
+        ],
       );
 }
 
@@ -84,8 +110,11 @@ class PaginationRow extends StatelessWidget {
             onTap: () {},
           ),
           const Spacer(),
-          SizedBox(
-            width: Dimens.hundred,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: Dimens.hundred,
+              minWidth: Dimens.sixtyFour,
+            ),
             child: GetX<InventoryController>(
               builder: (controller) => DropDown(
                 hint: 'Page limit:',
@@ -101,30 +130,42 @@ class PaginationRow extends StatelessWidget {
               ),
             ),
           ),
-          Dimens.boxWidth16,
-          AppText(
-            'Sort',
-            style: Styles.bodyMedium,
-          ),
-          Dimens.boxWidth4,
-          SizedBox(
-            width: Dimens.twoHundred,
-            child: GetX<InventoryController>(
-              builder: (controller) => DropDown(
-                hint: 'Sort by:',
-                items: SortBy.values,
-                labelBuilder: (e) => e.label,
-                value: controller.selectedSortBy,
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  controller.selectedSortBy = value;
-                },
-              ),
+          if (!context.isMobileView) ...[
+            Dimens.boxWidth16,
+            AppText(
+              'Sort',
+              style: Styles.bodyMedium,
             ),
-          ),
+            Dimens.boxWidth4,
+            ConstrainedBox(
+              constraints: BoxConstraints(
+                maxWidth: Dimens.twoHundred,
+                minWidth: Dimens.oneHunderFifty,
+              ),
+              child: const _SortButton(),
+            ),
+          ],
         ],
+      );
+}
+
+class _SortButton extends StatelessWidget {
+  const _SortButton();
+
+  @override
+  Widget build(BuildContext context) => GetX<InventoryController>(
+        builder: (controller) => DropDown<SortBy>(
+          hint: 'Sort by:',
+          items: SortBy.values,
+          labelBuilder: (e) => e.label,
+          value: controller.selectedSortBy,
+          onChanged: (value) {
+            if (value == null) {
+              return;
+            }
+            controller.selectedSortBy = value;
+          },
+        ),
       );
 }
 
@@ -149,18 +190,22 @@ class _InventoryCard extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(Dimens.eight),
-            child: Row(
-              children: [
+            child: LayoutBuilder(builder: (_, __) {
+              final children = [
                 Expanded(
-                  flex: 3,
+                  flex: context.isDesktopView || context.isMobileView ? 4 : 3,
                   child: InventoryImages(data.media),
                 ),
                 Expanded(
                   flex: 4,
                   child: InventoryDetails(data),
                 ),
-              ],
-            ),
+              ];
+              if (context.isMobileView) {
+                return Column(children: children);
+              }
+              return Row(children: children);
+            }),
           ),
         ),
       );

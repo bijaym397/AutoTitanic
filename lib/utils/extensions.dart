@@ -87,7 +87,7 @@ extension ContextExtension on BuildContext {
       return 0.75.pw;
     }
     if (isTabletView) {
-      return 0.8.pw;
+      return 0.9.pw;
     }
     return 0.9.pw;
   }
@@ -98,9 +98,6 @@ extension ContextExtension on BuildContext {
     }
     if (isBigTabletView) {
       return 0.1.pw;
-    }
-    if (isTabletView) {
-      return 0.07.pw;
     }
     return 0;
   }
@@ -130,7 +127,7 @@ extension ContextExtension on BuildContext {
     if (isTabletView) {
       return 11 / 4;
     }
-    return 6 / 2;
+    return 1 / 1.1;
   }
 
   int get socialCrossAxisCount {
