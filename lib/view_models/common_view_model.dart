@@ -61,4 +61,19 @@ class CommonViewModel {
       return [];
     }
   }
+
+  Future<List<CityModel>> getCities(String countryId) async {
+    try {
+      var res = await _repository.getCities(countryId);
+      if (res.hasError) {
+        return [];
+      }
+      var list = res.bodyList;
+
+      return list.map((e) => CityModel.fromMap(e as Map<String, dynamic>)).toList();
+    } catch (e, st) {
+      AppLog.error(e, st);
+      return [];
+    }
+  }
 }
