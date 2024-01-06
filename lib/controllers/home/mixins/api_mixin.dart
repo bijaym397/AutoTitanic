@@ -18,6 +18,16 @@ mixin HomeAPIMixin {
   }
 
   Future<void> getCountries() async {
+    _controller.cities.clear();
     _controller.countries = await _commonController.getCountries();
+    _controller.update([FilterSection.updateId, AdvanceSearchView.updateId, SellVehicleLocationView.updateId]);
+  }
+
+  Future<void> getCities() async {
+    if (_controller.selectedCountry == null) {
+      return;
+    }
+    _controller.cities = await _commonController.getCities(_controller.selectedCountry!.id);
+    _controller.update([AdvanceSearchView.updateId, SellVehicleLocationView.updateId]);
   }
 }

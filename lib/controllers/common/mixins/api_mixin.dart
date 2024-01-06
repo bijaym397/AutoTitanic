@@ -31,4 +31,6 @@ mixin CommonAPIMixin {
   }
 
   Future<List<CountryModel>> getCountries() => _controller._viewModel.getCountries();
+
+  Future<List<CityModel>> getCities(String countryId) => _controller._viewModel.getCities(countryId);
 }

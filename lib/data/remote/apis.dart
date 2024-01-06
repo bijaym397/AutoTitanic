@@ -18,4 +18,5 @@ class Apis {
   static const String addVehicle = 'addVehicle';
 
   static const String allCountry = 'allCountry';
+  static const String allCities = 'allCities';
 }

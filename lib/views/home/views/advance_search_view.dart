@@ -70,6 +70,7 @@ class AdvanceSearchView extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                  Dimens.boxHeight24,
                                   GridView.builder(
                                     itemCount: VehicleFilter.advanceFilters.length,
                                     shrinkWrap: true,

@@ -112,9 +112,7 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
 
   List<CountryModel> countries = [];
 
-  List<CountryModel> cities = [];
-
-  // ==================== INIT =====================
+  List<CityModel> cities = [];
 
   List<DropDownModel> get countryList => countries
       .map((e) => DropDownModel(
@@ -129,6 +127,16 @@ class HomeController extends GetxController with SellVehicleMixin, HomeAPIMixin 
             label: e.name,
           ))
       .toList();
+
+  // ==================== INIT =====================
+
+  @override
+  void onReady() {
+    super.onReady();
+    getCountries();
+  }
+
+  // ---------------- Data --------------------
 
   void checkRoute() {
     var uri = Uri.base.toString();

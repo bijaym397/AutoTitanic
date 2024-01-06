@@ -21,11 +21,12 @@ mixin SellVehicleMixin {
 
   void onCountryChanged(DropDownModel? country) {
     _controller.selectedCountry = country;
+    _controller.getCities();
     _controller.update([SellVehicleLocationView.updateId]);
   }
 
-  void onCityChanged(DropDownModel? state) {
-    _controller.selectedCity = state;
+  void onCityChanged(DropDownModel? city) {
+    _controller.selectedCity = city;
     _controller.update([SellVehicleLocationView.updateId]);
   }
 

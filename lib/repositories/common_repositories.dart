@@ -40,4 +40,10 @@ class CommonRepository {
         type: RequestType.get,
         headers: {},
       );
+
+  Future<ResponseModel> getCities(String countryId) => _apiWrapper.makeRequest(
+        '${Apis.allCities}/$countryId',
+        type: RequestType.get,
+        headers: {},
+      );
 }
