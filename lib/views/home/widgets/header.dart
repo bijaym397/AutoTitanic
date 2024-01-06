@@ -76,9 +76,9 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                       ),
                     ),
                   ),
-                if (Get.width < AppConstants.maxMobileWidth) ...[
+                if (context.isMobileView) ...[
                   TapHandler(
-                    onTap: () {},
+                    onTap: ScreenWrapper.globalKey.currentState?.openEndDrawer,
                     child: const AppIcon(
                       Icons.menu,
                     ),

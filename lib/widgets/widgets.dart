@@ -16,6 +16,7 @@ export 'html_widget.dart';
 export 'icon_button.dart';
 export 'input_field.dart';
 export 'loader.dart';
+export 'nav_drawer.dart';
 export 'page_head_label.dart';
 export 'responsive_builder.dart';
 export 'screen_wrapper.dart';

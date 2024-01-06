@@ -22,6 +22,8 @@ class ScreenWrapper extends StatelessWidget {
         ),
         assert(!showFilterCard || (showFilterCard && onFilterSearch != null), 'If showFilterCard is set to true, onFilterSearch must be non-null');
 
+  static final globalKey = GlobalKey<ScaffoldState>();
+
   final String title;
   final Widget? body;
   final bool showAppBarImage;
@@ -35,8 +37,10 @@ class ScreenWrapper extends StatelessWidget {
         title: 'AutoTitanic | $title',
         color: AppColors.white,
         child: Scaffold(
+          key: globalKey,
           backgroundColor: isWhiteBackground ? AppColors.white : AppColors.grey,
           appBar: const DashboardHeader(),
+          endDrawer: context.isMobileView ? const NavDrawer() : null,
           body: GetBuilder<CommonController>(
             builder: (controller) => TapHandler(
               showArrowCursor: true,
