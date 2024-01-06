@@ -47,13 +47,28 @@ class AdvanceSearchView extends StatelessWidget {
                               padding: Dimens.edgeInsets0_40,
                               child: Column(
                                 children: [
-                                  CountryPicker(
-                                    showStates: true,
-                                    space: Dimens.thirtyTwo,
-                                    currentCountry: controller.selectedCountry,
-                                    currentState: controller.selectedState,
-                                    onCountryChanged: controller.onCountryChanged,
-                                    onStateChanged: controller.onStateChanged,
+                                  Row(
+                                    children: [
+                                      Flexible(
+                                        child: DropDown<DropDownModel>(
+                                          hint: 'Country',
+                                          labelBuilder: (e) => e.label,
+                                          items: controller.countryList,
+                                          value: controller.selectedCountry,
+                                          onChanged: controller.onCountryChanged,
+                                        ),
+                                      ),
+                                      Dimens.boxWidth32,
+                                      Flexible(
+                                        child: DropDown<DropDownModel>(
+                                          hint: 'City',
+                                          labelBuilder: (e) => e.label,
+                                          items: controller.cityList,
+                                          value: controller.selectedCity,
+                                          onChanged: controller.onCityChanged,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                   GridView.builder(
                                     itemCount: VehicleFilter.advanceFilters.length,

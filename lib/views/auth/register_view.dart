@@ -1,4 +1,5 @@
 import 'package:auto_titanic/controllers/controllers.dart';
+import 'package:auto_titanic/models/models.dart';
 import 'package:auto_titanic/res/res.dart';
 import 'package:auto_titanic/utils/utils.dart';
 import 'package:auto_titanic/views/views.dart';
@@ -11,6 +12,8 @@ class RegisterView extends StatelessWidget {
   const RegisterView({super.key});
 
   static const String route = AppRoutes.register;
+
+  static const String updateId = 'register-view';
 
   @override
   Widget build(BuildContext context) => GetBuilder<AuthController>(
@@ -84,6 +87,7 @@ class _RegisterForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => GetBuilder<AuthController>(
+        id: RegisterView.updateId,
         builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -135,10 +139,15 @@ class _RegisterForm extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Flexible(
-                  child: CountryPicker(
-                    showLabel: true,
+                Flexible(
+                  child: DropDown<DropDownModel>(
+                    hint: 'Country',
                     isRequired: true,
+                    showTitle: true,
+                    labelBuilder: (e) => e.label,
+                    items: controller.countryList,
+                    value: controller.country,
+                    onChanged: controller.onCountryChanged,
                   ),
                 ),
                 Dimens.boxWidth16,
@@ -152,6 +161,7 @@ class _RegisterForm extends StatelessWidget {
                 ),
               ],
             ),
+            Dimens.boxHeight10,
             Row(
               children: [
                 Flexible(

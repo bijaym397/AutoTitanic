@@ -10,9 +10,11 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
   const DashboardHeader({
     super.key,
     this.height,
+    required this.globalKey,
   });
 
   final double? height;
+  final GlobalKey<ScaffoldState> globalKey;
 
   @override
   Size get preferredSize => Size(Get.width, _navHeight);
@@ -78,7 +80,7 @@ class DashboardHeader extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 if (context.isMobileView) ...[
                   TapHandler(
-                    onTap: ScreenWrapper.globalKey.currentState?.openEndDrawer,
+                    onTap: globalKey.currentState?.openEndDrawer,
                     child: const AppIcon(
                       Icons.menu,
                     ),
